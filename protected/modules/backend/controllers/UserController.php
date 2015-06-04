@@ -24,6 +24,7 @@ class UserController extends BackendController
         $model->unsetAttributes();
         if(isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
+            $model->is_staff = 1;
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
             }
