@@ -1,0 +1,10 @@
+protected/config/main-local.php
+protected/config/cron.php
+protected/config/console.php
+protected/runtime/
+/assets/
+.idea
+/framework
+/images
+/nbproject/private/
+/.htaccess

@@ -1,0 +1,62 @@
+
+@media (max-width: 991px) {
+	.expert { width: 25%; }
+	.feature { padding-right: 2rem; }
+
+	.register form { padding: 0; }
+	.social-login { 
+		padding: 0; 
+		text-align: center; 
+		margin-top: 30px;
+	}
+	.register form button {
+		position: static;
+		float: none;
+	}
+	.register h2 {
+		text-align: center;
+	}
+}
+
+@media (max-width: 767px) {
+
+	html { font-size: 50.5% }
+
+	.expert { width: 50%; }
+	.feature { margin-bottom: 30px; text-align: center; }
+	.breadcrumbs { display: none; }
+
+	footer { text-align: center; }
+	.footer-contact { margin: 6rem 0 -6rem 0; }
+
+}
+
+@media (max-width: 480px) {
+	.expert { width: 50%; }
+
+}
+
+
+@media (max-width: 320px) {
+	.expert { width: 100%; }
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+	html { font-size: 54.5% }
+
+
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 1200px) and (max-width: 1280px) {
+	
+}
+
+@media (min-width: 1300px) {
+	
+}
