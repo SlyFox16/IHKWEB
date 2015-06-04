@@ -8,7 +8,7 @@ class Webhook extends CAction
         $boolDebugLogging = TRUE;
 
         $arrConfig['NICE_CAPTION'] = array(
-            'repository' => 'eunews',
+            'repository' => 'IHKWEB',
             'execute' => array(
                 'cd ' . Yii::getPathOfAlias('webroot') . '; git reset --hard HEAD 2>&1; git clean -f -d 2>&1; git pull 2>&1'
             )
