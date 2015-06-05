@@ -175,6 +175,21 @@ select {
     -webkit-appearance: menulist-button;
 }
 
+.file-upload {
+	height: 5rem;
+	width: 15rem;
+	padding-left: 10rem;
+    background: #fff;
+}
+
+.file-upload a {
+	display: block;
+	width: 5rem;
+	height: 5rem;
+	text-align: center;
+	line-height: 5rem;
+}
+
 
 /*--------------------
 Basics =============*/
@@ -185,7 +200,7 @@ Basics =============*/
 	top: -3.5rem;
 	left: 15px;
 	list-style: none;
-	z-index: 100;
+	z-index: -1;
 }
 
 .breadcrumbs li {
@@ -490,6 +505,7 @@ Homepage ===========*/
 
 /* About Project */
 .about-project {
+	margin: 0;
 	font-size: 3rem;
 	font-weight: 300;
 }
@@ -744,3 +760,20 @@ Register ===========*/
 .social-links > *.fa-facebook { background: #3b5998; }
 .social-links > *.fa-linkedin { background: #005654; }
 .social-links > *.fa-xing { background: #0085bf; }
+
+
+/*--------------------
+Search Results =====*/
+.search-header .container {
+	padding-top: 0;
+}
+
+.search-header h2 {
+	margin: 0;
+	font-size: 3rem;
+	font-weight: 300;
+}
+
+.search-results {
+	margin-bottom: 6rem;
+}

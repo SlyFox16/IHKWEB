@@ -7,7 +7,7 @@
  */
 class LoginForm extends CFormModel
 {
-    public $username;
+    public $email;
     public $password;
     public $rememberMe;
 
@@ -22,7 +22,8 @@ class LoginForm extends CFormModel
     {
         return array(
             // email and password are required
-            array('username, password', 'required'),
+            array('email, password', 'required'),
+            array('email', 'email', 'message' => Yii::t("base","E-mail не действительный!")),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
             // password needs to be authenticated
@@ -37,8 +38,8 @@ class LoginForm extends CFormModel
     {
         return array(
             'rememberMe'=>'Remember me next time',
-            'username' => Yii::t('base','Логин'),
-            'password' => Yii::t('base','Пароль'),
+            'username' => Yii::t('base','UserName'),
+            'password' => Yii::t('base','Password'),
         );
     }
 
@@ -49,7 +50,7 @@ class LoginForm extends CFormModel
     public function authenticate($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $this->_identity = new UserIdentity($this->username, $this->password);
+            $this->_identity = new UserIdentity($this->email, $this->password);
             if ($this->_identity->authenticate() == 3)
                 $this->addError('email', Yii::t("base","The account is not active"));
             elseif ($this->_identity->authenticate() == 1 || $this->_identity->authenticate() == 2)
@@ -64,7 +65,7 @@ class LoginForm extends CFormModel
     public function autoAuthenticate($attribute, $params)
     {
         if (!$this->hasErrors()) {
-            $this->_identity = new UserIdentity($this->username);
+            $this->_identity = new UserIdentity($this->email);
             if (!$this->_identity->autoAuthenticate())
                 $this->addError('password', Yii::t("base","Неверный адрес электронной почты"));
         }
@@ -77,7 +78,7 @@ class LoginForm extends CFormModel
     public function login()
     {
         if ($this->_identity === null) {
-            $this->_identity = new UserIdentity($this->username, $this->password);
+            $this->_identity = new UserIdentity($this->email, $this->password);
             $this->_identity->authenticate();
         }
         if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {
@@ -95,7 +96,7 @@ class LoginForm extends CFormModel
     public function autoLogin()
     {
         if ($this->_identity === null) {
-            $this->_identity = new UserIdentity($this->username);
+            $this->_identity = new UserIdentity($this->email);
             $this->_identity->autoAuthenticate();
         }
         if ($this->_identity->errorCode === UserIdentity::ERROR_NONE) {

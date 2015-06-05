@@ -17,11 +17,12 @@
     <div class="container">
         <div class="logo">
             <h1>Crowd</h1>
+            <?php echo CHtml::link('Register', array('/site/login')); ?>
             <p>Innovation / Funding / Sourcing</p>
         </div>
     </div>
     <?php if(!Yii::app()->user->isGuest) {
-        echo Chtml::link('Hello '.Yii::app()->user->getState('fullname'), '#');
+        echo Chtml::link('Hello '.Yii::app()->user->full_Name, '#');
         CHtml::tag('br');
         echo Chtml::link('Logout ', array('/site/logout'));
     } ?>

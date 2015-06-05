@@ -17,6 +17,23 @@ class SiteController extends Frontend
 		);
 	}
 
+    public function accessRules()
+    {
+        return array(
+            array('allow',
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error'),
+                'users'=>array('*'),
+            ),
+            array('allow',
+                'actions'=>array('logout'),
+                'users'=>array('@'),
+            ),
+            array('deny',  // deny all users
+                'users'=>array('*'),
+            ),
+        );
+    }
+
     public function actionChange()
     {
         if (isset($_GET['lang'])) {
@@ -86,6 +103,30 @@ class SiteController extends Frontend
 		$this->render('contact',array('model'=>$model));
 	}
 
+    public function actionLogin()
+    {
+        if(!Yii::app()->user->isGuest) $this->redirect(Yii::app()->homeUrl);
+
+        $model = Yii::createComponent('application.models.LoginForm');
+
+        // if it is ajax validation request
+        if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        // collect user input data
+        if(isset($_POST['LoginForm']))
+        {
+            $model->attributes=$_POST['LoginForm'];
+            if($model->validate() && $model->login())
+                $this->redirect(Yii::app()->homeUrl);
+        }
+
+        $this->render('login', array('model' => $model));
+    }
+
     public function actionRegister()
     {
         $register_form = new User();
@@ -101,7 +142,7 @@ class SiteController extends Frontend
             $register_form->is_active = 1;
             if($register_form->save()) {
                 $login = Yii::createComponent('application.models.LoginForm');
-                $login->username = $register_form->username;
+                $login->email = $register_form->email;
                 $login->password = $_POST["User"]['password'];
                 if($login->autoLogin()) {
                     Yii::app()->user->setFlash('user_register', Yii::t("base","Congratulations! You have registered successfully!"));

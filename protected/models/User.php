@@ -256,11 +256,6 @@ class User extends ActiveRecord
         return $avatar;
     }
 
-    public function getFullName()
-    {
-        return $this->name.' '.$this->surname;
-    }
-
     public function sendEmail($subject, $body, $to) {
         $mailer = Yii::createComponent('application.extensions.mailer.EMailer');
         $mailer->From = Yii::app()->name;
