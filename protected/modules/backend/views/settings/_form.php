@@ -6,7 +6,12 @@
 )); ?>
 
     <?php echo $model->requiredAlert(); ?>	<?php echo $form->errorSummary($model); ?>
-	<?php echo $form->textAreaRow($model,'value',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+
+    <?php if(in_array($model->id, array(1,2,3))) { ?>
+        <?php echo $form->textFieldRow($model, 'title', array('class' => 'span5', 'maxlength' => 80)); ?>
+    <?php } ?>
+
+	<?php echo $form->textAreaRow($model,'value',array('rows'=>6, 'cols'=>50, 'class'=>'span5')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

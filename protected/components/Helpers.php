@@ -8,12 +8,14 @@
  */
 
 
-function yiisetting($name, $default = null)
+function yiisetting($name, $default = null, $title = false)
 {
     if ($setting = Settings::model()->findByAttributes(array("name"=>$name)))
-        if (isset($setting))
-            return $setting->value;
-    
+        if (isset($setting)) {
+            $return = $title ? $setting->title : $setting->value;
+            return $return;
+        }
+
     return $default;
 }
 

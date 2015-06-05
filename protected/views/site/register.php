@@ -24,26 +24,25 @@
                         'inputContainer' => 'fieldset',
                     ),
                 )); ?>
-                    <?php echo $form->errorSummary($register_form); ?>
                     <fieldset>
                         <?php echo $form->labelEx($register_form, 'username'); ?>
                         <?php echo $form->textField($register_form, 'username'); ?>
-                        <?php $form->error($register_form, 'username'); ?>
+                        <?php echo $form->error($register_form, 'username'); ?>
                     </fieldset>
                     <fieldset>
                         <?php echo $form->labelEx($register_form, 'name'); ?>
                         <?php echo $form->textField($register_form, 'name'); ?>
-                        <?php $form->error($register_form, 'name'); ?>
+                        <?php echo $form->error($register_form, 'name'); ?>
                     </fieldset>
                     <fieldset>
                         <?php echo $form->labelEx($register_form, 'surname'); ?>
                         <?php echo $form->textField($register_form, 'surname'); ?>
-                        <?php $form->error($register_form, 'surname'); ?>
+                        <?php echo $form->error($register_form, 'surname'); ?>
                     </fieldset>
                     <fieldset>
                         <?php echo $form->labelEx($register_form, 'email'); ?>
                         <?php echo $form->textField($register_form, 'email'); ?>
-                        <?php $form->error($register_form, 'email'); ?>
+                        <?php echo $form->error($register_form, 'email'); ?>
                     </fieldset>
                     <div class="secondary">
                         <span>References</span>
@@ -51,12 +50,12 @@
                     <fieldset>
                         <?php echo $form->labelEx($register_form, 'password'); ?>
                         <?php echo $form->passwordField($register_form, 'password', array('class' => "form-control", 'placeholder' => Yii::t("base", "Минимум 5 символов"))); ?>
-                        <?php $form->error($register_form, 'password', array('inputContainer' => 'fieldset')); ?>
+                        <?php echo $form->error($register_form, 'password', array('inputContainer' => 'fieldset')); ?>
                     </fieldset>
                     <fieldset>
                         <?php echo $form->labelEx($register_form, 'password_repeat'); ?>
                         <?php echo $form->passwordField($register_form, 'password_repeat', array('class' => "form-control")); ?>
-                        <?php $form->error($register_form, 'password_repeat', array('inputContainer' => 'fieldset')); ?>
+                        <?php echo $form->error($register_form, 'password_repeat', array('inputContainer' => 'fieldset')); ?>
                     </fieldset>
                     <button class="button" type="submit">Register</button>
                 <?php $this->endWidget(); ?>

@@ -33,8 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8">
-                <p>Rue du Fossé-aux-Loups 47, 1000  Brussels, Belgium<br>
-                    (123) 456-7890, contact@ihk.de</p>
+                <p><?php echo yiisetting('footer_info'); ?></p>
             </div>
             <div class="col-sm-4 footer-contact">
                 <a href="" class="angle">Get in touch</a>

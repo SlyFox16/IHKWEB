@@ -17,6 +17,11 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+        array(
+            'name' => 'title',
+            'value' => $model->value,
+            'visible' => '!empty($model->value)',
+        ),
 		'name',
 		'value',
 	),
