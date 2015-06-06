@@ -18,16 +18,16 @@ class UloginModel extends CModel {
             //array('identity, network', 'required'),
             //array('email', 'email'),
             array('identity, network, email', 'length', 'max'=>255),
-            array('name', 'length', 'max'=>55),
+            array('name, surname', 'length', 'max'=>80),
         );
     }
 
     public function attributeLabels() {
         return array(
-            'network'=>'Сервис',
-            'identity'=>'Идентификатор сервиса',
+            'network'=>'Service',
+            'identity'=>'Service identity',
             'email'=>'eMail',
-            'name'=>'Имя',
+            'name'=>'Name',
         );
     }
 
@@ -54,6 +54,7 @@ class UloginModel extends CModel {
             ,'network'
             ,'email'
             ,'name'
+            ,'surname'
             ,'token'
             ,'error_type'
             ,'error_message'

@@ -18,10 +18,13 @@ class UloginUserIdentity implements IUserIdentity
         );
 
         $user = User::model()->find($criteria);
+
         if (null !== $user) {
             $this->id = $user->id;
-            $this->username = $uloginModel->name.$uloginModel->surname.rabd(1, 999);
             $this->name = $uloginModel->name;
+
+            $user->username = $uloginModel->name.$uloginModel->surname.rand(1, 999);
+            $user->name = $uloginModel->name;
             $user->identity = $uloginModel->identity;
             $user->network = $uloginModel->network;
             $user->name = $uloginModel->name;
@@ -29,7 +32,7 @@ class UloginUserIdentity implements IUserIdentity
             $user->update();
         } else {
             $user = new User('socials');
-            $this->username = $uloginModel->name.$uloginModel->surname.rabd(1, 999);
+            $user->username = $uloginModel->name.$uloginModel->surname.rand(1, 999);
             $user->identity = $uloginModel->identity;
             $user->network = $uloginModel->network;
             $user->email = $uloginModel->email;
@@ -37,6 +40,9 @@ class UloginUserIdentity implements IUserIdentity
             $user->surname = $uloginModel->surname;
             $user->is_active = 1;
             $user->is_staff = 0;
+
+            $this->id = $user->id;
+            $this->name = $user->name;
             $user->save();
 
             $this->id = $user->id;

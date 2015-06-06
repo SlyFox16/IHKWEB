@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin'),
                 'users'=>array('*'),
             ),
             array('allow',

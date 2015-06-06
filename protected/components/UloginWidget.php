@@ -5,7 +5,7 @@ class UloginWidget extends CWidget
     public static $counter = 0;
     
     private $params = array(
-        'display'       =>  'buttons',
+        'display'       =>  'buttons', //'panel'
         'fields'        =>  'first_name,last_name,email',
         'providers'     =>  'vkontakte,odnoklassniki,facebook',
         'hidden'        =>  '',
