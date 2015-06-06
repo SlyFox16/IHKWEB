@@ -39,7 +39,7 @@
         // Apps
         Apps: function () {
             // Fancy Select
-            $('select').fancySelect();
+            /*$('select').fancySelect();*/
         }
 
 

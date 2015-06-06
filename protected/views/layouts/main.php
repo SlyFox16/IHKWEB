@@ -15,16 +15,20 @@
 <!--===============================-->
 <header data-stellar-ratio="1.4">
     <div class="container">
-        <div class="logo">
-            <h1>Crowd</h1>
-            <?php echo CHtml::link('Register', array('/site/login')); ?>
-            <p>Innovation / Funding / Sourcing</p>
-        </div>
+        <a href="<?php echo Yii::app()->homeUrl; ?>">
+            <div class="logo">
+                <h1>Crowd</h1>
+                <p>Innovation / Funding / Sourcing</p>
+            </div>
+        </a>
     </div>
+    <?php echo CHtml::link('Login', array('/site/login')); ?>
     <?php if(!Yii::app()->user->isGuest) {
         echo Chtml::link('Hello '.Yii::app()->user->full_Name, '#');
-        CHtml::tag('br');
+        echo CHtml::tag('br');
         echo Chtml::link('Logout ', array('/site/logout'));
+        echo CHtml::tag('br');
+        echo CHtml::link('Cabinet', array('/user/cabinet', 'id' => Yii::app()->user->id));
     } ?>
 </header>
 

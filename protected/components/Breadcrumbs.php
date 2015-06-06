@@ -11,9 +11,9 @@ class Breadcrumbs extends CBreadcrumbs
 {
     public function run()
     {
-        $this->separator = '<li class="separator icon_small_arrow right_gray">&nbsp;</li>';
+        $this->separator = '';
         $this->tagName='ul';
-        $this->htmlOptions = array('class'=>'bread_crumb');
+        $this->htmlOptions = array('class'=>'breadcrumbs');
         $this->inactiveLinkTemplate = '<li>{label}</li>';
         $this->activeLinkTemplate = '<li>'.CHtml::link("{label}", "{url}").'</li>';
 

@@ -112,9 +112,9 @@ ul,ol {
 	line-height: 1.6em;
 }
 
-ul {
+/*ul {
 	list-style-image: url(../images/ul.png);
-}
+}*/
 
 hr {
 	height: 2px;

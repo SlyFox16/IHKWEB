@@ -50,7 +50,7 @@ class User extends ActiveRecord
         // will receive user inputs.
         return array(
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'insert'),
-            array('username, name, surname, email', 'required', 'on' => 'update'),
+            array('username, name, surname, email', 'required', 'on' => 'update, userupdate, socials'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
             array('email', 'noEmail', 'on' => 'changepassword'),
             array('is_active', 'numerical', 'integerOnly' => true),
@@ -58,16 +58,18 @@ class User extends ActiveRecord
             array('password', 'length', 'min' => 5),
             array('name', 'length', 'max' => 80),
             array('password, identity, network', 'length', 'max' => 512),
+            array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
+            array('facebook_url, twitter_url, xing_url', 'url'),
             array('salt, username, phone, address', 'length', 'max' => 255),
             array('email, username', 'unique'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register'),
-            array('password_repeat, last_login, date_joined, is_staff, identity, network, comment', 'safe'),
+            array('password_repeat, certificates0, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
             array('is_active', 'default', 'value' => 1,'setOnEmpty' => false, 'on' => 'insert'),
-            array('date_joined', 'default', 'value' => date("Y-m-d H:i:s"), 'setOnEmpty' => false, 'on' => 'insert, update')
+            array('date_joined', 'default', 'value' => date("Y-m-d H:i:s"), 'setOnEmpty' => false, 'on' => 'insert, register, socials')
         );
     }
 
@@ -97,9 +99,7 @@ class User extends ActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'projects' => array(self::HAS_MANY, 'Project', 'user_id'),
-            'paidLog' => array(self::HAS_MANY, 'PaidLog', 'user_id'),
-            'projectCount' => array(self::STAT,'Project','user_id'),
+            'certificates0' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
         );
     }
 
@@ -248,12 +248,47 @@ class User extends ActiveRecord
 
     public function getUAvatar()
     {
-        $user = User::model()->findByPk(Yii::app()->user->id);
-        $avatar = $user->avatar;
-        if(empty($user->avatar))
-            $avatar = 'static/assets/img/avatar.png';
+        if(empty($this->avatar))
+            return substr(Yii::app()->controller->getAssetsUrl().'/images/profile-no-photo.png', 1);
 
-        return $avatar;
+        return $this->avatar;
+    }
+
+    public function getUAddress()
+    {
+        if(empty($this->address))
+            return 'no address';
+
+        return $this->address;
+    }
+
+    public function getUXing_url()
+    {
+        if(empty($this->xing_url))
+            return 'no Xing url';
+
+        return $this->xing_url;
+    }
+
+    public function getUPhone()
+    {
+        if(empty($this->phone))
+            return 'no phone';
+
+        return $this->phone;
+    }
+
+    public function getUDescription()
+    {
+        if(empty($this->description))
+            return 'no description';
+
+        return $this->description;
+    }
+
+    public function getAllCertificates() {
+        $certificates = Certificates::model()->findAll();
+        return CHtml::listData($certificates, 'id', 'name');
     }
 
     public function sendEmail($subject, $body, $to) {
@@ -272,5 +307,33 @@ class User extends ActiveRecord
         } else {
             return false;
         }
+    }
+
+    public function getFullName() {
+        return $this->name.' '.$this->surname;
+    }
+
+    public function afterSave()
+    {
+        if($this->scenario == 'userupdate') {
+            $allUserCert = UserCertificate::model()->findAllByAttributes(array('user_id' => $this->id));
+
+            foreach($allUserCert as $value)
+                $value->delete();
+
+
+            if(!empty($this->certificates0))
+            {
+                foreach($this->certificates0 as $value)
+                {
+                    $cityHol = new UserCertificate();
+                    $cityHol->user_id = $this->id;
+                    $cityHol->certificate_id = $value;
+                    $cityHol->save();
+                }
+            }
+        }
+
+        return parent::afterSave();
     }
 }

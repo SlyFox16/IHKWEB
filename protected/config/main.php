@@ -103,6 +103,7 @@ return CMap::mergeArray(
                 'urlFormat'=>'path',
                 'showScriptName'=>false,
                 'rules'=>array(
+                    array('class' => 'ihkUserRouter'),
                     'backend'=>'backend/default/index',
                     'registration' => 'site/register',
                     'login' => 'site/login',
@@ -146,7 +147,7 @@ return CMap::mergeArray(
         'params'=>array(
             'no-replyEmail' => 'no-reply@'.$_SERVER['SERVER_NAME'],
             'adminEmail' => 'jenya@idol-it.com',
-            'defaultPageSize' => 9,
+            'defaultPageSize' => 10,
             'albumPageSize' => 18,
         ),
      ),

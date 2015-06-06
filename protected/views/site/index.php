@@ -2,21 +2,7 @@
 <!--== Experts ====================-->
 <!--===============================-->
 <section class="clearfix">
-    <div class="container relative no-padding">
-
-        <!--== Page Control ==-->
-        <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
-            <li class="search">
-                <form class="search" action="/search">
-                    <input type="text" name="search" placeholder="Search">
-                </form>
-                <a href=""><i class="fa fa-search"></i></a>gfj
-            </li>
-            <li>
-                <a href=""><i class="fa fa-chevron-right"></i></a>
-            </li>
-        </ul>
-    </div>
+    <?php $this->widget('Search'); ?>
     <div class="expert">
         <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/01.jpg" alt="Expert">
         <div class="expert-info">

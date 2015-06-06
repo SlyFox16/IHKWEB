@@ -14,11 +14,12 @@ return array(
             'css/font-awesome.css',
             'css/style.css',
             'css/responsive.css',
-            'css/mystyle.css',
+            /*'css/fancySelect.css',*/
         ),
         'js' => array(
             'js/wow.min.js',
             'js/jquery.stellar.js',
+            /*'js/fancySelect.js',*/
             'js/main.js',
         ),
         'depends' => array('jquery'),

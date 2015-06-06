@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -127,6 +127,21 @@ class SiteController extends Frontend
         $this->render('login', array('model' => $model));
     }
 
+    /** Socials Login Action **/
+    public function actionULogin()
+    {
+        if (isset($_POST['token'])) {
+            $ulogin = new UloginModel();
+            $ulogin->token = $_POST['token'];
+            $ulogin->getAuthData();
+            if ($ulogin->validate() && $ulogin->login()) {
+                $this->redirect(Yii::app()->user->returnUrl);
+            } else
+                throw new CHttpException(400,Yii::t("base","Запрашиваемая страница не существует!"));
+        } else
+            $this->redirect(Yii::app()->homeUrl, true);
+    }
+
     public function actionRegister()
     {
         $register_form = new User();
@@ -182,19 +197,18 @@ class SiteController extends Frontend
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
 
-    public function actionSearch()
+    public function actionSearch($q)
     {
-        if (isset($_GET['q'])) {
+        if ($q) {
             $q = htmlspecialchars($_GET['q']);
             $q = addslashes($q);
             $q = mb_strtolower($q,'UTF-8');
 
             $crt = new CDbCriteria;
-            $crt->condition = "(LOWER(description_ru) REGEXP '[[:<:]]{$q}' or LOWER(description_ro) REGEXP '[[:<:]]{$q}' or LOWER(title_ru) REGEXP '[[:<:]]{$q}' or LOWER(title_ro) REGEXP '[[:<:]]{$q}')";
-            $crt->addInCondition("is_active", arr_language());
+            $crt->condition = "(LOWER(username) REGEXP '[[:<:]]{$q}' or LOWER(name) REGEXP '[[:<:]]{$q}' or LOWER(surname) REGEXP '[[:<:]]{$q}')";
             $crt->order = 'id DESC';
 
-            $dataSearch = new CActiveDataProvider(new Article, array(
+            $dataSearch = new CActiveDataProvider(new User, array(
                 'criteria'=>$crt,
                 'pagination' => array('Pagesize' => Yii::app()->params['defaultPageSize'])
             ));
