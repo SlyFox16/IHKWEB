@@ -2,7 +2,7 @@
     {
       "consumer_key": "8408e4360eaec7710b97"
     }
-    </script>
+</script>
 
 
 <?php if (Yii::app()->user->isGuest): ?>
