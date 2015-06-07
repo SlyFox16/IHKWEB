@@ -12,11 +12,20 @@
         <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
             <li>
                 <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
+                    <?php if($log) {
+                        for($i=1; $i<=5;$i++) {
+                            if($i <= $log->num)
+                                echo '<i class="fa fa-star"></i>';
+                            else
+                                echo '<i class="fa fa-star-o"></i>';
+                        }
+                    } else { ?>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    <?php } ?>
                 </div>
             </li>
             <li>
@@ -36,8 +45,8 @@
             </div>
             <div class="col-sm-3 col-xs-3 text-right">
                 <ul class="stats">
-                    <li>
-                        Rating <b>4.2</b>
+                    <li class="userRating">
+                        Rating <b><?php echo $user->rating; ?></b>
                     </li>
                     <li>
                         Level <b>1</b>
@@ -97,3 +106,13 @@
         </div>
     </div>
 </section>
+<?php if(Yii::app()->user->isGuest || $log || ($user->id == Yii::app()->user->id)) { ?>
+    <?php Yii::app()->clientScript->registerScript('unbind',"
+        $('.rating i').unbind();
+        $('.rating').unbind();
+"); ?>
+<?php } ?>
+
+<?php Yii::app()->clientScript->registerScript('username',"
+        username = '$user->username'
+"); ?>

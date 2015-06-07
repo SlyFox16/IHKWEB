@@ -123,8 +123,15 @@ class ActiveRecord extends CActiveRecord
     protected function putImages($image, $attribute)
     {
         $filename = $this->imageName($image);
-        $path = 'images/site/' . get_class($this) . "/" . $filename;
-        $dir = Yii::getPathOfAlias("webroot") . '/images/site/' . get_class($this) . '/';
+
+        if($this->$attribute == 'vcf') {
+            $path = 'images/site/' . get_class($this) . "/vcf/" . $filename;
+            $dir = Yii::getPathOfAlias("webroot") . '/images/site/' . get_class($this) . '/vcf/';
+        } else {
+            $path = 'images/site/' . get_class($this) . "/" . $filename;
+            $dir = Yii::getPathOfAlias("webroot") . '/images/site/' . get_class($this) . '/';
+        }
+
 
         $path = strtolower($path);
         $dir = strtolower($dir);

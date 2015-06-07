@@ -24,7 +24,7 @@
     </div>
     <?php echo CHtml::link('Login', array('/site/login')); ?>
     <?php if(!Yii::app()->user->isGuest) {
-        echo Chtml::link('Hello '.Yii::app()->user->full_Name, '#');
+        echo Chtml::link('Hello '.Yii::app()->user->full_Name, array('/user/info', 'id' => Yii::app()->user->id));
         echo CHtml::tag('br');
         echo Chtml::link('Logout ', array('/site/logout'));
         echo CHtml::tag('br');

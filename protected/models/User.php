@@ -55,6 +55,7 @@ class User extends ActiveRecord
             array('email', 'noEmail', 'on' => 'changepassword'),
             array('is_active', 'numerical', 'integerOnly' => true),
             array('avatar', 'file', 'types'=>'png, jpg, gif','allowEmpty'=>true),
+            array('vcf', 'file', 'types'=>'vcf','allowEmpty'=>true),
             array('password', 'length', 'min' => 5),
             array('name', 'length', 'max' => 80),
             array('password, identity, network', 'length', 'max' => 512),

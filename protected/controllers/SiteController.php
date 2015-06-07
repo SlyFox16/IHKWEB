@@ -153,6 +153,7 @@ class SiteController extends Frontend
 
         if (isset($_POST["User"])) {
             $register_form->attributes = $_POST["User"];
+            $register_form->username = $register_form->name.$register_form->surname.rand(1, 999);
 
             $register_form->is_active = 1;
             if($register_form->save()) {

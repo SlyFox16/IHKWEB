@@ -92,6 +92,8 @@
                         <?php echo $form->textField($user, 'xing_url'); ?>
                         <?php echo $form->error($user, 'xing_url'); ?>
                     </fieldset>
+                    <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user)); ?>
+
                     <button class="button" type="submit">Register</button>
                 <?php $this->endWidget(); ?>
             </div>

@@ -14,6 +14,7 @@ return array(
             'css/font-awesome.css',
             'css/style.css',
             'css/responsive.css',
+            'css/mycss.css',
             /*'css/fancySelect.css',*/
         ),
         'js' => array(
@@ -21,6 +22,7 @@ return array(
             'js/jquery.stellar.js',
             /*'js/fancySelect.js',*/
             'js/main.js',
+            'js/myjs.js',
         ),
         'depends' => array('jquery'),
     ),

@@ -17,9 +17,12 @@
                 tfiles = e.target && e.target.value ? [{name: e.target.value.replace(/^.+\\/, '')}] : [];
             } else {
                 tfiles = e.target.files;
-            } if (tfiles.length === 0) {
+            }
+
+            if (tfiles.length === 0) {
                 return;
             }
+
             self.$preview.html('');
             var total = tfiles.length;
 
@@ -30,7 +33,12 @@
 
                     var caption = file.name;
                     reader.onload = function (theFile) {
-                        var content = '<img src="' + theFile.target.result + '" class="file-preview-image" title="' + caption + '" alt="' + caption + '">';
+                        if(file.type == 'text/x-vcard') {
+                            var content = '<img src="/static/images/vc-ard.png" class="file-preview-image" title="' + caption + '" alt="' + caption + '">';
+                        } else {
+                            var content = '<img src="' + theFile.target.result + '" class="file-preview-image" title="' + caption + '" alt="' + caption + '">';
+                        }
+
                         self.$preview.html(content);
                     }
                 })(tfiles[i]);
@@ -39,13 +47,12 @@
     }
 
     $.fn.fileinput = function (options) {
-        var $this = $(this), data = $this.data('fileinput');
-        if (!data) {
-            $this.data('fileinput', (data = new FileInput(this)))
-        }
-        if (typeof options == 'string') {
-            data[options]()
-        }
+        $(this).each(function(){
+            var $this = $(this), data = $this.data('fileinput');
+            if (!data) {
+                $this.data('fileinput', (data = new FileInput(this)))
+            }
+        });
     };
 
     var $input = $('input[type=file]');

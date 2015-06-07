@@ -2,11 +2,13 @@
 
 class UserController extends Frontend
 {
+    private $userId;
+
     public function accessRules()
     {
         return array(
             array('allow',
-                'actions'=>array('recover'),
+                'actions'=>array('recover', 'rating'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -50,7 +52,9 @@ class UserController extends Frontend
     public function actionInfo($id)
     {
         $user = User::model()->findByPk($id);
-        $this->render('info', array('user' => $user));
+        $log = RatingLog::model()->findByAttributes(array('who_vote' => Yii::app()->user->id, 'who_received' => $user->id));
+
+        $this->render('info', array('user' => $user, 'log' => $log));
     }
 
     public function actionUpdatePassword()
@@ -85,5 +89,37 @@ class UserController extends Frontend
         }
         else
             throw new CHttpException(404, Yii::t('base', 'Страницы не существует'));
+    }
+
+    public function actionRating()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $username = Yii::app()->request->getPost('username');
+            $index = (int) Yii::app()->request->getPost('index');
+
+            $user = User::model()->findByAttributes(array('username' => $username));
+            if(!$user)
+                throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+
+            if ($user && !empty($index))
+            {
+                if($user->rating == 0)
+                    $user->rating = $user->rating + $index;
+                else
+                    $user->rating = round(($user->rating + $index)/2, 2);
+                if($user->update()) {
+
+                    $log = new RatingLog();
+                    $log->who_vote = Yii::app()->user->id;
+                    $log->who_received = $user->id;
+                    $log->num = $index;
+                    $log->save();
+
+                    echo $user->rating;
+                }
+            } else
+                throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            Yii::app()->end();
+        }
     }
 }

@@ -22,6 +22,11 @@ class WebUser extends CWebUser {
         return $user->surname;
     }
 
+    public function getUsername(){
+        $user = $this->loadUser(Yii::app()->user->id);
+        return $user->username;
+    }
+
     public function getAvater(){
         $user = $this->loadUser(Yii::app()->user->id);
         return $user->UAvatar;

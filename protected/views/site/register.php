@@ -24,11 +24,6 @@
                     ),
                 )); ?>
                     <fieldset>
-                        <?php echo $form->labelEx($register_form, 'username'); ?>
-                        <?php echo $form->textField($register_form, 'username'); ?>
-                        <?php echo $form->error($register_form, 'username'); ?>
-                    </fieldset>
-                    <fieldset>
                         <?php echo $form->labelEx($register_form, 'name'); ?>
                         <?php echo $form->textField($register_form, 'name'); ?>
                         <?php echo $form->error($register_form, 'name'); ?>
