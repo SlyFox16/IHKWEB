@@ -13,7 +13,7 @@ $(document).ready(function(){
 
     $('.rating i').on('click',function(){
         var index = $(this).index() + 1;
-        var r = confirm(index);
+        var r = confirm('Really want to vote?');
         for(n=1; n<=index; n++) {
             $(".rating i:nth-child("+n+")").toggleClass('fa-star-o fa-star');
         }
