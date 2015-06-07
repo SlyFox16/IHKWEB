@@ -66,12 +66,12 @@
                         <b>social</b> account to<br>
                         <b>sign up</b>
                     </h2>
-                    <?php  $this->widget('application.components.UloginWidget', array(
+                    <?php /* $this->widget('application.components.UloginWidget', array(
                         'params' => array(
                             'redirect' => $this->createAbsoluteUrl('site/ulogin'),
                             'logout_url' => $this->createAbsoluteUrl('site/logout'),
                         )
-                    )); ?>
+                    )); */?>
                 </div>
             </div>
         </div>
