@@ -51,11 +51,12 @@
                         <b>social</b> account to<br>
                         <b>log in</b>
                     </h2>
-                    <div class="social-links">
-                        <a href="" class="fa fa-facebook"></a>
-                        <a href="" class="fa fa-linkedin"></a>
-                        <a href="" class="fa fa-xing"></a>
-                    </div>
+                    <?php  $this->widget('application.components.UloginWidget', array(
+                        'params' => array(
+                            'redirect' => $this->createAbsoluteUrl('site/ulogin'),
+                            'logout_url' => $this->createAbsoluteUrl('site/logout'),
+                        )
+                    )); ?>
                 </div>
             </div>
         </div>
