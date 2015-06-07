@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h2>Search results for <b>John Doe</b> :</h2>
+                <h2>Search results for <b><?php echo $searchPhrase; ?></b> :</h2>
             </div>
         </div>
     </div>
