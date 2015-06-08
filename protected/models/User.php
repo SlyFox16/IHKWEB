@@ -27,6 +27,16 @@ class User extends ActiveRecord
      */
     public $comment;
     public $password_repeat;
+    public $htmlpurifier;
+
+    public function init()
+    {
+        $options = array(
+            'AutoFormat.AutoParagraph' => TRUE,
+        );
+        $this->htmlpurifier = new CHtmlPurifier();
+        $this->htmlpurifier->options = $options;
+    }
 
     public static function model($className = __CLASS__)
     {
@@ -44,6 +54,7 @@ class User extends ActiveRecord
     /**
      * @return array validation rules for model attributes.
      */
+
     public function rules()
     {
         // NOTE: you should only define rules for those attributes that
@@ -52,6 +63,8 @@ class User extends ActiveRecord
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'insert'),
             array('username, name, surname, email', 'required', 'on' => 'update, userupdate, socials'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
+            array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
+            array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
             array('email', 'noEmail', 'on' => 'changepassword'),
             array('is_active', 'numerical', 'integerOnly' => true),
             array('avatar', 'file', 'types'=>'png, jpg, gif','allowEmpty'=>true),
