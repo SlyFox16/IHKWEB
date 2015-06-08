@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -60,7 +60,8 @@ class SiteController extends Frontend
 	 */
 	public function actionIndex()
 	{
-        $this->render('index');
+        $randUsers = User::model()->user()->is_active()->findAll(array('order' => 'RAND()', 'limit' => 10));
+        $this->render('index', array('randUsers' => $randUsers));
 	}
 
 	/**
@@ -217,5 +218,11 @@ class SiteController extends Frontend
             $this->render('search',array('dataSearch' => $dataSearch, 'searchPhrase' => $q));
         } else
             throw new CHttpException(404,Yii::t("base","Запрашиваемая страница не существует!"));
+    }
+
+    public function actionFindexperts()
+    {
+        $model = new User();
+        $this->render('findexperts', array('model' => $model));
     }
 }

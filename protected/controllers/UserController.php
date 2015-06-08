@@ -8,12 +8,16 @@ class UserController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('recover', 'rating'),
+                'actions'=>array('recover'),
                 'users'=>array('*'),
             ),
             array('allow',
                 'actions'=>array('cabinet'),
                 'expression'=>'CAuthHelper::isUsersCAbinet($_GET["id"])',
+            ),
+            array('allow',
+                'actions'=>array('rating'),
+                'expression'=>'CAuthHelper::hasRightToVote()',
             ),
             array('allow',
                 'actions'=>array('info'),
@@ -98,15 +102,13 @@ class UserController extends Frontend
             $index = (int) Yii::app()->request->getPost('index');
 
             $user = User::model()->findByAttributes(array('username' => $username));
-            if(!$user)
-                throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 
             if ($user && !empty($index))
             {
                 if($user->rating == 0)
                     $user->rating = $user->rating + $index;
                 else
-                    $user->rating = round(($user->rating + $index)/2, 2);
+                    $user->rating = round(($user->rating + $index)/2, 1);
                 if($user->update()) {
 
                     $log = new RatingLog();

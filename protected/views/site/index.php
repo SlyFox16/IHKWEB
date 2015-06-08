@@ -2,118 +2,27 @@
 <!--== Experts ====================-->
 <!--===============================-->
 <section class="clearfix">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat harum, magni quas ipsam a voluptas repudiandae nihil, ducimus corporis et fugiat tempore cumque itaque! Saepe alias eaque soluta, atque totam.
     <?php $this->widget('Search'); ?>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/01.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
+
+    <?php foreach($randUsers as $randUser) { ?>
+        <div class="expert">
+            <a href="<?php echo $this->createUrl('user/info', array('id' => $randUser->id)); ?>">
+                <img src="<?php echo Yii::app()->iwi->load($randUser->UAvatar)->adaptive(280, 280)->cache(); ?>" alt="Expert">
+            </a>
+            <div class="expert-info">
+                <h3>
+                    <a href="<?php echo $this->createUrl('user/info', array('id' => $randUser->id)); ?>">
+                        <b><?php echo $randUser->name; ?></b> <?php echo $randUser->surname; ?>
+                    </a>
+                </h3>
+                <ul class="expert-certification">
+                    <li>IHK</li>
+                    <li>CM</li>
+                </ul>
+                <span class="expert-level">Level 1</span>
+            </div>
         </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/02.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/03.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/04.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/02.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/04.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/01.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/03.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/02.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
-    <div class="expert">
-        <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/01.jpg" alt="Expert">
-        <div class="expert-info">
-            <h3><b>John</b> Doe</h3>
-            <ul class="expert-certification">
-                <li>IHK</li>
-                <li>CM</li>
-            </ul>
-            <span class="expert-level">Level 1</span>
-        </div>
-    </div>
+    <?php } ?>
 </section>
 
 
@@ -126,7 +35,7 @@
             <div class="col-sm-6">
                 <h2 class="about-project">
                     Find the certified <b>Crowd Experts</b> now.
-                    Get your crowd project done right and in time. <a href="" class="angle">Find experts</a>
+                    Get your crowd project done right and in time. <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="angle">Find experts</a>
                 </h2>
             </div>
         </div>
@@ -174,7 +83,7 @@
         <div class="row cta">
             <div class="col-sm-12 text-right">
                 <h2>Awesome call to action headline goes here!</h2>
-                <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>
+                <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
                 <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration')); ?>
             </div>
         </div>

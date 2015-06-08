@@ -89,18 +89,24 @@
             </div>
             <div class="col-sm-3">
                 <ul class="contacts">
-                    <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-                        <i class="fa fa-map-marker"></i>
-                        <span><?php echo $user->uAddress; ?></span>
-                    </li>
-                    <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
-                        <i class="fa fa-phone"></i>
-                        <span><?php echo $user->uPhone; ?></span>
-                    </li>
-                    <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
-                        <i class="fa fa-xing"></i>
-                        <a href=""><?php echo $user->uXing_url; ?></a>
-                    </li>
+                    <?php if(!empty($user->address)) { ?>
+                        <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <i class="fa fa-map-marker"></i>
+                            <span><?php echo $user->address; ?></span>
+                        </li>
+                    <?php } ?>
+                    <?php if(!empty($user->phone)) { ?>
+                        <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
+                            <i class="fa fa-phone"></i>
+                            <span><?php echo $user->phone; ?></span>
+                        </li>
+                    <?php } ?>
+                    <?php if(!empty($user->xing_url)) { ?>
+                        <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                            <i class="fa fa-xing"></i>
+                            <a href="<?php echo $user->xing_url; ?>"><?php echo $user->fullname;?></a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

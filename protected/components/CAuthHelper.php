@@ -15,4 +15,20 @@ class CAuthHelper {
 
         return false;
     }
+
+    static function hasRightToVote() {
+        $username = Yii::app()->request->getPost('username');
+        $index = (int) Yii::app()->request->getPost('index');
+
+        $user = User::model()->findByAttributes(array('username' => $username));
+
+        if(!$user) return false;
+        if($user->id == Yii::app()->user->id) return false;
+
+        $log = RatingLog::model()->findAllByAttributes(array('who_vote' => Yii::app()->user->id, 'who_received' => $user->id));
+        if($log) return false;
+        if(empty($index) || !is_int($index)) return false;
+
+        return true;
+    }
 }

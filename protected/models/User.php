@@ -74,6 +74,15 @@ class User extends ActiveRecord
         );
     }
 
+    public function scopes()
+    {
+        return array(
+            'user'=>array('condition'=>"is_staff = 0"),
+            'staff'=>array('condition'=>"is_staff = 1"),
+            'is_active'=>array('condition'=>"is_active = '1'"),
+        );
+    }
+
     public function noEmail()
     {
         $error = true;
@@ -171,6 +180,17 @@ class User extends ActiveRecord
             return false;
     }
 
+    public function findMember()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->condition ='is_staff = 0';
+        $criteria->addCondition("is_active = 1");
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
     public function searchMember()
     {
         // Warning: Please modify the following code to remove attributes that
@@ -253,30 +273,6 @@ class User extends ActiveRecord
             return substr(Yii::app()->controller->getAssetsUrl().'/images/profile-no-photo.png', 1);
 
         return $this->avatar;
-    }
-
-    public function getUAddress()
-    {
-        if(empty($this->address))
-            return 'no address';
-
-        return $this->address;
-    }
-
-    public function getUXing_url()
-    {
-        if(empty($this->xing_url))
-            return 'no Xing url';
-
-        return $this->xing_url;
-    }
-
-    public function getUPhone()
-    {
-        if(empty($this->phone))
-            return 'no phone';
-
-        return $this->phone;
     }
 
     public function getUDescription()
