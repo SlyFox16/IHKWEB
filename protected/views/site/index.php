@@ -2,6 +2,7 @@
 <!--== Experts ====================-->
 <!--===============================-->
 <section class="clearfix">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat harum, magni quas ipsam a voluptas repudiandae nihil, ducimus corporis et fugiat tempore cumque itaque! Saepe alias eaque soluta, atque totam.
     <?php $this->widget('Search'); ?>
     <div class="expert">
         <img src="<?php echo $this->getAssetsUrl(); ?>/images/experts/01.jpg" alt="Expert">
