@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h2>Search users</h2>
+                <h2>Find the certified Crowd Experts now.</h2>
             </div>
         </div>
     </div>
