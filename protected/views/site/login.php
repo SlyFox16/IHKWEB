@@ -23,14 +23,14 @@
                     ),
                 )); ?>
                 <!-- START Form Control-->
-                <fieldset>
-                    <?php echo $form->labelEx($model, 'email'); ?>
+                <fieldset <?php echo $model->requiredClass('email'); ?>>
+                    <?php echo $form->label($model, 'email'); ?>
                     <?php echo $form->textField($model, 'email'); ?>
                     <?php echo $form->error($model, 'email'); ?>
                 </fieldset>
 
-                <fieldset>
-                    <?php echo $form->labelEx($model, 'password'); ?>
+                <fieldset <?php echo $model->requiredClass('email'); ?>>
+                    <?php echo $form->label($model, 'password'); ?>
                     <?php echo $form->passwordField($model, 'password'); ?>
                     <?php echo $form->error($model, 'password'); ?>
                 </fieldset>

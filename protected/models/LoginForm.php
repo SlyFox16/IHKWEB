@@ -89,6 +89,10 @@ class LoginForm extends CFormModel
             return false;
     }
 
+    public function requiredClass($attr) {
+        return $this->isAttributeRequired($attr) ? 'class="required"' : '';
+    }
+
     /**
      * Logs in the user using the given email and password in the model.
      * @return boolean whether login is successful

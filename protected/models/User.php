@@ -323,6 +323,10 @@ class User extends ActiveRecord
         return $this->name.' '.$this->surname;
     }
 
+    public function requiredClass($attr) {
+        return $this->isAttributeRequired($attr) ? 'class="required"' : '';
+    }
+
     public function afterSave()
     {
         if($this->scenario == 'userupdate') {

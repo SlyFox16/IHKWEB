@@ -23,31 +23,31 @@
                         'inputContainer' => 'fieldset',
                     ),
                 )); ?>
-                    <fieldset>
-                        <?php echo $form->labelEx($register_form, 'name'); ?>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'name'); ?>
                         <?php echo $form->textField($register_form, 'name'); ?>
                         <?php echo $form->error($register_form, 'name'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($register_form, 'surname'); ?>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'surname'); ?>
                         <?php echo $form->textField($register_form, 'surname'); ?>
                         <?php echo $form->error($register_form, 'surname'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($register_form, 'email'); ?>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'email'); ?>
                         <?php echo $form->textField($register_form, 'email'); ?>
                         <?php echo $form->error($register_form, 'email'); ?>
                     </fieldset>
                     <div class="secondary">
                         <span>References</span>
                     </div>
-                    <fieldset>
-                        <?php echo $form->labelEx($register_form, 'password'); ?>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'password'); ?>
                         <?php echo $form->passwordField($register_form, 'password', array('class' => "form-control", 'placeholder' => Yii::t("base", "Минимум 5 символов"))); ?>
                         <?php echo $form->error($register_form, 'password', array('inputContainer' => 'fieldset')); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($register_form, 'password_repeat'); ?>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'password_repeat'); ?>
                         <?php echo $form->passwordField($register_form, 'password_repeat', array('class' => "form-control")); ?>
                         <?php echo $form->error($register_form, 'password_repeat', array('inputContainer' => 'fieldset')); ?>
                     </fieldset>

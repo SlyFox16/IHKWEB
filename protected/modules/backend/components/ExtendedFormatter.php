@@ -26,11 +26,7 @@ class ExtendedFormatter extends CFormatter
 
     public function formatImage($value)
     {
-        $path_info = pathinfo($value);
-        if(!empty($path_info) && $path_info['extension'] != 'swf')
-            return CHtml::image(Yii::app()->iwi->load($value)->adaptive(80, 80)->cache());
-        else
-            return 'swf file';
+        return CHtml::image(Yii::app()->iwi->load($value)->adaptive(80, 80)->cache());
     }
 
     public function formatLogo($value)
