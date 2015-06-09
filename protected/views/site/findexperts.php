@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <h2>Find the certified Crowd Experts now.</h2>
+                <h2>Find the certified <b>Crowd Experts</b> now.</h2>
             </div>
         </div>
     </div>
@@ -14,7 +14,7 @@
 <!--===============================-->
 <!--== Experts ====================-->
 <!--===============================-->
-<section class="clearfix search-results">
+<section class="clearfix search-results separated">
     <div class="container relative no-padding">
 
 

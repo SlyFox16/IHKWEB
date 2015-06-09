@@ -14,7 +14,7 @@
 <!--===============================-->
 <!--== Experts ====================-->
 <!--===============================-->
-<section class="clearfix search-results">
+<section class="clearfix search-results separated">
     <div class="container relative no-padding">
 
 

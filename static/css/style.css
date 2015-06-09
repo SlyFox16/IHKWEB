@@ -112,9 +112,9 @@ ul,ol {
 	line-height: 1.6em;
 }
 
-/*ul {
+ul {
 	list-style-image: url(../images/ul.png);
-}*/
+}
 
 hr {
 	height: 2px;
@@ -194,13 +194,19 @@ select {
 /*--------------------
 Basics =============*/
 
+.relative {
+	position: relative;
+}
+
 /* Breadcrumbs */
 .breadcrumbs {
 	position: absolute;
 	top: -3.5rem;
 	left: 15px;
+	height: 3.5rem;
 	list-style: none;
-	z-index: -1;
+	z-index: 50;
+	overflow: hidden;
 }
 
 .breadcrumbs li {
@@ -232,6 +238,26 @@ Basics =============*/
 
 .breadcrumbs a:hover {
 	color: #00478c;
+}
+
+/* User Area */
+.user-area {
+	position: absolute;
+	top: 0;
+	right: 15px;
+	background: #efefef;
+	border-radius: 4px;
+}
+
+.user-area a {
+	display: inline-block;
+	line-height: 15px;
+	padding: 1.5rem;
+	color: #000;
+}
+
+.user-area a + a {
+	border-left: 2px solid #fff;
 }
 
 /* Page Control */
