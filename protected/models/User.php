@@ -78,7 +78,7 @@ class User extends ActiveRecord
             array('email, username', 'unique'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register'),
-            array('password_repeat, certificates0, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description', 'safe'),
+            array('password_repeat, certificates0, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -92,6 +92,7 @@ class User extends ActiveRecord
         return array(
             'user'=>array('condition'=>"is_staff = 0"),
             'staff'=>array('condition'=>"is_staff = 1"),
+            'expert_confirm'=>array('condition'=>"expert_confirm = 1"),
             'is_active'=>array('condition'=>"is_active = '1'"),
         );
     }
@@ -196,8 +197,7 @@ class User extends ActiveRecord
     public function findMember()
     {
         $criteria = new CDbCriteria;
-        $criteria->condition ='is_staff = 0';
-        $criteria->addCondition("is_active = 1");
+        $criteria->condition ='is_active = 1 && is_staff = 0 && expert_confirm = 1';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

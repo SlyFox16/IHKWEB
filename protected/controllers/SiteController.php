@@ -60,7 +60,7 @@ class SiteController extends Frontend
 	 */
 	public function actionIndex()
 	{
-        $randUsers = User::model()->user()->is_active()->findAll(array('order' => 'RAND()', 'limit' => 10));
+        $randUsers = User::model()->user()->is_active()->expert_confirm()->findAll(array('order' => 'RAND()', 'limit' => 10));
         $this->render('index', array('randUsers' => $randUsers));
 	}
 
@@ -208,6 +208,7 @@ class SiteController extends Frontend
 
             $crt = new CDbCriteria;
             $crt->condition = "(LOWER(username) REGEXP '[[:<:]]{$q}' or LOWER(name) REGEXP '[[:<:]]{$q}' or LOWER(surname) REGEXP '[[:<:]]{$q}')";
+            $crt->addCondition("is_active = 1 && is_staff = 0 && expert_confirm = 1");
             $crt->order = 'id DESC';
 
             $dataSearch = new CActiveDataProvider(new User, array(

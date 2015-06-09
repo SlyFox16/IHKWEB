@@ -17,7 +17,7 @@ $this->menu=array(
 
 <?php
     $info = array(
-        'id', 'username', 'name', 'surname', 'email', 'avatar:image', 'is_active:boolean', 'is_staff:boolean', 'last_login', 'date_joined',
+        'id', 'username', 'name', 'surname', 'email', 'avatar:image', 'expert_confirm:boolean', 'is_active:boolean', 'is_staff:boolean', 'last_login', 'date_joined',
     );
 ?>
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(

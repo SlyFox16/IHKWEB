@@ -26,7 +26,7 @@
 
 <?php echo $form->checkBoxRow($model, 'is_active'); ?>
 
-<?php echo $form->checkBoxRow($model, 'is_staff'); ?>
+<?php echo $form->checkBoxRow($model, 'expert_confirm'); ?>
 
 <div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(

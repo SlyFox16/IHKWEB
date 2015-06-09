@@ -36,6 +36,7 @@ $('.search-form form').submit(function(){
         'surname',
         'email',
         'avatar:image',
+        'expert_confirm:boolean',
         'is_active:boolean',
         array(
             'name'=>'last_login',
