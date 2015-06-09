@@ -25,33 +25,33 @@
                     ),
                     'htmlOptions'=>array("enctype"=>"multipart/form-data"),
                 )); ?>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'username'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'username'); ?>
                         <?php echo $form->textField($user, 'username'); ?>
                         <?php echo $form->error($user, 'username'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'name'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'name'); ?>
                         <?php echo $form->textField($user, 'name'); ?>
                         <?php echo $form->error($user, 'name'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'surname'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'surname'); ?>
                         <?php echo $form->textField($user, 'surname'); ?>
                         <?php echo $form->error($user, 'surname'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'email'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'email'); ?>
                         <?php echo $form->textField($user, 'email', array('readonly'=>true)); ?>
                         <?php echo $form->error($user, 'email'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'position'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'position'); ?>
                         <?php echo $form->textField($user, 'position'); ?>
                         <?php echo $form->error($user, 'position'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'description'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'description'); ?>
                         <?php echo $form->textArea($user, 'description'); ?>
                         <?php echo $form->error($user, 'description'); ?>
                     </fieldset>
@@ -67,28 +67,28 @@
                     <div class="secondary">
                         <span>References</span>
                     </div>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'address'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'address'); ?>
                         <?php echo $form->textField($user, 'address'); ?>
                         <?php echo $form->error($user, 'address'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'phone'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'phone'); ?>
                         <?php echo $form->textField($user, 'phone'); ?>
                         <?php echo $form->error($user, 'phone'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'facebook_url'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'facebook_url'); ?>
                         <?php echo $form->textField($user, 'facebook_url'); ?>
                         <?php echo $form->error($user, 'facebook_url'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'twitter_url'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'twitter_url'); ?>
                         <?php echo $form->textField($user, 'twitter_url'); ?>
                         <?php echo $form->error($user, 'twitter_url'); ?>
                     </fieldset>
-                    <fieldset>
-                        <?php echo $form->labelEx($user, 'xing_url'); ?>
+                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                        <?php echo $form->label($user, 'xing_url'); ?>
                         <?php echo $form->textField($user, 'xing_url'); ?>
                         <?php echo $form->error($user, 'xing_url'); ?>
                     </fieldset>
