@@ -27,13 +27,13 @@
             <a href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
             <a href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders"></a>
             <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out"></a>
-            <?php if(Yii::app()->user->isFtaff) { ?>
+            <?php if(Yii::app()->user->isStaff) { ?>
                 <a href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-sign-out"></a>
             <?php } ?>
         </div>
     <? } else {
         echo CHtml::link('Login', array('/site/login'));
-    }?>
+    } ?>
 </header>
 
 <?php echo $content; ?>

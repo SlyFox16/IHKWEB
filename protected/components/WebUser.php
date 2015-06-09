@@ -27,7 +27,7 @@ class WebUser extends CWebUser {
         return $user->username;
     }
 
-    public function getIsFtaff(){
+    public function getIsStaff(){
         $user = $this->loadUser(Yii::app()->user->id);
         return $user->is_staff;
     }
