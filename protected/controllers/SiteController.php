@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'intouch'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -224,5 +224,10 @@ class SiteController extends Frontend
     {
         $model = new User();
         $this->render('findexperts', array('model' => $model));
+    }
+
+    public function actionIntouch()
+    {
+        $this->render('intouch');
     }
 }
