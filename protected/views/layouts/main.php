@@ -25,8 +25,8 @@
     <?php if(!Yii::app()->user->isGuest) { ?>
         <div class="user-area">
             <a href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
-            <a href="<?php echo $this->createUrl('/site/cabinet', array('id' => Yii::app()->user->id)); ?>" class="fa fa-sliders"></a>
-            <a href="<?php echo $this->createUrl('/site/logout', array('id' => Yii::app()->user->id)); ?>" class="fa fa-sign-out"></a>
+            <a href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders"></a>
+            <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out"></a>
         </div>
     <? } else {
         echo CHtml::link('Login', array('/site/login'));

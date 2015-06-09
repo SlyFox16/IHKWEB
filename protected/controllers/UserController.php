@@ -13,7 +13,7 @@ class UserController extends Frontend
             ),
             array('allow',
                 'actions'=>array('cabinet'),
-                'expression'=>'CAuthHelper::isUsersCAbinet($_GET["id"])',
+                'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
                 'actions'=>array('rating'),
@@ -33,9 +33,9 @@ class UserController extends Frontend
         );
     }
 
-    public function actionCabinet($id)
+    public function actionCabinet()
     {
-        $user = User::model()->findByPk($id);
+        $user = User::model()->findByPk(Yii::app()->user->id);
         $user->scenario = 'userupdate';
 
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'cabinet-form') {

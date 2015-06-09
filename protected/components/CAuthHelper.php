@@ -1,11 +1,11 @@
 <?php
 
 class CAuthHelper {
-	static function isUsersCAbinet($id) {
-        $model = Yii::app()->user->is_user;
+	static function isUsersCAbinet() {
+        $is_user = Yii::app()->user->is_user;
 
-        if(!$model) return false;
-		return $id == Yii::app()->user->id;
+        if(!$is_user) return false;
+        return true;
 	}
 
     static function isIssetExpert($id) {
