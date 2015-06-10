@@ -81,7 +81,22 @@
                         <div class="wheretoadd">
                             <?php foreach ($certificates as $key => $certificate) { ?>
                                 <?php if(!$certificate->isNewRecord) { ?>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam inventore sapiente dolor architecto, molestias adipisci porro tempore mollitia. Mollitia reiciendis fugit dolorem asperiores dolore pariatur iste placeat cumque voluptas ex.
+                                    <ul class="fields" data-id="<?php echo $certificate->id; ?>">
+                                        <li>
+                                            <div class="field-content">
+                                                <div>Certification</div>
+                                                <div><?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?></div>
+                                            </div>
+                                            <?php $form->error($certificate, "[$key]certificate_id"); ?>
+                                        </li>
+                                        <li>
+                                            <div class="field-content">
+                                                <div><?php echo $form->label($certificate, "[$key]date"); ?></div>
+                                                <div><?php echo $form->textField($certificate, "[$key]date"); ?></div>
+                                            </div>
+                                            <?php echo $form->error($certificate, "[$key]date"); ?>
+                                        </li>
+                                    </ul>
                                 <?php } ?>
                             <?php } ?>
                         </div>

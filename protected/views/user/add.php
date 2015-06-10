@@ -9,17 +9,23 @@ $form->clientOptions = array(
 $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
 ?>
 
-<div class="field-row">
-    <fieldset>
-        <?php echo $form->dropDownList($certificate, "[$count]certificate_id", $certificate->allCertificates); ?>
+
+<ul class="fields">
+    <li>
+        <div class="field-content">
+            <div>Certifications</div>
+            <div><?php echo $form->dropDownList($certificate, "[$count]certificate_id", $certificate->allCertificates); ?></div>
+        </div>
         <?php echo $form->error($certificate, "[$count]certificate_id"); ?>
-    </fieldset>
-    <fieldset>
-        <?php echo $form->label($certificate, "[$count]date"); ?>
-        <?php echo $form->textField($certificate, "[$count]date", array('class' => 'datepicker')); ?>
+    </li>
+    <li>
+        <div class="field-content">
+            <div><?php echo $form->label($certificate, "[$count]date"); ?></div>
+            <div><?php echo $form->textField($certificate, "[$count]date", array('class' => 'datepicker')); ?></div>
+        </div>
         <?php echo $form->error($certificate, "[$count]date"); ?>
-    </fieldset>
-</div>
+    </li>
+</ul>
 
 <script type="text/javascript">
     //$('.datepicker').datepicker();
