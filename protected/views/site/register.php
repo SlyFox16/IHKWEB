@@ -2,10 +2,13 @@
     <div class="container relative">
 
         <!--== Breadcrumbs ==-->
-        <ul class="breadcrumbs">
-            <li><a href="">Home</a></li>
-            <li>Register</li>
-        </ul>
+        <?php
+        $this->widget('Breadcrumbs', array(
+            'links' => array(
+                Yii::t("base", 'Register')
+            ),
+        ));
+        ?>
 
         <div class="row">
             <div class="col-md-3">
@@ -48,6 +51,7 @@
                             </li>
                         </ul>
                     </fieldset>
+<<<<<<< HEAD
 
                     <fieldset>
                         <legend><span>Password</span></legend>
@@ -67,6 +71,30 @@
                                 <?php echo $form->error($register_form, 'password_repeat', array('inputContainer' => 'fieldset')); ?>
                             </li>
                         </ul>
+=======
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'surname'); ?>
+                        <?php echo $form->textField($register_form, 'surname'); ?>
+                        <?php echo $form->error($register_form, 'surname'); ?>
+                    </fieldset>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'email'); ?>
+                        <?php echo $form->textField($register_form, 'email'); ?>
+                        <?php echo $form->error($register_form, 'email'); ?>
+                    </fieldset>
+                    <div class="secondary">
+                        <span>References</span>
+                    </div>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'password'); ?>
+                        <?php echo $form->passwordField($register_form, 'password', array('class' => "form-control", 'placeholder' => Yii::t("base", "Minimum 5 characters"))); ?>
+                        <?php echo $form->error($register_form, 'password', array('inputContainer' => 'fieldset')); ?>
+                    </fieldset>
+                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                        <?php echo $form->label($register_form, 'password_repeat'); ?>
+                        <?php echo $form->passwordField($register_form, 'password_repeat', array('class' => "form-control")); ?>
+                        <?php echo $form->error($register_form, 'password_repeat', array('inputContainer' => 'fieldset')); ?>
+>>>>>>> origin/master
                     </fieldset>
                     <button class="button" type="submit">Register</button>
                 <?php $this->endWidget(); ?>

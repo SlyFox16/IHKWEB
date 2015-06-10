@@ -2,10 +2,13 @@
     <div class="container relative">
 
         <!--== Breadcrumbs ==-->
-        <ul class="breadcrumbs">
-            <li><a href="">Home</a></li>
-            <li>Login</li>
-        </ul>
+        <?php
+        $this->widget('Breadcrumbs', array(
+            'links' => array(
+                Yii::t("base", 'Login')
+            ),
+        ));
+        ?>
 
         <div class="row">
             <div class="col-md-3">
@@ -41,6 +44,21 @@
                         </li>
                     </ul>
                 </fieldset>
+<<<<<<< HEAD
+=======
+
+                <fieldset <?php echo $model->requiredClass('email'); ?>>
+                    <?php echo $form->label($model, 'password'); ?>
+                    <?php echo $form->passwordField($model, 'password'); ?>
+                    <?php echo $form->error($model, 'password'); ?>
+                </fieldset>
+
+                    <?php echo $form->checkBox($model, 'rememberMe'); ?>
+                    <?php echo $form->labelEx($model, 'rememberMe', array('for' => 'checkbox1')); ?>
+
+                <br />
+                <a href="#" class="text-info small forgetpass"><?php echo Yii::t("base", "Forgot password?"); ?></a>
+>>>>>>> origin/master
                 <!-- END Form Control-->
                 <button class="button">Login</button>
                 <?php $this->endWidget(); ?>
