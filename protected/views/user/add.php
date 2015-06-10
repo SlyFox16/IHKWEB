@@ -50,7 +50,7 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
                     validatingCssClass: settings.validatingCssClass
                 }, this);
             });
-            $("#cabinet-form").data('settings', settings);
+            $("#add_product<?php echo $id; ?>").data('settings', settings);
         }
 
     });
