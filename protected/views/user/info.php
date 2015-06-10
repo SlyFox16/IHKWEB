@@ -79,7 +79,7 @@
                     <?php } ?>
                 </ul>
                 <div class="cta bottom-30">
-                    <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>
+                    <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
                     <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
                 </div>
             </div>
