@@ -81,17 +81,21 @@
                         <div class="wheretoadd">
                             <?php foreach ($certificates as $key => $certificate) { ?>
                                 <?php if(!$certificate->isNewRecord) { ?>
-                                    <div class="field-row" data-id="<?php echo $certificate->id; ?>">
-                                        <fieldset>
-                                            <?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?>
+                                    <ul class="fields" data-id="<?php echo $certificate->id; ?>">
+                                        <li>
+                                            <div class="field-content">
+                                                <div><?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?></div>
+                                            </div>
                                             <?php $form->error($certificate, "[$key]certificate_id"); ?>
-                                        </fieldset>
-                                        <fieldset>
-                                            <?php echo $form->label($certificate, "[$key]date"); ?>
-                                            <?php echo $form->textField($certificate, "[$key]date"); ?>
+                                        </li>
+                                        <li>
+                                            <div class="field-content">
+                                                <div><?php echo $form->label($certificate, "[$key]date"); ?></div>
+                                                <div><?php echo $form->textField($certificate, "[$key]date"); ?></div>
+                                            </div>
                                             <?php echo $form->error($certificate, "[$key]date"); ?>
-                                        </fieldset>
-                                    </div>
+                                        </li>
+                                    </ul>
                                 <?php } ?>
                             <?php } ?>
                         </div>
