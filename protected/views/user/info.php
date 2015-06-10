@@ -2,11 +2,14 @@
     <div class="container relative">
 
         <!--== Breadcrumbs ==-->
-        <ul class="breadcrumbs">
-            <li><a href="">Home</a></li>
-            <li><a href="">Experts</a></li>
-            <li>John Doe</li>
-        </ul>
+        <?php
+        $this->widget('Breadcrumbs', array(
+            'links' => array(
+                Yii::t("base", 'Experts') => array('site/findexperts'),
+                $user->fullname
+            ),
+        ));
+        ?>
 
         <!--== Page Control ==-->
         <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
@@ -41,6 +44,7 @@
             </div>
             <div class="col-sm-6 col-xs-9">
                 <h2 class="expert-name"><b><?php echo $user->name; ?></b> <?php echo $user->surname; ?></h2>
+                <h3><?php echo $user->position; ?></h3>
                 <?php echo $user->uDescription; ?>
             </div>
             <div class="col-sm-3 col-xs-3 text-right">

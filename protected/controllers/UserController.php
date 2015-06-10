@@ -170,8 +170,6 @@ class UserController extends Frontend
     public function actionDeleteitem()
     {
         if (Yii::app()->request->isAjaxRequest) {
-
-            $ret = array();
             $count = (int) $_GET['attr'];
 
             if(!is_int($count)) throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');

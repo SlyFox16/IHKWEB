@@ -47,6 +47,21 @@
 
                         <div class="accordion-group">
                             <div class="accordion-heading">
+                                <a href="#collapseFeedback" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                    <i class="icon-envelope"></i> Feedback
+                                </a>
+                            </div>
+                            <div class="accordion-body collapse<?php if($c=="feedback") echo " in"; ?>" id="collapseFeedback">
+                                <div class="accordion-inner">
+                                    <ul class="nav nav-list">
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/feedback/admin");?>">All reviews</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
                                 <a href="#collapseConfig" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
                                     <i class="icon-cog"></i> Configuration
                                 </a>

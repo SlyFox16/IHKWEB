@@ -49,7 +49,7 @@ $(document).ready(function(){
     $("#cabinet-form").on('click', '.removeButton', function () {
         var self = $(this);
         var attr = $('.field-row', '.wheretoadd').last().attr('data-id');
-        if(attr != 'undefined') {
+        if(attr != 'undefined' && $.isNumeric(attr)) {
             $.ajax({
                 url: '/user/deleteitem',
                 dataType: 'json',

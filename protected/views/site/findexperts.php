@@ -19,10 +19,13 @@
 
 
         <!--== Breadcrumbs ==-->
-        <ul class="breadcrumbs">
-            <li><a href="">Home</a></li>
-            <li>Search</li>
-        </ul>
+        <?php
+        $this->widget('Breadcrumbs', array(
+            'links' => array(
+                Yii::t("base", 'Search')
+            ),
+        ));
+        ?>
 
         <!--== Page Control ==-->
         <?php $this->widget('Search'); ?>
