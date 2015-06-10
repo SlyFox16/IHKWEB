@@ -26,20 +26,30 @@
                         'inputContainer' => 'fieldset',
                     ),
                 )); ?>
-                <fieldset <?php echo $model->requiredClass('name'); ?>>
-                    <?php echo $form->label($model, 'name'); ?>
-                    <?php echo $form->textField($model, 'name'); ?>
-                    <?php echo $form->error($model, 'name'); ?>
-                </fieldset>
-                <fieldset <?php echo $model->requiredClass('email'); ?>>
-                    <?php echo $form->label($model, 'email'); ?>
-                    <?php echo $form->textField($model, 'email'); ?>
-                    <?php echo $form->error($model, 'email'); ?>
-                </fieldset>
-                <fieldset <?php echo $model->requiredClass('feedback'); ?>>
-                    <?php echo $form->label($model, 'feedback'); ?>
-                    <?php echo $form->textArea($model, 'feedback'); ?>
-                    <?php echo $form->error($model, 'feedback'); ?>
+                <fieldset>
+                    <ul class="fields">
+                        <li <?php echo $model->requiredClass('name'); ?>>
+                            <div class="field-content">
+                                <div><?php echo $form->label($model, 'name'); ?></div>
+                                <div><?php echo $form->textField($model, 'name'); ?></div>
+                            </div>
+                            <?php echo $form->error($model, 'name'); ?>
+                        </li>
+                        <li <?php echo $model->requiredClass('email'); ?>>
+                            <div class="field-content">
+                                <div><?php echo $form->label($model, 'email'); ?></div>
+                                <div><?php echo $form->textField($model, 'email'); ?></div>
+                            </div>
+                            <?php echo $form->error($model, 'email'); ?>
+                        </li>
+                        <li <?php echo $model->requiredClass('feedback'); ?>>
+                            <div class="field-content">
+                                <div><?php echo $form->label($model, 'feedback'); ?></div>
+                                <div><?php echo $form->textArea($model, 'feedback'); ?></div>
+                            </div>
+                            <?php echo $form->error($model, 'feedback'); ?>
+                        </li>
+                    </ul>
                 </fieldset>
                 <button class="button">Send feedback</button>
                 <?php $this->endWidget(); ?>
