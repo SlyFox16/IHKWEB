@@ -46,7 +46,7 @@
                     </div>
                     <fieldset <?php echo $register_form->requiredClass('email'); ?>>
                         <?php echo $form->label($register_form, 'password'); ?>
-                        <?php echo $form->passwordField($register_form, 'password', array('class' => "form-control", 'placeholder' => Yii::t("base", "Минимум 5 символов"))); ?>
+                        <?php echo $form->passwordField($register_form, 'password', array('class' => "form-control", 'placeholder' => Yii::t("base", "Minimum 5 characters"))); ?>
                         <?php echo $form->error($register_form, 'password', array('inputContainer' => 'fieldset')); ?>
                     </fieldset>
                     <fieldset <?php echo $register_form->requiredClass('email'); ?>>

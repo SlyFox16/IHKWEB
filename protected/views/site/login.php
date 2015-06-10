@@ -42,7 +42,7 @@
                     <?php echo $form->labelEx($model, 'rememberMe', array('for' => 'checkbox1')); ?>
 
                 <br />
-                <a href="#" class="text-info small forgetpass">Забыли пароль?</a>
+                <a href="#" class="text-info small forgetpass"><?php echo Yii::t("base", "Forgot password?"); ?></a>
                 <!-- END Form Control-->
                 <button class="button">Login</button>
                 <?php $this->endWidget(); ?>
