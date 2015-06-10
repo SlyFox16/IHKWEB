@@ -1,7 +1,7 @@
 <!--===============================-->
 <!--== Experts ====================-->
 <!--===============================-->
-<section class="clearfix">
+<section class="clearfix separated">
     <?php $this->widget('Search'); ?>
 
     <?php foreach($randUsers as $randUser) { ?>

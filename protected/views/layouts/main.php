@@ -14,26 +14,24 @@
 <!--== Header =====================-->
 <!--===============================-->
 <header data-stellar-ratio="1.4">
-    <div class="container">
-        <a href="<?php echo Yii::app()->homeUrl; ?>">
-            <div class="logo">
-                <h1>Crowd</h1>
-                <p>Innovation / Funding / Sourcing</p>
-            </div>
+    <div class="container relative">
+        <a href="<?php echo Yii::app()->homeUrl; ?>" class="logo">
+            <h1>Crowd</h1>
+            <p>Innovation / Funding / Sourcing</p>
         </a>
-    </div>
-    <?php if(!Yii::app()->user->isGuest) { ?>
         <div class="user-area">
-            <a href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
-            <a href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders"></a>
-            <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out"></a>
-            <?php if(Yii::app()->user->isStaff) { ?>
-                <a href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-sign-out"></a>
-            <?php } ?>
+            <?php if(!Yii::app()->user->isGuest) { ?>
+                <a href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
+                <a href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders"></a>
+                <?php if(Yii::app()->user->isStaff) { ?>
+                    <a href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-bar-chart"></a>
+                <?php } ?>
+                <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out"></a>
+            <? } else {
+                echo CHtml::link('Login', array('/site/login'));
+            } ?>
         </div>
-    <? } else {
-        echo CHtml::link('Login', array('/site/login'));
-    } ?>
+    </div>
 </header>
 
 <?php echo $content; ?>
