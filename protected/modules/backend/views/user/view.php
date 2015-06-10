@@ -1,8 +1,16 @@
 <?php
-$this->breadcrumbs=array(
-	'Users'=>array('admin'),
-	$model->name,
-);
+if($model->is_staff) {
+    $this->breadcrumbs=array(
+        'Users'=>array('adminStaff'),
+        $model->name,
+    );
+} else {
+    $this->breadcrumbs=array(
+        'Users'=>array('adminMembers'),
+        $model->name,
+    );
+}
+
 $url = $model->is_staff == 1 ? 'adminStaff' : 'adminMembers';
 $this->menu=array(
 	array('label'=>'Create User','url'=>array('create')),
