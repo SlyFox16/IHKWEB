@@ -145,6 +145,7 @@ class SiteController extends Frontend
 
     public function actionRegister()
     {
+        if(!Yii::app()->user->isGuest) $this->redirect(Yii::app()->homeUrl);
         $register_form = new User();
 
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'register-form') {
