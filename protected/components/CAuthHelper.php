@@ -12,10 +12,6 @@ class CAuthHelper {
         $user = User::model()->is_active()->findByPk($id);
         if($user && !$user->is_staff && $user->expert_confirm)
             return true;
-
-        if($id == Yii::app()->user->id)
-            return true;
-
         if($user->is_staff)
             return true;
 

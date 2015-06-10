@@ -25,43 +25,61 @@
                     ),
                     'htmlOptions'=>array("enctype"=>"multipart/form-data"),
                 )); ?>
-                    <fieldset <?php echo $user->requiredClass('username'); ?>>
-                        <?php echo $form->label($user, 'username'); ?>
-                        <?php echo $form->textField($user, 'username'); ?>
-                        <?php echo $form->error($user, 'username'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('name'); ?>>
-                        <?php echo $form->label($user, 'name'); ?>
-                        <?php echo $form->textField($user, 'name'); ?>
-                        <?php echo $form->error($user, 'name'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('surname'); ?>>
-                        <?php echo $form->label($user, 'surname'); ?>
-                        <?php echo $form->textField($user, 'surname'); ?>
-                        <?php echo $form->error($user, 'surname'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
-                        <?php echo $form->label($user, 'email'); ?>
-                        <?php echo $form->textField($user, 'email', array('readonly'=>true)); ?>
-                        <?php echo $form->error($user, 'email'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('position'); ?>>
-                        <?php echo $form->label($user, 'position'); ?>
-                        <?php echo $form->textField($user, 'position'); ?>
-                        <?php echo $form->error($user, 'position'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('description'); ?>>
-                        <?php echo $form->label($user, 'description'); ?>
-                        <?php echo $form->textArea($user, 'description'); ?>
-                        <?php echo $form->error($user, 'description'); ?>
+
+                    <fieldset>
+                        <ul class="fields">
+                            <li <?php echo $user->requiredClass('username'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'username'); ?></div>
+                                    <div><?php echo $form->textField($user, 'username'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'username'); ?>
+                            </li>
+                            <li <?php echo $user->requiredClass('name'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'name'); ?></div>
+                                    <div><?php echo $form->textField($user, 'name'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'name'); ?>
+                            </li>
+                            <li <?php echo $user->requiredClass('email'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'surname'); ?></div>
+                                    <div><?php echo $form->textField($user, 'surname'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'surname'); ?>
+                            </li>
+                            <li <?php echo $user->requiredClass('email'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'email'); ?></div>
+                                    <div><?php echo $form->textField($user, 'email', array('readonly'=>true)); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'email'); ?>
+                            </li>
+                            <li <?php echo $user->requiredClass('position'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'position'); ?></div>
+                                    <div><?php echo $form->textField($user, 'position'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'position'); ?>
+                            </li>
+                            <li <?php echo $user->requiredClass('description'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'description'); ?></div>
+                                    <div><?php echo $form->textArea($user, 'description'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'description'); ?>
+                            </li>
+                            <li>
+                                
+                            </li>
+                        </ul>
                     </fieldset>
 
                     <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user)); ?>
 
-                    <div class="secondary">
-                        <span>Certifications</span>
-                    </div>
                     <fieldset>
+                        <legend><span>Certifications</span></legend>
                         <div class="wheretoadd">
                             <?php foreach ($certificates as $key => $certificate) { ?>
                                 <?php if(!$certificate->isNewRecord) { ?>
@@ -82,34 +100,55 @@
                         <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton')); ?>
                         <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton')); ?>
                     </fieldset>
-                    <div class="secondary">
-                        <span>References</span>
-                    </div>
-                    <fieldset <?php echo $user->requiredClass('address'); ?>>
-                        <?php echo $form->label($user, 'address'); ?>
-                        <?php echo $form->textField($user, 'address'); ?>
-                        <?php echo $form->error($user, 'address'); ?>
+                    
+
+                    <fieldset>
+                        <legend><span>References</span></legend>
+                        <ul class="fields">
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'address'); ?></div>
+                                    <div><?php echo $form->textField($user, 'address'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'address'); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'phone'); ?></div>
+                                    <div><?php echo $form->textField($user, 'phone'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'phone'); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'facebook_url'); ?></div>
+                                    <div><?php echo $form->textField($user, 'facebook_url'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'facebook_url'); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'twitter_url'); ?></div>
+                                    <div><?php echo $form->textField($user, 'twitter_url'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'twitter_url'); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'xing_url'); ?></div>
+                                    <div><?php echo $form->textField($user, 'xing_url'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'xing_url'); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </li>
+                        </ul>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('phone'); ?>>
-                        <?php echo $form->label($user, 'phone'); ?>
-                        <?php echo $form->textField($user, 'phone'); ?>
-                        <?php echo $form->error($user, 'phone'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('facebook_url'); ?>>
-                        <?php echo $form->label($user, 'facebook_url'); ?>
-                        <?php echo $form->textField($user, 'facebook_url'); ?>
-                        <?php echo $form->error($user, 'facebook_url'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('twitter_url'); ?>>
-                        <?php echo $form->label($user, 'twitter_url'); ?>
-                        <?php echo $form->textField($user, 'twitter_url'); ?>
-                        <?php echo $form->error($user, 'twitter_url'); ?>
-                    </fieldset>
-                    <fieldset <?php echo $user->requiredClass('xing_url'); ?>>
-                        <?php echo $form->label($user, 'xing_url'); ?>
-                        <?php echo $form->textField($user, 'xing_url'); ?>
-                        <?php echo $form->error($user, 'xing_url'); ?>
-                    </fieldset>
+
                     <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user)); ?>
 
                     <button class="button" type="submit">Register</button>

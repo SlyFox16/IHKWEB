@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'feedback'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'intouch'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -227,23 +227,8 @@ class SiteController extends Frontend
         $this->render('findexperts', array('model' => $model));
     }
 
-    public function actionFeedback()
+    public function actionIntouch()
     {
-        $model = new Feedback();
-
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'feedback-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-
-        if (isset($_POST["Feedback"])) {
-            $model->attributes = $_POST["Feedback"];
-
-            if($model->save()) {
-                $this->redirect(Yii::app()->homeUrl);
-            }
-        }
-
-        $this->render('feedback', array('model' => $model));
+        $this->render('intouch');
     }
 }

@@ -2,14 +2,11 @@
     <div class="container relative">
 
         <!--== Breadcrumbs ==-->
-        <?php
-        $this->widget('Breadcrumbs', array(
-            'links' => array(
-                Yii::t("base", 'Experts') => array('site/findexperts'),
-                $user->fullname
-            ),
-        ));
-        ?>
+        <ul class="breadcrumbs">
+            <li><a href="">Home</a></li>
+            <li><a href="">Experts</a></li>
+            <li>John Doe</li>
+        </ul>
 
         <!--== Page Control ==-->
         <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
@@ -79,7 +76,7 @@
                     <?php } ?>
                 </ul>
                 <div class="cta bottom-30">
-                    <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
+                    <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>
                     <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
                 </div>
             </div>

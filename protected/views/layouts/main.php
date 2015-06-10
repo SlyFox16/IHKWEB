@@ -43,7 +43,7 @@
                 <p><?php echo yiisetting('footer_info'); ?></p>
             </div>
             <div class="col-sm-4 footer-contact">
-                <a href="<?php echo $this->createUrl('site/feedback'); ?>" class="angle">Get in touch</a>
+                <a href="<?php echo yiisetting('get_in_touch_url', null); ?>" class="angle">Get in touch</a>
             </div>
         </div>
     </div>
