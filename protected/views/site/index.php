@@ -16,8 +16,11 @@
                     </a>
                 </h3>
                 <ul class="expert-certification">
-                    <li>IHK</li>
-                    <li>CM</li>
+                    <?php if(!empty($randUser->certificates)) { ?>
+                        <?php foreach($randUser->certificates as $cert) { ?>
+                            <li><?php echo $cert->certificate->name; ?></li>
+                        <?php } ?>
+                    <?php } ?>
                 </ul>
                 <span class="expert-level">Level 1</span>
             </div>

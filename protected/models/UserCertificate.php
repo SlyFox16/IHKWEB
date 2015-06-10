@@ -30,7 +30,8 @@ class UserCertificate extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, certificate_id', 'required'),
+			array('user_id, certificate_id, date', 'required'),
+            array('certificate_id, date', 'required', 'on'=>'check'),
 			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -100,4 +101,9 @@ class UserCertificate extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function getAllCertificates() {
+        $certificates = Certificates::model()->findAll();
+        return CHtml::listData($certificates, 'id', 'name');
+    }
 }

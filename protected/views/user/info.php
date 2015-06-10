@@ -63,24 +63,17 @@
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
                 <ul class="certification">
-                    <li>
-                        <div class="certification-title">
-                            <h3>IHK Certified</h3>
-                            <span>04 february 2015</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua</p>
-                    </li>
-                    <li>
-                        <div class="certification-title">
-                            <h3>CM Certified</h3>
-                            <span>14 january 2015</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                            sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua</p>
-                    </li>
+                    <?php if(!empty($user->certificates)) { ?>
+                        <?php foreach($user->certificates as $cert) { ?>
+                            <li>
+                                <div class="certification-title">
+                                    <h3><?php echo $cert->certificate->name; ?></h3>
+                                    <span><?php echo Yii::app()->format->date($cert->date); ?></span>
+                                </div>
+                                <p><?php echo $cert->certificate->description; ?></p>
+                            </li>
+                        <?php } ?>
+                    <?php } ?>
                 </ul>
                 <div class="cta bottom-30">
                     <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>

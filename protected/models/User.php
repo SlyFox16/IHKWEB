@@ -78,7 +78,7 @@ class User extends ActiveRecord
             array('email, username', 'unique'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register'),
-            array('password_repeat, certificates0, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm', 'safe'),
+            array('password_repeat, certificates, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -123,7 +123,8 @@ class User extends ActiveRecord
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'certificates0' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
+            'userCertificates' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
+            'certificates' => array(self::HAS_MANY, 'UserCertificate', 'user_id'),
         );
     }
 
@@ -296,11 +297,6 @@ class User extends ActiveRecord
         return $this->description;
     }
 
-    public function getAllCertificates() {
-        $certificates = Certificates::model()->findAll();
-        return CHtml::listData($certificates, 'id', 'name');
-    }
-
     public function sendEmail($subject, $body, $to) {
         $mailer = Yii::createComponent('application.extensions.mailer.EMailer');
         $mailer->From = Yii::app()->name;
@@ -329,21 +325,20 @@ class User extends ActiveRecord
 
     public function afterSave()
     {
-        if($this->scenario == 'userupdate') {
-            $allUserCert = UserCertificate::model()->findAllByAttributes(array('user_id' => $this->id));
+        UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
+        if (isset($_POST['UserCertificate'])) {
+            $param = $_POST['UserCertificate'];
 
-            foreach($allUserCert as $value)
-                $value->delete();
+            foreach ($param as $i => $item) {
+                if (isset($_POST['UserCertificate'][$i]) && !empty($_POST['UserCertificate'][$i])) {
+                    $modelParam = new UserCertificate();
+                    $modelParam->user_id = Yii::app()->user->id;
+                    $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
+                    $modelParam->date = $_POST['UserCertificate'][$i]["date"];
+                    if(!$modelParam->save()) {
+                        Yii::log(CHtml::errorSummary($modelParam), "error");
+                    }
 
-
-            if(!empty($this->certificates0))
-            {
-                foreach($this->certificates0 as $value)
-                {
-                    $cityHol = new UserCertificate();
-                    $cityHol->user_id = $this->id;
-                    $cityHol->certificate_id = $value;
-                    $cityHol->save();
                 }
             }
         }

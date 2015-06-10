@@ -62,7 +62,25 @@
                         <span>Certifications</span>
                     </div>
                     <fieldset>
-                        <?php echo $form->dropDownList($user, "certificates0", $user->allCertificates,array('multiple'=>'multiple')); ?>
+                        <div class="wheretoadd">
+                            <?php foreach ($certificates as $key => $certificate) { ?>
+                                <?php if(!$certificate->isNewRecord) { ?>
+                                    <div class="field-row" data-id="<?php echo $certificate->id; ?>">
+                                        <fieldset>
+                                            <?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?>
+                                            <?php $form->error($certificate, "[$key]certificate_id"); ?>
+                                        </fieldset>
+                                        <fieldset>
+                                            <?php echo $form->label($certificate, "[$key]date"); ?>
+                                            <?php echo $form->textField($certificate, "[$key]date"); ?>
+                                            <?php echo $form->error($certificate, "[$key]date"); ?>
+                                        </fieldset>
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                        <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton')); ?>
+                        <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton')); ?>
                     </fieldset>
                     <div class="secondary">
                         <span>References</span>

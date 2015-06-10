@@ -10,7 +10,7 @@
  * The followings are the available model relations:
  * @property UserCertificate[] $userCertificates
  */
-class Certificates extends CActiveRecord
+class Certificates extends ActiveRecord
 {
 	/**
 	 * @return string the associated database table name
@@ -29,9 +29,10 @@ class Certificates extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'length', 'max'=>255),
+            array('description', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +79,7 @@ class Certificates extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+        $criteria->compare('description',$this->description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

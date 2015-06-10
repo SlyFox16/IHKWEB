@@ -29,4 +29,41 @@ $(document).ready(function(){
             )
         }
     });
+
+    $(".addButton").on('click', function () {
+        var count = $('div[class^=field-row]', $(this).closest('form')).length;
+
+        var self = $(this);
+        $.ajax({
+            url: '/user/additem',
+            dataType: 'json',
+            type: 'GET',
+            data: {count: count},
+            success: function (data) {
+                $('.wheretoadd', self.closest('form')).append(data.responce);
+            }
+        });
+        return false;
+    });
+
+    $("#cabinet-form").on('click', '.removeButton', function () {
+        var self = $(this);
+        var attr = $('.field-row', '.wheretoadd').last().attr('data-id');
+        if(attr != 'undefined') {
+            $.ajax({
+                url: '/user/deleteitem',
+                dataType: 'json',
+                type: 'GET',
+                data: {attr: attr},
+                success: function (data) {
+                    if(data)
+                        $('.field-row', '.wheretoadd').last().remove();
+                }
+            });
+        } else {
+            $('.field-row', '.wheretoadd').last().remove();
+        }
+
+        return false;
+    });
 });

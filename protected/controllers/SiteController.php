@@ -208,7 +208,7 @@ class SiteController extends Frontend
 
             $crt = new CDbCriteria;
             $crt->condition = "(LOWER(username) REGEXP '[[:<:]]{$q}' or LOWER(name) REGEXP '[[:<:]]{$q}' or LOWER(surname) REGEXP '[[:<:]]{$q}')";
-            $crt->addCondition("is_active = 1 && is_staff = 0 && expert_confirm = 1");
+            $crt->addCondition("(is_active = 1 && expert_confirm = 1) OR is_staff = 1");
             $crt->order = 'id DESC';
 
             $dataSearch = new CActiveDataProvider(new User, array(

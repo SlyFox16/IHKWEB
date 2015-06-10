@@ -51,15 +51,7 @@ class ExtendedFormatter extends CFormatter
     }
 
     public function formatDate($value) {
-        return Yii::app()->dateFormatter->format("dd-MM-yyyy HH:mm", $value);
-    }
-
-    public function formatSliderDate($value) {
-        return Yii::app()->dateFormatter->format("hh:mm a, dd MMMM", $value);
-    }
-
-    public function formatDateTime($value) {
-        return Yii::app()->dateFormatter->format("yyyy-MM-dd HH:mm", $value);
+        return Yii::app()->dateFormatter->format("dd MMMM yyyy", $value);
     }
 
     public function formatLanguageVersion($value) {

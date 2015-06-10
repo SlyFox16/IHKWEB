@@ -9,8 +9,10 @@ class CAuthHelper {
 	}
 
     static function isIssetExpert($id) {
-        $user = User::model()->is_active()->user()->expert_confirm()->findByPk($id);
-        if(isset($user) && !$user->is_staff)
+        $user = User::model()->is_active()->findByPk($id);
+        if($user && !$user->is_staff && $user->expert_confirm)
+            return true;
+        if($user->is_staff)
             return true;
 
         return false;

@@ -40,7 +40,7 @@ class Controller extends CController
                 Yii::app()->user->logout();
             } else {
                 $user->last_login = new CDbExpression('NOW()');
-                $user->update();
+                $user->saveAttributes(array('last_login'));
             }
         }
     }

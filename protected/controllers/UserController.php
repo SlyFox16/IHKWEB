@@ -2,7 +2,7 @@
 
 class UserController extends Frontend
 {
-    private $userId;
+    private $cerId;
 
     public function accessRules()
     {
@@ -12,7 +12,7 @@ class UserController extends Frontend
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('cabinet'),
+                'actions'=>array('cabinet', 'additem', 'deleteitem'),
                 'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
@@ -36,21 +36,40 @@ class UserController extends Frontend
     public function actionCabinet()
     {
         $user = User::model()->findByPk(Yii::app()->user->id);
+        if($user->certificates)
+            $certificates = $user->certificates;
+        else
+            $certificates[] = new UserCertificate();
+
         $user->scenario = 'userupdate';
 
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'cabinet-form') {
-            echo CActiveForm::validate($user);
+        //=================================================================
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] == 'cabinet-form') {
+            $cert = array();
+            if (isset($_POST['UserCertificate'])) {
+                foreach ($_POST['UserCertificate'] as $key => $value) {
+                    $cert[$key] = new UserCertificate('check');
+                }
+            }
+            $f1 = json_decode(CActiveForm::validate($user), 1);
+            $f2 = json_decode(CActiveForm::validateTabular($cert), 1);
+            echo json_encode(array_merge($f1, $f2));
             Yii::app()->end();
         }
+
+        //=================================================================
 
         if (isset($_POST["User"])) {
             $user->attributes = $_POST["User"];
             if($user->save()) {
                 Yii::app()->user->setFlash('project_success', Yii::t("base","Поздравляем! Вы успешно создали проект!!"));
+                $this->redirect('/user/cabinet');
             }
         }
 
-        $this->render('cabinet', array('user' => $user));
+        //Yii::app()->clientScript->registerScript('popoverActivate',"$('.datepicker').datepicker();");
+        $this->render('cabinet', array('user' => $user, 'certificates' => $certificates));
     }
 
     public function actionInfo($id)
@@ -121,6 +140,45 @@ class UserController extends Frontend
                 }
             } else
                 throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            Yii::app()->end();
+        }
+    }
+
+    public function actionAdditem()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+
+            $ret = array();
+            $count = (int) $_GET['count'];
+
+            if(!is_int($count)) throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+
+            Yii::app()->clientScript->scriptMap = array(
+                'jquery.js' => false,
+                'jquery.min.js' => false,
+                'jquery.ba-bbq.js' => false,
+            );
+
+            $certificate = new UserCertificate();
+
+            $ret['responce'] = $this->renderPartial('add', array('count' => $count, 'certificate' => $certificate), true, false);
+            echo json_encode($ret);
+            Yii::app()->end();
+        }
+    }
+
+    public function actionDeleteitem()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+
+            $ret = array();
+            $count = (int) $_GET['attr'];
+
+            if(!is_int($count)) throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+
+            $id = UserCertificate::model()->findByAttributes(array('id' => $count, 'user_id' => Yii::app()->user->id));
+            $ret = $id ? true : false;
+            echo json_encode($ret);
             Yii::app()->end();
         }
     }
