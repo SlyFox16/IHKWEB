@@ -540,6 +540,10 @@ Homepage ===========*/
 	z-index: 5;
 }
 
+.expert-info a {
+	color: #000;
+}
+
 .expert-certification {
 	position: relative;
 	margin: 0;
