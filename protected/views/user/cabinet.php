@@ -25,17 +25,17 @@
                     ),
                     'htmlOptions'=>array("enctype"=>"multipart/form-data"),
                 )); ?>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('username'); ?>>
                         <?php echo $form->label($user, 'username'); ?>
                         <?php echo $form->textField($user, 'username'); ?>
                         <?php echo $form->error($user, 'username'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('name'); ?>>
                         <?php echo $form->label($user, 'name'); ?>
                         <?php echo $form->textField($user, 'name'); ?>
                         <?php echo $form->error($user, 'name'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('surname'); ?>>
                         <?php echo $form->label($user, 'surname'); ?>
                         <?php echo $form->textField($user, 'surname'); ?>
                         <?php echo $form->error($user, 'surname'); ?>
@@ -45,12 +45,12 @@
                         <?php echo $form->textField($user, 'email', array('readonly'=>true)); ?>
                         <?php echo $form->error($user, 'email'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('position'); ?>>
                         <?php echo $form->label($user, 'position'); ?>
                         <?php echo $form->textField($user, 'position'); ?>
                         <?php echo $form->error($user, 'position'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('description'); ?>>
                         <?php echo $form->label($user, 'description'); ?>
                         <?php echo $form->textArea($user, 'description'); ?>
                         <?php echo $form->error($user, 'description'); ?>
@@ -85,27 +85,27 @@
                     <div class="secondary">
                         <span>References</span>
                     </div>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('address'); ?>>
                         <?php echo $form->label($user, 'address'); ?>
                         <?php echo $form->textField($user, 'address'); ?>
                         <?php echo $form->error($user, 'address'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('phone'); ?>>
                         <?php echo $form->label($user, 'phone'); ?>
                         <?php echo $form->textField($user, 'phone'); ?>
                         <?php echo $form->error($user, 'phone'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('facebook_url'); ?>>
                         <?php echo $form->label($user, 'facebook_url'); ?>
                         <?php echo $form->textField($user, 'facebook_url'); ?>
                         <?php echo $form->error($user, 'facebook_url'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('twitter_url'); ?>>
                         <?php echo $form->label($user, 'twitter_url'); ?>
                         <?php echo $form->textField($user, 'twitter_url'); ?>
                         <?php echo $form->error($user, 'twitter_url'); ?>
                     </fieldset>
-                    <fieldset <?php echo $user->requiredClass('email'); ?>>
+                    <fieldset <?php echo $user->requiredClass('xing_url'); ?>>
                         <?php echo $form->label($user, 'xing_url'); ?>
                         <?php echo $form->textField($user, 'xing_url'); ?>
                         <?php echo $form->error($user, 'xing_url'); ?>

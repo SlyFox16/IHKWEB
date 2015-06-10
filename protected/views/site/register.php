@@ -26,12 +26,12 @@
                         'inputContainer' => 'fieldset',
                     ),
                 )); ?>
-                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                    <fieldset <?php echo $register_form->requiredClass('name'); ?>>
                         <?php echo $form->label($register_form, 'name'); ?>
                         <?php echo $form->textField($register_form, 'name'); ?>
                         <?php echo $form->error($register_form, 'name'); ?>
                     </fieldset>
-                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                    <fieldset <?php echo $register_form->requiredClass('surname'); ?>>
                         <?php echo $form->label($register_form, 'surname'); ?>
                         <?php echo $form->textField($register_form, 'surname'); ?>
                         <?php echo $form->error($register_form, 'surname'); ?>
@@ -44,12 +44,12 @@
                     <div class="secondary">
                         <span>References</span>
                     </div>
-                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                    <fieldset <?php echo $register_form->requiredClass('password'); ?>>
                         <?php echo $form->label($register_form, 'password'); ?>
                         <?php echo $form->passwordField($register_form, 'password', array('class' => "form-control", 'placeholder' => Yii::t("base", "Minimum 5 characters"))); ?>
                         <?php echo $form->error($register_form, 'password', array('inputContainer' => 'fieldset')); ?>
                     </fieldset>
-                    <fieldset <?php echo $register_form->requiredClass('email'); ?>>
+                    <fieldset <?php echo $register_form->requiredClass('chat-messages-title'); ?>>
                         <?php echo $form->label($register_form, 'password_repeat'); ?>
                         <?php echo $form->passwordField($register_form, 'password_repeat', array('class' => "form-control")); ?>
                         <?php echo $form->error($register_form, 'password_repeat', array('inputContainer' => 'fieldset')); ?>

@@ -32,7 +32,7 @@
                     <?php echo $form->error($model, 'email'); ?>
                 </fieldset>
 
-                <fieldset <?php echo $model->requiredClass('email'); ?>>
+                <fieldset <?php echo $model->requiredClass('password'); ?>>
                     <?php echo $form->label($model, 'password'); ?>
                     <?php echo $form->passwordField($model, 'password'); ?>
                     <?php echo $form->error($model, 'password'); ?>
