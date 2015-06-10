@@ -15,12 +15,12 @@ return array(
             'css/style.css',
             'css/responsive.css',
             'css/mycss.css',
-            /*'css/fancySelect.css',*/
+            'css/fancySelect.css'
         ),
         'js' => array(
             'js/wow.min.js',
             'js/jquery.stellar.js',
-            /*'js/fancySelect.js',*/
+            'js/fancySelect.js',
             'js/main.js',
             'js/myjs.js',
         ),
