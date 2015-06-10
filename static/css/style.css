@@ -127,12 +127,16 @@ input,
 textarea,
 select {
 	width: 100%;
+	min-height: 5rem;
 	padding: 1rem 1.5rem;
-	line-height: 3rem;
 	border: none;
 	background: #fff;
-	font-size: 18px;
+	font-size: 14px;
 	color: #c0c0c0;
+}
+
+textarea {
+	height: 10rem;
 }
 
 *:focus {
@@ -142,26 +146,63 @@ select {
 fieldset {
 	position: relative;
 	border: 0;
-	margin-bottom: 15px;
 }
 
-fieldset label {
-	position: absolute;
-	left: 0;
-	top: 0;
-	padding: 0 2rem;
-	line-height: 5rem;
-	font-size: 12px;
-	font-weight: 600;
-	width: 10rem;
+fieldset legend {
+	display: block;
+	width: 100%;
+	margin: 30px 0 15px 0; 
+	text-align: center;
+	border-top: 1px solid #e5e5e5;
+}
+
+fieldset legend span {
+	position: relative;
+	display: inline-block;
+	top: -10px;
+	padding: 0 10px;
 	text-transform: uppercase;
-	text-align: right;
-	background: #e5e5e5;
-	color: #777777;
+	color: #c0c0c0;
+	background: #efefef;
 }
 
-fieldset input {
-	padding-left: 12rem;
+.fields {
+	list-style: none;
+}
+
+.fields > li {
+	margin-bottom: 15px;
+	line-height: 1.1em;
+}
+
+.field-content {
+	display: table;
+	width: 100%;
+}
+
+.field-content > * {
+	display: table-cell;
+	vertical-align: middle;
+	height: 5rem;
+}
+
+.field-content > *:first-child {
+	width: 12rem;
+	padding: 0 2rem;
+	text-align: right;
+	color: #777;
+	font-size: 12px;
+	text-transform: uppercase;
+	background: #e5e5e5;
+}
+
+.errorMessage {
+	padding-top: 1rem;
+	font-size: 12px;
+	border-top: 2px solid red;
+	color: red;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 
 *:focus {
@@ -318,11 +359,16 @@ header {
 	padding: 10rem 0;
 }
 
+.logo {
+	float: left;
+}
+
 .logo h1 {
 	margin: 0;
 	font-weight: 700;
 	font-size: 42px;
 	text-transform: uppercase;
+	color: #000;
 }
 
 .logo p {
@@ -736,23 +782,6 @@ Register ===========*/
 .register h2 {
 	font-size: 30px;
 	line-height: 42px;
-}
-
-.secondary {
-	display: block;
-	margin: 30px 0 15px 0; 
-	text-align: center;
-	border-top: 1px solid #e5e5e5;
-}
-
-.secondary span {
-	position: relative;
-	display: inline-block;
-	top: -10px;
-	padding: 0 10px;
-	text-transform: uppercase;
-	color: #c0c0c0;
-	background: #efefef;
 }
 
 .social-login {

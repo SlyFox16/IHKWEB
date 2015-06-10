@@ -23,23 +23,24 @@
                     ),
                 )); ?>
                 <!-- START Form Control-->
-                <fieldset <?php echo $model->requiredClass('email'); ?>>
-                    <?php echo $form->label($model, 'email'); ?>
-                    <?php echo $form->textField($model, 'email'); ?>
-                    <?php echo $form->error($model, 'email'); ?>
+                <fieldset>
+                    <ul class="fields">
+                        <li <?php echo $model->requiredClass('email'); ?>>
+                            <div class="field-content">
+                                <div><?php echo $form->label($model, 'email'); ?></div>
+                                <div><?php echo $form->textField($model, 'email'); ?></div>
+                            </div>
+                            <?php echo $form->error($model, 'email'); ?>
+                        </li>
+                        <li <?php echo $model->requiredClass('password'); ?>>
+                            <div class="field-content">
+                                <div><?php echo $form->label($model, 'password'); ?></div>
+                                <div><?php echo $form->passwordField($model, 'password'); ?></div>
+                            </div>
+                            <?php echo $form->error($model, 'password'); ?>
+                        </li>
+                    </ul>
                 </fieldset>
-
-                <fieldset <?php echo $model->requiredClass('email'); ?>>
-                    <?php echo $form->label($model, 'password'); ?>
-                    <?php echo $form->passwordField($model, 'password'); ?>
-                    <?php echo $form->error($model, 'password'); ?>
-                </fieldset>
-
-                    <?php echo $form->checkBox($model, 'rememberMe'); ?>
-                    <?php echo $form->labelEx($model, 'rememberMe', array('for' => 'checkbox1')); ?>
-
-                <br />
-                <a href="#" class="text-info small forgetpass">Забыли пароль?</a>
                 <!-- END Form Control-->
                 <button class="button">Login</button>
                 <?php $this->endWidget(); ?>
@@ -47,9 +48,7 @@
             <div class="col-md-4">
                 <div class="social-login">
                     <h2>
-                        Use already existing
-                        <b>social</b> account to<br>
-                        <b>log in</b>
+                       Login with <b>social account</b>
                     </h2>
                     <?php  $this->widget('application.components.UloginWidget', array(
                         'params' => array(
