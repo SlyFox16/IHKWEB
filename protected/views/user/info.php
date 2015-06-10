@@ -66,19 +66,19 @@
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
-                <ul class="certification">
                     <?php if(!empty($user->certificates)) { ?>
+                    <ul class="certification">
                         <?php foreach($user->certificates as $cert) { ?>
-                            <li>
-                                <div class="certification-title">
-                                    <h3><?php echo $cert->certificate->name; ?></h3>
-                                    <span><?php echo Yii::app()->format->date($cert->date); ?></span>
-                                </div>
-                                <p><?php echo $cert->certificate->description; ?></p>
-                            </li>
+                        <li>
+                            <div class="certification-title">
+                                <h3><?php echo $cert->certificate->name; ?></h3>
+                                <span><?php echo Yii::app()->format->date($cert->date); ?></span>
+                            </div>
+                            <p><?php echo $cert->certificate->description; ?></p>
+                        </li>
                         <?php } ?>
+                    </ul>
                     <?php } ?>
-                </ul>
                 <div class="cta bottom-30">
                     <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>
                     <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>

@@ -71,12 +71,10 @@
                                 <?php echo $form->error($user, 'description'); ?>
                             </li>
                             <li>
-                                
+                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user)); ?>
                             </li>
                         </ul>
                     </fieldset>
-
-                    <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user)); ?>
 
                     <fieldset>
                         <legend><span>Certifications</span></legend>
@@ -141,15 +139,10 @@
                                 <?php echo $form->error($user, 'xing_url'); ?>
                             </li>
                             <li>
-                                <div class="field-content">
-                                    <div></div>
-                                    <div></div>
-                                </div>
+                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user)); ?>
                             </li>
                         </ul>
                     </fieldset>
-
-                    <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user)); ?>
 
                     <button class="button" type="submit">Register</button>
                 <?php $this->endWidget(); ?>
