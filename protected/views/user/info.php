@@ -81,7 +81,9 @@
                     <?php } ?>
                 <div class="cta bottom-30">
                     <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>
-                    <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
+                    <?php if(Yii::app()->user->isGuest) { ?>
+                        <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="col-sm-3">
