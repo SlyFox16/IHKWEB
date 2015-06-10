@@ -76,7 +76,32 @@
                         </ul>
                     </fieldset>
 
-
+                    <fieldset>
+                        <legend><span>Certifications</span></legend>
+                        <div class="wheretoadd">
+                            <?php foreach ($certificates as $key => $certificate) { ?>
+                                <?php if(!$certificate->isNewRecord) { ?>
+                                    <ul class="fields" data-id="<?php echo $certificate->id; ?>">
+                                        <li>
+                                            <div class="field-content">
+                                                <div><?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?></div>
+                                            </div>
+                                            <?php $form->error($certificate, "[$key]certificate_id"); ?>
+                                        </li>
+                                        <li>
+                                            <div class="field-content">
+                                                <div><?php echo $form->label($certificate, "[$key]date"); ?></div>
+                                                <div><?php echo $form->textField($certificate, "[$key]date"); ?></div>
+                                            </div>
+                                            <?php echo $form->error($certificate, "[$key]date"); ?>
+                                        </li>
+                                    </ul>
+                                <?php } ?>
+                            <?php } ?>
+                        </div>
+                        <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton')); ?>
+                        <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton')); ?>
+                    </fieldset>
                     
 
                     <fieldset>
