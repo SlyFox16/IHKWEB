@@ -2,10 +2,13 @@
     <div class="container relative">
 
         <!--== Breadcrumbs ==-->
-        <ul class="breadcrumbs">
-            <li><a href="">Home</a></li>
-            <li>Login</li>
-        </ul>
+        <?php
+        $this->widget('Breadcrumbs', array(
+            'links' => array(
+                Yii::t("base", 'Feedback')
+            ),
+        ));
+        ?>
 
         <div class="row">
             <div class="col-md-3">
