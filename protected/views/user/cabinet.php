@@ -144,7 +144,7 @@
                         </ul>
                     </fieldset>
 
-                    <button class="button" type="submit">Register</button>
+                    <button class="button" type="submit">Save</button>
                 <?php $this->endWidget(); ?>
             </div>
         </div>

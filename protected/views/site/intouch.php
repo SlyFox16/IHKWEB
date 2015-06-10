@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-3">
                 <h2>
-                    <b>Get in touch </b> with us.
+                    <b>Get in touch </b> with us.../
                 </h2>
             </div>
             <div class="col-md-5 separator">
