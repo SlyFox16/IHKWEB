@@ -47,7 +47,7 @@
                 <!-- END Form Control-->
                 <button class="button">Login</button>
                 <?php $this->endWidget(); ?>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pestorepass">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#passrecover">
                     Forget password?
                 </button>
             </div>
