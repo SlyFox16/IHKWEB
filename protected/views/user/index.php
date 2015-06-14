@@ -1386,5 +1386,3 @@
     <!-- END Overlay Content !-->
 </div>
 <!-- END OVERLAY -->
-
-<?php $this->widget('PassChange'); ?>

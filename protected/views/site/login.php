@@ -47,6 +47,9 @@
                 <!-- END Form Control-->
                 <button class="button">Login</button>
                 <?php $this->endWidget(); ?>
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#pestorepass">
+                    Forget password?
+                </button>
             </div>
             <div class="col-md-4">
                 <div class="social-login">
@@ -64,3 +67,4 @@
         </div>
     </div>
 </section>
+<?php $this->widget('PassChange'); ?>

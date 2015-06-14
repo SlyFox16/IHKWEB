@@ -150,8 +150,10 @@
                     </fieldset>
 
                     <button class="button" type="submit">Save</button>
+                    <button class="button" type="button" data-toggle="modal" data-target="#passchange">Recover password</button>
                 <?php $this->endWidget(); ?>
             </div>
         </div>
     </div>
 </section>
+<?php $this->widget('PassChange', array('change' => true)); ?>

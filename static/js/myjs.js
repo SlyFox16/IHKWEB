@@ -48,7 +48,7 @@ $(document).ready(function(){
 
     $("#cabinet-form").on('click', '.removeButton', function () {
         var self = $(this);
-        var attr = $('.field-row', '.wheretoadd').last().attr('data-id');
+        var attr = $('.fields', '.wheretoadd').last().attr('data-id');
         if(attr != 'undefined' && $.isNumeric(attr)) {
             $.ajax({
                 url: '/user/deleteitem',
@@ -57,11 +57,11 @@ $(document).ready(function(){
                 data: {attr: attr},
                 success: function (data) {
                     if(data)
-                        $('.field-row', '.wheretoadd').last().remove();
+                        $('.fields', '.wheretoadd').last().remove();
                 }
             });
         } else {
-            $('.field-row', '.wheretoadd').last().remove();
+            $('.fields', '.wheretoadd').last().remove();
         }
 
         return false;

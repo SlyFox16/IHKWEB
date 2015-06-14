@@ -94,12 +94,12 @@ class ActiveRecord extends CActiveRecord
                     Yii::app()->user->setFlash('success', "$name was successfully updated.");
                     break;
                 case "updatepassword":
-                    Yii::log("Password of user " . $this->reg_name . " was changed successfully.", "profile", "backend");
-                    Yii::app()->user->setFlash('success', "Password of user " . $this->reg_name . " was changed successfully.");
+                    Yii::log("Password of user " . $this->fullname . " was changed successfully.", "profile", "backend");
+                    Yii::app()->user->setFlash('success', "Password of user " . $this->fullname . " was changed successfully.");
                     break;
                 case "updatepasswordBackend":
-                    Yii::log("Password of user " . $this->username . " was changed successfully.", "profile", "backend");
-                    Yii::app()->user->setFlash('success', "Password of user " . $this->username . " was changed successfully.");
+                    Yii::log("Password of user " . $this->fullname . " was changed successfully.", "profile", "backend");
+                    Yii::app()->user->setFlash('success', "Password of user " . $this->fullname . " was changed successfully.");
                     break;
                 default:
                     break;

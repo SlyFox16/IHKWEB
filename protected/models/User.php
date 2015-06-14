@@ -75,7 +75,7 @@ class User extends ActiveRecord
             array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
             array('facebook_url, twitter_url, xing_url', 'url'),
             array('salt, username, phone, address', 'length', 'max' => 255),
-            array('email, username', 'unique'),
+            array('email, username', 'unique', 'except' => 'changepassword'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register'),
             array('password_repeat, certificates, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm', 'safe'),
@@ -111,7 +111,7 @@ class User extends ActiveRecord
         }
 
         if ($error == true) {
-            $this->addError('video', 'Такого email-a нет в базе данных.');
+            $this->addError('email', 'This email-a is not in the database.');
         }
     }
 
@@ -344,5 +344,17 @@ class User extends ActiveRecord
         }
 
         return parent::afterSave();
+    }
+
+    public function GenerateStr($length = 16)
+    {
+        $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
+        $code = "";
+        $clen = strlen($chars) - 1;
+
+        while (strlen($code) < $length)
+            $code .= $chars[mt_rand(0, $clen)];
+
+        return $code;
     }
 }

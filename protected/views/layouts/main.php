@@ -49,4 +49,5 @@
     </div>
 </footer>
 </body>
+<?php $this->widget('Notifications'); ?>
 </html>

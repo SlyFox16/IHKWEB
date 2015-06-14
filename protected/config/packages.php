@@ -15,14 +15,17 @@ return array(
             'css/style.css',
             'css/responsive.css',
             'css/mycss.css',
-            'css/fancySelect.css'
+            'css/fancySelect.css',
+            'css/bootstrap-modal.css',
         ),
         'js' => array(
             'js/wow.min.js',
             'js/jquery.stellar.js',
             'js/fancySelect.js',
             'js/main.js',
+            'js/bootstrap-modal.js',
             'js/myjs.js',
+            'js/bootstrap-notify.js',
         ),
         'depends' => array('jquery'),
     ),
