@@ -67,10 +67,7 @@ $(document).ready(function(){
         return false;
     });
 
-    $('#xing-login').on('click', function(){
-        $('#xingpass').modal('hide');
-        return true;
-    });
+
     // This function is called by the plugin after
     // the login flow is completed.
     function onXingAuthLogin(response) {
