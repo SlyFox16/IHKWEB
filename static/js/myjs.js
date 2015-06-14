@@ -66,4 +66,24 @@ $(document).ready(function(){
 
         return false;
     });
+
+    $('#xing-login').on('click', function(){
+        $('#xingpass').modal('hide');
+        return true;
+    });
+    // This function is called by the plugin after
+    // the login flow is completed.
+    function onXingAuthLogin(response) {
+        var output;
+
+        console.log(response);
+
+        if (response.user) {
+            output = 'Successful login for ' + response.user.display_name;
+        } else if (response.error) {
+            output = 'Error: ' + response.error;
+        }
+
+        console.log(output);
+    }
 });

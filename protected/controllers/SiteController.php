@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'feedback'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'xing', 'feedback'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -63,6 +63,12 @@ class SiteController extends Frontend
         $randUsers = User::model()->user()->is_active()->expert_confirm()->findAll(array('order' => 'RAND()', 'limit' => 10));
         $this->render('index', array('randUsers' => $randUsers));
 	}
+
+    public function actionXing()
+    {
+        Yii::app()->user->setFlash('xing', true);
+        $this->redirect(Yii::app()->homeUrl);
+    }
 
 	/**
 	 * This is the action to handle external exceptions.

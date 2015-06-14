@@ -9,8 +9,10 @@ class UserController extends BackendController
      */
     public function actionView($id)
     {
+        $model = $this->loadModel($id);
+        $model->seenCheck();
         $this->render('view',array(
-            'model'=>$this->loadModel($id),
+            'model'=>$model,
         ));
     }
 
@@ -43,6 +45,7 @@ class UserController extends BackendController
     public function actionUpdate($id)
     {
         $model=$this->loadModel($id);
+        $model->seenCheck();
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -84,7 +87,7 @@ class UserController extends BackendController
     /**
      * Manages all models.
      */
-    public function actionAdminMembers()
+    public function actionAdminMembers($param = null)
     {
         $model=new User('search');
         $model->unsetAttributes();  // clear any default values
@@ -93,6 +96,7 @@ class UserController extends BackendController
 
         $this->render('adminMembers',array(
             'model'=>$model,
+            'param' => $param
         ));
     }
 

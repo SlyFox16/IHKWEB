@@ -205,7 +205,7 @@ class User extends ActiveRecord
         ));
     }
 
-    public function searchMember()
+    public function searchMember($param)
     {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
@@ -223,6 +223,9 @@ class User extends ActiveRecord
         $criteria->compare('date_joined', $this->date_joined, true);
 
         $criteria->addCondition('is_staff = 0');
+
+        if($param)
+            $criteria->addCondition('is_seen = 0');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -325,8 +328,8 @@ class User extends ActiveRecord
 
     public function afterSave()
     {
-        UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
         if (isset($_POST['UserCertificate'])) {
+            UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
             $param = $_POST['UserCertificate'];
 
             foreach ($param as $i => $item) {
@@ -356,5 +359,13 @@ class User extends ActiveRecord
             $code .= $chars[mt_rand(0, $clen)];
 
         return $code;
+    }
+
+    public function seenCheck()
+    {
+        if($this->is_seen == 0) {
+            $this->is_seen = 1;
+            $this->update();
+        }
     }
 }

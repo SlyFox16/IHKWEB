@@ -16,7 +16,6 @@ class UloginWidget extends CWidget
 
     public function run()
     {
-        Yii::app()->clientScript->registerScriptFile('https://www.xing-share.com/plugins/login.js', CClientScript::POS_HEAD);
         Yii::app()->clientScript->registerScriptFile('http://ulogin.ru/js/ulogin.js', CClientScript::POS_END);
         
         $this->params['counter']= self::$counter++;

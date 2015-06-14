@@ -95,6 +95,9 @@
     </div>
 </section>
 
+<?php if(Yii::app()->user->getFlash('xing')) {
+    $this->widget('Xingpopup');
+} ?>
 
 <!--===============================-->
 <!--== Footer =====================-->

@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'user-grid',
-    'dataProvider' => $model->searchMember(),
+    'dataProvider' => $model->searchMember($param),
     'type' => 'striped bordered condensed',
     'filter' => $model,
     'columns' => array(
