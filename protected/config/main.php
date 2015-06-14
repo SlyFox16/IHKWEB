@@ -149,7 +149,7 @@ return CMap::mergeArray(
         // application-level parameters that can be accessed
         // using Yii::app()->params['paramName']
         'params'=>array(
-            'no-replyEmail' => 'no-reply@'.$_SERVER['SERVER_NAME'].'.com',
+            'no-replyEmail' => 'no-reply@'.$_SERVER['SERVER_NAME'],
             'adminEmail' => 'jenya@idol-it.com',
             'defaultPageSize' => 10,
             'albumPageSize' => 18,
