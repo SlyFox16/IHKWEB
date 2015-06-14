@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" aria-hidden="true" data-dismiss="modal" type="button"></button>
-                <h5 class="text-left p-b-5"><span class="semi-bold">Добавить задачу</span></h5>
+                <h5 class="text-left p-b-5"><span class="semi-bold">Restore password</span></h5>
             </div>
             <div class="modal-body">
                 <?php $form = $this->beginWidget('CActiveForm', array(
