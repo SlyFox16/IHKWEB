@@ -223,6 +223,6 @@ class UserController extends Frontend
         else
             throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
 
-        $this->redirect('/site/login');
+        $this->redirect($this->createUrl('/site/login'));
     }
 }
