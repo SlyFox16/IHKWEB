@@ -212,14 +212,16 @@ class UserController extends Frontend
             if (!isset(Yii::app()->session['passver']))
                 Yii::app()->session['passver'] = '';
 
-            if ($_GET['pass'] == Yii::app()->session['passver'])
-                $this->redirect(array('user/updatePassword/', array('inside' => true)));
+            if ($_GET['pass'] == Yii::app()->session['passver']) {
+                Yii::app()->user->setFlash('mail_recover', true);
+                $this->redirect(array(Yii::app()->homeUrl));
+            }
             else
                 Yii::app()->user->setFlash('project_error', Yii::t("base", "This link has been expired or incorrect."));
         }
         else
             throw new CHttpException(404, Yii::t('base', 'Страницы не существует'));
 
-        $this->redirect('/site/login');
+        $this->redirect('site/login');
     }
 }

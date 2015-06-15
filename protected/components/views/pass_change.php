@@ -49,3 +49,7 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- Modal -->
+
+<?php if($this->open) {
+    Yii::app()->clientScript->registerScript('popoverActivate',"$('#passchange').modal('open');");
+} ?>

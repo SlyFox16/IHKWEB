@@ -99,6 +99,10 @@
     $this->widget('Xingpopup');
 } ?>
 
+<?php if(Yii::app()->user->getFlash('mail_recover')) {
+    $this->widget('PassChange', array('change' => true));
+} ?>
+
 <!--===============================-->
 <!--== Footer =====================-->
 <!--===============================-->
