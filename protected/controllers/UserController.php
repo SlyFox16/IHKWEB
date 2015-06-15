@@ -204,6 +204,7 @@ class UserController extends Frontend
 
             if($model->sendEmail($subject, $body, $email)) {
                 Yii::app()->session['passver'] =  $pass;
+                Yii::log($pass, "error");
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page."));
             } else {
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Could not send email."));
@@ -220,7 +221,7 @@ class UserController extends Frontend
                 Yii::app()->user->setFlash('project_error', Yii::t("base", "This link has been expired or incorrect."));
         }
         else
-            throw new CHttpException(404, Yii::t('base', 'Страницы не существует'));
+            throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
 
         $this->redirect('/site/login');
     }
