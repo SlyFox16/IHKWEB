@@ -28,6 +28,7 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
 </ul>
 
 <script type="text/javascript">
+    $('select').fancySelect();
     //$('.datepicker').datepicker();
     $().ready(function () {
         var settings = $("#cabinet-form").data('settings');

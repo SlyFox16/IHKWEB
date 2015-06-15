@@ -9,7 +9,13 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,hr,t
 
 /*--------------------
 General ============*/
+html {
+	height: 100%;
+}
+
 body {
+	position: relative;
+	min-height: 100%;
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Open Sans', serif;
 	color: #000;
@@ -422,7 +428,9 @@ section > .container {
 
 footer {
 	overflow: hidden;
-	position: relative;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 	padding: 6rem 0;
 	background: #222;
 	color: #777;
@@ -835,4 +843,45 @@ Search Results =====*/
 
 .search-results {
 	margin-bottom: 6rem;
+}
+
+/*--------------------
+Others =============*/
+.notification {
+	position: fixed;
+	top: 3rem;
+	right: 3rem;
+	max-width: 30rem;
+	padding: 2rem;
+	border-radius: 4px;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.notification > * {
+	font-size: 1.4rem;
+	margin: 0;
+	color: #fff;
+	text-transform: uppercase;
+}
+
+.popup {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	max-width: 55rem;
+	padding: 5rem;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	text-align: center;
+	border-radius: 4px;
+	transform: translate(-50%, -50%);
+	z-index: 999;
+}
+
+.popup > * + * {
+	margin-top: 2rem;
+}
+
+.popup p {
+	color: #fff;
 }

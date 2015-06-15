@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" aria-hidden="true" data-dismiss="modal" type="button"></button>
-                <h5 class="text-left p-b-5"><span class="semi-bold">Restore password</span></h5>
+                <h5>Restore password</h5>
             </div>
             <div class="modal-body">
                 <?php $form = $this->beginWidget('CActiveForm', array(
@@ -26,15 +26,10 @@
                         </li>
                     </ul>
                 </fieldset>
-                <div class="row">
-                    <div class="col-sm-8"></div>
-                    <div class="col-sm-4 m-t-10 sm-m-t-10">
-                        <button type="submit" class="btn btn-primary btn-block m-t-5"><?php echo Yii::t("base", "Change pass"); ?></button>
-                    </div>
-                </div>
-                <?php $this->endWidget(); ?>
             </div>
             <div class="modal-footer">
+              <button type="submit" class="button"><?php echo Yii::t("base", "Reset password"); ?></button>
+              <?php $this->endWidget(); ?>
             </div>
         </div>
         <!-- /.modal-content -->

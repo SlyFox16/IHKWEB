@@ -7,6 +7,7 @@
         Launch: function () {
             fn.Wow();
             fn.Stellar();
+            fn.StickyFooter();
             fn.Apps();
         },
 
@@ -36,10 +37,21 @@
             }
         },
 
+        // Sticky Footer
+        StickyFooter: function () {
+            var footerHeight, 
+                footer = $('footer'),
+                element = $('body');
+
+            function centerImage() {
+                footerHeight = footer.innerHeight();
+                element.css({'padding-bottom' : footerHeight});
+            }
+            $(window).on("load resize", centerImage);
+        },
+
         // Apps
         Apps: function () {
-            // Fancy Select
-            $('select').fancySelect();
         }
 
 
