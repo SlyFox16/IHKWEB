@@ -63,7 +63,7 @@ class UserController extends Frontend
         if (isset($_POST["User"])) {
             $user->attributes = $_POST["User"];
             if($user->save()) {
-                Yii::app()->user->setFlash('project_success', Yii::t("base","Поздравляем! Вы успешно создали проект!!"));
+                Yii::app()->user->setFlash('project_success', Yii::t("base","Your profile was updated."));
                 $this->redirect('/user/cabinet');
             }
         }

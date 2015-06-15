@@ -15,8 +15,7 @@ div.fancy-select div.trigger {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	position: relative;
-	background: #f4f6f7;
-	border-left: 2px solid #ebeef0;
+	background: #fff;
 	cursor: pointer;
 
 	transition: all 240ms ease-out;
@@ -51,7 +50,7 @@ div.fancy-select ul.options {
 	z-index: 50;
 	max-height: 200px;
 	overflow: auto;
-	background: #f4f6f7;
+	background: #fff;
 	width: 100%;
 
 	transition: opacity 300ms ease-out, top 300ms ease-out, visibility 300ms ease-out;
@@ -111,6 +110,7 @@ div.fancy-select ul.options li {
 
 div.fancy-select ul.options li.selected {
 	color: #fff;
+	background: #00478c;
 }
 
 div.fancy-select ul.options li.selected:hover {
