@@ -8,7 +8,7 @@ class UserController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('recover'),
+                'actions'=>array('recover', 'updateMailPassword'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -80,7 +80,7 @@ class UserController extends Frontend
         $this->render('info', array('user' => $user, 'log' => $log));
     }
 
-    public function actionUpdatePassword($inside = false)
+    public function actionUpdatePassword()
     {
         $model=User::model()->findByPk(Yii::app()->user->id);
 
@@ -112,7 +112,40 @@ class UserController extends Frontend
         }
         else
             throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
+    }
 
+    public function actionUpdateMailPassword()
+    {
+        $a = Yii::app()->session['pass'][Yii::app()->session['passver']];
+        if(isset($a))
+        {
+            $model=User::model()->findByAttributes(array('email' => $a));
+
+            $model->scenario = 'updatepassword';
+            $model->password = '';
+
+            if (isset($_POST['ajax']) && $_POST['ajax'] === 'changepass-form') {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
+
+            if (isset($_POST['User'])) {
+                $model->attributes = $_POST['User'];
+                // Generating Password
+                $salt = $model->generateSalt();
+                $password = $model->hashPassword($model->password, $salt);
+
+                $model->password = $password;
+                $model->salt = $salt;
+                if($model->update())
+                    Yii::app()->user->setFlash('project_success', Yii::t("base", "Your password has been changed successfully!"));
+
+                $this->redirect(Yii::app()->homeUrl);
+            }
+
+            $this->render("updatepass",array("model"=>$model));
+        } else
+            throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
     }
 
     public function actionRating()
@@ -182,7 +215,7 @@ class UserController extends Frontend
         }
     }
 
-    public function actionRecover()
+    public function actionRecover($pass = null)
     {
         $model = new User('changepassword');
 
@@ -196,26 +229,27 @@ class UserController extends Frontend
             $model->attributes = $_POST['User'];
 
             $pass = $model->GenerateStr();
-            $a = CHtml::link('Password recovery',$this->createAbsoluteUrl("user/recover/pass/$pass"));
+            $a = CHtml::link('Password recovery',$this->createAbsoluteUrl("user/recover/$pass"));
 
             $body = "You can change your password by following this link ".$a;
             $subject = "Password Recovery Form ".Yii::app()->name;
             $email = $model->email;
 
             if($model->sendEmail($subject, $body, $email)) {
+                Yii::app()->session['pass'] = array($pass => $model->email);
                 Yii::app()->session['passver'] =  $pass;
                 Yii::log($pass, "error");
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page."));
             } else {
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Could not send email."));
             }
-        } elseif(isset($_GET['pass'])) {
+        } elseif(!empty($pass)) {
             if (!isset(Yii::app()->session['passver']))
                 Yii::app()->session['passver'] = '';
 
             if ($_GET['pass'] == Yii::app()->session['passver']) {
                 Yii::app()->user->setFlash('mail_recover', true);
-                $this->redirect(array(Yii::app()->homeUrl));
+                $this->redirect(Yii::app()->homeUrl);
             }
             else
                 Yii::app()->user->setFlash('project_error', Yii::t("base", "This link has been expired or incorrect."));

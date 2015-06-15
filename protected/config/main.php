@@ -113,6 +113,7 @@ return CMap::mergeArray(
                     'logout' => 'site/logout',
                     'search' => 'site/findexperts',
                     'feedback' => 'site/feedback',
+                    'user/recover/<pass:\w+>' => 'user/recover',
                     '<controller:\w+>/<id:\d+>'=>'<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                     '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

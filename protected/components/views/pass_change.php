@@ -1,3 +1,10 @@
+<?php if($this->open) {
+    $url = array("user/updateMailPassword");
+} else {
+    $url = array("user/updatePassword");
+}
+?>
+
 <div class="modal fade fill-in" id="passchange" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog ">
         <div class="modal-content">
@@ -8,7 +15,7 @@
             <div class="modal-body">
                 <?php $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'changepass-form',
-                    'action' => array("user/updatePassword"),
+                    'action' => $url,
                     'enableAjaxValidation' => true,
                     'clientOptions' => array(
                         'validateOnSubmit' => true,
@@ -51,5 +58,5 @@
 <!-- Modal -->
 
 <?php if($this->open) {
-    Yii::app()->clientScript->registerScript('popoverActivate',"$('#passchange').modal('open');");
+    Yii::app()->clientScript->registerScript('popoverActivate',"$('#passchange').modal('show');");
 } ?>
