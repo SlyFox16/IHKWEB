@@ -1,9 +1,18 @@
 <?php
-$this->breadcrumbs=array(
-	'Users'=>array('admin'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
-);
+if($model->is_staff) {
+    $this->breadcrumbs=array(
+        'Users'=>array('adminStaff'),
+        $model->name=>array('view','id'=>$model->id),
+        'Update',
+    );
+} else {
+    $this->breadcrumbs=array(
+        'Users'=>array('adminMembers'),
+        $model->name=>array('view','id'=>$model->id),
+        'Update',
+    );
+}
+
 $url = $model->is_staff == 1 ? 'adminStaff' : 'adminMembers';
 $this->menu=array(
     array('label'=>'Change Password','url'=>array('updatePassword','id'=>$model->id)),

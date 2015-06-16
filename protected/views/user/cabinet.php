@@ -28,7 +28,6 @@
                                $("#cabinet-form [type=submit]").off();
                                return true;
                             }
-                            $(this).toggleClass("fa-spin");
                         }',
                     ),
                     'htmlOptions'=>array("enctype"=>"multipart/form-data"),
@@ -157,7 +156,7 @@
                         </ul>
                     </fieldset>
 
-                    <button class="button" type="submit">Save</button>
+                    <button class="button" type="submit"><i class="fa fa-cog"></i>Save</button>
                     <button class="button" type="button" data-toggle="modal" data-target="#passchange">Recover password</button>
                 <?php $this->endWidget(); ?>
             </div>

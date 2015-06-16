@@ -1,8 +1,15 @@
 <?php
-    $this->breadcrumbs=array(
-        'Users'=>array('admin'),
-        'Create',
-    );
+    if($model->is_staff) {
+        $this->breadcrumbs=array(
+            'Users'=>array('adminStaff'),
+            'Create',
+        );
+    } else {
+        $this->breadcrumbs=array(
+            'Users'=>array('adminMembers'),
+            'Create',
+        );
+    }
 ?>
 
 <legend>Create User</legend>

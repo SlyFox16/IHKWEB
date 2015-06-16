@@ -1,9 +1,17 @@
 <?php
-$this->breadcrumbs=array(
-	'Users'=>array('admin'),
-	$model->name=>array('view','id'=>$model->id),
-	'Update',
-);
+if($model->is_staff) {
+    $this->breadcrumbs=array(
+        'Users'=>array('adminStaff'),
+        $model->name=>array('view','id'=>$model->id),
+        'Update',
+    );
+} else {
+    $this->breadcrumbs=array(
+        'Users'=>array('adminMembers'),
+        $model->name=>array('view','id'=>$model->id),
+        'Update',
+    );
+}
 
 $this->menu=array(
     array('label'=>'Update User','url'=>array('update','id'=>$model->id)),
