@@ -32,10 +32,15 @@
                 </div>
             </li>
             <li>
-                <a href=""><i class="fa fa-flag"></i></a>
+                <a href="" class="fa fa-flag"></a>
             </li>
             <li>
-                <a href=""><i class="fa fa-share"></i></a>
+                <a href="" class="fa fa-share-alt"></a>
+                <ul class="share">
+                    <li><a href="http://www.facebook.com/sharer/sharer.php?u=<?php Yii::app()->getBaseUrl(true).Yii::app()->request->requestUri;?>" class="fa fa-facebook"></a></li>
+                    <li><a href="http://twitter.com/home?status=Let´s meet at #CrowdDialog in Helsinki <?php Yii::app()->getBaseUrl(true).Yii::app()->request->requestUri;?>" class="fa fa-twitter"></a></li>
+                    <li><a href="https://plus.google.com/share?url=<?php Yii::app()->getBaseUrl(true).Yii::app()->request->requestUri;?>" class="fa fa-google-plus"></a></li>
+                </ul>
             </li>
         </ul>
         <div class="row">

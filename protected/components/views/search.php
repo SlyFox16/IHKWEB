@@ -13,11 +13,11 @@
                 ),
             )); ?>
                 <?php echo CHtml::textField('q', '', array('placeholder' => Yii::t("base", 'Search'))); ?>
-                <?php echo CHtml::linkButton('<i class="fa fa-search"></i>'); ?>
+                <?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?>
             <?php $this->endWidget(); ?>
         </li>
         <li>
-            <a href=""><i class="fa fa-chevron-right"></i></a>
+            <a href="" class="fa fa-chevron-right"></a>
         </li>
     </ul>
 </div>
