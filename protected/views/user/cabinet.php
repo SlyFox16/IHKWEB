@@ -156,7 +156,7 @@
                         </ul>
                     </fieldset>
 
-                    <button class="button" type="submit"><i class="fa fa-cog"></i>Save</button>
+                    <button class="button" type="submit">Save <i class="fa fa-circle-o-notch"></i></button>
                     <button class="button" type="button" data-toggle="modal" data-target="#passchange">Recover password</button>
                 <?php $this->endWidget(); ?>
             </div>
