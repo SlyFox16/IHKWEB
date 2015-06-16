@@ -64,6 +64,7 @@ class User extends ActiveRecord
             array('username, name, surname, email', 'required', 'on' => 'update, userupdate, socials'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
             array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
+            array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => 'Wrong format!'),
             array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
             array('email', 'noEmail', 'on' => 'changepassword'),
             array('is_active', 'numerical', 'integerOnly' => true),
