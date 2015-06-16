@@ -60,7 +60,7 @@
                         Rating <b><?php echo $user->rating; ?></b>
                     </li>
                     <li>
-                        Level <b>1</b>
+                        Level <b><?php echo $user->level; ?></b>
                     </li>
                 </ul>
             </div>
