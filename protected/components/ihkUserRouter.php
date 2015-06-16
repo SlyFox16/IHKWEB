@@ -38,7 +38,7 @@ class ihkUserRouter extends CBaseUrlRule
         if(preg_match('~^backend~', $pathInfo))
             return $flag;
 
-        if(preg_match('~([a-zA-Z0-9_-]+)?$~', $pathInfo, $this->matches)) {
+        if(preg_match('~([a-zA-Z0-9_-\.]+)?$~', $pathInfo, $this->matches)) {
             if(isset($this->matches[1])) {
                 if($section = $this->dbExist('User', $this->matches[1])) {
                     $flag = true;
