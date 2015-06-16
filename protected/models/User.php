@@ -426,7 +426,6 @@ class User extends ActiveRecord
     {
         $alreadyExisis = Report::model()->findByAttributes(array('initiator' => Yii::app()->user->id, 'receiver' => $this->id));
         if($alreadyExisis) return false;
-        if($this->id == Yii::app()->user->id)
 
         return true;
     }
