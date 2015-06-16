@@ -206,6 +206,10 @@ class User extends ActiveRecord
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'sort' => array(
+                'defaultOrder' => "RAND()",
+            ),
+            'pagination' => array('Pagesize' => Yii::app()->params['defaultPageSize']),
         ));
     }
 
