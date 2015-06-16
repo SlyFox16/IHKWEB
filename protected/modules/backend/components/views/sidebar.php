@@ -33,7 +33,7 @@
                         <div class="accordion-group">
                             <div class="accordion-heading">
                                 <a href="#collapseCert" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
-                                    <i class="icon-user"></i> Certificates
+                                    <i class="icon-barcode"></i> Certificates
                                 </a>
                             </div>
                             <div class="accordion-body collapse<?php if($c=="cert") echo " in"; ?>" id="collapseCert">
@@ -55,6 +55,21 @@
                                 <div class="accordion-inner">
                                     <ul class="nav nav-list">
                                         <li><a href="<?php echo Yii::app()->createUrl("backend/feedback/admin");?>">All reviews</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a href="#collapseReport" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                    <i class="icon-briefcase"></i> All Reports
+                                </a>
+                            </div>
+                            <div class="accordion-body collapse<?php if($c=="report") echo " in"; ?>" id="collapseReport">
+                                <div class="accordion-inner">
+                                    <ul class="nav nav-list">
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/report/admin");?>">Reports</a></li>
                                     </ul>
                                 </div>
                             </div>

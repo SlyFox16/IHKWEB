@@ -20,6 +20,9 @@
  */
 class User extends ActiveRecord
 {
+    public $levelUp = false;
+    public $levelDown = false;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -347,6 +350,51 @@ class User extends ActiveRecord
             }
         }
 
+        if($this->scenario == 'userupdate') {
+            $cert = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
+
+            if(!empty($this->position) && !empty($this->description) && !empty($this->avatar) && $this->level == 0) {
+                $this->level += 1;
+                $this->levelUp = true;
+                $this->levelDown = false;
+            }
+            if(!empty($this->address) && !empty($this->phone) && $this->level == 1 && (!empty($this->facebook_url) || !empty($this->twitter_url) || !empty($this->xing_url))) {
+                $this->level += 1;
+                $this->levelUp = true;
+                $this->levelDown = false;
+            }
+            if(!empty($cert) && $this->level == 2) {
+                $this->level += 1;
+                $this->levelUp = true;
+                $this->levelDown = false;
+            }
+
+
+            if((empty($this->position) || empty($this->description) || empty($this->avatar)) && $this->level > 0) {
+                $this->level -= 1;
+                $this->levelUp = false;
+                $this->levelDown = true;
+            }
+            if((empty($this->address) || empty($this->phone) || (empty($this->facebook_url) && empty($this->twitter_url) && empty($this->xing_url))) && $this->level > 1) {
+                $this->level -= 1;
+                $this->levelUp = false;
+                $this->levelDown = true;
+            }
+            if(empty($cert) && $this->level > 2) {
+                $this->level -= 1;
+                $this->levelUp = false;
+                $this->levelDown = true;
+            }
+            //($this->certificates); die();
+
+            if($this->saveAttributes(array('level'))) {
+                if($this->levelUp)
+                    Yii::app()->user->setFlash('project_success1', 'Congratulations, You have reached level '.$this->level);
+                if($this->levelDown)
+                    Yii::app()->user->setFlash('project_error1', 'Your level went down to '.$this->level);
+            }
+        }
+
         return parent::afterSave();
     }
 
@@ -368,5 +416,14 @@ class User extends ActiveRecord
             $this->is_seen = 1;
             $this->update();
         }
+    }
+
+    public function checkReport()
+    {
+        $alreadyExisis = Report::model()->findByAttributes(array('initiator' => Yii::app()->user->id, 'receiver' => $this->id));
+        if($alreadyExisis) return false;
+        if($this->id == Yii::app()->user->id)
+
+        return true;
     }
 }

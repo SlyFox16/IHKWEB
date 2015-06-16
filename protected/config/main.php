@@ -108,7 +108,7 @@ return CMap::mergeArray(
                     'xing' => 'site/xing',
                     'backend'=>'backend/default/index',
                     'registration' => 'site/register',
-                    'cabinet' => 'site/cabinet',
+                    'cabinet' => 'user/cabinet',
                     'login' => 'site/login',
                     'logout' => 'site/logout',
                     'search' => 'site/findexperts',

@@ -24,7 +24,7 @@ class UserController extends Frontend
                 'expression'=>'CAuthHelper::isIssetExpert($_GET["id"])',
             ),
             array('allow',
-                'actions'=>array('index', 'updatePassword'),
+                'actions'=>array('index', 'updatePassword', 'report'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -64,7 +64,7 @@ class UserController extends Frontend
             $user->attributes = $_POST["User"];
             if($user->save()) {
                 Yii::app()->user->setFlash('project_success', Yii::t("base","Your profile was updated."));
-                $this->redirect('/user/cabinet');
+                $this->redirect($this->createUrl('/user/cabinet'));
             }
         }
 
@@ -208,8 +208,12 @@ class UserController extends Frontend
 
             if(!is_int($count)) throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 
-            $id = UserCertificate::model()->findByAttributes(array('id' => $count, 'user_id' => Yii::app()->user->id));
-            $ret = $id ? true : false;
+            $deleteModel = UserCertificate::model()->findByAttributes(array('id' => $count, 'user_id' => Yii::app()->user->id));
+            if($deleteModel->delete())
+                $ret = true;
+            else
+                $ret = false;
+
             echo json_encode($ret);
             Yii::app()->end();
         }
@@ -258,5 +262,25 @@ class UserController extends Frontend
             throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
 
         $this->redirect($this->createUrl('/site/login'));
+    }
+
+    public function actionReport()
+    {
+        $model = new Report();
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'report-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        if (isset($_POST["Report"])) {
+            $model->attributes = $_POST["Report"];
+
+            if($model->save()) {
+                Yii::app()->user->setFlash('project_success', Yii::t("base", "Your opinion will be taken into consideration."));
+                $this->redirect(Yii::app()->request->urlReferrer);
+            }
+        } else
+            throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
     }
 }

@@ -31,9 +31,11 @@
                     <?php } ?>
                 </div>
             </li>
-            <li>
-                <a href="" class="fa fa-flag"></a>
-            </li>
+            <?php if($user->checkReport()) { ?>
+                <li>
+                    <a href="" class="fa fa-flag" data-toggle="modal" data-target="#report"></a>
+                </li>
+            <?php } ?>
             <li>
                 <a href="" class="fa fa-share-alt"></a>
                 <ul class="share">
@@ -85,7 +87,7 @@
                     </ul>
                     <?php } ?>
                 <div class="cta bottom-30">
-                    <a href="" class="button">Find Experts <i class="fa fa-search"></i></a>
+                    <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
                     <?php if(Yii::app()->user->isGuest) { ?>
                         <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
                     <?php } ?>
@@ -134,6 +136,8 @@
         $('.rating').unbind();
 "); ?>
 <?php } ?>
+
+<?php $this->widget('Reportpop', array('receiver' => $user->id)); ?>
 
 <?php Yii::app()->clientScript->registerScript('username',"
         username = '$user->username'

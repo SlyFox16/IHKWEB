@@ -22,7 +22,7 @@
                     'enableAjaxValidation' => true,
                     'clientOptions' => array(
                         'validateOnSubmit' => true,
-                        'validateOnChange' => false,
+                        'validateOnChange' => true,
                         'inputContainer' => 'fieldset',
                     ),
                 )); ?>

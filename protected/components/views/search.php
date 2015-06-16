@@ -17,7 +17,7 @@
             <?php $this->endWidget(); ?>
         </li>
         <li>
-            <a href="" class="fa fa-chevron-right"></a>
+            <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="fa fa-chevron-right"></a>
         </li>
     </ul>
 </div>
