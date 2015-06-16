@@ -22,7 +22,7 @@
                         <?php } ?>
                     <?php } ?>
                 </ul>
-                <span class="expert-level">Level 1</span>
+                <span class="expert-level">Level <?php echo $user->level; ?></span>
             </div>
         </div>
     <?php } ?>
