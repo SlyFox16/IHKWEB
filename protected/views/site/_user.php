@@ -15,6 +15,6 @@
                 <?php } ?>
             <?php } ?>
         </ul>
-        <span class="expert-level">Level <?php echo $user->level; ?></span>
+        <span class="expert-level">Level <?php echo $data->level; ?></span>
     </div>
 </div>
