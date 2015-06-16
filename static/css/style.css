@@ -462,7 +462,7 @@ footer {
 	display: inline-block;
 	color: #fff;
 	background: #00478c;
-	border: 2px solid transparent;
+	border: 0;
 	border-radius: 4px;
 	font-size: 1.6rem;
 	font-weight: 600;
@@ -488,6 +488,22 @@ footer {
 
 .button + * {
 	margin-left: 20px;
+}
+
+.button-group > * {
+	float: left;
+	margin: 0;
+	border-radius: 0;
+}
+
+.button-group > * + * {
+	margin-left: 1px;
+}
+
+.button-group {
+	float: left;
+	overflow: hidden;
+	border-radius: 4px;
 }
 
 
