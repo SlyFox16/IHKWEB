@@ -3,6 +3,6 @@
         <div class="fa fa-facebook" data-uloginbutton = "facebook"></div>
         <div class="fa fa-linkedin" data-uloginbutton = "linkedin"></div>
         <!--<div onclick="location.href='<?php /*echo Yii::app()->createUrl('site/xing'); */?>'" class="fa fa-xing"></div>-->
-        <div class="fa fa-xing"></div>
+        <!--<div class="fa fa-xing"></div>-->
     </div>
 <?php endif ?>
