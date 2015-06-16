@@ -83,4 +83,8 @@ $(document).ready(function(){
 
         console.log(output);
     }
+
+    $('#cabinet-form [type=submit]').on('click', function(){
+        $(this).toggleClass('fa-spin');
+    });
 });

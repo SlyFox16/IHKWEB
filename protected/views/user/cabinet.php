@@ -22,6 +22,14 @@
                         'validateOnSubmit' => true,
                         'validateOnChange' => true,
                         'inputContainer' => 'fieldset',
+                        'afterValidate'=>'js:function(form, data, hasError)
+                        {
+                            if(!hasError) {
+                               $("#cabinet-form [type=submit]").off();
+                               return true;
+                            }
+                            $(this).toggleClass("fa-spin");
+                        }',
                     ),
                     'htmlOptions'=>array("enctype"=>"multipart/form-data"),
                 )); ?>
