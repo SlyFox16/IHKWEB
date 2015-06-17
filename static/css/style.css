@@ -602,7 +602,7 @@ Homepage ===========*/
 /* Pagination */
 .pagination {
 	float: left;
-	margin: 3rem 0 -2.5rem 0;
+	margin: 3rem 0 -2.5rem 3rem;
 	list-style: none;
 	background: #00478c;
 	border-radius: 4px;
@@ -617,6 +617,7 @@ Homepage ===========*/
 	width: 5rem;
 	height: 5rem;
 	line-height: 5rem;
+	font-weight: 700;
 	color: #fff;
 	text-align: center;
 }
@@ -629,14 +630,14 @@ Homepage ===========*/
 	background: rgba(255, 255, 255, 0.05);
 }
 
-.pagination .right:before{
-	content: "\f00c";
-}
-
-.pagination .right {
+.pagination a.right,
+.pagination a.left {
 	font-family: 'FontAwesome';
 	display: inline-block;
 }
+
+.pagination a.right:before{ content: "\f105"; }
+.pagination a.left:before{ content: "\f104"; }
 
 /* About Project */
 .about-project {
