@@ -39,7 +39,7 @@ class Controller extends CController
             if (!$user->is_active) {
                 Yii::app()->user->logout();
             } else {
-                $user->last_login = new CDbExpression('NOW()');
+                $user->last_login = date("Y-m-d H:i:s");
                 $user->saveAttributes(array('last_login'));
             }
         }
