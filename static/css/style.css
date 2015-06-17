@@ -599,6 +599,40 @@ Homepage ===========*/
 	margin-left: 5px;
 }
 
+/* Pagination */
+.pagination {
+	float: left;
+	margin: 3rem 0 -2.5rem 0;
+	list-style: none;
+	background: #00478c;
+	border-radius: 4px;
+}
+
+.pagination li {
+	float: left;
+}
+
+.pagination a {
+	display: block;
+	width: 5rem;
+	height: 5rem;
+	line-height: 5rem;
+	text-align: center;
+}
+
+.pagination a.selected {
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.pagination a:hover {
+	background: rgba(255, 255, 255, 0.05);
+}
+
+.pagination .right:after{
+	content: "\f00c";
+	font-family: 'FontAwesome';
+}
+
 /* About Project */
 .about-project {
 	margin: 0;
