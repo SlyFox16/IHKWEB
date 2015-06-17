@@ -49,9 +49,9 @@ $this->menu=array(
     )
 )); ?>
 
-<div class="heading clearfix"><h3 class="pull-left">Certificates</small></h3></div>
-<?php $dataProvider = new CArrayDataProvider($model->certificates); ?>
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
+<!--<div class="heading clearfix"><h3 class="pull-left">Certificates</small></h3></div>
+<?php /*$dataProvider = new CArrayDataProvider($model->certificates); */?>
+--><?php /*$this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'order-delivery-grid',
     'type' => 'striped bordered condensed',
     'dataProvider' => $dataProvider,
@@ -74,4 +74,4 @@ $this->menu=array(
             'headerHtmlOptions' => array('width' => '40px')
         )
     ),
-)); ?>
+)); */?>
