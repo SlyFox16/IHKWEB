@@ -49,9 +49,20 @@ $this->menu=array(
     )
 )); ?>
 
-<!--<div class="heading clearfix"><h3 class="pull-left">Certificates</small></h3></div>
-<?php /*$dataProvider = new CArrayDataProvider($model->certificates); */?>
---><?php /*$this->widget('bootstrap.widgets.TbGridView', array(
+<div class="heading clearfix"><h3 class="pull-left">Certificates</small></h3></div>
+<?php $dataProvider = new CArrayDataProvider(
+    $model->certificates,
+    array(
+        'sort'=> array(
+            'attributes' =>  array(
+                'certificate_id' => array('label' => UserCertificate::model()->getAttributeLabel('certificate_id')),
+                'tebleDescr' => array('label' => UserCertificate::model()->getAttributeLabel('tebleDescr')),
+                'date' => array('label' => UserCertificate::model()->getAttributeLabel('date')),
+            ),
+        ),
+    )
+); ?>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'order-delivery-grid',
     'type' => 'striped bordered condensed',
     'dataProvider' => $dataProvider,
@@ -60,18 +71,18 @@ $this->menu=array(
     'columns' => array(
         array(
             'name' => 'certificate_id',
-            'value' => '$data->certificate->certificate',
-            'headerHtmlOptions' => array('width' => '40px')
+            'value' => '$data->certificate->name',
+            'headerHtmlOptions' => array('width' => '10%')
         ),
         array(
             'name' => 'tebleDescr',
             'value' => '$data->certificate->description',
-            'headerHtmlOptions' => array('width' => '40px')
+            'headerHtmlOptions' => array('width' => '70%')
         ),
         array(
             'name' => 'date',
             'value' => '$data->date',
-            'headerHtmlOptions' => array('width' => '40px')
+            'headerHtmlOptions' => array('width' => '20%')
         )
     ),
-)); */?>
+)); ?>

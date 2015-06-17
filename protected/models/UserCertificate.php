@@ -63,6 +63,8 @@ class UserCertificate extends CActiveRecord
 			'id' => 'ID',
 			'user_id' => 'User',
 			'certificate_id' => 'Certificate',
+            'tebleDescr' => 'Certificate description',
+            'date' => 'Date'
 		);
 	}
 
