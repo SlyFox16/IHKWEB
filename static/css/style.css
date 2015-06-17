@@ -354,6 +354,17 @@ Basics =============*/
 	background: transparent;
 }
 
+.tooltip {
+	display: none;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 0.5rem;
+	color: #fff;
+}
+
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 
@@ -602,6 +613,7 @@ Homepage ===========*/
 /* Pagination */
 .pagination {
 	float: left;
+	clear: both;
 	margin: 3rem 0 -2.5rem 3rem;
 	list-style: none;
 	background: #00478c;
