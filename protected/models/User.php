@@ -202,7 +202,7 @@ class User extends ActiveRecord
     public function findMember()
     {
         $criteria = new CDbCriteria;
-        $criteria->condition ='is_active = 1 && is_staff = 0 && expert_confirm = 1';
+        $criteria->addCondition('is_active = 1 && is_staff = 0 && expert_confirm = 1');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -221,14 +221,29 @@ class User extends ActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
         $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
         $criteria->compare('email', $this->email, true);
+        $criteria->compare('expert_confirm', $this->expert_confirm);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('salt', $this->salt, true);
         $criteria->compare('is_active', $this->is_active);
         $criteria->compare('is_staff', $this->is_staff);
         $criteria->compare('last_login', $this->last_login, true);
         $criteria->compare('date_joined', $this->date_joined, true);
+
+        $key = get_class($this) . '_page'; // e.g. Model_page
+
+        if (isset($_GET['ajax']) && !isset($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = 1;
+        }
+
+        if (!empty($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = $_GET[$key]; // update current active page
+        } elseif (isset(Yii::app()->session[get_class($this) . '_page'])) {
+            $_GET[$key] = Yii::app()->session[get_class($this) . '_page']; // set latest active page
+        }
 
         $criteria->addCondition('is_staff = 0');
 
@@ -248,14 +263,29 @@ class User extends ActiveRecord
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
         $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
         $criteria->compare('email', $this->email, true);
+        $criteria->compare('expert_confirm', $this->expert_confirm);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('salt', $this->salt, true);
         $criteria->compare('is_active', $this->is_active);
         $criteria->compare('is_staff', $this->is_staff);
         $criteria->compare('last_login', $this->last_login, true);
         $criteria->compare('date_joined', $this->date_joined, true);
+
+        $key = get_class($this) . '_page'; // e.g. Model_page
+
+        if (isset($_GET['ajax']) && !isset($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = 1;
+        }
+
+        if (!empty($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = $_GET[$key]; // update current active page
+        } elseif (isset(Yii::app()->session[get_class($this) . '_page'])) {
+            $_GET[$key] = Yii::app()->session[get_class($this) . '_page']; // set latest active page
+        }
 
         $criteria->addCondition('is_staff = 1');
 

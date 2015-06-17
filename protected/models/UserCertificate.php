@@ -14,6 +14,8 @@
  */
 class UserCertificate extends CActiveRecord
 {
+    public $tebleDescr;
+
 	/**
 	 * @return string the associated database table name
 	 */

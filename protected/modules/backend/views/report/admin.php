@@ -27,8 +27,8 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'initiator',
-		'receiver',
+		'initiator:user',
+		'receiver:user',
 		'text',
 		'date',
         array(

@@ -48,8 +48,24 @@
         'name',
         'surname',
         'email',
-        'avatar:image',
-        'is_active:boolean',
+        array(
+            'name'=>'avatar',
+            'value'=>'$data->avatar',
+            'type'=>'image',
+            'filter'=>false,
+        ),
+        array(
+            'type' => 'boolean',
+            'name' => 'expert_confirm',
+            'filter' => array('Not Confirmed' , 'Confirmed'),
+            'value' => '$data->expert_confirm',
+        ),
+        array(
+            'type' => 'boolean',
+            'name' => 'is_active',
+            'filter' => array('Not Active' , 'Active'),
+            'value' => '$data->is_active',
+        ),
         array(
             'name'=>'last_login',
             'value'=>'$data->last_login',
@@ -66,7 +82,6 @@
             'template' => '{view} {update} {delete}',
             'buttons' => array(
                 'delete' => array(
-                    'imageUrl' => '/images/icons/delete.png',
                     'visible'=>'$data->is_staff != 1',
                 ),
             )

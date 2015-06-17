@@ -88,6 +88,18 @@ class Feedback extends ActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('feedback',$this->feedback,true);
 
+        $key = get_class($this) . '_page'; // e.g. Model_page
+
+        if (isset($_GET['ajax']) && !isset($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = 1;
+        }
+
+        if (!empty($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = $_GET[$key]; // update current active page
+        } elseif (isset(Yii::app()->session[get_class($this) . '_page'])) {
+            $_GET[$key] = Yii::app()->session[get_class($this) . '_page']; // set latest active page
+        }
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
