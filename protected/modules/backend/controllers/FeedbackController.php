@@ -2,6 +2,8 @@
 
 class FeedbackController extends BackendController
 {
+    public $sidebar_tab = "feedback";
+
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
