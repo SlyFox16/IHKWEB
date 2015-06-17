@@ -617,6 +617,7 @@ Homepage ===========*/
 	width: 5rem;
 	height: 5rem;
 	line-height: 5rem;
+	color: #fff;
 	text-align: center;
 }
 
@@ -628,9 +629,13 @@ Homepage ===========*/
 	background: rgba(255, 255, 255, 0.05);
 }
 
-.pagination .right:after{
+.pagination .right:before{
 	content: "\f00c";
+}
+
+.pagination .right {
 	font-family: 'FontAwesome';
+	display: inline-block;
 }
 
 /* About Project */
