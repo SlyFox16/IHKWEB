@@ -19,9 +19,10 @@ $this->menu=array(
 		'id',
         array(
             'name' => 'title',
-            'value' => $model->value,
-            'visible' => '!empty($model->value)',
+            'value' => $model->title,
+            'visible' => '!empty($model->title)',
         ),
+        'description',
 		'name',
 		'value',
 	),
