@@ -88,7 +88,7 @@
                         <div class="wheretoadd">
                             <?php foreach ($certificates as $key => $certificate) { ?>
                                 <?php if(!$certificate->isNewRecord) { ?>
-                                    <ul class="fields" data-id="<?php echo $certificate->id; ?>">
+                                    <ul class="fields addfield" data-id="<?php echo $certificate->id; ?>">
                                         <li>
                                             <div class="field-content">
                                                 <div>Certification</div>
@@ -99,7 +99,12 @@
                                         <li>
                                             <div class="field-content">
                                                 <div><?php echo $form->label($certificate, "[$key]date"); ?></div>
-                                                <div><?php echo $form->textField($certificate, "[$key]date"); ?></div>
+                                                <div class="input-group date">
+                                                    <?php echo $form->textField($certificate, "[$key]uDate", array('class' => 'form-control')); ?>
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-th"></i>
+                                                    </span>
+                                                </div>
                                             </div>
                                             <?php echo $form->error($certificate, "[$key]date"); ?>
                                         </li>
@@ -159,9 +164,18 @@
                         <button class="button" type="submit">Save <i class="fa fa-circle-o-notch"></i></button>
                         <button class="button" type="button" data-toggle="modal" data-target="#passchange">Recover password</button>
                     </div>
+                <?php echo Yii::app()->dateFormatter->format("yyyy-MM-dd", "16/06/2015");?>
                 <?php $this->endWidget(); ?>
             </div>
         </div>
     </div>
 </section>
+<?php Yii::app()->clientScript->registerScript('popoverActivate',"
+        $('#cabinet-form .input-group.date').datepicker({
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            endDate: '+0d',
+            'setDate': new Date(),
+        });
+    ");?>
 <?php $this->widget('PassChange', array('change' => true)); ?>

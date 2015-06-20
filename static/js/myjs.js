@@ -31,7 +31,7 @@ $(document).ready(function(){
     });
 
     $(".addButton").on('click', function () {
-        var count = $('div[class^=field-row]', $(this).closest('form')).length;
+        var count = $('ul[class*=addfield]', $(this).closest('form')).length;
 
         var self = $(this);
         $.ajax({

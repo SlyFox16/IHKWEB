@@ -10,7 +10,7 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
 ?>
 
 
-<ul class="fields">
+<ul class="fields addfield">
     <li>
         <div class="field-content">
             <div>Certifications</div>
@@ -20,8 +20,13 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
     </li>
     <li>
         <div class="field-content">
-            <div><?php echo $form->label($certificate, "[$count]date"); ?></div>
-            <div><?php echo $form->textField($certificate, "[$count]date", array('class' => 'datepicker')); ?></div>
+            <div><?php echo $form->label($certificate, "[$count]uDate"); ?></div>
+            <div class="input-group date">
+                <?php echo $form->textField($certificate, "[$count]date", array('class' => 'form-control')); ?>
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-th"></i>
+                </span>
+            </div>
         </div>
         <?php echo $form->error($certificate, "[$count]date"); ?>
     </li>
@@ -60,5 +65,12 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
             $("#cabinet-form").data('settings', settings);
         }
 
+    });
+
+    $('.input-group.date').datepicker({
+        format: 'dd/mm/yyyy',
+        todayHighlight: true,
+        endDate: '+0d',
+        "setDate": new Date()
     });
 </script>

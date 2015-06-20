@@ -35,11 +35,19 @@ class UserCertificate extends CActiveRecord
 			array('user_id, certificate_id, date', 'required'),
             array('certificate_id, date', 'required', 'on'=>'check'),
 			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
+            array('date', 'type', 'type' => 'date', 'message' => '{attribute}: in wrong format!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, certificate_id', 'safe', 'on'=>'search'),
 		);
 	}
+
+    public function beforeValidate() {
+        if(parent::beforeValidate()) {
+            $this->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($this->date, 'dd/MM/yyyy'));
+            return true;
+        }
+    }
 
 	/**
 	 * @return array relational rules.
@@ -109,5 +117,13 @@ class UserCertificate extends CActiveRecord
     public function getAllCertificates() {
         $certificates = Certificates::model()->findAll();
         return CHtml::listData($certificates, 'id', 'name');
+    }
+
+    public function setUDate($value) {
+        $this->date = $value;
+    }
+
+    public function getUDate() {
+        return Yii::app()->dateFormatter->format("dd/MM/yyyy", $this->date);
     }
 }
