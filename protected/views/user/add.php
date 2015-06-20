@@ -20,9 +20,9 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
     </li>
     <li>
         <div class="field-content">
-            <div><?php echo $form->label($certificate, "[$count]uDate"); ?></div>
+            <div><?php echo $form->label($certificate, "[$count]date"); ?></div>
             <div class="input-group date">
-                <?php echo $form->textField($certificate, "[$count]date", array('class' => 'form-control')); ?>
+                <?php echo $form->textField($certificate, "[$count]uDate", array('class' => 'form-control')); ?>
                 <span class="input-group-addon">
                     <i class="glyphicon glyphicon-th"></i>
                 </span>

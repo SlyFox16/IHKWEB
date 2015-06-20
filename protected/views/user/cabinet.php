@@ -164,7 +164,6 @@
                         <button class="button" type="submit">Save <i class="fa fa-circle-o-notch"></i></button>
                         <button class="button" type="button" data-toggle="modal" data-target="#passchange">Recover password</button>
                     </div>
-                <?php echo Yii::app()->dateFormatter->format("yyyy-MM-dd", "16/06/2015");?>
                 <?php $this->endWidget(); ?>
             </div>
         </div>

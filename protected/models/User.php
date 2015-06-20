@@ -375,11 +375,10 @@ class User extends ActiveRecord
                     $modelParam = new UserCertificate();
                     $modelParam->user_id = Yii::app()->user->id;
                     $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
-                    $modelParam->date = $_POST['UserCertificate'][$i]["date"];
+                    $modelParam->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
                     if(!$modelParam->save()) {
                         Yii::log(CHtml::errorSummary($modelParam), "error");
                     }
-
                 }
             }
         }
