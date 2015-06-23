@@ -16,7 +16,6 @@ return array(
             'css/responsive.css',
             'css/mycss.css',
             'css/fancySelect.css',
-            'css/bootstrap-dropdown.css',
             'css/datepicker.css',
         ),
         'js' => array(
