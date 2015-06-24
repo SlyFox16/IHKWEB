@@ -77,6 +77,7 @@
 
         // Apps
         Apps: function () {
+            $('select').fancySelect();
         }
 
 

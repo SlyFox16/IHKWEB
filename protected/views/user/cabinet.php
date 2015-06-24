@@ -178,6 +178,3 @@
         });
     ");?>
 <?php $this->widget('PassChange', array('change' => true)); ?>
-<script type="text/javascript">
-    $('select').fancySelect();
-</script>
