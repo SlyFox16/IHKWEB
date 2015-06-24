@@ -193,7 +193,7 @@ fieldset legend span {
 }
 
 .field-content > *:first-child {
-	width: 12rem;
+	width: 25%;
 	padding: 0 2rem;
 	text-align: right;
 	color: #777;

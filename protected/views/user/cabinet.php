@@ -11,10 +11,12 @@
         ?>
 
         <div class="row">
-            <div class="col-sm-3">
-                <img src="<?php echo Yii::app()->iwi->load(Yii::app()->user->avater)->adaptive(280, 280)->cache(); ?>" alt="John Doe">
+            <div class="col-sm-3 col-md-3">
+                <div class="cabinet-photo">
+                    <img src="<?php echo Yii::app()->iwi->load(Yii::app()->user->avater)->adaptive(280, 280)->cache(); ?>" alt="John Doe">
+                </div>
             </div>
-            <div class="col-sm-6 col-xs-9">
+            <div class="col-sm-8 col-md-6">
                 <?php $form = $this->beginWidget('CActiveForm', array(
                     'id' => 'cabinet-form',
                     'enableAjaxValidation' => true,
