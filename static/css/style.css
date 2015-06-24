@@ -983,6 +983,16 @@ Others =============*/
 	color: #fff;
 }
 
+/*--------------------
+Modal ==============*/
+.modal-body > .fields > li {
+	margin: 0;
+}
+
+.modal-body > .fields > li + li {
+	margin-top: 1.5rem;
+}
+
 .caret {
   display: inline-block;
   width: 0;

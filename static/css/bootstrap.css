@@ -1027,7 +1027,7 @@ tbody.collapse.in {
   transform: translate(0, 0);
 }
 .modal .button {
-  padding: 1rem 2rem;
+  width: 100%;
 }
 .modal-open .modal {
   overflow-x: hidden;

@@ -40,15 +40,10 @@
                         </li>
                     </ul>
                 </fieldset>
-                <div class="row">
-                    <div class="col-sm-8"></div>
-                    <div class="col-sm-4 m-t-10 sm-m-t-10">
-                        <button type="submit" class="btn btn-primary btn-block m-t-5"><?php echo Yii::t("base", "Change pass"); ?></button>
-                    </div>
-                </div>
-                <?php $this->endWidget(); ?>
             </div>
             <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-block m-t-5"><?php echo Yii::t("base", "Change pass"); ?></button>
+                <?php $this->endWidget(); ?>
             </div>
         </div>
         <!-- /.modal-content -->
