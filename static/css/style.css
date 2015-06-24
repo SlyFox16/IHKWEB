@@ -534,10 +534,10 @@ Homepage ===========*/
 .expert img {
 	width: 100%;
 
-	transition: all 0.8s;
-	-moz-transition: all 0.8s;
-	-webkit-transition: all 0.8s;
-	-o-transition: all 0.8s; 
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s; 
 }
 
 .expert-info {
@@ -547,10 +547,10 @@ Homepage ===========*/
 	padding: 2rem;
 	background: #fff;
 
-	transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s; 
+	transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
 }
 
 .expert:hover .expert-info {
