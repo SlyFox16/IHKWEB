@@ -115,13 +115,13 @@
                     <?php } ?>
                     <?php if(!empty($user->facebook_url)) { ?>
                         <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
-                            <i class="fa fa-xing"></i>
+                            <i class="fa fa-facebook"></i>
                             <a href="<?php echo $user->facebook_url; ?>">Facebook</a>
                         </li>
                     <?php } ?>
                     <?php if(!empty($user->twitter_url)) { ?>
                         <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
-                            <i class="fa fa-xing"></i>
+                            <i class="fa fa-twitter"></i>
                             <a href="<?php echo $user->twitter_url; ?>">Twitter</a>
                         </li>
                     <?php } ?>
