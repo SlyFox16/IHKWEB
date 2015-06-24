@@ -534,23 +534,23 @@ Homepage ===========*/
 .expert img {
 	width: 100%;
 
-	transition: all 0.5s;
-	-moz-transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-o-transition: all 0.5s; 
+	transition: all 0.8s;
+	-moz-transition: all 0.8s;
+	-webkit-transition: all 0.8s;
+	-o-transition: all 0.8s; 
 }
 
 .expert-info {
 	position: absolute;
-	bottom: -8rem;
+	bottom: -50%;
 	width: 100%;
 	padding: 2rem;
 	background: #fff;
 
-	transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s; 
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s; 
 }
 
 .expert:hover .expert-info {
@@ -564,6 +564,7 @@ Homepage ===========*/
 
 .expert-info h3 {
 	position: relative;
+	max-width: 70%;
 	margin: 0.5rem 0;
 	font-size: 2.4rem;
 	line-height: 3rem;
