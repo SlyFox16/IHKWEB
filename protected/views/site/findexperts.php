@@ -31,13 +31,13 @@
         <?php $this->widget('Search'); ?>
     </div>
     <?php
-    $this->widget('zii.widgets.CListView', array(
-        'dataProvider' => $model->findMember(),
-        'itemView' => '_user', // refers to the partial view named '_post'
-        'summaryText' => false,
-        'pager'=> "LinkPager",
-        'cssFile' => false
-    ));
+        $this->widget('zii.widgets.CListView', array(
+            'dataProvider' => $model->findMember(),
+            'itemView' => '_user', // refers to the partial view named '_post'
+            'summaryText' => false,
+            'pager'=> "LinkPager",
+            'cssFile' => false
+        ));
     ?>
 </section>
 </html>

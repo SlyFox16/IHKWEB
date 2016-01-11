@@ -27,7 +27,7 @@
                     <a href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-bar-chart" title="Backend"></a>
                 <?php } ?>
                 <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="Logout"></a>
-            <? } else {
+            <?php } else {
                 echo CHtml::link('Login', array('/site/login'), array('title' => 'Login'));
             } ?>
         </div>
