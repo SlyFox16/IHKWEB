@@ -100,6 +100,17 @@ class UserController extends BackendController
         ));
     }
 
+    public function actionConfirmLevel($id)
+    {
+        $user = User::model()->findByPk($id);
+        if($user) {
+            $user->level = $user->new_level;
+            if($user->update())
+                echo true;
+        } else
+            echo false;
+    }
+
     public function actionAdminStaff()
     {
         $model=new User('search');

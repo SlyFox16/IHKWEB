@@ -87,4 +87,8 @@ $(document).ready(function(){
     $('#cabinet-form button[type=submit]').on('click', function(){
         $(this).find("i").toggleClass('fa-spin');
     });
+
+    function _actAttach(val) {
+        alert(val);
+    }
 });

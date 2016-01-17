@@ -28,7 +28,7 @@
         ?>
 
         <!--== Page Control ==-->
-        <?php $this->widget('Search'); ?>
+        <?php $this->widget('SearchWidget'); ?>
     </div>
     <?php
     $this->widget('zii.widgets.CListView', array(

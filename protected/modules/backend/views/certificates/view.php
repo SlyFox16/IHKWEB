@@ -19,6 +19,8 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'name',
+        'points',
+        'logo:image',
         'description'
 	),
 )); ?>

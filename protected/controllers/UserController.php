@@ -68,7 +68,6 @@ class UserController extends Frontend
             }
         }
 
-        //Yii::app()->clientScript->registerScript('popoverActivate',"$('.datepicker').datepicker();");
         $this->render('cabinet', array('user' => $user, 'certificates' => $certificates));
     }
 

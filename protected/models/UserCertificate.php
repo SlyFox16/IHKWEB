@@ -12,7 +12,7 @@
  * @property Certificates $certificate
  * @property User $user
  */
-class UserCertificate extends CActiveRecord
+class UserCertificate extends ActiveRecord
 {
     public $tebleDescr;
 
@@ -35,6 +35,7 @@ class UserCertificate extends CActiveRecord
 			array('user_id, certificate_id, date', 'required'),
             array('certificate_id, date', 'required', 'on'=>'check'),
 			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
+            array('pdf', 'file', 'types'=>'pdf', 'allowEmpty'=>true),
             array('uDate', 'safe'),
             array('date', 'type', 'type' => 'date', 'message' => '{attribute}: in wrong format!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().

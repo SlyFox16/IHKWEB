@@ -30,8 +30,19 @@
 
 <div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(
-    'buttonType' => 'submit',
-    'type' => 'primary',
-    'label' => $model->isNewRecord ? 'Create' : 'Save',
-)); ?>
+        'buttonType' => 'submit',
+        'type' => 'primary',
+        'label' => $model->isNewRecord ? 'Create' : 'Save',
+    )); ?>
+
+    <?php if($model->level != $model->new_level) { ?>
+        <?php echo CHtml::ajaxButton('Confirm level', $this->createUrl('/backend/user/confirmLevel/', array('id'=>$model->id)), array(
+            'type'=>'POST',
+            'success' => 'function(data){
+                    if(data)
+                        $("#yt1").remove();
+            }',
+        ), array('class' => "btn btn-success"));?>
+    <?php } ?>
+</div>
 <?php $this->endWidget(); ?>

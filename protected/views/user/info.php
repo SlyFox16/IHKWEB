@@ -78,6 +78,7 @@
                         <?php foreach($user->certificates as $cert) { ?>
                         <li>
                             <div class="certification-title">
+                                <?php echo CHtml::image(YHelper::getImagePath($cert->certificate->logo, 120, 120), 'Certifacate image'); ?>
                                 <h3><?php echo $cert->certificate->name; ?></h3>
                                 <span><?php echo Yii::app()->format->date($cert->date); ?></span>
                             </div>

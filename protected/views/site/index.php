@@ -2,7 +2,7 @@
 <!--== Experts ====================-->
 <!--===============================-->
 <section class="clearfix separated">
-    <?php $this->widget('Search'); ?>
+    <?php $this->widget('SearchWidget'); ?>
 
     <?php foreach($randUsers as $randUser) { ?>
         <div class="expert">
@@ -77,18 +77,15 @@
     </div>
 </section>
 
-
-<!--===============================-->
-<!--== Features ===================-->
-<!--===============================-->
 <section>
     <div class="container">
         <div class="row cta">
             <div class="col-sm-12 text-right">
                 <h2>Awesome call to action headline goes here!</h2>
-                <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
+                <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
                 <?php if(Yii::app()->user->isGuest) { ?>
                     <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Seeker'), array('site/seekerRegister'), array('class' => 'angle')); ?>
                 <?php } ?>
             </div>
         </div>

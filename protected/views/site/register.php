@@ -49,6 +49,53 @@
                                 </div>
                                 <?php echo $form->error($register_form, 'email'); ?>
                             </li>
+                            <li <?php echo $register_form->requiredClass('country_id'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($register_form, 'country_id'); ?></div>
+                                    <div>
+                                        <?php $this->widget(
+                                            'booster.widgets.TbSelect2',
+                                            [
+                                                'model'=>$register_form,
+                                                'attribute'=>'country_id',
+                                                'data' => User::model()->assocList,
+                                                'asDropDownList' => true,
+                                                'options' => [
+                                                    'minimumInputLength' => 2,
+                                                    'placeholder' => 'Select product',
+                                                    'width' => '100%',
+                                                    'allowClear' => true,
+                                                ],
+                                                'htmlOptions' => [
+                                                    'class' => 'form-control'
+                                                ],
+                                                'events' =>array(
+                                                    'change'=>'js:function(e) {
+                                                         $.ajax({
+                                                            url: "/user/additem",
+                                                            dataType: "json",
+                                                            type: "GET",
+                                                            data: {count: count},
+                                                            success: function (data) {
+                                                                $(".wheretoadd", self.closest("form")).append(data.responce);
+                                                            }
+                                                        });
+                                                        return false;
+                                                    }'
+                                                ),
+                                            ]
+                                        );?>
+                                    </div>
+                                </div>
+                                <?php echo $form->error($register_form, 'country_id'); ?>
+                            </li>
+                            <li <?php echo $register_form->requiredClass('address'); ?>>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($register_form, 'address'); ?></div>
+                                    <div><?php echo $form->textField($register_form, 'address'); ?></div>
+                                </div>
+                                <?php echo $form->error($register_form, 'address'); ?>
+                            </li>
                         </ul>
                     </fieldset>
 

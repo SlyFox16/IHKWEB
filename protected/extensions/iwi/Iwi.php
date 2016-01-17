@@ -164,7 +164,7 @@ class Iwi extends Image
 
         // Check to make sure the image exists
         if (!is_file($image))
-            return $this;					
+            return $this;
 
         // Disable error reporting, to prevent PHP warnings
         $ER = error_reporting(0);

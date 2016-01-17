@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'xing', 'feedback'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'xing', 'feedback', 'suggest', 'seekerRegister'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -179,6 +179,37 @@ class SiteController extends Frontend
         $this->render('register', array('register_form' => $register_form));
     }
 
+    public function actionSeekerRegister()
+    {
+
+        if(!Yii::app()->user->isGuest) $this->redirect(Yii::app()->homeUrl);
+        $register_form = new User();
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'register-form') {
+            echo CActiveForm::validate($register_form);
+            Yii::app()->end();
+        }
+
+        if (isset($_POST["User"])) {
+            $register_form->attributes = $_POST["User"];
+            $register_form->username = $register_form->name.$register_form->surname.rand(1, 999);
+
+            $register_form->is_active = 1;
+            if($register_form->save()) {
+                $login = Yii::createComponent('application.models.LoginForm');
+                $login->email = $register_form->email;
+                $login->password = $_POST["User"]['password'];
+                if($login->autoLogin()) {
+                    Yii::app()->user->setFlash('user_register', Yii::t("base","Congratulations! You have registered successfully!"));
+                    $this->redirect(Yii::app()->homeUrl);
+                }
+
+            }
+        }
+
+        $this->render('seeker_register', array('register_form' => $register_form));
+    }
+
     /**
 	 * Logs out the current user and redirect to homepage.
 	 */
@@ -206,26 +237,19 @@ class SiteController extends Frontend
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
 
-    public function actionSearch($q)
-    {
-        if ($q) {
-            $q = htmlspecialchars($_GET['q']);
-            $q = addslashes($q);
-            $q = mb_strtolower($q,'UTF-8');
+    public function actionSuggest(){
+        if (Yii::app()->request->isAjaxRequest && isset($_GET['term'])) {
+            $models = User::model()->suggestTag($_GET['term']);
+            $result = array();
+            foreach ($models as $m)
+                $result[] = array(
+                    'label' => $m->name." ".$m->surname,
+                    'value' => $m->name." ".$m->surname,
+                    'id' => $m->id,
+                );
 
-            $crt = new CDbCriteria;
-            $crt->condition = "(LOWER(username) REGEXP '[[:<:]]{$q}' or LOWER(name) REGEXP '[[:<:]]{$q}' or LOWER(surname) REGEXP '[[:<:]]{$q}')";
-            $crt->addCondition("(is_active = 1 && expert_confirm = 1) OR is_staff = 1");
-            $crt->order = 'id DESC';
-
-            $dataSearch = new CActiveDataProvider(new User, array(
-                'criteria'=>$crt,
-                'pagination' => array('Pagesize' => Yii::app()->params['defaultPageSize'])
-            ));
-
-            $this->render('search',array('dataSearch' => $dataSearch, 'searchPhrase' => $q));
-        } else
-            throw new CHttpException(404,Yii::t("base","Запрашиваемая страница не существует!"));
+            echo CJSON::encode($result);
+        }
     }
 
     public function actionFindexperts()

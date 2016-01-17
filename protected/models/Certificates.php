@@ -6,6 +6,9 @@
  * The followings are the available columns in table 'certificates':
  * @property integer $id
  * @property string $name
+ * @property string $description
+ * @property string $logo
+ * @property string $points
  *
  * The followings are the available model relations:
  * @property UserCertificate[] $userCertificates
@@ -28,8 +31,12 @@ class Certificates extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('points', 'required'),
+            array('points', 'numerical', 'integerOnly'=>true, 'min'=>1, 'max'=>9, 'tooSmall'=>'You must set at least 1 point',
+                'tooBig'=>'You cannot set more than 9 points'),
 			array('name', 'length', 'max'=>255),
             array('description', 'safe'),
+            array('logo', 'file', 'types'=>'png, jpg, gif','allowEmpty'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description', 'safe', 'on'=>'search'),

@@ -23,13 +23,15 @@ return CMap::mergeArray(
         'language'=>'en',
 
         // preloading 'log' component
-        'preload'=>array('log'), //, 'bootstrap', 'languages'
+        'preload'=>array('log', 'booster'), //, 'bootstrap', 'languages'
 
         // autoloading model and component classes
         'import'=>array(
             'application.models.*',
             'application.components.*',
-            'application.extensions.*'
+            'application.widgets.*',
+            'application.extensions.*',
+            'application.components.helpers.*',
         ),
 
         'modules'=>array(
@@ -65,7 +67,7 @@ return CMap::mergeArray(
 
             'clientScript' => array(
                 'packages' => $packages,
-                'coreScriptPosition' => CClientScript::POS_END,
+                'coreScriptPosition' => CClientScript::POS_HEAD,
                 'scriptMap' => array(
                     'jquery.js' => '/static/js/jquery-1.11.2.min.js',
                 ),
@@ -108,6 +110,7 @@ return CMap::mergeArray(
                     'xing' => 'site/xing',
                     'backend'=>'backend/default/index',
                     'registration' => 'site/register',
+                    'seekerRegistration' => 'site/seekerRegister',
                     'cabinet' => 'user/cabinet',
                     'login' => 'site/login',
                     'logout' => 'site/logout',
@@ -153,6 +156,7 @@ return CMap::mergeArray(
         // application-level parameters that can be accessed
         // using Yii::app()->params['paramName']
         'params'=>array(
+            'noImage' => 'static/images/profile-no-photo.png',
             'no-replyEmail' => 'no-reply@'.$_SERVER['SERVER_NAME'],
             'adminEmail' => 'jenya@idol-it.com',
             'defaultPageSize' => 10,

@@ -10,6 +10,7 @@ class Nav extends CWidget{
 
     public function init(){
         $isSeen = User::model()->count('is_seen = 0 AND is_staff = 0');
-        $this->render('nav', array('isSeen' => $isSeen));
+        $newLevel = User::model()->user()->count('level <> new_level');
+        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel));
     }
 }

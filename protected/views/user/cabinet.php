@@ -47,14 +47,14 @@
                             <li <?php echo $user->requiredClass('name'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'name'); ?></div>
-                                    <div><?php echo $form->textField($user, 'name'); ?></div>
+                                    <div><?php echo $user->name; ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'name'); ?>
                             </li>
                             <li <?php echo $user->requiredClass('email'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'surname'); ?></div>
-                                    <div><?php echo $form->textField($user, 'surname'); ?></div>
+                                    <div><?php echo $user->surname; ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'surname'); ?>
                             </li>
@@ -99,6 +99,9 @@
                                             <?php $form->error($certificate, "[$key]certificate_id"); ?>
                                         </li>
                                         <li>
+                                            <?php $this->widget('AjaxFileLoader', array('attribute' => "[$key]pdf", 'model' => $certificate)); ?>
+                                        </li>
+                                        <li>
                                             <div class="field-content">
                                                 <div><?php echo $form->label($certificate, "[$key]date"); ?></div>
                                                 <div class="input-group date">
@@ -125,7 +128,7 @@
                             <li>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'address'); ?></div>
-                                    <div><?php echo $form->textField($user, 'address'); ?></div>
+                                    <div><?php echo $user->address; ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'address'); ?>
                             </li>
