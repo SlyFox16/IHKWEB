@@ -80,7 +80,13 @@
                                 <?php echo $form->error($user, 'description'); ?>
                             </li>
                             <li>
-                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user)); ?>
+                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user, 'form' => $form)); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'speciality'); ?></div>
+                                    <div><?php echo $form->dropDownList($user, 'speciality', $user->specialityList, array('class'=>'form-control', 'multiple'=>'multiple','style'=>'height:140px;')); ?></div>
+                                </div>
                             </li>
                         </ul>
                     </fieldset>
@@ -97,9 +103,6 @@
                                                 <div><?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?></div>
                                             </div>
                                             <?php $form->error($certificate, "[$key]certificate_id"); ?>
-                                        </li>
-                                        <li>
-                                            <?php $this->widget('AjaxFileLoader', array('attribute' => "[$key]pdf", 'model' => $certificate)); ?>
                                         </li>
                                         <li>
                                             <div class="field-content">
@@ -125,6 +128,17 @@
                     <fieldset>
                         <legend><span>References</span></legend>
                         <ul class="fields">
+                            <li>
+                                <?php $this->widget('ImageGallery', array('model' => $user)); ?>
+                                <?php $this->widget('ext.dropzone.EDropzone', array(
+                                    'model' => $user,
+                                    'attribute' => 'pdf',
+                                    'url' => $this->createUrl('user/upload'),
+                                    'mimeTypes' => array('application/pdf'),
+                                    'onSuccess' => 'succcesupload',
+                                    'options' => array('addRemoveLinks' =>true,),
+                                )); ?>
+                            </li>
                             <li>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'address'); ?></div>
@@ -161,7 +175,7 @@
                                 <?php echo $form->error($user, 'xing_url'); ?>
                             </li>
                             <li>
-                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user)); ?>
+                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user, 'form' => $form)); ?>
                             </li>
                         </ul>
                     </fieldset>

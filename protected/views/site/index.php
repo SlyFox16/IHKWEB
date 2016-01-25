@@ -96,6 +96,10 @@
     $this->widget('Xingpopup');
 } ?>
 
+<?php if(Yii::app()->user->getFlash('seeker')) {
+    $this->renderPartial('/site/seeker_notify');
+} ?>
+
 <?php if(Yii::app()->user->getFlash('mail_recover')) {
     $this->widget('PassChange', array('change' => true, 'open' => true));
 } ?>

@@ -56,6 +56,10 @@ return CMap::mergeArray(
                 'responsiveCss'=>true,
             ),
 
+            'ajax' => array(
+                'class' => 'application.components.AsyncResponse',
+            ),
+
             'booster'=>array(
                 'class'=>'ext.booster.components.Booster', // assuming you extracted bootstrap under extensions
                 'responsiveCss'=>true,
@@ -63,6 +67,10 @@ return CMap::mergeArray(
 
             'format' => array(
                 'class' => 'backend.components.ExtendedFormatter'
+            ),
+
+            'email' => array(
+                'class' => 'application.components.Email',
             ),
 
             'clientScript' => array(
@@ -111,6 +119,7 @@ return CMap::mergeArray(
                     'backend'=>'backend/default/index',
                     'registration' => 'site/register',
                     'seekerRegistration' => 'site/seekerRegister',
+                    'seekerConfirmation/<id:\w+>' => 'site/seekerConfirmation',
                     'cabinet' => 'user/cabinet',
                     'login' => 'site/login',
                     'logout' => 'site/logout',
@@ -157,7 +166,7 @@ return CMap::mergeArray(
         // using Yii::app()->params['paramName']
         'params'=>array(
             'noImage' => 'static/images/profile-no-photo.png',
-            'no-replyEmail' => 'no-reply@'.$_SERVER['SERVER_NAME'],
+            'no-replyEmail' => 'no-reply@'.$_SERVER['SERVER_NAME'].'.md',
             'adminEmail' => 'jenya@idol-it.com',
             'defaultPageSize' => 10,
             'albumPageSize' => 18,

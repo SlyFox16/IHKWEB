@@ -23,6 +23,10 @@ class ActiveRecord extends CActiveRecord
             return '';
     }
 
+    public function getClass() {
+        return strtolower(get_class($this));
+    }
+
     protected function beforeSave()
     {
         /**

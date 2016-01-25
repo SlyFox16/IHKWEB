@@ -69,25 +69,48 @@
                                                 'htmlOptions' => [
                                                     'class' => 'form-control'
                                                 ],
-                                                'events' =>array(
-                                                    'change'=>'js:function(e) {
-                                                         $.ajax({
-                                                            url: "/user/additem",
-                                                            dataType: "json",
-                                                            type: "GET",
-                                                            data: {count: count},
-                                                            success: function (data) {
-                                                                $(".wheretoadd", self.closest("form")).append(data.responce);
-                                                            }
-                                                        });
-                                                        return false;
-                                                    }'
-                                                ),
                                             ]
                                         );?>
                                     </div>
                                 </div>
                                 <?php echo $form->error($register_form, 'country_id'); ?>
+                            </li>
+                            <li id="city_place">
+                                <div class="field-content">
+                                    <div><?php echo $form->label($register_form, 'city_id'); ?></div>
+                                    <div>
+                                        <?php $this->widget(
+                                            'booster.widgets.TbSelect2',
+                                            [
+                                                'model'=>$register_form,
+                                                'attribute'=>'city_id',
+                                                'data' => User::model()->cityList,
+                                                'asDropDownList' => false,
+                                                'options' => [
+                                                    'minimumInputLength' => 2,
+                                                    'placeholder' => 'Select product',
+                                                    'width' => '100%',
+                                                    'allowClear' => true,
+                                                    'ajax' => [
+                                                        'url' => Yii::app()->controller->createUrl('/user/citySearch'),
+                                                        'dataType' => 'json',
+                                                        'data' => 'js:function(term, page) {
+                                                            var country = $("#User_country_id").val();
+                                                            return {q: term,  country: country};
+                                                        }',
+                                                        'results' => 'js:function(data) { return {results: data}; }',
+                                                    ],
+                                                    'formatResult' => 'js:productFormatResult',
+                                                    'formatSelection' => 'js:productFormatSelection',
+                                                ],
+                                                'htmlOptions' => [
+                                                    'class' => 'form-control'
+                                                ],
+                                            ]
+                                        ); ?>
+                                    </div>
+                                </div>
+                                <?php echo $form->error($register_form, 'city_id'); ?>
                             </li>
                             <li <?php echo $register_form->requiredClass('address'); ?>>
                                 <div class="field-content">
@@ -139,3 +162,16 @@
         </div>
     </div>
 </section>
+
+<script>
+    function productFormatSelection(city) {
+        return city.name;
+    }
+
+    function productFormatResult(city) {
+        var markup = "<table class='result'><tr>";
+        markup += "<td class='info'><div class='title'>" + city.name + "</div>";
+        markup += "</td></tr></table>";
+        return markup;
+    }
+</script>

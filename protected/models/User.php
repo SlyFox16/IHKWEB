@@ -65,10 +65,10 @@ class User extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, name, surname, email, password, password_repeat, address', 'required', 'on' => 'insert'),
+            array('username, name, surname, email, password, password_repeat, address, country_id, city_id', 'required', 'on' => 'insert'),
+            array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'seeker'),
             array('username, name, surname, email', 'required', 'on' => 'update, userupdate, socials'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
-            //array('country_id', 'required'),
             array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
             array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => 'Wrong format!'),
             array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
@@ -84,8 +84,8 @@ class User extends ActiveRecord
             array('salt, username, phone, address', 'length', 'max' => 255),
             array('email, username', 'unique', 'except' => 'changepassword'),
             array('email', 'email', 'message' => 'Email is not valid.'),
-            array('password', 'compare', 'on' => 'insert, updatepassword, register'),
-            array('password_repeat, certificates, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm, new_level', 'safe'),
+            array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
+            array('password_repeat, certificates, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm, new_level, seeker_pass', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -135,6 +135,8 @@ class User extends ActiveRecord
         return array(
             'userCertificates' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
             'certificates' => array(self::HAS_MANY, 'UserCertificate', 'user_id'),
+            'pdf' => array(self::HAS_MANY, 'MultipleImages', 'item_id', 'condition' => 'content_type = :type', 'params' => array(':type' => $this->getClass())),
+            'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
         );
     }
 
@@ -187,6 +189,7 @@ class User extends ActiveRecord
             'phone' => Yii::t("base","phone"),
             'address' => Yii::t("base","address"),
             'country_id' => Yii::t("base","Country"),
+            'city_id' => Yii::t("base","City"),
         );
     }
 
@@ -382,14 +385,9 @@ class User extends ActiveRecord
 
             foreach ($param as $i => $item) {
                 if (isset($_POST['UserCertificate'][$i]) && !empty($_POST['UserCertificate'][$i])) {
-                    Yii::log($_POST['UserCertificate'][$i]["pdf"], "error");
                     $modelParam = new UserCertificate();
                     $modelParam->user_id = Yii::app()->user->id;
                     $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
-
-                    $uploadedFile=CUploadedFile::getInstance($modelParam,'['.$i.']pdf');
-                    if(!empty($uploadedFile))
-                        $modelParam->dinamicImage($modelParam, '['.$i.']pdf');
 
                     $modelParam->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
                     if(!$modelParam->save()) {
@@ -409,6 +407,18 @@ class User extends ActiveRecord
 
             if($this->saveAttributes(array('new_level'))) {
                 Yii::app()->user->setFlash('project_success1', 'Your level have been changed to '.$this->new_level);
+            }
+        }
+
+        UserSpeciality::model()->deleteAllByAttributes(array('user_id'=>$this->id));
+        if (isset($_POST['User']['speciality'])) {
+            foreach ($_POST['User']['speciality'] as $value) {
+                $categoryAttribute = new UserSpeciality();
+                $categoryAttribute->user_id = $this->id;
+                $categoryAttribute->speciality_id = $value;
+                $categoryAttribute->save();
+
+                $categories[] = $value;
             }
         }
 
@@ -458,5 +468,17 @@ class User extends ActiveRecord
     {
         $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
         return CHtml::listData($models, 'iso', 'country_name');
+    }
+
+    public static function getSpecialityList()
+    {
+        $models = Speciality::model()->findAll();
+        return CHtml::listData($models, 'id', 'speciality');
+    }
+
+    public static function getCityList()
+    {
+        $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
+        return CHtml::listData($models, 'geonameid', 'city_name_ASCII');
     }
 }

@@ -1,27 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "user_certificate".
+ * This is the model class for table "speciality".
  *
- * The followings are the available columns in table 'user_certificate':
+ * The followings are the available columns in table 'speciality':
  * @property integer $id
- * @property integer $user_id
- * @property integer $certificate_id
- *
- * The followings are the available model relations:
- * @property Certificates $certificate
- * @property User $user
+ * @property string $speciality
  */
-class UserCertificate extends ActiveRecord
+class Speciality extends CActiveRecord
 {
-    public $tebleDescr;
-
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user_certificate';
+		return 'speciality';
 	}
 
 	/**
@@ -32,14 +25,11 @@ class UserCertificate extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, certificate_id, date', 'required', 'except' => 'check'),
-            array('certificate_id, date', 'required', 'on'=>'check'),
-			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
-            array('uDate', 'safe'),
-            array('date', 'type', 'type' => 'date', 'message' => '{attribute}: in wrong format!', 'dateFormat' => 'yyyy-MM-dd'),
+			array('speciality', 'required'),
+			array('speciality', 'length', 'max'=>80),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, certificate_id', 'safe', 'on'=>'search'),
+			array('id, speciality', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,8 +41,6 @@ class UserCertificate extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'certificate' => array(self::BELONGS_TO, 'Certificates', 'certificate_id'),
-			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -63,10 +51,7 @@ class UserCertificate extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'certificate_id' => 'Certificate',
-            'tebleDescr' => 'Certificate description',
-            'date' => 'Date'
+			'speciality' => 'Speciality',
 		);
 	}
 
@@ -89,8 +74,7 @@ class UserCertificate extends ActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('certificate_id',$this->certificate_id);
+		$criteria->compare('speciality',$this->speciality,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -101,23 +85,10 @@ class UserCertificate extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return UserCertificate the static model class
+	 * @return Speciality the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-
-    public function getAllCertificates() {
-        $certificates = Certificates::model()->findAll();
-        return CHtml::listData($certificates, 'id', 'name');
-    }
-
-    public function setUDate($value) {
-        $this->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($value, 'dd/MM/yyyy'));
-    }
-
-    public function getUDate() {
-        return Yii::app()->dateFormatter->format("dd/MM/yyyy", $this->date);
-    }
 }
