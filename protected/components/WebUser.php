@@ -39,7 +39,13 @@ class WebUser extends CWebUser {
 
     public function getIs_user(){
         $user = $this->loadUser(Yii::app()->user->id);
-        return isset($user);
+        if(!$user) return false;
+        return $user->is_seeker ? false : true;
+    }
+
+    public function getIs_seeker(){
+        $user = $this->loadUser(Yii::app()->user->id);
+        return $user->is_seeker;
     }
 
     // Load user model.

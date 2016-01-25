@@ -37,7 +37,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+        array(
+            'name' => 'logo',
+            'type' => 'image',
+            'htmlOptions' => array('width' => '60px'),
+            'filter' => false,
+        ),
 		'name',
+        'points',
         'description',
         array(
             'class' => 'backend.components.ButtonColumn',

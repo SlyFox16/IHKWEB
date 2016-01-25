@@ -11,6 +11,8 @@
  * @property string $email
  * @property string $password
  * @property string $salt
+ * @property string $country_id
+ * @property integer $city_id
  * @property integer $is_active
  * @property integer $is_staff
  * @property string $last_login
@@ -63,7 +65,8 @@ class User extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'insert'),
+            array('username, name, surname, email, password, password_repeat, address, country_id, city_id', 'required', 'on' => 'insert'),
+            array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'seeker'),
             array('username, name, surname, email', 'required', 'on' => 'update, userupdate, socials'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
             array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
@@ -81,8 +84,8 @@ class User extends ActiveRecord
             array('salt, username, phone, address', 'length', 'max' => 255),
             array('email, username', 'unique', 'except' => 'changepassword'),
             array('email', 'email', 'message' => 'Email is not valid.'),
-            array('password', 'compare', 'on' => 'insert, updatepassword, register'),
-            array('password_repeat, certificates, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm', 'safe'),
+            array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
+            array('password_repeat, certificates, facebook_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm, new_level, seeker_pass', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -98,6 +101,9 @@ class User extends ActiveRecord
             'staff'=>array('condition'=>"is_staff = 1"),
             'expert_confirm'=>array('condition'=>"expert_confirm = 1"),
             'is_active'=>array('condition'=>"is_active = '1'"),
+            'search_active' => array(
+                'condition' => '(is_active = 1 && expert_confirm = 1) OR is_staff = 1'
+            ),
         );
     }
 
@@ -129,6 +135,8 @@ class User extends ActiveRecord
         return array(
             'userCertificates' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
             'certificates' => array(self::HAS_MANY, 'UserCertificate', 'user_id'),
+            'pdf' => array(self::HAS_MANY, 'MultipleImages', 'item_id', 'condition' => 'content_type = :type', 'params' => array(':type' => $this->getClass())),
+            'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
         );
     }
 
@@ -180,6 +188,8 @@ class User extends ActiveRecord
             'avatar' => Yii::t("base","Avatar"),
             'phone' => Yii::t("base","phone"),
             'address' => Yii::t("base","address"),
+            'country_id' => Yii::t("base","Country"),
+            'city_id' => Yii::t("base","City"),
         );
     }
 
@@ -247,8 +257,10 @@ class User extends ActiveRecord
 
         $criteria->addCondition('is_staff = 0');
 
-        if($param)
+        if($param == 'new')
             $criteria->addCondition('is_seen = 0');
+        elseif($param == 'newlevel')
+            $criteria->addCondition('level <> new_level');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -325,7 +337,7 @@ class User extends ActiveRecord
     public function getUAvatar()
     {
         if(empty($this->avatar))
-            return substr(Yii::app()->controller->getAssetsUrl().'/images/profile-no-photo.png', 1);
+            return 'static/images/profile-no-photo.png';
 
         return $this->avatar;
     }
@@ -366,6 +378,7 @@ class User extends ActiveRecord
 
     public function afterSave()
     {
+        Yii::log('level', "error");
         if (isset($_POST['UserCertificate'])) {
             UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
             $param = $_POST['UserCertificate'];
@@ -375,6 +388,7 @@ class User extends ActiveRecord
                     $modelParam = new UserCertificate();
                     $modelParam->user_id = Yii::app()->user->id;
                     $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
+
                     $modelParam->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
                     if(!$modelParam->save()) {
                         Yii::log(CHtml::errorSummary($modelParam), "error");
@@ -384,47 +398,27 @@ class User extends ActiveRecord
         }
 
         if($this->scenario == 'userupdate') {
-            $cert = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
+            $certs = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
 
-            if(!empty($this->position) && !empty($this->description) && !empty($this->avatar) && $this->level == 0) {
-                $this->level += 1;
-                $this->levelUp = true;
-                $this->levelDown = false;
-            }
-            if(!empty($this->address) && !empty($this->phone) && $this->level == 1 && (!empty($this->facebook_url) || !empty($this->twitter_url) || !empty($this->xing_url))) {
-                $this->level += 1;
-                $this->levelUp = true;
-                $this->levelDown = false;
-            }
-            if(!empty($cert) && $this->level == 2) {
-                $this->level += 1;
-                $this->levelUp = true;
-                $this->levelDown = false;
+            $this->new_level = 0;
+            foreach($certs as $cert) {
+                $this->new_level += $cert->certificate->points;
             }
 
+            if($this->saveAttributes(array('new_level'))) {
+                Yii::app()->user->setFlash('project_success1', 'Your level have been changed to '.$this->new_level);
+            }
+        }
 
-            if((empty($this->position) || empty($this->description) || empty($this->avatar)) && $this->level > 0) {
-                $this->level -= 1;
-                $this->levelUp = false;
-                $this->levelDown = true;
-            }
-            if((empty($this->address) || empty($this->phone) || (empty($this->facebook_url) && empty($this->twitter_url) && empty($this->xing_url))) && $this->level > 1) {
-                $this->level -= 1;
-                $this->levelUp = false;
-                $this->levelDown = true;
-            }
-            if(empty($cert) && $this->level > 2) {
-                $this->level -= 1;
-                $this->levelUp = false;
-                $this->levelDown = true;
-            }
-            //($this->certificates); die();
+        UserSpeciality::model()->deleteAllByAttributes(array('user_id'=>$this->id));
+        if (isset($_POST['User']['speciality'])) {
+            foreach ($_POST['User']['speciality'] as $value) {
+                $categoryAttribute = new UserSpeciality();
+                $categoryAttribute->user_id = $this->id;
+                $categoryAttribute->speciality_id = $value;
+                $categoryAttribute->save();
 
-            if($this->saveAttributes(array('level'))) {
-                if($this->levelUp)
-                    Yii::app()->user->setFlash('project_success1', 'Congratulations, You have reached level '.$this->level);
-                if($this->levelDown)
-                    Yii::app()->user->setFlash('project_error1', 'Your level went down to '.$this->level);
+                $categories[] = $value;
             }
         }
 
@@ -457,5 +451,34 @@ class User extends ActiveRecord
         if($alreadyExisis) return false;
 
         return true;
+    }
+
+    public function suggestTag($keyword){
+        $tags=$this->findAll(array(
+            'condition'=>'name LIKE :keyword OR surname LIKE :keyword',
+            'params'=>array(
+                ':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',
+            ),
+            'scopes' => 'search_active',
+        ));
+        return $tags;
+    }
+
+    public static function getAssocList()
+    {
+        $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
+        return CHtml::listData($models, 'iso', 'country_name');
+    }
+
+    public static function getSpecialityList()
+    {
+        $models = Speciality::model()->findAll();
+        return CHtml::listData($models, 'id', 'speciality');
+    }
+
+    public static function getCityList()
+    {
+        $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
+        return CHtml::listData($models, 'geonameid', 'city_name_ASCII');
     }
 }

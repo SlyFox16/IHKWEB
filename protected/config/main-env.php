@@ -7,10 +7,10 @@
 return array(
     'components' => array(
         'db'=>array(
-            'connectionString' => 'mysql:host=localhost;dbname=ihkidoli_main',
+            'connectionString' => 'mysql:host=localhost;dbname=happa00_main',
             'emulatePrepare' => true,
-            'username' => 'ihkidoli_user',
-            'password' => 'qazwsxedcrfv',
+            'username' => 'happa00',
+            'password' => '3PAatkH6KKtr',
             'charset' => 'utf8',
             'tablePrefix' => '',
         ),

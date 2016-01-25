@@ -47,14 +47,14 @@
                             <li <?php echo $user->requiredClass('name'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'name'); ?></div>
-                                    <div><?php echo $form->textField($user, 'name'); ?></div>
+                                    <div><?php echo $user->name; ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'name'); ?>
                             </li>
                             <li <?php echo $user->requiredClass('email'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'surname'); ?></div>
-                                    <div><?php echo $form->textField($user, 'surname'); ?></div>
+                                    <div><?php echo $user->surname; ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'surname'); ?>
                             </li>
@@ -80,7 +80,13 @@
                                 <?php echo $form->error($user, 'description'); ?>
                             </li>
                             <li>
-                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user)); ?>
+                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'avatar', 'model' => $user, 'form' => $form)); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
+                                    <div><?php echo $form->label($user, 'speciality'); ?></div>
+                                    <div><?php echo $form->dropDownList($user, 'speciality', $user->specialityList, array('class'=>'form-control', 'multiple'=>'multiple','style'=>'height:140px;')); ?></div>
+                                </div>
                             </li>
                         </ul>
                     </fieldset>
@@ -123,9 +129,20 @@
                         <legend><span>References</span></legend>
                         <ul class="fields">
                             <li>
+                                <?php $this->widget('ImageGallery', array('model' => $user)); ?>
+                                <?php $this->widget('ext.dropzone.EDropzone', array(
+                                    'model' => $user,
+                                    'attribute' => 'pdf',
+                                    'url' => $this->createUrl('user/upload'),
+                                    'mimeTypes' => array('application/pdf'),
+                                    'onSuccess' => 'succcesupload',
+                                    'options' => array('addRemoveLinks' =>true,),
+                                )); ?>
+                            </li>
+                            <li>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'address'); ?></div>
-                                    <div><?php echo $form->textField($user, 'address'); ?></div>
+                                    <div><?php echo $user->address; ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'address'); ?>
                             </li>
@@ -158,7 +175,7 @@
                                 <?php echo $form->error($user, 'xing_url'); ?>
                             </li>
                             <li>
-                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user)); ?>
+                                <?php $this->widget('AjaxFileLoader', array('attribute' => 'vcf', 'model' => $user, 'form' => $form)); ?>
                             </li>
                         </ul>
                     </fieldset>

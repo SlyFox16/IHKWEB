@@ -23,6 +23,10 @@ class ActiveRecord extends CActiveRecord
             return '';
     }
 
+    public function getClass() {
+        return strtolower(get_class($this));
+    }
+
     protected function beforeSave()
     {
         /**
@@ -145,7 +149,7 @@ class ActiveRecord extends CActiveRecord
         }
     }
 
-    private function imageName($name)
+    public function imageName($name)
     {
         $data = explode(".",$name);
         $ext = ".".$data[count($data)-1];
@@ -167,4 +171,23 @@ class ActiveRecord extends CActiveRecord
         Yii::app()->user->setFlash('success', "$name was successfully deleted.");
     }
 
+    public function dinamicImage($model, $attribute)
+    {
+        $attributeClean = preg_replace('~^\[[0-9]+\]~', '', $attribute);
+
+        $image=CUploadedFile::getInstance($model, $attribute);
+        $filename = $this->imageName($image);
+
+        $path = 'images/site/' . get_class($this) . "/" . $filename;
+        $dir = Yii::getPathOfAlias("webroot") . '/images/site/' . get_class($this) . '/';
+
+        $path = strtolower($path);
+        $dir = strtolower($dir);
+
+        if (!is_dir($dir))
+            mkdir($dir, 0777, true);
+
+        $this->$attributeClean = $path;
+        $image->saveAs($path);
+    }
 }

@@ -23,7 +23,7 @@ return array(
             'js/jquery.stellar.js',
             'js/fancySelect.js',
             'js/main.js',
-            'js/bootstrap-modal.js',
+            //'js/bootstrap-modal.js',
             'js/myjs.js',
             'js/bootstrap-notify.js',
             'js/bootstrap-dropdown.js',

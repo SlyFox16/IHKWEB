@@ -3,6 +3,7 @@
 class UserController extends BackendController
 {
     public $sidebar_tab = "users";
+
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
@@ -98,6 +99,17 @@ class UserController extends BackendController
             'model'=>$model,
             'param' => $param
         ));
+    }
+
+    public function actionConfirmLevel($id)
+    {
+        $user = User::model()->findByPk($id);
+        if($user) {
+            $user->level = $user->new_level;
+            if($user->update())
+                echo true;
+        } else
+            echo false;
     }
 
     public function actionAdminStaff()

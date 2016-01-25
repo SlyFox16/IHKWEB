@@ -1,18 +1,32 @@
 <?php
+Yii::import('backend.components.multiapload.*');
 
 class UserController extends Frontend
 {
     private $cerId;
 
+    public function actions()
+    {
+        return array(
+            'upload' => 'UploadAction',
+            'imagedel'=>'ImagedelAction',
+        );
+    }
+
+    public function createModel()
+    {
+        return new User();
+    }
+
     public function accessRules()
     {
         return array(
             array('allow',
-                'actions'=>array('recover', 'updateMailPassword'),
+                'actions'=>array('recover', 'updateMailPassword', 'citySearch'),
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('cabinet', 'additem', 'deleteitem'),
+                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download'),
                 'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
@@ -31,6 +45,21 @@ class UserController extends Frontend
                 'users'=>array('*'),
             ),
         );
+    }
+
+    public function actionDownload($fileName){
+        $file = MultipleImages::model()->findByAttributes(array('hash_path' => $fileName));
+        if(!$file)
+            throw new CHttpException(404, 'This file does not exist.');
+
+        $filepath = $file->path;
+        $fpath = explode("/", $filepath);
+        $fileName = end($fpath);
+
+        if (file_exists($filepath))
+            return Yii::app()->getRequest()->sendFile($fileName, @file_get_contents($filepath));
+        else
+            throw new CHttpException(404, 'This file does not exist.');
     }
 
     public function actionCabinet()
@@ -68,7 +97,6 @@ class UserController extends Frontend
             }
         }
 
-        //Yii::app()->clientScript->registerScript('popoverActivate',"$('.datepicker').datepicker();");
         $this->render('cabinet', array('user' => $user, 'certificates' => $certificates));
     }
 
@@ -228,8 +256,7 @@ class UserController extends Frontend
             Yii::app()->end();
         }
 
-        if(isset($_POST['User']))
-        {
+        if(isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
 
             $pass = $model->GenerateStr();
@@ -242,7 +269,6 @@ class UserController extends Frontend
             if($model->sendEmail($subject, $body, $email)) {
                 Yii::app()->session['pass'] = array($pass => $model->email);
                 Yii::app()->session['passver'] =  $pass;
-                Yii::log($pass, "error");
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page."));
             } else {
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Could not send email."));
@@ -282,5 +308,37 @@ class UserController extends Frontend
             }
         } else
             throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
+    }
+
+    public function actionCitySearch()
+    {
+        if (!Yii::app()->getRequest()->getQuery('q')) {
+            throw new CHttpException(404);
+        }
+
+        $country = Yii::app()->getRequest()->getQuery('country') ? : false;
+
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'city_name_ASCII LIKE :q';
+
+        if($country) {
+            $criteria->addCondition("country = :country");
+            $criteria->params[':country'] = $country;
+        }
+
+        $criteria->limit = 100;
+        $criteria->params[':q'] = '%'.Yii::app()->getRequest()->getQuery('q').'%';
+
+        $model = Cities::model()->findAll($criteria);
+
+        $data = [];
+        foreach ($model as $city) {
+            $data[] = [
+                'id' => $city->geonameid,
+                'name' => $city->city_name_ASCII,
+            ];
+        }
+
+        Yii::app()->ajax->raw($data);
     }
 }

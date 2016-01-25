@@ -10,6 +10,7 @@
                     <li class="hidden-phone hidden-tablet">
                         <div class="nb_boxes clearfix">
                             <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/new');?>" data-backdrop="static" data-toggle="modal" title="New members" aria-describedby="ui-tooltip-0"><?php echo $isSeen; ?> <i class="splashy-contact_blue"></i></a>
+                            <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/newlevel');?>" data-backdrop="static" data-toggle="modal" title="New member levels" aria-describedby="ui-tooltip-0"><?php echo $newLevel; ?> <i class="splashy-contact_blue"></i></a>
                         </div>
                     </li>
                     <li class="divider-vertical hidden-phone hidden-tablet"></li>

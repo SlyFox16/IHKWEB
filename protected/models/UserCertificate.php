@@ -12,7 +12,7 @@
  * @property Certificates $certificate
  * @property User $user
  */
-class UserCertificate extends CActiveRecord
+class UserCertificate extends ActiveRecord
 {
     public $tebleDescr;
 
@@ -32,7 +32,7 @@ class UserCertificate extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, certificate_id, date', 'required'),
+			array('user_id, certificate_id, date', 'required', 'except' => 'check'),
             array('certificate_id, date', 'required', 'on'=>'check'),
 			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
             array('uDate', 'safe'),
