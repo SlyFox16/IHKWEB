@@ -16,8 +16,6 @@
 <!--===============================-->
 <section class="clearfix search-results separated">
     <div class="container relative no-padding">
-
-
         <!--== Breadcrumbs ==-->
         <?php
         $this->widget('Breadcrumbs', array(
@@ -30,14 +28,20 @@
         <!--== Page Control ==-->
         <?php $this->widget('SearchWidget'); ?>
     </div>
+
+    <?php $this->renderPartial('_search',array(
+        'model'=>$model,
+    )); ?>
+
     <?php
-    $this->widget('zii.widgets.CListView', array(
-        'dataProvider' => $model->findMember(),
-        'itemView' => '_user', // refers to the partial view named '_post'
-        'summaryText' => false,
-        'pager'=> "LinkPager",
-        'cssFile' => false
-    ));
+        $this->widget('zii.widgets.CListView', array(
+            'id'=>'rating-log-grid',
+            'dataProvider' => $model->findMember(),
+            'itemView' => '//search/_user', // refers to the partial view named '_post'
+            'summaryText' => false,
+            'pager'=> "LinkPager",
+            'cssFile' => false
+        ));
     ?>
 </section>
 </html>

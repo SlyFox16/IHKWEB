@@ -28,7 +28,7 @@
 
 <?php echo $form->checkBoxRow($model, 'expert_confirm'); ?>
 
-<?php $this->widget('ImageGallery', array('model' => $model)); ?>
+<?php $this->widget('ImageGallery', array('model' => $model, 'noUpload' => true)); ?>
 
 <div class="form-actions">
     <?php $this->widget('bootstrap.widgets.TbButton', array(

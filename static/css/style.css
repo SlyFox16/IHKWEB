@@ -1114,6 +1114,9 @@ Modal ==============*/
   right: 0;
   left: auto;
 }
+
+.rating .rating-disabled {cursor: pointer;}
+
 .dropup .caret,
 .navbar-fixed-bottom .dropdown .caret {
   border-top: 0;

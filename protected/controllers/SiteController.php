@@ -275,6 +275,11 @@ class SiteController extends Frontend
     public function actionFindexperts()
     {
         $model = new User();
+
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['User']))
+            $model->attributes=$_GET['User'];
+
         $this->render('findexperts', array('model' => $model));
     }
 

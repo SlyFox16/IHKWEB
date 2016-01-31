@@ -1,33 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "rating_log".
+ * This is the model class for table "user_reference".
  *
- * The followings are the available columns in table 'rating_log':
+ * The followings are the available columns in table 'user_reference':
  * @property integer $id
- * @property integer $who_vote
- * @property integer $who_received
- * @property double $num
- *
- * The followings are the available model relations:
- * @property User $whoReceived
- * @property User $whoVote
+ * @property integer $user_initiator
+ * @property integer $user_receiver
  */
-class RatingLog extends ActiveRecord
+class UserReference extends CActiveRecord
 {
-    public $htmlpurifier;
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'rating_log';
+		return 'user_reference';
 	}
-
-    public function init()
-    {
-        $this->htmlpurifier = new CHtmlPurifier();
-    }
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -37,14 +26,11 @@ class RatingLog extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('who_vote, who_received, num', 'required'),
-			array('who_vote, who_received', 'numerical', 'integerOnly'=>true),
-            array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
-            array('description', 'required', 'on' => 'retingDesc'),
-			array('num, confirmed', 'numerical'),
+			array('user_initiator, user_receiver', 'required'),
+			array('user_initiator, user_receiver', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, who_vote, who_received, num', 'safe', 'on'=>'search'),
+			array('id, user_initiator, user_receiver', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,8 +42,6 @@ class RatingLog extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'whoReceived' => array(self::BELONGS_TO, 'User', 'who_received'),
-			'whoVote' => array(self::BELONGS_TO, 'User', 'who_vote'),
 		);
 	}
 
@@ -68,24 +52,10 @@ class RatingLog extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'who_vote' => 'Who Voted',
-			'who_received' => 'Who Received',
-			'num' => 'Points',
+			'user_initiator' => 'User Initiator',
+			'user_receiver' => 'User Receiver',
 		);
 	}
-
-    public function afterSave()
-    {
-        $user = $this->whoReceived;
-        if($user && $this->confirmed) {
-            if($user->rating == 0)
-                $user->rating = $user->rating + $this->num;
-            else
-                $user->rating = round(($user->rating + $this->num)/2, 1);
-
-            $user->update();
-        }
-    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -106,9 +76,8 @@ class RatingLog extends ActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('who_vote',$this->who_vote);
-		$criteria->compare('who_received',$this->who_received);
-		$criteria->compare('num',$this->num);
+		$criteria->compare('user_initiator',$this->user_initiator);
+		$criteria->compare('user_receiver',$this->user_receiver);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -119,7 +88,7 @@ class RatingLog extends ActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return RatingLog the static model class
+	 * @return UserReference the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

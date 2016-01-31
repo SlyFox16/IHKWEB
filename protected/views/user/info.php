@@ -15,20 +15,7 @@
         <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
             <li>
                 <div class="rating">
-                    <?php if($log) {
-                        for($i=1; $i<=5;$i++) {
-                            if($i <= $log->num)
-                                echo '<i class="fa fa-star"></i>';
-                            else
-                                echo '<i class="fa fa-star-o"></i>';
-                        }
-                    } else { ?>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                        <i class="fa fa-star-o"></i>
-                    <?php } ?>
+                    <?php $this->widget('StarRating', array('user' => $user)); ?>
                 </div>
             </li>
             <?php if($user->checkReport()) { ?>
@@ -134,6 +121,7 @@
         </div>
     </div>
 </section>
+<?php $this->widget('RatingDescription', array('user' => $user)); ?>
 <?php if(Yii::app()->user->isGuest || $log || ($user->id == Yii::app()->user->id)) { ?>
     <?php Yii::app()->clientScript->registerScript('unbind',"
         $('.rating i').unbind();

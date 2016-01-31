@@ -37,6 +37,7 @@
 
                     <fieldset>
                         <ul class="fields">
+                            <?php $this->renderPartial('application.widgets.views.user_relation', array('user' => $user)); ?>
                             <li <?php echo $user->requiredClass('username'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'username'); ?></div>
@@ -135,7 +136,6 @@
                                     'attribute' => 'pdf',
                                     'url' => $this->createUrl('user/upload'),
                                     'mimeTypes' => array('application/pdf'),
-                                    'onSuccess' => 'succcesupload',
                                     'options' => array('addRemoveLinks' =>true,),
                                 )); ?>
                             </li>

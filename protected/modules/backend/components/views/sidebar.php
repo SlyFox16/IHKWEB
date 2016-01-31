@@ -25,6 +25,7 @@
                                     <ul class="nav nav-list">
                                         <li><a href="<?php echo Yii::app()->createUrl("backend/user/adminStaff");?>">Administrators</a></li>
                                         <li><a href="<?php echo Yii::app()->createUrl("backend/user/adminMembers");?>">Clients</a></li>
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/ratingLog/admin");?>">User Ratings</a></li>
                                     </ul>
                                 </div>
                             </div>

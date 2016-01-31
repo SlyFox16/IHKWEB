@@ -37,7 +37,7 @@ class ExtendedFormatter extends CFormatter
     public function formatUser($value)
     {
         if ($user = User::model()->findByPk($value))
-            return CHtml::link($user->name, Yii::app()->createUrl("backend/user/view", array("id" => $user->id)));
+            return CHtml::link($user->name.' '.$user->surname, Yii::app()->createUrl("backend/user/view", array("id" => $user->id)));
         else
             return '<span class="null">System</span>';
     }
