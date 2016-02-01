@@ -26,7 +26,7 @@ class UserController extends Frontend
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download'),
+                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'deleteRelation'),
                 'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
@@ -38,7 +38,7 @@ class UserController extends Frontend
                 'expression'=>'CAuthHelper::isIssetExpert($_GET["id"])',
             ),
             array('allow',
-                'actions'=>array('index', 'updatePassword', 'report'),
+                'actions'=>array('index', 'updatePassword', 'report', 'ratingDescr'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -103,9 +103,7 @@ class UserController extends Frontend
     public function actionInfo($id)
     {
         $user = User::model()->findByPk($id);
-        $log = RatingLog::model()->findByAttributes(array('who_vote' => Yii::app()->user->id, 'who_received' => $user->id));
-
-        $this->render('info', array('user' => $user, 'log' => $log));
+        $this->render('info', array('user' => $user));
     }
 
     public function actionUpdatePassword()
@@ -184,24 +182,16 @@ class UserController extends Frontend
 
             $user = User::model()->findByAttributes(array('username' => $username));
 
-            if ($user && !empty($index))
-            {
-                if($user->rating == 0)
-                    $user->rating = $user->rating + $index;
-                else
-                    $user->rating = round(($user->rating + $index)/2, 1);
-                if($user->update()) {
-
-                    $log = new RatingLog();
-                    $log->who_vote = Yii::app()->user->id;
-                    $log->who_received = $user->id;
-                    $log->num = $index;
-                    $log->save();
-
-                    echo $user->rating;
-                }
+            if ($user && !empty($index)) {
+                $log = new RatingLog();
+                $log->who_vote = Yii::app()->user->id;
+                $log->who_received = $user->id;
+                $log->num = $index;
+                if($log->save())
+                    Yii::app()->ajax->success($user->rating);
             } else
                 throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+
             Yii::app()->end();
         }
     }
@@ -290,6 +280,15 @@ class UserController extends Frontend
         $this->redirect($this->createUrl('/site/login'));
     }
 
+    public function actionDeleteRelation() {
+        $id = (int)$_POST["id"];
+        $model = UserReference::model()->findAllByAttributes(array('user_initiator' => Yii::app()->user->id, 'user_receiver' => $id));
+        if($model)
+            $model->delete();
+        else
+            Yii::app()->ajax->failure();
+    }
+
     public function actionReport()
     {
         $model = new Report();
@@ -304,6 +303,27 @@ class UserController extends Frontend
 
             if($model->save()) {
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Your opinion will be taken into consideration."));
+                $this->redirect(Yii::app()->request->urlReferrer);
+            }
+        } else
+            throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
+    }
+
+    public function actionRatingDescr($id)
+    {
+        $model = RatingLog::model()->find('who_vote = :who_vote AND who_received = :who_received', array(':who_vote' => Yii::app()->user->id, ':who_received' => $id));
+        $model->scenario = "retingDesc";
+
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'rating-description') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        if (isset($_POST["RatingLog"])) {
+            $model->attributes = $_POST["RatingLog"];
+
+            if($model->save()) {
+                Yii::app()->user->setFlash('project_success', Yii::t("base", "Thank you for rating."));
                 $this->redirect(Yii::app()->request->urlReferrer);
             }
         } else
@@ -340,5 +360,23 @@ class UserController extends Frontend
         }
 
         Yii::app()->ajax->raw($data);
+    }
+
+    public function actionUserRow($user_receiver)
+    {
+        $modelReceiver = User::model()->findByPk($user_receiver);
+
+        if($modelReceiver) {
+            $check = UserReference::model()->count(array('condition' => 'user_initiator = :user_initiator && user_receiver = :user_receiver', 'params' => array(':user_initiator' => Yii::app()->user->id, ':user_receiver' => $modelReceiver->id)));
+
+            if(!$check) {
+                $reference = new UserReference();
+                $reference->user_initiator = Yii::app()->user->id;
+                $reference->user_receiver = $modelReceiver->id;
+                if($reference->save())
+                    Yii::app()->ajax->raw($modelReceiver->fullName);
+            }
+        } else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
 }

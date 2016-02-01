@@ -107,6 +107,10 @@ class User extends ActiveRecord
         );
     }
 
+    public function getRatingLog() {
+        return RatingLog::model()->count('who_vote = :who_vote AND who_received = :who_received', array(':who_vote' => Yii::app()->user->id, ':who_received' => $this->id));
+    }
+
     public function noEmail()
     {
         $error = true;
@@ -137,6 +141,7 @@ class User extends ActiveRecord
             'certificates' => array(self::HAS_MANY, 'UserCertificate', 'user_id'),
             'pdf' => array(self::HAS_MANY, 'MultipleImages', 'item_id', 'condition' => 'content_type = :type', 'params' => array(':type' => $this->getClass())),
             'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
+            'connectedUsers' => array(self::MANY_MANY, 'User', 'user_reference(user_initiator, user_receiver)'),
         );
     }
 
@@ -212,6 +217,20 @@ class User extends ActiveRecord
     public function findMember()
     {
         $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
+        $criteria->compare('email', $this->email, true);
+        $criteria->compare('expert_confirm', $this->expert_confirm);
+        $criteria->compare('password', $this->password, true);
+        $criteria->compare('salt', $this->salt, true);
+        $criteria->compare('is_active', $this->is_active);
+        $criteria->compare('is_staff', $this->is_staff);
+        $criteria->compare('last_login', $this->last_login, true);
+        $criteria->compare('date_joined', $this->date_joined, true);
+
         $criteria->addCondition('is_active = 1 && is_staff = 0 && expert_confirm = 1');
 
         return new CActiveDataProvider($this, array(

@@ -8,8 +8,7 @@
                 <div class="row">
                     <?php foreach ($model->pdf as $image) { ?>
                         <div class="col-lg-3 col-md-4 col-sm-6 element thumb-image">
-                            <div class="thumbnail-box <?php echo ($image->is_main ? "active" : "")?>">
-                                <a id="<?php echo $image->id; ?>" title="" href="#" class="thumb-link delete"></a>
+                            <div class="thumbnail-box">
                                 <div class="thumb-content">
                                     <div class="center-vertical">
                                         <div class="center-content">
@@ -33,7 +32,7 @@
             <?php } else { ?>
                 <div class="alert alert-info">
                     <button type="button" class="close" data-dismiss="alert">×</button>
-                    There is no files. Click <strong>Select files</strong> to upload pdf.
+                    There is no files. <?php if(!$noUpload) { ?>Click <strong>Select files</strong> to upload pdf. <?php } ?>
                 </div>
             <?php } ?>
             <div class="clearfix"></div>
@@ -42,7 +41,7 @@
 </div>
 
 <script>
-    $("body").on("click", '.delete', function () {
+    $(".thumb-content").on("click", '.delete', function () {
         var $this = $(this);
         $.ajax({
             type:"POST",
