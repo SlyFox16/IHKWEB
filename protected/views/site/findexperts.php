@@ -39,6 +39,7 @@
             'dataProvider' => $model->findMember(),
             'itemView' => '//search/_user', // refers to the partial view named '_post'
             'summaryText' => false,
+            'loadingCssClass' => false,
             'pager'=> "LinkPager",
             'cssFile' => false
         ));
