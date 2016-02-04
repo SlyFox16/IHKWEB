@@ -122,15 +122,7 @@
     </div>
 </section>
 <?php $this->widget('RatingDescription', array('user' => $user)); ?>
-<?php if(Yii::app()->user->isGuest || $log || ($user->id == Yii::app()->user->id)) { ?>
-    <?php Yii::app()->clientScript->registerScript('unbind',"
-        $('.rating i').unbind();
-        $('.rating').unbind();
-"); ?>
-<?php } ?>
-
 <?php $this->widget('Reportpop', array('receiver' => $user->id)); ?>
-
 <?php Yii::app()->clientScript->registerScript('username',"
         username = '$user->username'
 "); ?>
