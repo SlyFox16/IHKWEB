@@ -5,7 +5,7 @@ class RatingDescription extends CWidget
 
     public function run()
     {
-        if($this->user) {
+        if($this->user && !Yii::app()->user->isGuest) {
             $model = RatingLog::model()->find('who_vote = :who_vote AND who_received = :who_received', array(':who_vote' => Yii::app()->user->id, ':who_received' => $this->user->id));
 
             if(!$model)
