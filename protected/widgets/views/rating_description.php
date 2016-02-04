@@ -1,4 +1,4 @@
-<div class="modal fade fill-in" id="ratingDescription" tabindex="-1" role="dialog" aria-hidden="true" <?php echo $ratingLog->description ? '' : 'data-backdrop="static"'; ?>>
+<div class="modal fade fill-in" id="ratingDescription" tabindex="-1" role="dialog" aria-hidden="true" <?php echo $model->description ? '' : 'data-backdrop="static"'; ?>>
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="modal-header">

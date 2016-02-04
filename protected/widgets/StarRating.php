@@ -48,10 +48,12 @@ class StarRating extends CWidget
             ");
         }
 
-        Yii::app()->clientScript->registerScript('showDescription',"
-            $('.rating-disabled .rating-gly-star').on('click', function () {
-                $('#ratingDescription').modal('show');
-            });
-        ");
+        if(!Yii::app()->user->isGuest) {
+            Yii::app()->clientScript->registerScript('showDescription',"
+                $('.rating-disabled .rating-gly-star').on('click', function () {
+                    $('#ratingDescription').modal('show');
+                });
+            ");
+        }
     }
 }
