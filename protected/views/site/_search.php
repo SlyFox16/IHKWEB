@@ -1,5 +1,6 @@
 <div class="search-form">
     <?php $form=$this->beginWidget('CActiveForm',array(
+        'id' => 'extended-search',
         'action'=>Yii::app()->createUrl($this->route),
         'method'=>'get',
     )); ?>
@@ -42,7 +43,7 @@
 
         <?php echo $form->textField($model,'rating',array('class'=>'span5', 'placeholder' => 'Rating')); ?>
 
-        <button class="button" type="submit">Save <i class="fa fa-circle-o-notch"></i></button>
+        <button class="button" type="submit">Save</button>
 
     <?php $this->endWidget(); ?>
 </div>
@@ -50,9 +51,15 @@
 <?php
     Yii::app()->clientScript->registerScript('searchUser', "
     $('.search-form form').submit(function(){
+        var self = $(this);
         $.fn.yiiListView.update('rating-log-grid', {
-            data: $(this).serialize()
+            data: $(this).serialize(),
+            success:function() {
+                self.find('button').toggleClass('searching-class');
+            }
+
         });
+        self.find('button').toggleClass('searching-class');
         return false;
     });
     ");
