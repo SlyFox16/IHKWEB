@@ -167,7 +167,8 @@
                         <legend><span>References</span></legend>
                         <ul class="fields">
                             <li>
-                                <?php $this->widget('ImageGallery', array('model' => $user)); ?>                                <div                                              <div class="input-content">
+                                <?php $this->widget('ImageGallery', array('model' => $user)); ?>
+                                <div class="field-content">
                                     <div>
                                         Pdf Files
                                     </div>

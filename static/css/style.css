@@ -1086,6 +1086,15 @@ Input List =========*/
 	background: #fff;
 }
 
+
+/*--------------------
+Dropzone ===========*/
+body .dropzone {
+	min-height: 200px;
+	border: 0;
+	border-radius: 0;
+}
+
 /*--------------------
 Modal ==============*/
 .modal-body > .fields > li {
