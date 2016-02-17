@@ -50,7 +50,7 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
 </ul>
 
 <script type="text/javascript">
-    $('select').fancySelect();
+    //$('select').fancySelect();
     //$('.datepicker').datepicker();
     $().ready(function () {
         var settings = $("#cabinet-form").data('settings');
@@ -84,6 +84,7 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
 
     });
 
+    $('.field-content select').select2();
     $('.input-group.date').datepicker({
         format: 'dd/mm/yyyy',
         todayHighlight: true,

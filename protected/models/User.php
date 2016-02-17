@@ -141,7 +141,7 @@ class User extends ActiveRecord
             'userCertificates' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
             'certificates' => array(self::HAS_MANY, 'UserCertificate', 'user_id'),
             'pdf' => array(self::HAS_MANY, 'MultipleImages', 'item_id', 'condition' => 'content_type = :type', 'params' => array(':type' => $this->getClass())),
-            'cities' => array(self::BELONGS_TO, 'Cities', 'city_id'),
+            'cities0' => array(self::BELONGS_TO, 'Cities', 'city_id'),
             'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
             'connectedUsers' => array(self::MANY_MANY, 'User', 'user_reference(user_initiator, user_receiver)'),
         );
@@ -475,8 +475,8 @@ class User extends ActiveRecord
     }
 
     public function suggestTag($keyword){
-        $tags=$this->with('cities')->findAll(array(
-            'condition'=>'name LIKE :keyword OR surname LIKE :keyword OR cities.city_name_ASCII LIKE :keyword',
+        $tags=User::model()->with('cities0')->findAll(array(
+            'condition'=>'name LIKE :keyword OR surname LIKE :keyword OR cities0.city_name_ASCII LIKE :keyword',
             'params'=>array(
                 ':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',
             ),
