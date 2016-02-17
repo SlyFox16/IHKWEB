@@ -34,14 +34,18 @@
     )); ?>
 
     <?php
-        $this->widget('zii.widgets.CListView', array(
+        $this->widget('ListView', array(
             'id'=>'rating-log-grid',
             'dataProvider' => $model->findMember(),
             'itemView' => '//search/_user', // refers to the partial view named '_post'
             'summaryText' => false,
             'loadingCssClass' => false,
             'pager'=> "LinkPager",
-            'cssFile' => false
+            'template'=>'{items} {pager}',
+            'cssFile' => false,
+            'htmlOptions' => array(
+                'class' => false
+            )
         ));
     ?>
 </section>
