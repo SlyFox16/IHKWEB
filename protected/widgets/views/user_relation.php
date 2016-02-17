@@ -3,7 +3,7 @@
         <?php $connected = $user->connectedUsers;
         if($connected) { ?>
             <?php foreach($connected as $conUser) { ?>
-                <li>
+                <li class="relateduser">
                     <div>
                         <?php echo $conUser->fullName; ?>
                         <a href="javascript:void(0)" title="Remove" class="delete fa fa-times" data-id="<?php echo $conUser->id; ?>">
