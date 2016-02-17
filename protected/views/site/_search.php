@@ -54,10 +54,9 @@
         var self = $(this);
         $.fn.yiiListView.update('rating-log-grid', {
             data: $(this).serialize(),
-            success:function() {
+            complete:function() {
                 self.find('button').toggleClass('searching-class');
             }
-
         });
         self.find('button').toggleClass('searching-class');
         return false;

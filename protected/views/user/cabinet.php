@@ -48,14 +48,14 @@
                             <li <?php echo $user->requiredClass('name'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'name'); ?></div>
-                                    <div><?php echo $user->name; ?></div>
+                                    <div><?php echo $form->textField($user, 'name', array('readonly'=>true)); ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'name'); ?>
                             </li>
                             <li <?php echo $user->requiredClass('email'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'surname'); ?></div>
-                                    <div><?php echo $user->surname; ?></div>
+                                    <div><?php echo $form->textField($user, 'surname', array('readonly'=>true)); ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'surname'); ?>
                             </li>

@@ -61,7 +61,6 @@
                                                 'data' => User::model()->assocList,
                                                 'asDropDownList' => true,
                                                 'options' => [
-                                                    'minimumInputLength' => 2,
                                                     'placeholder' => 'Select product',
                                                     'width' => '100%',
                                                     'allowClear' => true,
