@@ -238,6 +238,29 @@ select {
 }
 
 
+.add-input {
+	position: relative;
+	width: 100%;
+	padding-right: 50px;
+	list-style: none;
+}
+
+.add-input > li:last-child {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.add-input > li:last-child a {
+	display: block;
+	width: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: #00478c;
+	color: #fff;
+}
+
+
 /*--------------------
 Basics =============*/
 
@@ -928,6 +951,67 @@ Register ===========*/
 
 
 /*--------------------
+Custom Select ======*/
+body .select2-container {
+	background: #fff;
+}
+
+body .select2-container .select2-choice {
+	line-height: 5rem;
+}
+
+body .select2-container .select2-choice {
+    height: 5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+body .select2-container .select2-choice .select2-arrow b, 
+body .select2-container .select2-choice div b {
+	background-position: 0 12px;
+}
+
+body .select2-dropdown-open .select2-choice .select2-arrow b, 
+body .select2-dropdown-open .select2-choice div b {
+	background-position: -18px 12px;
+}
+
+body .select2-chosen, 
+body .select2-choice > span:first-child, 
+body .select2-container .select2-choices .select2-search-field input {
+	padding: 1rem;
+	line-height: 3rem;
+}
+
+body .select2-drop {
+	border: 0;
+	padding: 5px;
+	border-radius: 0;
+}
+
+body .select2-container .select2-choice .select2-arrow, 
+body .select2-container .select2-choice div {
+	border-left: 1px solid #efefef;
+}
+
+body .select2-container .select2-choices .select2-search-field input, 
+body .select2-container .select2-choice, 
+body .select2-container .select2-choices {
+	border: 0;
+	border-radius: 0;
+}
+
+body .select2-container-active .select2-choice, 
+body .select2-container-multi.select2-container-active .select2-choices {
+	border: 0;
+	box-shadow: 0;
+	outline: 0;
+}
+
+
+/*--------------------
 Search Results =====*/
 .search-header .container {
 	padding-top: 0;
@@ -982,6 +1066,16 @@ Others =============*/
 
 .popup p {
 	color: #fff;
+}
+
+/*--------------------
+Related User ======*/
+.related-user {
+	width: 100%;
+}
+
+.related-user li {
+	float: left;
 }
 
 /*--------------------
