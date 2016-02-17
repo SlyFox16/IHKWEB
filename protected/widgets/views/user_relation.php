@@ -24,7 +24,7 @@
                     'asDropDownList' => false,
                     'options' => [
                         'minimumInputLength' => 2,
-                        'placeholder' => 'Select product',
+                        'placeholder' => 'Select user',
                         'width' => '100%',
                         'allowClear' => true,
                         'ajax' => [
