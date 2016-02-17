@@ -1,13 +1,14 @@
 <li>
-    <ul class="relateduser">
+    <ul class="input-list">
         <?php $connected = $user->connectedUsers;
         if($connected) { ?>
             <?php foreach($connected as $conUser) { ?>
                 <li>
-                    <?php echo $conUser->fullName; ?>
-                    <a href="javascript:void(0)" title="Remove" class="delete" data-id="<?php echo $conUser->id; ?>">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
+                    <div>
+                        <?php echo $conUser->fullName; ?>
+                        <a href="javascript:void(0)" title="Remove" class="delete fa fa-times" data-id="<?php echo $conUser->id; ?>">
+                        </a>
+                    </div>
                 </li>
             <?php } ?>
         <?php } ?>

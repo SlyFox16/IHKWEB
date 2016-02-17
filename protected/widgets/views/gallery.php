@@ -1,16 +1,16 @@
 <li>
-    <ul class="relateduser">
+    <ul class="input-list">
         <?php if (count($model->pdf) > 0) { ?>
             <?php foreach ($model->pdf as $image) { ?>
                 <li class="thumb-content">
-                    <?php
-                        $fpath = explode("/", $image->path);
-                        $fileName = end($fpath);
-                        echo CHtml::link($image->title, array('/user/download', 'fileName' => $fileName));
-                    ?>
-                    <a href="javascript:void(0)" title="Remove" class="delete" id="<?php echo $image->id; ?>">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
+                    <div>
+                        <?php
+                            $fpath = explode("/", $image->path);
+                            $fileName = end($fpath);
+                            echo CHtml::link($image->title, array('/user/download', 'fileName' => $fileName));
+                        ?>
+                        <a href="javascript:void(0)" title="Remove" class="delete fa fa-times" id="<?php echo $image->id; ?>"></a>
+                    </div>
                 </li>
             <?php } ?>
         <?php } ?>
