@@ -87,7 +87,7 @@
             data:{id:$this.data("id")},
             url: '<?= Yii::app()->controller->createUrl('/user/deleteRelation')?>',
             success:function (msg) {
-                $this.closest(".element").fadeOut();
+                $this.closest("li").fadeOut();
             }
         });
     });

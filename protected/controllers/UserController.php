@@ -282,9 +282,11 @@ class UserController extends Frontend
 
     public function actionDeleteRelation() {
         $id = (int)$_POST["id"];
-        $model = UserReference::model()->findAllByAttributes(array('user_initiator' => Yii::app()->user->id, 'user_receiver' => $id));
+        $model = UserReference::model()->findByAttributes(array('user_initiator' => Yii::app()->user->id, 'user_receiver' => $id));
+
         if($model)
-            $model->delete();
+            if($model->delete())
+                Yii::app()->ajax->success();
         else
             Yii::app()->ajax->failure();
     }
