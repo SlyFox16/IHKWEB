@@ -9,7 +9,6 @@
             fn.Stellar();
             fn.StickyFooter();
             fn.Tooltip();
-            fn.Apps();
         },
 
 
