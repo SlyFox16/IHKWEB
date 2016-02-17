@@ -101,7 +101,24 @@
                                         <li>
                                             <div class="field-content">
                                                 <div>Certification</div>
-                                                <div><?php echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); ?></div>
+                                                <div><?php $this->widget(
+                                                        'booster.widgets.TbSelect2',
+                                                        [
+                                                            'model'=>$certificate,
+                                                            'attribute'=>"[$key]certificate_id",
+                                                            'data' => $certificate->allCertificates,
+                                                            'asDropDownList' => true,
+                                                            'options' => [
+                                                                'placeholder' => 'Select product',
+                                                                'width' => '100%',
+                                                                'allowClear' => true,
+                                                            ],
+                                                            'htmlOptions' => [
+                                                                'class' => 'form-control'
+                                                            ],
+                                                        ]
+                                                    );?></div>
+                                                <!--<div><?php /*echo $form->dropDownList($certificate, "[$key]certificate_id", $certificate->allCertificates); */?></div>-->
                                             </div>
                                             <?php $form->error($certificate, "[$key]certificate_id"); ?>
                                         </li>
