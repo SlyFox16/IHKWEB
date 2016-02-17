@@ -18,8 +18,8 @@ class SearchModel extends CFormModel
     {
         return array(
             // username and password are required
-            array('searchfield', 'required'),
-            array('searchfield', 'length', 'min' => 5),
+            //array('searchfield', 'required'),
+            //array('searchfield', 'length', 'min' => 5),
         );
     }
 

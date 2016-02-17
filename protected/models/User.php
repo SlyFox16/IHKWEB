@@ -475,7 +475,7 @@ class User extends ActiveRecord
     }
 
     public function suggestTag($keyword){
-        $tags=$this->with(array('cities'))->findAll(array(
+        $tags=$this->with('cities')->findAll(array(
             'condition'=>'name LIKE :keyword OR surname LIKE :keyword OR cities.city_name_ASCII LIKE :keyword',
             'params'=>array(
                 ':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',
