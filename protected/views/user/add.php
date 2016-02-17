@@ -27,7 +27,7 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
                         'allowClear' => true,
                     ],
                     'htmlOptions' => [
-                        'class' => 'form-control'
+                        'class' => 'form-control new'
                     ],
                 ]
             );?>
