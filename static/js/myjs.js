@@ -10,6 +10,7 @@ $(document).ready(function(){
             data: {count: count},
             success: function (data) {
                 $('.wheretoadd', self.closest('form')).append(data.responce);
+                $('.addfield select').select2();
             }
         });
         return false;
