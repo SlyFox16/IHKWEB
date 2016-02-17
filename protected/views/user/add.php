@@ -14,7 +14,24 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
     <li>
         <div class="field-content">
             <div>Certifications</div>
-            <div><?php echo $form->dropDownList($certificate, "[$count]certificate_id", $certificate->allCertificates); ?></div>
+            <?php $this->widget(
+                'booster.widgets.TbSelect2',
+                [
+                    'model'=>$certificate,
+                    'attribute'=>"[$count]certificate_id",
+                    'data' => $certificate->allCertificates,
+                    'asDropDownList' => true,
+                    'options' => [
+                        'placeholder' => 'Select product',
+                        'width' => '100%',
+                        'allowClear' => true,
+                    ],
+                    'htmlOptions' => [
+                        'class' => 'form-control'
+                    ],
+                ]
+            );?>
+            <!--<div><?php /*echo $form->dropDownList($certificate, "[$count]certificate_id", $certificate->allCertificates); */?></div>-->
         </div>
         <?php echo $form->error($certificate, "[$count]certificate_id"); ?>
     </li>
