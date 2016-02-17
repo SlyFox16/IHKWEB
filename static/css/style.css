@@ -1069,13 +1069,21 @@ Others =============*/
 }
 
 /*--------------------
-Related User ======*/
-.related-user {
+Input List =========*/
+.input-list {
 	width: 100%;
+	margin-bottom: 5px;
+	list-style: none;
 }
 
-.related-user li {
-	float: left;
+.input-list li {
+	display: inline-block;
+}
+
+.input-list li div {
+	border-radius: 5px;
+	padding: 10px;
+	background: #fff;
 }
 
 /*--------------------
