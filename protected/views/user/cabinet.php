@@ -167,16 +167,14 @@
                         <legend><span>References</span></legend>
                         <ul class="fields">
                             <li>
-                                <div class="field-content">
-                                    <?php $this->widget('ImageGallery', array('model' => $user)); ?>
-                                    <?php $this->widget('ext.dropzone.EDropzone', array(
-                                        'model' => $user,
-                                        'attribute' => 'pdf',
-                                        'url' => $this->createUrl('user/upload'),
-                                        'mimeTypes' => array('application/pdf'),
-                                        'options' => array('addRemoveLinks' =>true,),
-                                    )); ?>
-                                </div>
+                                <?php $this->widget('ImageGallery', array('model' => $user)); ?>
+                                <?php $this->widget('ext.dropzone.EDropzone', array(
+                                    'model' => $user,
+                                    'attribute' => 'pdf',
+                                    'url' => $this->createUrl('user/upload'),
+                                    'mimeTypes' => array('application/pdf'),
+                                    'options' => array('addRemoveLinks' =>true,),
+                                )); ?>
                             </li>
                             <li>
                                 <div class="field-content">
