@@ -24,6 +24,7 @@ class ListView extends CListView
         }
         else
             $this->renderEmptyText();
-        //echo CHtml::closeTag($this->itemsTagName);
+
+        ////echo CHtml::closeTag($this->itemsTagName);
     }
 }
