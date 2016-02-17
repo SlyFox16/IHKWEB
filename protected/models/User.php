@@ -82,7 +82,7 @@ class User extends ActiveRecord
             array('password, identity, network', 'length', 'max' => 512),
             array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
             array('facebook_url, twitter_url, xing_url', 'url'),
-            array('salt, username, phone, address', 'length', 'max' => 255),
+            array('salt, username, phone, address', 'length', 'max' => 255, 'except' => 'userupdate'),
             array('email, username', 'unique', 'except' => 'changepassword, userupdate'),
             array('email', 'email', 'message' => 'Email is not valid.', 'except' => 'userupdate'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),

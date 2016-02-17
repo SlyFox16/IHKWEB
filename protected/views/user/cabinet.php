@@ -142,7 +142,7 @@
                             <li>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'address'); ?></div>
-                                    <div><?php echo $user->address; ?></div>
+                                    <div><?php echo $form->textField($user, 'address', array('readonly'=>true)); ?></div>
                                 </div>
                                 <?php echo $form->error($user, 'address'); ?>
                             </li>
