@@ -86,7 +86,27 @@
                             <li>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'speciality'); ?></div>
-                                    <div><?php echo $form->dropDownList($user, 'speciality', $user->specialityList, array('class'=>'form-control', 'multiple'=>'multiple','style'=>'height:140px;')); ?></div>
+                                    <div>
+                                        <?php $this->widget(
+                                            'booster.widgets.TbSelect2',
+                                            [
+                                                'model'=>$user,
+                                                'attribute'=>"speciality",
+                                                'data' => $user->specialityList,
+                                                'asDropDownList' => true,
+                                                'options' => [
+                                                    'placeholder' => 'Select product',
+                                                    'width' => '100%',
+                                                    'allowClear' => true,
+                                                ],
+                                                'htmlOptions' => [
+                                                    'multiple' => true,
+                                                    'class' => 'form-control'
+                                                ],
+                                            ]
+                                        );?>
+                                    </div>
+                                    <!--<div><?php /*echo $form->dropDownList($user, 'speciality', $user->specialityList, array('class'=>'form-control', 'multiple'=>'multiple','style'=>'height:140px;')); */?></div>-->
                                 </div>
                             </li>
                         </ul>
