@@ -262,6 +262,13 @@ class SiteController extends Frontend
             $models = User::model()->suggestTag($_GET['term']);
             $result = array();
             foreach ($models as $m)
+                if($m->cities0->city_name_ASCII)
+                    $result[] = array(
+                    'label' => $m->name." ".$m->surname." (".$m->cities0->city_name_ASCII.")",
+                    'value' => $m->name." ".$m->surname." (".$m->cities0->city_name_ASCII.")",
+                    'id' => $m->id,
+                );
+            else
                 $result[] = array(
                     'label' => $m->name." ".$m->surname,
                     'value' => $m->name." ".$m->surname,

@@ -11,12 +11,15 @@ class SearchController extends Frontend
 
         if(strlen($q) >= 5) {
             $crt = new CDbCriteria;
+            $crt->with=array(
+                'cities0',
+            );
 
             foreach ($queryTerms as $k => $req) {
                 $tCriteria = new CDbCriteria();
 
-                $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k";
-                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%';
+                $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k";
+                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
 
                 $crt->mergeWith($tCriteria);
             }
