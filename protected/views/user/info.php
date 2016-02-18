@@ -86,36 +86,38 @@
                 <div class="col-sm-3">
                     <ul class="contacts">
                         <?php if(!empty($user->address)) { ?>
-                            <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                            <li class="fadeIn">
                                 <i class="fa fa-map-marker"></i>
                                 <span><?php echo $user->address; ?></span>
                             </li>
                         <?php } ?>
                         <?php if(!empty($user->phone)) { ?>
-                            <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
+                            <li class="fadeIn">
                                 <i class="fa fa-phone"></i>
                                 <span><?php echo $user->phone; ?></span>
                             </li>
                         <?php } ?>
                         <?php if(!empty($user->xing_url)) { ?>
-                            <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                            <li class="fadeIn">
                                 <i class="fa fa-xing"></i>
                                 <a href="<?php echo $user->xing_url; ?>"><?php echo $user->fullname;?></a>
                             </li>
                         <?php } ?>
                         <?php if(!empty($user->facebook_url)) { ?>
-                            <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                            <li class="fadeIn">
                                 <i class="fa fa-facebook"></i>
                                 <a href="<?php echo $user->facebook_url; ?>">Facebook</a>
                             </li>
                         <?php } ?>
                         <?php if(!empty($user->twitter_url)) { ?>
-                            <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
+                            <li class="fadeIn">
                                 <i class="fa fa-twitter"></i>
                                 <a href="<?php echo $user->twitter_url; ?>">Twitter</a>
                             </li>
                         <?php } ?>
                     </ul>
+                    <button id="loadMore" class="contacts-button">Show More</button>
+                    <button id="hideMore" class="contacts-button">Show Less</button>
                 </div>
             <?php } ?>
         </div>

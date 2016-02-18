@@ -151,6 +151,7 @@ textarea {
 
 fieldset {
 	position: relative;
+	margin-top: 20px;
 	border: 0;
 }
 
@@ -906,6 +907,15 @@ li:hover > .share { display: block; }
 	background: #ebedef;
 	color: #777;
 	padding: 20px 20px 20px 50px;
+	display: none;
+}
+
+.contacts > li.show {
+	display: block;
+}
+
+.contacts > *:nth-child(-n+3) {
+	display: block;
 }
 
 .contacts > li + li {
@@ -933,6 +943,21 @@ li:hover > .share { display: block; }
 	text-transform: uppercase;
 }
 
+
+.contacts-button {
+	width: 100%;
+	background: #00478c;
+	color: #fff;
+	text-align: center;
+	border: 0;
+	padding: 10px;
+	margin-top: 2px;
+	text-transform: uppercase;
+}
+
+.contacts-button#hideMore {
+	display: none;
+}
 
 /*--------------------
 Register ===========*/

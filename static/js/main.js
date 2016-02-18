@@ -9,6 +9,7 @@
             fn.Stellar();
             fn.StickyFooter();
             fn.Tooltip();
+            fn.loadMore();
         },
 
 
@@ -71,6 +72,23 @@
                 $('.tooltip')
                 .css({ top: mousey, left: mousex })
             });
+            });
+        },
+
+        // Load More ( Speakers )
+        loadMore: function () {
+            var more = $('#loadMore'),
+                less = $('#hideMore')
+
+            more.click(function () {
+               $('.contacts > *').nextAll().slice(2).addClass('show');
+               $(this).hide();
+               less.show();
+            });
+            less.click(function () {
+               $('.contacts > *').nextAll().slice(2).removeClass('show');
+               $(this).hide();
+               more.show();
             });
         },
 
