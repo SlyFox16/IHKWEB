@@ -1,5 +1,5 @@
 <li>
-    <ul class="input-list">
+    <ul class="input-list related-list">
         <?php $connected = $user->connectedUsers;
         if($connected) { ?>
             <?php foreach($connected as $conUser) { ?>
@@ -68,7 +68,7 @@
                     'user_receiver': userId
                 },
                 success: function (data) {
-                    $('.relateduser').append('<li>'+data+'</li>');
+                    $('.related-list').append(data);
                 }
             });
         }
@@ -85,7 +85,7 @@
         return markup;
     }
 
-    $(".relateduser").on("click", '.delete', function () {
+    $(".related-list").on("click", '.delete', function () {
         var $this = $(this);
         $.ajax({
             type:"POST",

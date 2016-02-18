@@ -95,7 +95,7 @@
                                                 'data' => $user->specialityList,
                                                 'asDropDownList' => true,
                                                 'options' => [
-                                                    'placeholder' => 'Select product',
+                                                    'placeholder' => 'Select speciality',
                                                     'width' => '100%',
                                                     'allowClear' => true,
                                                 ],

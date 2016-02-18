@@ -375,8 +375,10 @@ class UserController extends Frontend
                 $reference = new UserReference();
                 $reference->user_initiator = Yii::app()->user->id;
                 $reference->user_receiver = $modelReceiver->id;
-                if($reference->save())
-                    Yii::app()->ajax->raw($modelReceiver->fullName);
+                if($reference->save()) {
+                    $ret = $this->renderPartial('li_element', array('modelReceiver' => $modelReceiver), true);
+                    Yii::app()->ajax->raw($ret);
+                }
             }
         } else
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');

@@ -61,7 +61,7 @@
                                                 'data' => User::model()->assocList,
                                                 'asDropDownList' => true,
                                                 'options' => [
-                                                    'placeholder' => 'Select product',
+                                                    'placeholder' => 'Select country',
                                                     'width' => '100%',
                                                     'allowClear' => true,
                                                 ],
@@ -87,7 +87,7 @@
                                                 'asDropDownList' => false,
                                                 'options' => [
                                                     'minimumInputLength' => 2,
-                                                    'placeholder' => 'Select product',
+                                                    'placeholder' => 'Select city',
                                                     'width' => '100%',
                                                     'allowClear' => true,
                                                     'ajax' => [
