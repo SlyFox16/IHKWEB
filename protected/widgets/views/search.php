@@ -38,15 +38,14 @@
                             'minLength'=>2,
                             'showAnim'=>'fold',
                             'multiple'=>true,
-                            /*'select'=>"js:function(event, ui) {
+                            'select'=>"js:function(event, ui) {
                                 var terms = split(this.value);
                                 // remove the current input
-                                terms.pop();
                                 // add the selected item
-                                terms.push( ui.item.value );
+                                this.value = ui.item.value;
                                 $('#search-form').submit();
                                 return false;
-                            }",*/
+                            }",
                         ),
                         'htmlOptions'=>array(
                             'size'=>'40',
