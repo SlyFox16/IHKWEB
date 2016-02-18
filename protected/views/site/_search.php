@@ -18,7 +18,6 @@
                 [
                     'model'=>$model,
                     'attribute'=>'city_id',
-                    'data' => User::model()->cityList,
                     'asDropDownList' => false,
                     'options' => [
                         'minimumInputLength' => 2,
@@ -34,6 +33,7 @@
                             }',
                             'results' => 'js:function(data) { return {results: data}; }',
                         ],
+                        'initSelection' => 'js:cityInitSelection',
                         'formatResult' => 'js:productFormatResult',
                         'formatSelection' => 'js:productFormatSelection',
                     ],
@@ -73,6 +73,13 @@
 ?>
 
 <script>
+    function cityInitSelection(element, callback) {
+        var ret = <?php echo $model->cityList; ?>;
+
+        var data = {'id':ret.id , 'name': ret.value};
+        callback(data);
+    }
+
     function productFormatSelection(city) {
         return city.name;
     }

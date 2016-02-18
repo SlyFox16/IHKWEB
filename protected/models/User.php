@@ -500,9 +500,10 @@ class User extends ActiveRecord
         return CHtml::listData($models, 'id', 'speciality');
     }
 
-    public static function getCityList()
+    public function getCityList()
     {
-        $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
-        return CHtml::listData($models, 'geonameid', 'city_name_ASCII');
+        $model = Cities::model()->find(array('condition' => 'geonameid = :id', 'params' => array(':id' => $this->city_id)));
+        $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_ASCII);
+        return json_encode($ret_arr);
     }
 }
