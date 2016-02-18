@@ -225,7 +225,9 @@ class User extends ActiveRecord
         $criteria->compare('name', $this->name, true);
         $criteria->compare('surname', $this->surname, true);
         $criteria->compare('email', $this->email, true);
-        $criteria->compare('expert_confirm', $this->expert_confirm);
+        $criteria->compare('city_id', $this->city_id);
+        $criteria->compare('rating', $this->rating);
+        $criteria->compare('level', $this->level);
         $criteria->compare('password', $this->password, true);
         $criteria->compare('salt', $this->salt, true);
         $criteria->compare('is_active', $this->is_active);
@@ -233,7 +235,8 @@ class User extends ActiveRecord
         $criteria->compare('last_login', $this->last_login, true);
         $criteria->compare('date_joined', $this->date_joined, true);
 
-        $criteria->addCondition('is_active = 1 && is_staff = 0 && expert_confirm = 1');
+        $criteria->scopes = 'search_active';
+        //$criteria->addCondition('is_active = 1 && is_staff = 0 && expert_confirm = 1');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
