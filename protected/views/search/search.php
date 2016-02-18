@@ -36,6 +36,10 @@
             'itemView' => '_user', // refers to the partial view named '_post'
             'summaryText' => false,
             'pager'=> "LinkPager",
+            'emptyText' => '<div class="col-sm-12 text-center">
+				<h1>404</h1>
+				<p>The page your are looking for was not found. <a class="angle" href="/">Go back</a></p>
+			</div>',
             'cssFile' => false
         ));
     ?>
