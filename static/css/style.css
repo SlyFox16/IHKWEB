@@ -347,15 +347,23 @@ Basics =============*/
 
 .page-control > li:nth-child(2) { background: rgba(255, 255, 255, 0.05); }
 .page-control > li:nth-child(3) { background: rgba(255, 255, 255, 0.1); }
+.page-control > li:nth-child(4) { background: rgba(255, 255, 255, 0.15); }
+.page-control > li:nth-child(5) { background: rgba(255, 255, 255, 0.2); }
+.page-control > li:nth-child(6) { background: rgba(255, 255, 255, 0.25); }
+.page-control > li:last-child { background: none; }
 
-.page-control a {
+.page-control a,
+.page-control button {
 	display: block;
 	padding: 2.5rem;
 	line-height: 2rem;
 	text-align: center;
+	background: none;
+	border: 0;
 }
 
-.page-control a:hover {
+.page-control a:hover,
+.page-control button:hover {
 	background: rgba(0, 0, 0, 0.2);
 }
 
@@ -369,12 +377,16 @@ Basics =============*/
 	vertical-align: top;
 }
 
-.page-control .search input {
+.page-control input {
 	width: 15rem;
 	line-height: 5rem;
 	padding: 1rem 2rem;
 	font-weight: 400;
 	background: transparent;
+}
+
+.page-control .small > input {
+	width: 8rem;
 }
 
 .tooltip {
@@ -640,9 +652,10 @@ Homepage ===========*/
 
 /* Pagination */
 .pagination {
+	position: relative;
 	float: left;
 	clear: both;
-	margin: 3rem 0 -2.5rem 3rem;
+	margin: -2.5rem 0 -2.5rem 3rem;
 	list-style: none;
 	background: #00478c;
 	border-radius: 4px;
@@ -733,6 +746,26 @@ Expert Profile =====*/
 
 .rating > * + * {
 	margin-left: 5px;
+}
+
+body .star-rating {
+	margin: 0;
+	height: 2rem;
+}
+
+body .rating-container {
+	line-height: 2rem;
+	vertical-align: top;
+	color: rgba(255,255,255, 0.2);
+	cursor: pointer;
+}
+
+body .rating-container .rating-stars {
+	color: #fff;
+}
+
+body .rating-gly-star {
+	letter-spacing: 1px;
 }
 
 /* Share */
@@ -994,6 +1027,61 @@ body .select2-drop {
 body .select2-container .select2-choice .select2-arrow, 
 body .select2-container .select2-choice div {
 	border-left: 1px solid #efefef;
+}
+
+body .select2-container .select2-choices .select2-search-field input, 
+body .select2-container .select2-choice, 
+body .select2-container .select2-choices {
+	border: 0;
+	border-radius: 0;
+}
+
+body .select2-container-active .select2-choice, 
+body .select2-container-multi.select2-container-active .select2-choices {
+	border: 0;
+	box-shadow: 0;
+	outline: 0;
+}
+
+
+
+.page-control .select2-container.form-control {
+	background: none;
+}
+
+.page-control .select2-container .select2-choice {
+	line-height: 7rem;
+	height: 7rem;
+	background: none;
+}
+
+
+.page-control .select2-container .select2-choice .select2-arrow b, 
+.page-control .select2-container .select2-choice div b {
+	background-position: 0 22px;
+}
+
+body .select2-dropdown-open .select2-choice .select2-arrow b, 
+body .select2-dropdown-open .select2-choice div b {
+	background-position: -18px 22px;
+}
+
+.page-control .select2-chosen, 
+.page-control .select2-choice > span:first-child, 
+.page-control .select2-container .select2-choices .select2-search-field input {
+	padding: 0;
+	line-height: 7rem;
+}
+
+body .select2-drop {
+	border: 0;
+	padding: 5px;
+	border-radius: 0;
+}
+
+.page-control .select2-container .select2-choice .select2-arrow, 
+.page-control .select2-container .select2-choice div {
+	border-left: 0;
 }
 
 body .select2-container .select2-choices .select2-search-field input, 
