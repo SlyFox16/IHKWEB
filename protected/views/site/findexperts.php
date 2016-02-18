@@ -42,6 +42,10 @@
             'pager'=> "LinkPager",
             'template'=>'{items} {pager}',
             'cssFile' => false,
+            'emptyText' => '<div class="col-sm-12 text-center">
+				<h1>404</h1>
+				<p>The page your are looking for was not found. <a class="angle" href="/">Go back</a></p>
+			</div>',
             'htmlOptions' => array(
                 'class' => false
             )
