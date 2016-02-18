@@ -12,7 +12,7 @@
         <li>
             <?php echo $form->textField($model,'surname',array('class'=>'span5', 'placeholder' => 'Surname')); ?>
         </li>
-        <li>
+        <li class="large">
             <?php $this->widget(
                 'booster.widgets.TbSelect2',
                 [
