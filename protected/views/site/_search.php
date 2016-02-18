@@ -1,52 +1,60 @@
-<div class="search-form">
+
     <?php $form=$this->beginWidget('CActiveForm',array(
         'id' => 'extended-search',
         'action'=>Yii::app()->createUrl($this->route),
         'method'=>'get',
     )); ?>
-
-        <?php echo $form->textField($model,'name',array('class'=>'span5', 'placeholder' => 'Name')); ?>
-
-        <?php echo $form->textField($model,'surname',array('class'=>'span5', 'placeholder' => 'Surname')); ?>
-
-        <?php $this->widget(
-            'booster.widgets.TbSelect2',
-            [
-                'model'=>$model,
-                'attribute'=>'city_id',
-                'data' => User::model()->cityList,
-                'asDropDownList' => false,
-                'options' => [
-                    'minimumInputLength' => 2,
-                    'placeholder' => 'Select City',
-                    'width' => '100%',
-                    'allowClear' => true,
-                    'ajax' => [
-                        'url' => Yii::app()->controller->createUrl('/user/citySearch'),
-                        'dataType' => 'json',
-                        'data' => 'js:function(term, page) {
-                            var country = $("#User_country_id").val();
-                            return {q: term,  country: country};
-                        }',
-                        'results' => 'js:function(data) { return {results: data}; }',
+    <!--== Page Control ==-->
+    <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
+        <li>
+            <?php echo $form->textField($model,'name',array('class'=>'span5', 'placeholder' => 'Name')); ?>
+        </li>
+        <li>
+            <?php echo $form->textField($model,'surname',array('class'=>'span5', 'placeholder' => 'Surname')); ?>
+        </li>
+        <li>
+            <?php $this->widget(
+                'booster.widgets.TbSelect2',
+                [
+                    'model'=>$model,
+                    'attribute'=>'city_id',
+                    'data' => User::model()->cityList,
+                    'asDropDownList' => false,
+                    'options' => [
+                        'minimumInputLength' => 2,
+                        'placeholder' => 'Select City',
+                        'width' => '100%',
+                        'allowClear' => true,
+                        'ajax' => [
+                            'url' => Yii::app()->controller->createUrl('/user/citySearch'),
+                            'dataType' => 'json',
+                            'data' => 'js:function(term, page) {
+                                var country = $("#User_country_id").val();
+                                return {q: term,  country: country};
+                            }',
+                            'results' => 'js:function(data) { return {results: data}; }',
+                        ],
+                        'formatResult' => 'js:productFormatResult',
+                        'formatSelection' => 'js:productFormatSelection',
                     ],
-                    'formatResult' => 'js:productFormatResult',
-                    'formatSelection' => 'js:productFormatSelection',
-                ],
-                'htmlOptions' => [
-                    'class' => 'form-control'
-                ],
-            ]
-        ); ?>
-
-        <?php echo $form->textField($model,'level',array('class'=>'span5', 'placeholder' => 'Level')); ?>
-
-        <?php echo $form->textField($model,'rating',array('class'=>'span5', 'placeholder' => 'Rating')); ?>
-
-        <button class="button" type="submit">Save</button>
-
+                    'htmlOptions' => [
+                        'class' => 'form-control'
+                    ],
+                ]
+            ); ?>
+        </li>
+        <li class="small">
+            <?php echo $form->textField($model,'level',array('class'=>'span5', 'placeholder' => 'Level')); ?>
+        </li>
+        <li class="small">
+            <?php echo $form->textField($model,'rating',array('class'=>'span5', 'placeholder' => 'Rating')); ?>
+        </li>
+        <li>
+            <button class="fa fa-chevron-right" type="submit"></button>
+        </li>
+    </ul>
     <?php $this->endWidget(); ?>
-</div>
+
 
 <?php
     Yii::app()->clientScript->registerScript('searchUser', "

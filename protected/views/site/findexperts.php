@@ -26,12 +26,11 @@
         ?>
 
         <!--== Page Control ==-->
-        <?php $this->widget('SearchWidget'); ?>
+        <?php $this->renderPartial('_search',array(
+            'model'=>$model,
+        )); ?>
     </div>
 
-    <?php $this->renderPartial('_search',array(
-        'model'=>$model,
-    )); ?>
 
     <?php
         $this->widget('ListView', array(
