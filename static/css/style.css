@@ -1118,6 +1118,10 @@ Search Results =====*/
 	margin-bottom: 6rem;
 }
 
+.no-results {
+	padding: 8rem 0;
+}
+
 /*--------------------
 Others =============*/
 .notification {
