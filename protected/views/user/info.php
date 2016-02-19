@@ -38,6 +38,13 @@
             </div>
             <div class="col-sm-6 col-xs-9">
                 <h2 class="expert-name"><b><?php echo $user->name; ?></b> <?php echo $user->surname; ?></h2>
+
+                <?php if($user->speciality) { ?>
+                    <?php foreach($user->speciality as $speciality) { ?>
+                        expert in: <?php echo $speciality->speciality; ?>
+                    <?php } ?>
+                <?php } ?>
+
                 <h3><?php echo $user->position; ?></h3>
                 <?php echo $user->uDescription; ?>
             </div>
