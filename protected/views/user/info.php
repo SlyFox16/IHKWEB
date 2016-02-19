@@ -82,7 +82,9 @@
                     </ul>
                     <?php } ?>
                 <div class="cta bottom-30">
-                    <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
+                    <?php if(!Yii::app()->user->isGuest) { ?>
+                        <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
+                    <?php } ?>
                     <?php if(Yii::app()->user->isGuest) { ?>
                         <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
                     <?php } ?>
