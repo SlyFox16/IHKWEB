@@ -15,7 +15,7 @@ class StarRating extends CWidget
         if($this->user) {
             $disabled = true;
             if(!$this->readOnly)
-                $disabled = (!$this->user->ratingLog && !Yii::app()->user->isGuest) ? false : true;
+                $disabled = (!$this->user->ratingLog && !Yii::app()->user->isGuest) && ($this->user->id != Yii::app()->user->id)? false : true;
 
             $this->registerScript($disabled);
 
