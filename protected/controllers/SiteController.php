@@ -21,11 +21,11 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'findexperts', 'xing', 'feedback', 'suggest', 'seekerRegister', 'seekerConfirmation'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'seekerRegister', 'seekerConfirmation'),
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('logout'),
+                'actions'=>array('logout', 'findexperts'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users

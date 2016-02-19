@@ -38,7 +38,10 @@
             <div class="col-sm-6">
                 <h2 class="about-project">
                     Find the certified <b>Crowd Experts</b> now.
-                    Get your crowd project done right and in time. <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="angle">Find experts</a>
+                    Get your crowd project done right and in time.
+                    <?php if(!Yii::app()->user->isGuest) { ?>
+                        <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="angle">Find experts</a>
+                    <?php } ?>
                 </h2>
             </div>
         </div>
@@ -82,7 +85,9 @@
         <div class="row cta">
             <div class="col-sm-12 text-right">
                 <h2>Awesome call to action headline goes here!</h2>
-                <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
+                <?php if(!Yii::app()->user->isGuest) { ?>
+                    <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="button">Find Experts <i class="fa fa-search"></i></a>
+                <?php } ?>
                 <?php if(Yii::app()->user->isGuest) { ?>
                     <?php echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('class' => 'angle')); ?>
                     <?php echo CHtml::link(Yii::t("base", 'Become Seeker'), array('site/seekerRegister'), array('class' => 'angle')); ?>
