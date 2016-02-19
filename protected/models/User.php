@@ -143,6 +143,7 @@ class User extends ActiveRecord
             'pdf' => array(self::HAS_MANY, 'MultipleImages', 'item_id', 'condition' => 'content_type = :type', 'params' => array(':type' => $this->getClass())),
             'cities0' => array(self::BELONGS_TO, 'Cities', 'city_id'),
             'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
+            'userspeciality' => array(self::HAS_MANY, 'UserSpeciality', 'user_id'),
             'connectedUsers' => array(self::MANY_MANY, 'User', 'user_reference(user_initiator, user_receiver)'),
         );
     }
@@ -478,14 +479,43 @@ class User extends ActiveRecord
     }
 
     public function suggestTag($keyword){
-        $tags=User::model()->with('cities0')->findAll(array(
+        /*$users = User::model()->with('cities0')->findAll(array(
             'condition'=>'name LIKE :keyword OR surname LIKE :keyword OR cities0.city_name_ASCII LIKE :keyword',
             'params'=>array(
                 ':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',
             ),
             'scopes' => 'search_active',
-        ));
-        return $tags;
+        ));*/
+
+        $keyword = htmlspecialchars($keyword);
+        $keyword = addslashes($keyword);
+        $keyword = mb_strtolower($keyword, 'UTF-8');
+
+        $users = User::model()->findAll($this->searchCriteria($keyword));
+        return $users;
+    }
+
+    public function searchCriteria($q) {
+        $queryTerms = explode(' ', $q);
+
+        $crt = new CDbCriteria;
+        $crt->with=array(
+            'userspeciality.speciality0',
+            'cities0'
+        );
+
+        foreach ($queryTerms as $k => $req) {
+            $tCriteria = new CDbCriteria();
+
+            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR speciality0.speciality LIKE :$k";
+            $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+
+            $crt->mergeWith($tCriteria);
+        }
+        $crt->scopes = 'search_active';
+        $crt->order = 't.id DESC';
+
+        return $crt;
     }
 
     public static function getAssocList()
