@@ -500,14 +500,14 @@ class User extends ActiveRecord
 
         $crt = new CDbCriteria;
         $crt->with=array(
-            'userspeciality.speciality0',
+            'speciality',
             'cities0'
         );
 
         foreach ($queryTerms as $k => $req) {
             $tCriteria = new CDbCriteria();
 
-            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR speciality0.speciality LIKE :$k";
+            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR speciality.speciality LIKE :$k";
             $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
 
             $crt->mergeWith($tCriteria);
