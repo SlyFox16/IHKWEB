@@ -20,8 +20,9 @@ $this->breadcrumbs=array(
         ?>
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<h1>404</h1>
-				<p>The page your are looking for was not found. <a href="<?php echo Yii::app()->homeUrl;?>" class="angle">Go back</a></p>
+				<h1><?php echo $code; ?></h1>
+
+				<p><?php echo CHtml::encode($message); ?> <a href="<?php echo Yii::app()->homeUrl;?>" class="angle">Go back</a></p>
 			</div>
 		</div>
 	</div>

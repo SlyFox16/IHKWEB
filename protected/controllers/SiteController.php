@@ -172,7 +172,6 @@ class SiteController extends Frontend
                     Yii::app()->user->setFlash('user_register', Yii::t("base","Congratulations! You have registered successfully!"));
                     $this->redirect(Yii::app()->homeUrl);
                 }
-
             }
         }
 

@@ -14,17 +14,17 @@ class WebUser extends CWebUser {
 
     public function getName(){
         $user = $this->loadUser(Yii::app()->user->id);
-        return $user->name;
+        return $user ? $user->name : '';
     }
 
     public function getSurName(){
         $user = $this->loadUser(Yii::app()->user->id);
-        return $user->surname;
+        return $user ? $user->surname : '';
     }
 
     public function getUsername(){
         $user = $this->loadUser(Yii::app()->user->id);
-        return $user->username;
+        return $user ? $user->username : '';
     }
 
     public function getIsStaff(){
