@@ -74,7 +74,7 @@
 
 <script>
     function cityInitSelection(element, callback) {
-        var ret = <?php echo $model->cityList; ?>;
+        var ret = <?php echo $model->selectedCity; ?>;
 
         var data = {'id':ret.id , 'name': ret.value};
         callback(data);

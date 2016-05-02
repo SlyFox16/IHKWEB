@@ -532,6 +532,10 @@ class User extends ActiveRecord
 
     public function getCityList()
     {
+        return CHtml::listData(Cities::model()->findAll(), 'geonameid', 'city_name_ASCII');
+    }
+
+    public function getSelectedCity() {
         $model = Cities::model()->find(array('condition' => 'geonameid = :id', 'params' => array(':id' => $this->city_id)));
         if($model) {
             $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_ASCII);
