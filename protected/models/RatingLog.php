@@ -77,14 +77,16 @@ class RatingLog extends ActiveRecord
     public function afterSave()
     {
         $user = $this->whoReceived;
-        if($user && $this->confirmed) {
-            if($user->rating == 0)
-                $user->rating = $user->rating + $this->num;
-            else
-                $user->rating = round(($user->rating + $this->num)/2, 1);
+        $ratingList = RatingLog::model()->findAll('who_received = :user && confirmed = 1', array(':user' => $user->id));
+        $user->rating = 0;
+        if($user && $ratingList) {
+            $summ = 0;
+            foreach($ratingList as $rating)
+                $summ += $rating->num;
 
-            $user->update();
+            $user->rating = round(($summ)/count($ratingList), 1);
         }
+        $user->update();
     }
 
 	/**

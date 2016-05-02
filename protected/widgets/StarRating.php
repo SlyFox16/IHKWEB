@@ -19,7 +19,7 @@ class StarRating extends CWidget
 
             $this->registerScript($disabled);
 
-            echo CHtml::tag('input', array('type' => "hidden", 'id' => 'rating'.self::$count++, 'class' => "rating", 'data-step' => "0.5", 'data-disabled' => $disabled, 'data-size' => $this->dataSize, 'data-show-clear' => false, 'data-show-caption' => false, 'data-user-id' => $this->user->username, 'value' => $this->user->rating), false, false);
+            echo CHtml::tag('input', array('type' => "hidden", 'id' => 'rating'.self::$count++, 'class' => "rating", 'data-step' => "1", 'data-disabled' => $disabled, 'data-size' => $this->dataSize, 'data-show-clear' => false, 'data-show-caption' => false, 'data-user-id' => $this->user->username, 'value' => $this->user->rating), false, false);
         }
     }
 

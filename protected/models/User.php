@@ -36,11 +36,11 @@ class User extends ActiveRecord
 
     public function init()
     {
-        $options = array(
+        /*$options = array(
             'AutoFormat.AutoParagraph' => TRUE,
-        );
+        );*/
         $this->htmlpurifier = new CHtmlPurifier();
-        $this->htmlpurifier->options = $options;
+        /*$this->htmlpurifier->options = $options;*/
     }
 
     public static function model($className = __CLASS__)
@@ -372,7 +372,7 @@ class User extends ActiveRecord
         if(empty($this->description))
             return 'no description';
 
-        return $this->description;
+        return nl2br($this->description);
     }
 
     public function sendEmail($subject, $body, $to) {
@@ -533,7 +533,11 @@ class User extends ActiveRecord
     public function getCityList()
     {
         $model = Cities::model()->find(array('condition' => 'geonameid = :id', 'params' => array(':id' => $this->city_id)));
-        $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_ASCII);
-        return json_encode($ret_arr);
+        if($model) {
+            $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_ASCII);
+            return json_encode($ret_arr);
+        } else {
+            return json_encode(array());
+        }
     }
 }

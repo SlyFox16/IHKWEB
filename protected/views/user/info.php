@@ -46,7 +46,7 @@
                 <?php } ?>
 
                 <h3><?php echo $user->position; ?></h3>
-                <?php echo $user->uDescription; ?>
+                <p><?php echo $user->uDescription; ?></p>
             </div>
             <div class="col-sm-3 col-xs-3 text-right">
                 <ul class="stats">
@@ -125,8 +125,10 @@
                             </li>
                         <?php } ?>
                     </ul>
-                    <button id="loadMore" class="contacts-button">Show More</button>
-                    <button id="hideMore" class="contacts-button">Show Less</button>
+                    <?php if($user->facebook_url || $user->twitter_url) { ?>
+                        <button id="loadMore" class="contacts-button">Show More</button>
+                        <button id="hideMore" class="contacts-button">Show Less</button>
+                    <?php } ?>
                 </div>
             <?php } ?>
         </div>

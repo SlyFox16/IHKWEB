@@ -5,7 +5,8 @@ class RatingDescription extends CWidget
 
     public function run()
     {
-        if($this->user && !Yii::app()->user->isGuest && ($this->user->id != Yii::app()->user->id)) {
+        $disabled = (!$this->user->ratingLog && !Yii::app()->user->isGuest) && ($this->user->id != Yii::app()->user->id)? false : true;
+        if(!$disabled) {
             $model = RatingLog::model()->find('who_vote = :who_vote AND who_received = :who_received', array(':who_vote' => Yii::app()->user->id, ':who_received' => $this->user->id));
 
             if(!$model)
