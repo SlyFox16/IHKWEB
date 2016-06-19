@@ -6,7 +6,7 @@
  */
 
 return array(
-    'base' => array(
+    /*'base' => array(
         'basePath' => 'webroot.static',
         'css' => array(
             'css/bootstrap.css',
@@ -30,6 +30,18 @@ return array(
             'js/datepicker.js',
             'js/prettify.js',
             'js/bootstrap-datepicker.en-GB.js',
+        ),
+        'depends' => array('jquery'),
+    ),*/
+
+    'base' => array(
+        'basePath' => 'webroot.static',
+        'css' => array(
+            'css/style.css',
+        ),
+        'js' => array(
+            'javascripts/vendor.js',
+            'javascripts/app.js',
         ),
         'depends' => array('jquery'),
     ),

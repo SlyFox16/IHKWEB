@@ -1,0 +1,47 @@
+/*------------------------------------*\
+    Header
+\*------------------------------------*/
+body > header {
+	padding: rem-calc(100) 0;
+}
+
+.logo {
+	float: left;
+
+	h1 {
+		margin: 0;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: $black;
+	}
+
+	p {
+		font-size: rem-calc(30);
+		line-height: rem-calc(35);
+		font-weight: 300;
+		color: $grey;
+	}
+}
+
+
+/* User Area */
+.user-area {
+	float: right;
+	background: $light-grey;
+	border-radius: rem-calc(4);
+
+	a {
+		float: left;
+		line-height: rem-calc(15);
+		padding: rem-calc(20);
+		color: $black;
+
+		&:not(:last-child) {
+			border-right: rem-calc(2) solid $white;
+		}
+
+		&:hover {
+			background: rgba(0,0,0,0.2);
+		}
+	}
+}

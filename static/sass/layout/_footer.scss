@@ -1,0 +1,36 @@
+/*------------------------------------*\
+    Footer
+\*------------------------------------*/
+footer {
+	position: absolute;
+	overflow: hidden;
+	bottom: 0;
+	width: 100%;
+	padding: rem-calc(60) 0;
+	background: #222;
+	color: $grey;
+}
+
+.footer_contact {
+	position: relative;
+	margin: rem-calc(-60) 0;
+	padding-top: rem-calc(80);
+	padding-bottom: rem-calc(80);
+	background: #2d2d2d;
+
+	&::after {
+		position: absolute;
+		right: -200%;
+		top: 0;
+		background: #2d2d2d;
+		content: "";
+		display: block;
+		height: 100%;
+		width: 200%;
+	}
+
+	.button {
+		margin: 0 0 0 rem-calc(15);
+		background: transparent;
+	}
+}

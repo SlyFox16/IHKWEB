@@ -1,0 +1,123 @@
+/*------------------------------------*\
+    Forms
+\*------------------------------------*/
+
+[type='text'], [type='password'], 
+[type='date'], [type='datetime'], 
+[type='datetime-local'], [type='month'], 
+[type='week'], [type='email'], 
+[type='number'], [type='search'], 
+[type='tel'], [type='time'], 
+[type='url'], [type='color'], 
+textarea {
+	background: rgba(255,255,255,0.5);
+	padding: rem-calc(15);
+	margin: 0 0 rem-calc(15);
+	line-height: rem-calc(20);
+	height: rem-calc(50);
+	border-radius: 0;
+	border-width: 0 0 0 rem-calc(2);
+	border-left-color: $grey;
+}
+
+[type='text']:focus, [type='password']:focus, 
+[type='date']:focus, [type='datetime']:focus, 
+[type='datetime-local']:focus, [type='month']:focus, 
+[type='week']:focus, [type='email']:focus, 
+[type='number']:focus, [type='search']:focus, 
+[type='tel']:focus, [type='time']:focus, 
+[type='url']:focus, [type='color']:focus, 
+textarea:focus {
+	border-left-color: $grey;
+	border-width: 0 0 0 rem-calc(2);
+	background: rgba(255,255,255,1);
+}
+
+label {
+	span {
+		display: inline-block;
+		padding: 0 rem-calc(15);
+		color: #e5e5e5;
+		background: $grey;
+	}
+}
+
+.error {
+	float: right;
+	margin-top: rem-calc(-15);
+	display: block;
+	line-height: 1.8;
+	color: red;
+	padding: 0 0 0 rem-calc(30);
+	border-top: 2px solid red;
+}
+
+.fieldset {
+	padding: rem-calc(15) 0 0 0;
+	border-width: 1px 0 0 0;
+	border-color: #c0c0c0;
+
+	legend {
+		background: transparent;
+		padding: 0 rem-calc(10);
+		color: #c0c0c0;
+		font-size: rem-calc(14);
+		text-align: center;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+}
+
+
+.input-add {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	padding-right: rem-calc(50);
+	list-style: none;
+
+	li:last-child {
+		position: absolute;
+		top: 0;
+		right: 0;
+
+		a {
+			display: block;
+			width: rem-calc(50);
+			line-height: rem-calc(50);
+			text-align: center;
+			background: #00478c;
+			color: #fff;
+		}
+	}
+}
+
+
+.attached {
+	list-style: none;
+	padding: rem-calc(10);
+	margin: rem-calc(-15) 0 rem-calc(15) 0;
+	border-left: rem-calc(2) solid $grey;
+
+	li {
+		font-size: rem-calc(14);
+		color: $grey;
+		line-height: rem-calc(25);
+	}
+}
+
+
+.dropzone {
+	margin-bottom: rem-calc(15);
+	padding: rem-calc(40) rem-calc(15);
+	background: rgba(255,255,255,0.5);
+	border-top: 2px dashed #e5e5e5;
+	border-right: 2px dashed #e5e5e5;
+	border-bottom: 2px dashed #e5e5e5;
+	border-left: 2px solid $grey;
+
+	i {
+		margin: 0;
+		color: $grey;
+	}
+}

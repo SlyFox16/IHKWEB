@@ -1,0 +1,30 @@
+/*------------------------------------*\
+    Register
+\*------------------------------------*/
+.socials {
+    overflow: hidden;
+    
+    * {
+        float: left;
+        width: rem-calc(50);
+        height: rem-calc(50);
+        text-align: center;
+        line-height: rem-calc(50);
+        border-radius: $global-radius;
+        font-size: rem-calc(24);
+        background: #00478c;
+        color: #fff;
+
+        &:hover {
+            color: #fff;
+        }
+
+        + * {
+            margin-left: rem-calc(10);
+        }
+
+        &.fa-facebook { background: #3b5998; }
+        &.fa-linkedin { background: #005654; }
+        &.fa-xing { background: #0085bf; }
+    }
+}
