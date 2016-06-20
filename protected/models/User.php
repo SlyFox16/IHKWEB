@@ -359,14 +359,6 @@ class User extends ActiveRecord
         return Order::model()->count($crt);
     }
 
-    public function getUAvatar()
-    {
-        if(empty($this->avatar))
-            return 'static/images/profile-no-photo.png';
-
-        return $this->avatar;
-    }
-
     public function getUDescription()
     {
         if(empty($this->description))

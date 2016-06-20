@@ -3,11 +3,11 @@
 
         <!--== Breadcrumbs ==-->
         <?php
-        $this->widget('Breadcrumbs', array(
-            'links' => array(
-                Yii::t("base", 'Feedback')
-            ),
-        ));
+            $this->widget('Breadcrumbs', array(
+                'links' => array(
+                    Yii::t("base", 'Feedback')
+                ),
+            ));
         ?>
 
         <div class="row">

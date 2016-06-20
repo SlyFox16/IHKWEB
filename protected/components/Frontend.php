@@ -11,6 +11,7 @@ class Frontend extends Controller {
 
     public function init()
     {
+        CHtml::$errorContainerTag = 'small';
         if(YII_DEBUG)
             $this->getAssetsUrl();
         Yii::app()->clientScript->registerPackage('base');
