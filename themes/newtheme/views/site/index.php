@@ -2,11 +2,11 @@
 <!--== Experts ====================-->
 <!--===============================-->
 <div class="row">
-    <!-- Breadcrumbs -->
     <div class="small-12 medium-4 columns">
-        <ul class="breadcrumbs">
-            <li>Home</li>
-        </ul>
+        <!-- Breadcrumbs -->
+        <?php $this->widget('Breadcrumbs', array(
+            'links' => array(),
+        )); ?>
     </div>
     <!-- Control -->
     <?php $this->widget('SearchWidget'); ?>
@@ -90,9 +90,14 @@
     <div class="row">
         <div class="small-12">
             <div class="cta">
-                <h2>Awesome call to action headline goes here!</h2>
-                <a href="" class="button large">Find Experts <i class="fa fa-search"></i></a>
-                <a href="" class="button large transparent">Become Expert <i class="fa fa-angle-right"></i></a>
+                <h2><?php echo Yii::t("base", "Awesome call to action headline goes here!");?></h2>
+                <?php if(!Yii::app()->user->isGuest) { ?>
+                    <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="button large"><?php echo Yii::t("base", "Find Experts");?> <i class="fa fa-search"></i></a>
+                <?php } ?>
+                <?php if(Yii::app()->user->isGuest) { ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Expert'.'<i class="fa fa-angle-right"></i>'), array('/registration'), array('class' => 'button large transparent')); ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Seeker'.'<i class="fa fa-angle-right"></i>'), array('site/seekerRegister'), array('class' => 'button large transparent')); ?>
+                <?php } ?>
             </div>
         </div>
     </div>

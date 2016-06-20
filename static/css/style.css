@@ -7667,7 +7667,7 @@ label span {
   background: #777;
 }
 
-.error {
+/*.error {
   float: right;
   margin-top: -0.9375rem;
   display: block;
@@ -7675,7 +7675,7 @@ label span {
   color: red;
   padding: 0 0 0 1.875rem;
   border-top: 2px solid red;
-}
+}*/
 
 .fieldset {
   padding: 0.9375rem 0 0 0;
@@ -11059,4 +11059,13 @@ body .rating-gly-star {
 .control .search > * {
     display: inline-block;
     vertical-align: top;
+}
+
+.errorMessage {
+    border-top: 2px solid red;
+    color: red;
+    font-size: 12px;
+    font-weight: 600;
+    padding-top: 1rem;
+    text-transform: uppercase;
 }
