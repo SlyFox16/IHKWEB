@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-sm-8 col-md-6">
-                <?php $form = $this->beginWidget('CActiveForm', array(
+                <?php $form = $this->beginWidget('ActiveForm', array(
                     'id' => 'cabinet-form',
                     'enableAjaxValidation' => true,
                     'clientOptions' => array(
@@ -52,7 +52,7 @@
                                 </div>
                                 <?php echo $form->error($user, 'name'); ?>
                             </li>
-                            <li <?php echo $user->requiredClass('email'); ?>>
+                            <li <?php echo $user->requiredClass('surname'); ?>>
                                 <div class="field-content">
                                     <div><?php echo $form->label($user, 'surname'); ?></div>
                                     <div><?php echo $form->textField($user, 'surname', array('readonly'=>true)); ?></div>
@@ -239,5 +239,5 @@
             endDate: '+0d',
             'setDate': new Date(),
         });
-    ");?>
+    ", CClientScript::POS_END);?>
 <?php $this->widget('PassChange', array('change' => true)); ?>

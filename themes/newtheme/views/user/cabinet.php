@@ -24,13 +24,8 @@
                     'validateOnSubmit' => true,
                     'validateOnChange' => true,
                     'inputContainer' => 'fieldset',
-                    'afterValidate'=>'js:function(form, data, hasError)
-                        {
-                            if(!hasError) {
-                               $("#cabinet-form [type=submit]").off();
-                               return true;
-                            }
-                        }',
+                    'beforeValidate' => 'js:function(form){$(form).find("button[type=\'submit\']").prop("disabled", true); return true;}',
+                    'afterValidate' => 'js:function(form, data, hasError){$(form).find("button[type=\'submit\']").prop("disabled", false); return !hasError;}',
                 ),
                 'htmlOptions'=>array("enctype"=>"multipart/form-data"),
             )); ?>
@@ -45,25 +40,116 @@
                         <?php $this->renderPartial('application.widgets.views.user_relation', array('user' => $user)); ?>
 
                         <label>
-                            <span>Name</span>
-                            <input type="text" value="John Doe">
+                            <span><?php echo $user->getAttributeLabel('name'); ?></span>
+                            <?php echo $form->textField($user, 'name', array('readonly'=>true)); ?>
                         </label>
+                        <?php echo $form->error($user, 'name'); ?>
 
                         <label>
-                            <span>Description</span>
-                            <textarea name="" id="" cols="30" rows="5"></textarea>
+                            <span><?php echo $user->getAttributeLabel('surname'); ?></span>
+                            <?php echo $form->textField($user, 'surname', array('readonly'=>true)); ?>
+                        </label>
+                        <?php echo $form->error($user, 'surname'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('email'); ?></span>
+                            <?php echo $form->textField($user, 'email', array('readonly'=>true)); ?>
+                        </label>
+                        <?php echo $form->error($user, 'email'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('position'); ?></span>
+                            <?php echo $form->textField($user, 'position'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'position'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('description'); ?></span>
+                            <?php echo $form->textArea($user, 'description', array('cols' => 30, 'rows' => 5)); ?>
+                        </label>
+                        <?php echo $form->error($user, 'description'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('avatar'); ?></span>
+                            <?php echo $form->fileField($user, 'avatar'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'avatar'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('speciality'); ?></span>
+                            <?php $this->widget(
+                                'booster.widgets.TbSelect2',
+                                [
+                                    'model'=>$user,
+                                    'attribute'=>"speciality",
+                                    'data' => $user->specialityList,
+                                    'asDropDownList' => true,
+                                    'options' => [
+                                        'placeholder' => 'Select speciality',
+                                        'width' => '100%',
+                                        'allowClear' => true,
+                                    ],
+                                    'htmlOptions' => [
+                                        'multiple' => true,
+                                        'class' => 'form-control'
+                                    ],
+                                ]
+                            );?>
                         </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="small-12 columns">
                         <fieldset class="fieldset">
-                            <legend>Certifications</legend>
-                            <label>
-                                <span>Certificate</span>
-                                <input type="text">
-                            </label>
-                            <small class="error">Invalid entry</small>
+                            <legend><?php echo Yii::t("base", "Certifications"); ?></legend>
+                            <div class="wheretoadd">
+                                <?php foreach ($certificates as $key => $certificate) { ?>
+                                    <?php if(!$certificate->isNewRecord) { ?>
+                                        <div class="fields">
+                                            <label>
+                                                <span><?php echo $certificate->getAttributeLabel('certificate_id'); ?></span>
+                                                <?php $this->widget(
+                                                    'booster.widgets.TbSelect2',
+                                                    [
+                                                        'model'=>$certificate,
+                                                        'attribute'=>"[$key]certificate_id",
+                                                        'data' => $certificate->allCertificates,
+                                                        'asDropDownList' => true,
+                                                        'options' => [
+                                                            'placeholder' => 'Select product',
+                                                            'width' => '100%',
+                                                            'allowClear' => true,
+                                                        ],
+                                                        'htmlOptions' => [
+                                                            'class' => 'form-control'
+                                                        ],
+                                                    ]
+                                                );?>
+                                            </label>
+                                            <?php $form->error($certificate, "[$key]certificate_id"); ?>
+
+                                            <label>
+                                                <span><?php echo $certificate->getAttributeLabel('date'); ?></span>
+                                                <?php $this->widget(
+                                                    'booster.widgets.TbDatePicker',
+                                                    array(
+                                                        'model'=>$certificate,
+                                                        'attribute'=>"[$key]uDate",
+                                                        'options' => array(
+                                                            'format' => 'dd/mm/yyyy',
+                                                            'todayHighlight' => true,
+                                                            'endDate' => '+1d',
+                                                        ),
+                                                    )
+                                                ); ?>
+                                            </label>
+                                        </div>
+                                        <?php echo $form->error($certificate, "[$key]date"); ?>
+                                    <?php } ?>
+                                <?php } ?>
+                            </div>
+                            <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton')); ?>
+                            <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton')); ?>
                         </fieldset>
                     </div>
                 </div>
@@ -72,37 +158,54 @@
                         <fieldset class="fieldset">
                             <legend>References</legend>
                             <label>
-                                <span>PDF Files</span>
-                                <div class="dropzone">
-                                    <i>Drop your files here or click</i>
-                                </div>
+                                <span><?php echo Yii::t("base", "PDF Files"); ?></span>
+                                <?php $this->widget('ext.dropzone.EDropzone', array(
+                                    'model' => $user,
+                                    'attribute' => 'pdf',
+                                    'url' => $this->createUrl('user/upload'),
+                                    'mimeTypes' => array('application/pdf'),
+                                    'options' => array('addRemoveLinks' =>true),
+                                )); ?>
                             </label>
-                            <ul class="attached">
-                                <li>document.pdf <a href="" class="fa fa-times"></a></li>
-                            </ul>
+                            <?php $this->widget('ImageGallery', array('model' => $user)); ?>
 
                             <label>
-                                <span>Facebook</span>
-                                <input type="text">
+                                <span><?php echo $user->getAttributeLabel('address'); ?></span>
+                                <?php echo $form->textField($user, 'address', array('readonly'=>true)); ?>
                             </label>
+                            <?php echo $form->error($user, 'address'); ?>
 
                             <label>
-                                <span>Twitter</span>
-                                <input type="text">
+                                <span><?php echo $user->getAttributeLabel('phone'); ?></span>
+                                <?php echo $form->textField($user, 'phone'); ?>
                             </label>
+                            <?php echo $form->error($user, 'phone'); ?>
 
                             <label>
-                                <span>Facebook</span>
-                                <input type="text">
+                                <span><?php echo $user->getAttributeLabel('facebook_url'); ?></span>
+                                <?php echo $form->textField($user, 'facebook_url'); ?>
                             </label>
+                            <?php echo $form->error($user, 'facebook_url'); ?>
+
+                            <label>
+                                <span><?php echo $user->getAttributeLabel('xing_url'); ?></span>
+                                <?php echo $form->textField($user, 'xing_url'); ?>
+                            </label>
+                            <?php echo $form->error($user, 'xing_url'); ?>
+
+                            <label>
+                                <span><?php echo $user->getAttributeLabel('vcf'); ?></span>
+                                <?php echo $form->fileField($user, 'vcf'); ?>
+                            </label>
+                            <?php echo $form->error($user, 'vcf'); ?>
                         </fieldset>
                     </div>
                 </div>
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
                         <div class="button-group">
-                            <a class="button large">Save <i class="fa fa-circle-o-notch"></i></a>
-                            <a class="button large">Recover Password</a>
+                            <?php echo CHtml::linkButton(Yii::t("base", 'Save').' <i class="fa fa-circle-o-notch"></i>', array('class' => 'button large')); ?>
+                            <a class="button large" data-toggle="passchange"><?php echo Yii::t("base", "Recover Password"); ?></a>
                         </div>
                     </div>
                 </div>
@@ -110,3 +213,4 @@
         </div>
     </div>
 </section>
+<?php $this->widget('PassChange', array('change' => true)); ?>

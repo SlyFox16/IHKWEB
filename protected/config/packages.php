@@ -42,6 +42,7 @@ return array(
         'js' => array(
             'javascripts/vendor.js',
             'javascripts/app.js',
+            'javascripts/myjs.js',
         ),
         'depends' => array('jquery'),
     ),

@@ -25,16 +25,16 @@
         <div class="medium-6 columns">
             <div class="user-area">
                 <?php if(!Yii::app()->user->isGuest) { ?>
-                    <a href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>" title="<?php echo Yii::t("base", "View Profile"); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
-                    <a href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders" title="<?php echo Yii::t("base", "Cabinet"); ?>"></a>
+                    <a data-tooltip href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>" title="<?php echo Yii::t("base", "View Profile"); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
+                    <a data-tooltip href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders" title="<?php echo Yii::t("base", "Cabinet"); ?>"></a>
                     <?php if(Yii::app()->user->isStaff) { ?>
-                        <a href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-bar-chart" title="<?php echo Yii::t("base", "Backend"); ?>"></a>
+                        <a data-tooltip href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-bar-chart" title="<?php echo Yii::t("base", "Backend"); ?>"></a>
                     <?php } ?>
-                    <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
+                    <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } elseif(Yii::app()->user->is_seeker) { ?>
-                    <a href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
+                    <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } else {
-                    echo CHtml::link('Login', array('/site/login'), array('title' => 'Login'));
+                    echo CHtml::link('Login', array('/site/login'), array('title' => 'Login', 'data-tooltip' => ''));
                 } ?>
             </div>
         </div>
