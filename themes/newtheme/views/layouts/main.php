@@ -67,6 +67,6 @@
     </div>
     <div class="cookie_controls"><a class='accept'>Accept</a><a href="policy.html">Learn More</a></div>
 </div>-->
-
 </body>
+<?php $this->widget('Notifications'); ?>
 </html>

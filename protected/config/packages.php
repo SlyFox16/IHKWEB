@@ -43,6 +43,7 @@ return array(
             'javascripts/vendor.js',
             'javascripts/app.js',
             'javascripts/myjs.js',
+            'javascripts/bootstrap-notify.js',
         ),
         'depends' => array('jquery'),
     ),
