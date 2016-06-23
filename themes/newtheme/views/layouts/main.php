@@ -18,9 +18,12 @@
     <div class="row">
         <div class="medium-6 columns">
             <div class="logo">
-                <h1>Crowd</h1>
-                <p>Innovation / Funding / Sourcing</p>
+                <a href="<?php echo Yii::app()->homeUrl; ?>">
+                    <h1>Crowd</h1>
+                    <p>Innovation / Funding / Sourcing</p>
+                </a>
             </div>
+
         </div>
         <div class="medium-6 columns">
             <div class="user-area">

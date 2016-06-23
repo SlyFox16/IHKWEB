@@ -12,12 +12,14 @@
     </div>
     <div class="small-12 medium-6 columns">
         <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
-            <li><a href="" class="fa fa-flag"></a></li>
+            <li><?php $this->widget('StarRating', array('user' => $user)); ?></li>
+            <li><a class="fa fa-flag" data-toggle="report"></a></li>
             <li>
                 <a href="" class="fa fa-share-alt"></a>
                 <ul class="share">
-                    <li><a href="" class="fa fa-facebook"></a></li>
-                    <li><a href="" class="fa fa-twitter"></a></li>
+                    <li><a href="http://www.facebook.com/sharer/sharer.php?u=<?php Yii::app()->getBaseUrl(true).Yii::app()->request->requestUri;?>" class="fa fa-facebook"></a></li>
+                    <li><a href="http://twitter.com/home?status=Let´s meet at #CrowdDialog in Helsinki <?php Yii::app()->getBaseUrl(true).Yii::app()->request->requestUri;?>" class="fa fa-twitter" class="fa fa-twitter"></a></li>
+                    <li><a href="https://plus.google.com/share?url=<?php Yii::app()->getBaseUrl(true).Yii::app()->request->requestUri;?>" class="fa fa-google-plus"></a></li>
                 </ul>
             </li>
         </ul>
@@ -128,3 +130,9 @@
         </div>
     </div>
 </section>
+
+<?php $this->widget('RatingDescription', array('user' => $user)); ?>
+<?php $this->widget('Reportpop', array('receiver' => $user->id)); ?>
+<?php Yii::app()->clientScript->registerScript('username',"
+        username = '$user->username'
+"); ?>

@@ -25,7 +25,7 @@ class StarRating extends CWidget
 
     private function registerScript($disabled) {
         Yii::app()->clientScript->registerCssFile($this->controller->assetsUrl.'/css/bootstrap-rating.css');
-        Yii::app()->clientScript->registerScriptFile($this->controller->assetsUrl.'/js/bootstrap-rating.min.js', CClientScript::POS_END);
+        Yii::app()->clientScript->registerScriptFile($this->controller->assetsUrl.'/javascripts/bootstrap-rating.min.js', CClientScript::POS_END);
 
         if(!$disabled) {
             Yii::app()->clientScript->registerScript('starRatingAjax',"
@@ -40,7 +40,7 @@ class StarRating extends CWidget
                             if(data.result) {
                                 self.rating('update', data.data);
                                 self.rating('refresh', {disabled: true, showClear: false, value: data.data});
-                                $('#ratingDescription').modal('show');
+                                $('#ratingDescription').foundation('reveal', 'open');
                             }
                         }
                     });
@@ -51,7 +51,7 @@ class StarRating extends CWidget
         if(!Yii::app()->user->isGuest) {
             Yii::app()->clientScript->registerScript('showDescription',"
                 $('.rating-disabled .rating-gly-star').on('click', function () {
-                    $('#ratingDescription').modal('show');
+                    $('#ratingDescription').foundation('reveal', 'open');
                 });
             ");
         }
