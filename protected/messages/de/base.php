@@ -17,6 +17,7 @@
  * NOTE, this file must be saved in UTF-8 encoding.
  */
 return array (
+  'Accept' => '',
   'ADD' => '',
   'Add project info' => '',
   'Avatar' => '',
@@ -57,6 +58,7 @@ return array (
   'Incorrect username or password.' => '',
   'Join our program, [b]register[/b] and become a certified expert.' => '',
   'Level' => '',
+  'Learn More' => '',
   'Link' => '',
   'Login' => '',
   'Login with [b]social account[/b]' => '',
@@ -93,6 +95,7 @@ return array (
   'The account is not active' => '',
   'The requested page does not exist!' => '',
   'This link has been expired or incorrect.' => '',
+  'This website uses cookies to help us give you the best experience when you visit.' => '',
   'Ups! Something went wrong!' => '',
   'Ups! Wrong link!' => '',
   'Use already existing [b]social[/b] account to [b]sign up[/b]' => '',

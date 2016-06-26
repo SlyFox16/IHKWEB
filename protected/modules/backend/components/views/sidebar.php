@@ -116,6 +116,7 @@
                                 <div class="accordion-inner">
                                     <ul class="nav nav-list">
                                         <li><a href="<?php echo Yii::app()->createUrl("backend/settings/admin"); ?>">Settings</a></li>
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/pages/admin"); ?>">Static Pages</a></li>
                                     </ul>
                                 </div>
                             </div>

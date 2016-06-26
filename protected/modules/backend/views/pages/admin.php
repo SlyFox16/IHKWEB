@@ -31,11 +31,7 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'title_ru',
-		'title_ro',
-		'created:date',
-		'updated:date',
-
+		'title',
         array(
             'class' => 'backend.components.ButtonColumn',
             'htmlOptions' => array('width' => '60px'),

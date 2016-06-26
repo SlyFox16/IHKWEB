@@ -1,12 +1,12 @@
 <?php
 
-class ihkUserRouter extends CBaseUrlRule
+class staticPagesRouter extends CBaseUrlRule
 {
     private $matches;
 
     public function createUrl($manager,$route,$params,$ampersand)
     {
-        if ($route==='user/info')
+        if ($route==='site/pages')
         {
             if (isset($params['id']) && !isset($params['language'])) {
                 return $this->getUrl($params['id']);
@@ -20,7 +20,7 @@ class ihkUserRouter extends CBaseUrlRule
         $flag = $this->checkUrl($pathInfo);
 
         if($flag) {
-            return 'user/info';
+            return 'site/pages';
         }
 
         return false;  // не применяем данное правило
@@ -39,7 +39,7 @@ class ihkUserRouter extends CBaseUrlRule
 
         if(preg_match('~([a-zA-Z0-9\._-]+)?$~', $pathInfo, $this->matches)) {
             if(isset($this->matches[1])) {
-                if($section = $this->dbExist('User', $this->matches[1])) {
+                if($section = $this->dbExist('Pages', $this->matches[1])) {
                     $flag = true;
                     $_GET['id'] = $section;
                 }
@@ -51,7 +51,7 @@ class ihkUserRouter extends CBaseUrlRule
 
     private function dbExist($db, $slug)
     {
-        $user = $db::model()->find("username = '$slug'");
+        $user = $db::model()->find("slug = '$slug'");
 
         if($user)
             return $user->id;
@@ -61,10 +61,10 @@ class ihkUserRouter extends CBaseUrlRule
 
     private function getUrl($id)
     {
-        $article = User::model()->findByPk($id);
+        $article = Pages::model()->findByPk($id);
 
         if($article) {
-            return $article->username;
+            return $article->slug;
         }
         else
             return false;

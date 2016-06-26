@@ -18,11 +18,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'title_ru',
-		'title_ro',
-		'content_ru',
-		'content_ro',
-		'created:date',
-		'updated:date',
+		'title',
+		'content',
 	),
 )); ?>

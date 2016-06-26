@@ -114,6 +114,7 @@ return CMap::mergeArray(
                 'urlFormat' => 'path',
                 'showScriptName' => false,
                 'rules' => array(
+                    array('class' => 'staticPagesRouter'),
                     array('class' => 'ihkUserRouter'),
                     array('class' => 'CertificateRouter'),
                     '' => 'site/index',

@@ -61,12 +61,12 @@
 </footer>
 
 
-<!--<div class="cookie show">
+<div class="cookie show">
     <div class="cookie_msg">
-        This website uses cookies to help us give you the best experience when you visit.
+        <?php echo Yii::t("base", "This website uses cookies to help us give you the best experience when you visit."); ?>
     </div>
-    <div class="cookie_controls"><a class='accept'>Accept</a><a href="policy.html">Learn More</a></div>
-</div>-->
+    <div class="cookie_controls"><a class='accept'><?php echo Yii::t("base", "Accept"); ?></a><a href="<?php echo $this->createUrl('site/pages', array('id' => 1)); ?>"><?php echo Yii::t("base", "Learn More"); ?></a></div>
+</div>
 </body>
 <?php $this->widget('Notifications'); ?>
 </html>

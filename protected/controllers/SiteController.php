@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'associationSuggest', 'seekerRegister', 'seekerConfirmation', 'certificateView'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'associationSuggest', 'seekerRegister', 'seekerConfirmation', 'certificateView', 'pages'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -287,6 +287,13 @@ class SiteController extends Frontend
 
             echo CJSON::encode($result);
         }
+    }
+
+    public function actionPages($id){
+        $model = Pages::model()->find($id);
+        if(!$model)
+            throw new CHttpException(404,Yii::t("base","Запрашиваемая страница не существует!"));
+        $this->render("page",array('model'=>$model));
     }
 
     public function actionAssociationSuggest(){
