@@ -26,7 +26,7 @@ class UserController extends Frontend
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'deleteRelation'),
+                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'userAssoc', 'deleteRelation', 'deleteAssoc'),
                 'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
@@ -291,6 +291,17 @@ class UserController extends Frontend
             Yii::app()->ajax->failure();
     }
 
+    public function actionDeleteAssoc() {
+        $id = (int)$_POST["id"];
+        $model = UserAssociation::model()->findByAttributes(array('user_id' => Yii::app()->user->id, 'association_id' => $id));
+
+        if($model)
+            if($model->delete())
+                Yii::app()->ajax->success();
+            else
+                Yii::app()->ajax->failure();
+    }
+
     public function actionReport()
     {
         $model = new Report();
@@ -377,6 +388,26 @@ class UserController extends Frontend
                 $reference->user_receiver = $modelReceiver->id;
                 if($reference->save()) {
                     $ret = $this->renderPartial('li_element', array('modelReceiver' => $modelReceiver), true);
+                    Yii::app()->ajax->raw($ret);
+                }
+            }
+        } else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
+    public function actionUserAssoc($user_assoc)
+    {
+        $modelReceiver = AssociationMembership::model()->findByPk($user_assoc);
+
+        if($modelReceiver) {
+            $check = UserAssociation::model()->count(array('condition' => 'user_id = :user_id && association_id = :association_id', 'params' => array(':user_id' => Yii::app()->user->id, ':association_id' => $modelReceiver->id)));
+
+            if(!$check) {
+                $reference = new UserAssociation();
+                $reference->user_id = Yii::app()->user->id;
+                $reference->association_id = $modelReceiver->id;
+                if($reference->save()) {
+                    $ret = $this->renderPartial('li_assoc', array('modelReceiver' => $modelReceiver), true);
                     Yii::app()->ajax->raw($ret);
                 }
             }

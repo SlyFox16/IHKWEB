@@ -46,16 +46,30 @@
                 </ul>
             <?php } ?>
             <p><?php echo $user->uDescription; ?></p>
-            <ul class="associates">
-                <li data-tooltip aria-haspopup="true" title="Deutscher Crowdsourcing Verband Member"><img src="<?php echo $this->assetsUrl?>/images/DCV-logo.png" alt=""></li>
-            </ul>
+            <?php if($user->connectedAssoc) { ?>
+                <ul class="associates">
+                    <?php foreach($user->connectedAssoc as $assoc) { ?>
+                        <li data-tooltip aria-haspopup="true" title="<?php echo $assoc->name; ?>">
+                            <a href="<?php echo $assoc->link; ?>" target="_blank">
+                                <img src="<?php echo YHelper::getImagePath($assoc->logo); ?>" alt="">
+                            </a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            <?php } ?>
         </div>
         <div class="small-9 small-offset-3 medium-3 medium-offset-0 columns">
             <ul class="stats">
                 <li><?php echo Yii::t("base", "Rating");?> <b><?php echo $user->rating; ?></b></li>
                 <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>
-                <li>Certification
-                    <b><img src="<?php echo $this->assetsUrl?>/images/ihk.png" alt=""></b>
+                <li><?php echo Yii::t("base", "Certification"); ?>
+                    <?php if(!empty($user->userCertificates)) { ?>
+                        <?php foreach($user->userCertificates as $cert) { ?>
+                            <b><a href="<?php echo $this->createUrl('site/certificateView', array('id' => $cert->id)); ?>">
+                                    <img src="<?php echo YHelper::getImagePath($cert->logo, 60); ?>" data-tooltip title="<?php echo $cert->name; ?>">
+                            </a></b>
+                        <?php } ?>
+                    <?php } ?>
                 </li>
             </ul>
         </div>

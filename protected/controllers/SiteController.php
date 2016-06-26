@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'seekerRegister', 'seekerConfirmation'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'associationSuggest', 'seekerRegister', 'seekerConfirmation', 'certificateView'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -63,6 +63,12 @@ class SiteController extends Frontend
         $randUsers = User::model()->expert_confirm()->findAll(array('order' => 'RAND()', 'limit' => 10));
         $this->render('index', array('randUsers' => $randUsers));
 	}
+
+    public function actionCertificateView($id)
+    {
+        $certificate = Certificates::model()->findByPk($id);
+        $this->render('certificate_view', array('certificate' => $certificate));
+    }
 
     public function actionXing()
     {
@@ -273,6 +279,25 @@ class SiteController extends Frontend
                         'value' => $m->name." ".$m->surname,
                         'id' => $m->id,
                     );
+            }
+
+            echo CJSON::encode($result);
+        }
+    }
+
+    public function actionAssociationSuggest(){
+        if (Yii::app()->request->isAjaxRequest && isset($_GET['term'])) {
+            $crt = new CDbCriteria;
+            $crt->condition = "name LIKE :req";
+            $crt->params[":req"] = '%'.strtr($_GET['term'], array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+
+            $models = AssociationMembership::model()->findAll($crt);
+            $result = array();
+            foreach ($models as $m) {
+                $result[] = array(
+                    'label' => $m->name,
+                    'id' => $m->id,
+                );
             }
 
             echo CJSON::encode($result);

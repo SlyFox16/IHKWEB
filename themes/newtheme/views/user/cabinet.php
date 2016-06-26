@@ -39,6 +39,8 @@
 
                         <?php $this->renderPartial('application.widgets.views.user_relation', array('user' => $user)); ?>
 
+                        <?php $this->renderPartial('application.widgets.views.user_association', array('user' => $user)); ?>
+
                         <label>
                             <span><?php echo $user->getAttributeLabel('name'); ?></span>
                             <?php echo $form->textField($user, 'name', array('readonly'=>true)); ?>

@@ -78,6 +78,36 @@
 
                         <div class="accordion-group">
                             <div class="accordion-heading">
+                                <a href="#collapseMembership" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                    <i class="icon-list"></i> Association Membership
+                                </a>
+                            </div>
+                            <div class="accordion-body collapse<?php if($c=="association_membership") echo " in"; ?>" id="collapseMembership">
+                                <div class="accordion-inner">
+                                    <ul class="nav nav-list">
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/associationMembership/admin");?>">Memberships</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a href="#collapseCompleted" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                    <i class="icon-list"></i> Completed projects
+                                </a>
+                            </div>
+                            <div class="accordion-body collapse<?php if($c=="completed") echo " in"; ?>" id="collapseCompleted">
+                                <div class="accordion-inner">
+                                    <ul class="nav nav-list">
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/completedProjects/admin");?>">Projects</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
                                 <a href="#collapseConfig" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
                                     <i class="icon-cog"></i> Configuration
                                 </a>

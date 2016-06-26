@@ -175,37 +175,4 @@ class UserController extends BackendController
 
         $this->render("update_password",array("model"=>$model));
     }
-
-    public function actionChangeBallance()
-    {
-        $model = new User('changeBallance');
-
-        if (isset($_POST['ajax']) && $_POST['ajax'] == 'change-balance-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
-
-
-        if (isset($_POST['User'])) {
-            $alreadyUser = User::model()->findByPk($_POST['User']['id']);
-            if ($alreadyUser) {
-                $oldBalance = $alreadyUser->balance;
-                $alreadyUser->attributes = $_POST['User'];
-                if ($alreadyUser->update()) {
-
-                    $log = new BalanceLog();
-                    $log->who_changed = Yii::app()->user->id;
-                    $log->whom_changed = $alreadyUser->id;
-                    $log->old_balance = $oldBalance;
-                    $log->new_balance = $alreadyUser->balance;
-                    $log->comment = $alreadyUser->comment;
-                    $log->save();
-
-                    $this->redirect(Yii::app()->request->urlReferrer);
-                }
-            } else
-                throw new CHttpException(404, Yii::t('base', 'Нет такого пользователя'));
-        } else
-            throw new CHttpException(404, Yii::t('base', 'Страницы не существует'));
-    }
 }

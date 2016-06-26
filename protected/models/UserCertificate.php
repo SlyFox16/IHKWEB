@@ -63,11 +63,11 @@ class UserCertificate extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'certificate_id' => 'Certificate',
-            'tebleDescr' => 'Certificate description',
-            'date' => 'Date'
-		);
+			'user_id' => Yii::t("base", 'User'),
+			'certificate_id' => Yii::t("base", 'Certificate'),
+            'tebleDescr' => Yii::t("base", 'Certificate description'),
+            'date' => Yii::t("base", 'Date')
+        );
 	}
 
 	/**

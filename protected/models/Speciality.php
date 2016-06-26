@@ -51,7 +51,7 @@ class Speciality extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'speciality' => 'Speciality',
+			'speciality' => Yii::t("base", 'Speciality'),
 		);
 	}
 

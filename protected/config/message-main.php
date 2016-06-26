@@ -5,9 +5,9 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-    'sourcePath' => __DIR__.'/..',
+    'sourcePath' => __DIR__.'/../..',
     'messagePath' => __DIR__.'/../messages',
-    'languages' => array('ro', 'en'),
+    'languages' => array('de'),
     'fileTypes' => array('php'),
     'exclude' => array(),
     'translator' => 'Yii::t',

@@ -16,6 +16,8 @@
 class RatingLog extends ActiveRecord
 {
     public $htmlpurifier;
+    public $id;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -107,9 +109,47 @@ class RatingLog extends ActiveRecord
 
 		$criteria=new CDbCriteria;
 
+        if ($this->who_vote) {
+            $queryTerms = explode(' ', $this->who_vote);
+
+            $crt = new CDbCriteria;
+            $crt->select = 't.id as id';
+            $crt->with = array('whoVote');
+
+            foreach ($queryTerms as $k => $req) {
+                $tCriteria = new CDbCriteria();
+                $tCriteria->condition = "whoVote.name LIKE :$k OR whoVote.surname LIKE :$k";
+                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+                $crt->mergeWith($tCriteria);
+            }
+
+            $info = RatingLog::model()->findAll($crt);
+            $in = CHtml::listData($info, 'id', 'id');
+
+            $criteria->addInCondition('id', $in);
+        }
+
+        if ($this->who_received) {
+            $queryTerms = explode(' ', $this->who_received);
+
+            $crt = new CDbCriteria;
+            $crt->select = 't.id as id';
+            $crt->with = array('whoReceived');
+
+            foreach ($queryTerms as $k => $req) {
+                $tCriteria = new CDbCriteria();
+                $tCriteria->condition = "whoReceived.name LIKE :$k OR whoReceived.surname LIKE :$k";
+                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+                $crt->mergeWith($tCriteria);
+            }
+
+            $info = RatingLog::model()->findAll($crt);
+            $in = CHtml::listData($info, 'id', 'id');
+
+            $criteria->addInCondition('id', $in);
+        }
+
 		$criteria->compare('id',$this->id);
-		$criteria->compare('who_vote',$this->who_vote);
-		$criteria->compare('who_received',$this->who_received);
 		$criteria->compare('num',$this->num);
 
 		return new CActiveDataProvider($this, array(

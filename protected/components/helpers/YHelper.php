@@ -20,18 +20,20 @@ class YHelper
         return Yii::app()->format->date($value);
     }
 
-    public static function getImagePath($source_image, $width = 0, $height = 0) {
-        if(!empty($source_image) && file_exists($source_image)) {
-            if(empty($width) && empty($height))
-                $image = '/'.$source_image;
+    public static function getImagePath($source_image, $width = 0, $height = 0, $default = '') {
+        if (!empty($source_image) && file_exists($source_image)) {
+            if (empty($width) && empty($height))
+                $image = '/' . $source_image;
+            elseif (!empty($width) && empty($height))
+                $image = Yii::app()->iwi->load($source_image)->resize($width, 0)->cache();
             else
                 $image = Yii::app()->iwi->load($source_image)->adaptive($width, $height)->cache();
         } else {
-            if(!empty($width) && !empty($height)) {
-                $image = Yii::app()->params['noImage'];
+            if (!empty($width) && !empty($height)) {
+                $image = $default ? : Yii::app()->params['noImage'];
                 $image = Yii::app()->iwi->load($image)->adaptive($width, $height)->cache();
             } else {
-                $image = '/'.Yii::app()->params['noImage'];
+                $image = $default ? : '/' . Yii::app()->params['noImage'];
             }
         }
 

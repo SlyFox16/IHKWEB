@@ -23,7 +23,7 @@ class LoginForm extends CFormModel
         return array(
             // email and password are required
             array('email, password', 'required'),
-            array('email', 'email', 'message' => Yii::t("base","E-mail не действительный!")),
+            array('email', 'email', 'message' => Yii::t("base","E-mail is not valid!")),
             // rememberMe needs to be a boolean
             array('rememberMe', 'boolean'),
             // password needs to be authenticated
@@ -67,7 +67,7 @@ class LoginForm extends CFormModel
         if (!$this->hasErrors()) {
             $this->_identity = new UserIdentity($this->email);
             if (!$this->_identity->autoAuthenticate())
-                $this->addError('password', Yii::t("base","Неверный адрес электронной почты"));
+                $this->addError('password', Yii::t("base","Incorrect E-Mail Address"));
         }
     }
 

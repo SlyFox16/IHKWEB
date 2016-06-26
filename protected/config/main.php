@@ -24,7 +24,7 @@ return CMap::mergeArray(
         'theme' => 'newtheme',
 
         // preloading 'log' component
-        'preload' => array('log', 'booster'), //, 'booster', 'bootstrap', 'languages'
+        'preload' => array('log', 'booster'), //, 'bootstrap', 'languages'
 
         // autoloading model and component classes
         'import' => array(
@@ -82,12 +82,12 @@ return CMap::mergeArray(
                 ),
             ),
 
-            'languages' => array(
+            /*'languages' => array(
                 'class' => 'Languages',
                 'useLanguage' => true,
                 'autoDetect' => true,
                 'languages' => array('ro', 'ru'),
-            ),
+            ),*/
 
             'iwi' => array(
                 'class' => 'application.extensions.iwi.IwiComponent',
@@ -115,6 +115,7 @@ return CMap::mergeArray(
                 'showScriptName' => false,
                 'rules' => array(
                     array('class' => 'ihkUserRouter'),
+                    array('class' => 'CertificateRouter'),
                     '' => 'site/index',
                     'xing' => 'site/xing',
                     'backend' => 'backend/default/index',
