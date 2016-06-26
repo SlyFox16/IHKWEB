@@ -34,6 +34,10 @@ class UserController extends Frontend
                 'expression'=>'CAuthHelper::hasRightToVote()',
             ),
             array('allow',
+                'actions'=>array('completedProject', 'deleteComplete'),
+                'expression'=>'CAuthHelper::isUseresProject($_GET["id"])',
+            ),
+            array('allow',
                 'actions'=>array('info'),
                 'expression'=>'CAuthHelper::isIssetExpert($_GET["id"])',
             ),
@@ -138,6 +142,27 @@ class UserController extends Frontend
         }
         else
             throw new CHttpException(404, Yii::t('base', 'Page does not exist'));
+    }
+
+    public function actionCompletedProject($id = null)
+    {
+        if(Yii::app()->request->isPostRequest) {
+            $model = isset($id) ? CompletedProjects::model()->findByPk($id) : new CompletedProjects();
+
+            if (isset($_POST['ajax'])) {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
+
+            if (isset($_POST["CompletedProjects"])) {
+                $model->attributes = $_POST["CompletedProjects"];
+
+                if ($model->save()) {
+                    $this->redirect(Yii::app()->request->urlReferrer);
+                }
+            }
+        }
+        throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
     public function actionUpdateMailPassword()
@@ -289,6 +314,17 @@ class UserController extends Frontend
                 Yii::app()->ajax->success();
         else
             Yii::app()->ajax->failure();
+    }
+
+    public function actionDeleteComplete() {
+        $id = (int)$_POST["id"];
+        $model = CompletedProjects::model()->findByPk($id);
+
+        if($model)
+            if($model->delete())
+                Yii::app()->ajax->success();
+            else
+                Yii::app()->ajax->failure();
     }
 
     public function actionDeleteAssoc() {

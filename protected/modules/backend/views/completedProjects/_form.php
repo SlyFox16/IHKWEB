@@ -10,7 +10,7 @@
 
     <?php echo $form->tinyMceRow($model,'description',array('rows'=>6,'cols'=>50,'class'=>'span8')); ?>
 
-    <?php echo $form->dateFieldRow($model, 'date', '', array('class'=>'span5','maxlength'=>255)); ?>
+    <?php echo $form->dateFieldRow($model, 'date', 'dd/mm/yyyy', array('class'=>'span5','maxlength'=>255)); ?>
 
 	<?php echo $form->textFieldRow($model,'link',array('class'=>'span5','maxlength'=>255)); ?>
 

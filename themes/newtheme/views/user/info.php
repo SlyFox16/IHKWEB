@@ -79,14 +79,14 @@
 <section>
     <div class="row">
         <div class="medium-6 medium-offset-3 columns">
-            <?php if(!empty($user->certificates)) { ?>
-                <?php foreach($user->certificates as $cert) { ?>
+            <?php if($completed = $user->completed) { ?>
+                <?php foreach($completed as $cert) { ?>
                     <article class="certification">
                         <header>
-                            <h3><?php echo $cert->certificate->name; ?></h3> <span><?php echo Yii::app()->format->date($cert->date); ?></span>
+                            <h3><?php echo $cert->name; ?></h3> <span><?php echo Yii::app()->format->date($cert->date); ?></span>
                         </header>
-                        <p><?php echo $cert->certificate->description; ?></p>
-                        <a href="" class="more">Check out project <i class="fa fa-angle-right"></i></a>
+                        <p><?php echo $cert->description; ?></p>
+                        <a href="<?php echo $cert->link; ?>" class="more"><?php echo Yii::t("base", "Check out project"); ?> <i class="fa fa-angle-right"></i></a>
                     </article>
                 <?php } ?>
             <?php } ?>

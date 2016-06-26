@@ -54,6 +54,18 @@
                         <?php echo $form->error($user, 'surname'); ?>
 
                         <label>
+                            <span><?php echo $user->getAttributeLabel('title'); ?></span>
+                            <?php echo $form->textField($user, 'title'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'title'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('zip'); ?></span>
+                            <?php echo $form->textField($user, 'zip'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'zip'); ?>
+
+                        <label>
                             <span><?php echo $user->getAttributeLabel('email'); ?></span>
                             <?php echo $form->textField($user, 'email', array('readonly'=>true)); ?>
                         </label>
@@ -158,7 +170,26 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <fieldset class="fieldset">
-                            <legend>References</legend>
+                            <legend><?php echo Yii::t("base", "Completed projects"); ?></legend>
+                            <?php if($completed = $user->completed) { ?>
+                                <ul class="attached-complete">
+                                    <?php foreach($completed as $complete) { ?>
+                                        <li class="relateduser">
+                                            <a data-toggle="complete<?php echo $complete->id; ?>"><?php echo $complete->name; ?></a>
+                                            <a href="javascript:void(0)" title="<?php echo Yii::t("base", "Remove"); ?>" class="delete fa fa-times" data-id="<?php echo $complete->id; ?>">
+                                            </a>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                            <a data-toggle="complete"><?php echo Yii::t("base", 'ADD'); ?></a>
+                        </fieldset>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <fieldset class="fieldset">
+                            <legend><?php echo Yii::t("base", "References"); ?></legend>
                             <label>
                                 <span><?php echo Yii::t("base", "PDF Files"); ?></span>
                                 <?php $this->widget('ext.dropzone.EDropzone', array(
@@ -216,3 +247,22 @@
     </div>
 </section>
 <?php $this->widget('PassChange', array('change' => true)); ?>
+<?php if($completed = $user->completed) { ?>
+    <?php foreach($completed as $complete) { ?>
+        <?php $this->widget("CompletedWidget", array('project_id' => $complete->id)); ?>
+    <?php } ?>
+<?php } ?>
+<?php $this->widget("CompletedWidget"); ?>
+<?php Yii::app()->clientScript->registerScript('remove-completed', "
+    $('.attached-complete').on('click', '.delete', function () {
+        var self = $(this);
+        $.ajax({
+            type:'POST',
+            data:{id:self.data('id')},
+            url: '".Yii::app()->controller->createUrl('/user/deleteComplete')."',
+            success:function (msg) {
+                self.closest('li').fadeOut();
+            }
+        });
+    });
+", CClientScript::POS_END); ?>

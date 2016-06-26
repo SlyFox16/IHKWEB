@@ -25,6 +25,19 @@ class CAuthHelper {
         return false;
     }
 
+    static function isUseresProject($id) {
+        if(!isset($id)) return true;
+        if(!Yii::app()->user->id) return false;
+
+        $project = CompletedProjects::model()->findByPk($id);
+        if(!$project) return false;
+
+        if($project->user_id == Yii::app()->user->id) return true;
+
+        return false;
+    }
+
+
     static function hasRightToVote() {
         $username = Yii::app()->request->getPost('username');
         $index = (int) Yii::app()->request->getPost('index');

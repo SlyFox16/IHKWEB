@@ -171,6 +171,10 @@ class SiteController extends Frontend
 
             $register_form->is_active = 1;
             if($register_form->save()) {
+                $subject = YHelper::yiisetting('register_email', 'Ihk.com register', true);
+                $body = YHelper::yiisetting('register_email');
+
+                Yii::app()->email->sendEmail($subject, $body, $register_form->email);
                 $login = Yii::createComponent('application.models.LoginForm');
                 $login->email = $register_form->email;
                 $login->password = $_POST["User"]['password'];

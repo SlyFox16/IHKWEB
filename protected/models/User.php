@@ -80,7 +80,7 @@ class User extends ActiveRecord
             array('password', 'length', 'min' => 5),
             array('name', 'length', 'max' => 80, 'except' => 'userupdate'),
             array('password, identity, network', 'length', 'max' => 512),
-            array('title', 'length', 'max' => 20),
+            array('title, zip', 'length', 'max' => 20),
             array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
             array('facebook_url, twitter_url, xing_url', 'url'),
             array('salt, username, phone, address', 'length', 'max' => 255, 'except' => 'userupdate'),
@@ -141,6 +141,7 @@ class User extends ActiveRecord
         return array(
             'userCertificates' => array(self::MANY_MANY, 'Certificates', 'user_certificate(user_id, certificate_id)'),
             'certificates' => array(self::HAS_MANY, 'UserCertificate', 'user_id'),
+            'completed' => array(self::HAS_MANY, 'CompletedProjects', 'user_id'),
             'pdf' => array(self::HAS_MANY, 'MultipleImages', 'item_id', 'condition' => 'content_type = :type', 'params' => array(':type' => $this->getClass())),
             'cities0' => array(self::BELONGS_TO, 'Cities', 'city_id'),
             'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
@@ -512,12 +513,28 @@ class User extends ActiveRecord
         return $crt;
     }
 
-    public static function getAssocList()
+    public function getAssocList()
     {
         $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
         $list = CHtml::listData($models, 'iso', 'country_name');
+        $list = $this->moveToTop($list, 'Switzerland');
+        $list = $this->moveToTop($list, 'Austria');
+        $list = $this->moveToTop($list, 'Germany');
+
         return $list;
-        //array_unshift($list);
+    }
+
+    private function moveToTop($array, $key) {
+        $insert = '';
+        foreach ($array as $index => $value) {
+            if($value != $key)
+                $newArray[$index] = $value;
+            else
+                $insert[$index] = $value;
+        }
+
+        $newArray = $insert + $newArray;
+        return $newArray;
     }
 
     public static function getSpecialityList()

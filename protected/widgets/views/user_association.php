@@ -33,7 +33,7 @@
         </li>
     </ul>
 </label>
-<ul class="attachedassoc">
+<ul class="attached attachedassoc">
     <?php $connected = $user->connectedAssoc;
     if($connected) { ?>
         <?php foreach($connected as $conUser) { ?>

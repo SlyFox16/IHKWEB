@@ -32,6 +32,7 @@ class CompletedProjects extends ActiveRecord
 			array('name, description, date, link', 'required'),
 			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('name, link', 'length', 'max'=>255),
+            array('link', 'url'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, name, description, date, link', 'safe', 'on'=>'search'),
@@ -57,11 +58,11 @@ class CompletedProjects extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => 'User',
-			'name' => 'Name',
-			'description' => 'Description',
-			'date' => 'Date',
-			'link' => 'Link',
+			'user_id' => Yii::t("base", 'User'),
+			'name' => Yii::t("base", 'Name'),
+			'description' => Yii::t("base", 'Description'),
+			'date' => Yii::t("base", 'Date'),
+			'link' => Yii::t("base", 'Link'),
 		);
 	}
 
@@ -105,4 +106,16 @@ class CompletedProjects extends ActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function afterFind()
+    {
+        $this->date = Yii::app()->dateFormatter->format("dd/MM/yyyy", CDateTimeParser::parse($this->date, 'yyyy-MM-dd'));
+        parent::afterFind();
+    }
+
+    public function beforeSave()
+    {
+        $this->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($this->date, 'dd/MM/yyyy'));
+        return parent::beforeSave();
+    }
 }

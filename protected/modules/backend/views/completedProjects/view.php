@@ -18,10 +18,10 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'user_id',
+		'user_id:user',
 		'name',
 		'description',
 		'date',
-		'link',
+		'link:url',
 	),
 )); ?>

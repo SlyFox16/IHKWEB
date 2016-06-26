@@ -115,6 +115,12 @@
                             <?php echo $form->textField($register_form, 'address'); ?>
                         </label>
                         <?php echo $form->error($register_form, 'address'); ?>
+
+                        <label>
+                            <span><?php echo $register_form->getAttributeLabel('zip'); ?></span>
+                            <?php echo $form->textField($register_form, 'zip'); ?>
+                        </label>
+                        <?php echo $form->error($register_form, 'zip'); ?>
                     </div>
                 </div>
                 <div class="row">
