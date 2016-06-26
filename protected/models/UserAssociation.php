@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "user_speciality".
+ * This is the model class for table "user_association".
  *
- * The followings are the available columns in table 'user_speciality':
+ * The followings are the available columns in table 'user_association':
  * @property integer $id
  * @property integer $user_id
- * @property integer $speciality_id
+ * @property integer $association_id
  */
-class UserSpeciality extends CActiveRecord
+class UserAssociation extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'user_speciality';
+		return 'user_association';
 	}
 
 	/**
@@ -26,11 +26,11 @@ class UserSpeciality extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, speciality_id', 'required'),
-			array('user_id, speciality_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, association_id', 'required'),
+			array('user_id, association_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, speciality_id', 'safe', 'on'=>'search'),
+			array('id, user_id, association_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -42,7 +42,6 @@ class UserSpeciality extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'speciality0' => array(self::BELONGS_TO, 'Speciality', 'speciality_id'),
 		);
 	}
 
@@ -53,8 +52,8 @@ class UserSpeciality extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => Yii::t("base", 'User'),
-			'speciality_id' => Yii::t("base", 'Speciality'),
+			'user_id' => 'User',
+			'association_id' => 'Association',
 		);
 	}
 
@@ -78,7 +77,7 @@ class UserSpeciality extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
-		$criteria->compare('speciality_id',$this->speciality_id);
+		$criteria->compare('association_id',$this->association_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -89,7 +88,7 @@ class UserSpeciality extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return UserSpeciality the static model class
+	 * @return UserAssociation the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -80,6 +80,7 @@ class User extends ActiveRecord
             array('password', 'length', 'min' => 5),
             array('name', 'length', 'max' => 80, 'except' => 'userupdate'),
             array('password, identity, network', 'length', 'max' => 512),
+            array('title', 'length', 'max' => 20),
             array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
             array('facebook_url, twitter_url, xing_url', 'url'),
             array('salt, username, phone, address', 'length', 'max' => 255, 'except' => 'userupdate'),
@@ -145,6 +146,7 @@ class User extends ActiveRecord
             'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
             'userspeciality' => array(self::HAS_MANY, 'UserSpeciality', 'user_id'),
             'connectedUsers' => array(self::MANY_MANY, 'User', 'user_reference(user_initiator, user_receiver)'),
+            'connectedAssoc' => array(self::MANY_MANY, 'AssociationMembership', 'user_association(user_id, association_id)'),
         );
     }
 
@@ -180,8 +182,8 @@ class User extends ActiveRecord
     {
         return array(
             'id' => 'ID',
-            'identity' => 'Identity',
-            'network' => 'Network',
+            'identity' => Yii::t("base", 'Identity'),
+            'network' => Yii::t("base", 'Network'),
             'name' => Yii::t("base","Name"),
             'surname' => Yii::t("base","Second Name"),
             'email' => Yii::t("base","Email"),
@@ -513,7 +515,9 @@ class User extends ActiveRecord
     public static function getAssocList()
     {
         $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
-        return CHtml::listData($models, 'iso', 'country_name');
+        $list = CHtml::listData($models, 'iso', 'country_name');
+        return $list;
+        //array_unshift($list);
     }
 
     public static function getSpecialityList()

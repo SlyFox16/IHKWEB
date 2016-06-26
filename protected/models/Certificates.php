@@ -34,8 +34,8 @@ class Certificates extends ActiveRecord
             array('points', 'required'),
             array('points', 'numerical', 'integerOnly'=>true, 'min'=>1, 'max'=>9, 'tooSmall'=>'You must set at least 1 point',
                 'tooBig'=>'You cannot set more than 9 points'),
-			array('name', 'length', 'max'=>255),
-            array('description', 'safe'),
+			array('name, slug', 'length', 'max'=>255),
+            array('description, slug', 'safe'),
             array('logo', 'file', 'types'=>'png, jpg, gif','allowEmpty'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -115,4 +115,14 @@ class Certificates extends ActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function beforeSave()
+    {
+        $this->slug = YText::translit($this->name);
+        $proverka = self::model()->findByAttributes(array('slug' => $this->slug));
+        if($proverka && $proverka->id != $this->id)
+            $this->slug .= '_'.$this->id;
+
+        return parent::beforeSave();
+    }
 }

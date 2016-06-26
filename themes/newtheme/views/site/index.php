@@ -41,8 +41,7 @@
     <div class="row">
         <div class="small-12 medium-6 columns">
             <h2>
-                <?php echo Yii::t("base", "Find the certified [b]Crowd Experts[/b] now.
-                Get your crowd project done right and in time.", array('[b]' => '<b>', '[/b]' => '</b>')); ?>
+                <?php echo Yii::t("base", "Find the certified [b]Crowd Experts[/b] now.[br]Get your crowd project done right and in time.", array('[b]' => '<b>', '[/b]' => '</b>', '[br]' => '<br>')); ?>
                 <?php if(!Yii::app()->user->isGuest) { ?>
                     <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="angle"><?php echo Yii::t("base", "Find experts"); ?></a>
                 <?php } ?>
@@ -95,8 +94,8 @@
                     <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="button large"><?php echo Yii::t("base", "Find Experts");?> <i class="fa fa-search"></i></a>
                 <?php } ?>
                 <?php if(Yii::app()->user->isGuest) { ?>
-                    <?php echo CHtml::link(Yii::t("base", 'Become Expert'.'<i class="fa fa-angle-right"></i>'), array('/registration'), array('class' => 'button large transparent')); ?>
-                    <?php echo CHtml::link(Yii::t("base", 'Become Seeker'.'<i class="fa fa-angle-right"></i>'), array('site/seekerRegister'), array('class' => 'button large transparent')); ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Expert').'<i class="fa fa-angle-right"></i>', array('/registration'), array('class' => 'button large transparent')); ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Seeker').'<i class="fa fa-angle-right"></i>', array('site/seekerRegister'), array('class' => 'button large transparent')); ?>
                 <?php } ?>
             </div>
         </div>
