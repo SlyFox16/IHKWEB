@@ -111,7 +111,6 @@ return CMap::mergeArray(
                         'secret' => 'Nb2gl4xogWeKqMB0',
                     ),
                     'xing' => array(
-                        // register your app here: https://www.linkedin.com/secure/developer
                         'class' => 'XingOAuthService',
                         'key' => '8618cf6c084f5a4a700e',
                         'secret' => '81193b0d56e134f25d151d5240837387490fff6c',
