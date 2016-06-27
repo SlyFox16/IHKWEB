@@ -100,7 +100,7 @@ return CMap::mergeArray(
                 'services' => array( // You can change the providers and their classes.
                     'facebook' => array(
                         // register your app here: https://developers.facebook.com/apps/
-                        'class' => 'CustomFacebookService',
+                        'class' => 'IhkFacebookService',
                         'client_id' => '804272606339674',
                         'client_secret' => 'ba58f0c19fda4de7a6f05ead0568dd0d',
                     ),
