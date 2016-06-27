@@ -40,7 +40,7 @@ class StarRating extends CWidget
                             if(data.result) {
                                 self.rating('update', data.data);
                                 self.rating('refresh', {disabled: true, showClear: false, value: data.data});
-                                $('#ratingDescription').foundation('reveal', 'open');
+                                $('#ratingDescription').foundation('open');
                             }
                         }
                     });
@@ -51,7 +51,7 @@ class StarRating extends CWidget
         if(!Yii::app()->user->isGuest) {
             Yii::app()->clientScript->registerScript('showDescription',"
                 $('.rating-disabled .rating-gly-star').on('click', function () {
-                    $('#ratingDescription').foundation('reveal', 'open');
+                    $('#ratingDescription').foundation('open');
                 });
             ");
         }
