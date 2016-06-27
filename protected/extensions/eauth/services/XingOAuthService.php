@@ -26,7 +26,6 @@ class XingOAuthService extends EOAuthService {
 
 	protected $key = '';
 	protected $secret = '';
-	protected $scope = 'r_basicprofile'; // 'r_fullprofile r_emailaddress';
 	protected $providerOptions = array(
 		'request' => 'https://api.xing.com/v1/request_token',
 		'authorize' => 'https://api.xing.com/v1/authorize',
@@ -34,7 +33,8 @@ class XingOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-		$info = $this->makeSignedRequest('https://api.xing.com/v1/users/me?fields=id,display_name,gender', array(), false); // json format not working :(
+		$info = $this->makeSignedRequest('https://api.xing.com/v1/users/me?fields=id,display_name,gender', array(), false);
+		// json format not working :(
         print_r($info); die();
 		/*$info = $this->parseInfo($info);
 
