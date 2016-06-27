@@ -19,8 +19,8 @@ require_once dirname(dirname(__FILE__)) . '/EOAuthService.php';
  */
 class XingOAuthService extends EOAuthService {
 
-	protected $name = 'linkedin';
-	protected $title = 'LinkedIn';
+	protected $name = 'xing';
+	protected $title = 'Xing';
 	protected $type = 'OAuth';
 	protected $jsArguments = array('popup' => array('width' => 900, 'height' => 550));
 
