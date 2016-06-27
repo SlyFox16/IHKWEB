@@ -123,6 +123,7 @@ class EAuth extends CApplicationComponent {
 			throw new EAuthException(Yii::t('eauth', 'Undefined service name: {service}.', array('{service}' => $service)), 500);
 		}
 		$service = $this->services[$service];
+        print_r($service); die();
 
 		$class = $service['class'];
 		$point = strrpos($class, '.');

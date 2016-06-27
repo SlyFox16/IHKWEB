@@ -33,7 +33,6 @@ class XingOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-        echo 'sdfdsfsd'; die();
 		$info = $this->makeSignedRequest('https://api.xing.com/v1/users/me?fields=id,display_name,gender', array(), false);
 		// json format not working :(
         print_r($info); die();
