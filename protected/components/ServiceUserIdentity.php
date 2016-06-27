@@ -23,25 +23,23 @@ class ServiceUserIdentity implements IUserIdentity
             $this->id = $user->id;
             $this->name = $uloginModel->name;
 
-            $user->username = $uloginModel->name.$uloginModel->surname.rand(1, 999);
+            $user->username = $uloginModel->name.rand(1, 999);
             $user->identity = $uloginModel->link;
             $user->network = $uloginModel->network;
-            $user->name = $uloginModel->name;
-            $user->surname = $uloginModel->surname;
+            $user->name = $uloginModel->first_name;
+            $user->surname = $uloginModel->last_name;
             $user->update();
         } else {
             $user = new User('socials');
-            $user->username = $uloginModel->name.$uloginModel->surname.rand(1, 999);
+            $user->username = $uloginModel->name.rand(1, 999);
             $user->identity = $uloginModel->link;
             $user->network = $uloginModel->network;
             $user->email = $uloginModel->email;
-            $user->name = $uloginModel->name;
-            $user->surname = $uloginModel->surname;
+            $user->name = $uloginModel->first_name;
+            $user->surname = $uloginModel->last_name;
             $user->is_active = 1;
             $user->is_staff = 0;
 
-            $this->id = $user->id;
-            $this->name = $user->name;
             $user->save();
 
             $this->id = $user->id;

@@ -23,5 +23,7 @@ class CustomFacebookService extends FacebookOAuthService {
 				))
 			)
 		));
+
+        $this->attributes['network'] = 'facebook';
 	}
 }
