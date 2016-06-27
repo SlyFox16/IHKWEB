@@ -1,6 +1,6 @@
 <?php
 
-class UloginUserIdentity implements IUserIdentity
+class ServiceUserIdentity implements IUserIdentity
 {
 
     private $id;
@@ -24,7 +24,7 @@ class UloginUserIdentity implements IUserIdentity
             $this->name = $uloginModel->name;
 
             $user->username = $uloginModel->name.$uloginModel->surname.rand(1, 999);
-            $user->identity = $uloginModel->identity;
+            $user->identity = $uloginModel->link;
             $user->network = $uloginModel->network;
             $user->name = $uloginModel->name;
             $user->surname = $uloginModel->surname;
@@ -32,7 +32,7 @@ class UloginUserIdentity implements IUserIdentity
         } else {
             $user = new User('socials');
             $user->username = $uloginModel->name.$uloginModel->surname.rand(1, 999);
-            $user->identity = $uloginModel->identity;
+            $user->identity = $uloginModel->link;
             $user->network = $uloginModel->network;
             $user->email = $uloginModel->email;
             $user->name = $uloginModel->name;
