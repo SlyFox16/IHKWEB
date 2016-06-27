@@ -1,5 +1,5 @@
 <?php
-class CustomFacebookService extends FacebookOAuthService {
+class IhkFacebookService extends FacebookOAuthService {
 	/**
 	 * https://developers.facebook.com/docs/authentication/permissions/
 	 */
