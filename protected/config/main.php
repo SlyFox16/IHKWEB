@@ -33,6 +33,12 @@ return CMap::mergeArray(
             'application.widgets.*',
             'application.extensions.*',
             'application.components.helpers.*',
+
+            'ext.eoauth.*',
+            'ext.eoauth.lib.*',
+            'ext.lightopenid.*',
+            'ext.eauth.*',
+            'ext.eauth.services.*',
         ),
 
         'modules' => array(
@@ -79,6 +85,31 @@ return CMap::mergeArray(
                 'coreScriptPosition' => CClientScript::POS_END,
                 'scriptMap' => array(
                     'jquery.js' => '/static/javascripts/jquery-1.11.2.min.js',
+                ),
+            ),
+
+            'loid' => array(
+                'class' => 'ext.lightopenid.loid',
+            ),
+
+            'eauth' => array(
+                'class' => 'ext.eauth.EAuth',
+                'popup' => true, // Use the popup window instead of redirecting.
+                'cache' => false, // Cache component name or false to disable cache. Defaults to 'cache'.
+                'cacheExpire' => 0, // Cache lifetime. Defaults to 0 - means unlimited.
+                'services' => array( // You can change the providers and their classes.
+                    'facebook' => array(
+                        // register your app here: https://developers.facebook.com/apps/
+                        'class' => 'FacebookOAuthService',
+                        'client_id' => '804272606339674',
+                        'client_secret' => 'ba58f0c19fda4de7a6f05ead0568dd0d',
+                    ),
+                    'linkedin' => array(
+                        // register your app here: https://www.linkedin.com/secure/developer
+                        'class' => 'LinkedinOAuthService',
+                        'key' => '77dsflkn53iaj8',
+                        'secret' => 'Nb2gl4xogWeKqMB0',
+                    ),
                 ),
             ),
 
