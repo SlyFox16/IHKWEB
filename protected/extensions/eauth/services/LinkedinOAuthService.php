@@ -37,7 +37,7 @@ class LinkedinOAuthService extends EOAuthService {
 		$info = $this->makeSignedRequest('http://api.linkedin.com/v1/people/~:(id,first-name,email-address,last-name,public-profile-url)', array(), false); // json format not working :(
 		$info = $this->parseInfo($info);
 
-		$this->attributes['id'] = $info['id'];
+
 		$this->attributes['name'] = $info['first-name'] . ' ' . $info['last-name'];
 		$this->attributes['link'] = $info['public-profile-url'];
         $this->attributes['email'] = $info['email-address'];

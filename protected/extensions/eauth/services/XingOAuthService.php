@@ -35,43 +35,15 @@ class XingOAuthService extends EOAuthService {
 	protected function fetchAttributes() {
         $info = (object)$this->makeSignedRequest('https://api.xing.com/v1/users/me.json', array(
             'query' => array(
-                'fields' => 'id, active_email, display_name, first_name, last_name, permalink',
+                'fields' => 'active_email, display_name, first_name, last_name, permalink',
             ),
         ), true);
-        print_r($info->users[0]->id); die();
 
-        $this->attributes['id'] = $info->users->id;
-        $this->attributes['name'] = $info['first-name'] . ' ' . $info['last-name'];
-        $this->attributes['link'] = $info['public-profile-url'];
-        $this->attributes['email'] = $info['email-address'];
-        $this->attributes['first_name'] = $info['first-name'];
-        $this->attributes['last_name'] = $info['last-name'];
-        $this->attributes['network'] = 'linkedin';
+        $this->attributes['name'] = $info->users[0]->display_name;
+        $this->attributes['link'] = $info->users[0]->permalink;
+        $this->attributes['email'] = $info->users[0]->active_email;
+        $this->attributes['first_name'] = $info->users[0]->first_name;
+        $this->attributes['last_name'] = $info->users[0]->last_name;
+        $this->attributes['network'] = 'xing';
 	}
-
-    /**
-     *
-     * @param string $xml
-     * @return array
-     */
-    protected function parseInfo($xml) {
-        /* @var $simplexml SimpleXMLElement */
-        $simplexml = simplexml_load_string($xml);
-        return $this->xmlToArray($simplexml);
-    }
-
-    /**
-     *
-     * @param SimpleXMLElement $element
-     * @return array
-     */
-    protected function xmlToArray($element) {
-        $array = (array)$element;
-        foreach ($array as $key => $value) {
-            if (is_object($value)) {
-                $array[$key] = $this->xmlToArray($value);
-            }
-        }
-        return $array;
-    }
 }
