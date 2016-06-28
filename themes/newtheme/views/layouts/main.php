@@ -61,7 +61,7 @@
 </footer>
 
 
-<?php if(!Yii::app()->request->cookies['accept']->value) { ?>
+<?php if(!@Yii::app()->request->cookies['accept']->value) { ?>
     <div class="cookie show">
         <div class="cookie_msg">
             <?php echo Yii::t("base", "This website uses cookies to help us give you the best experience when you visit."); ?>

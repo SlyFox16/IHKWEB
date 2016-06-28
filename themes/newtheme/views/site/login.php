@@ -47,6 +47,7 @@
                     </div>
                 </div>
             <?php $this->endWidget(); ?>
+            <a href="" class="angle top-15" data-toggle="passrecover"><?php echo Yii::t("base", "Forgot password?");?></a>
         </div>
         <div class="medium-12 large-4 columns left-50">
             <h2><?php echo Yii::t("base", "Login with [b]social account[/b]", array('[b]' => '<b>', '[/b]' => '</b>'));?></h2>
@@ -60,3 +61,4 @@
         </div>
     </div>
 </section>
+<?php $this->widget('PassChange'); ?>

@@ -19,7 +19,7 @@
             <span><?php echo $user->getAttributeLabel('description'); ?></span>
             <?php echo $form->textArea($user, 'description'); ?>
         </label>
-        <?php echo $form->error($model, 'description'); ?>
+        <?php echo $form->error($model, 'description', array('cols' => 30, 'rows' => 5)); ?>
     <?php $this->endWidget(); ?>
     <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
 </div>

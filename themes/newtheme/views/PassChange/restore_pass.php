@@ -16,8 +16,8 @@
         ),
     )); ?>
         <label>
-            <span><?php echo $user->getAttributeLabel('email'); ?></span>
-            <?php echo $form->textField($user, 'email'); ?>
+            <span><?php echo $model->getAttributeLabel('email'); ?></span>
+            <?php echo $form->textField($model, 'email'); ?>
         </label>
         <?php echo $form->error($model, 'email'); ?>
     <?php $this->endWidget(); ?>

@@ -38,5 +38,5 @@
 </div>
 
 <?php if($this->open) {
-    Yii::app()->clientScript->registerScript('popoverActivate',"$('#passchange').modal('show');");
+    Yii::app()->clientScript->registerScript('popoverActivate',"$('#passchange').foundation('open');");
 } ?>

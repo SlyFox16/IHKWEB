@@ -50,6 +50,7 @@ return array (
   'Find certified [b]Crowd Experts[/b]> now.' => '',
   'Find experts' => '',
   'Find the certified [b]Crowd Experts[/b] now.[br]Get your crowd project done right and in time.' => '',
+  'Forgot password?' => '',
   'Full Name' => '',
   'Get in touch' => '',
   'Go back' => '',

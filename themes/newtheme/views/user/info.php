@@ -62,15 +62,15 @@
             <ul class="stats">
                 <li><?php echo Yii::t("base", "Rating");?> <b><?php echo $user->rating; ?></b></li>
                 <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>
-                <li><?php echo Yii::t("base", "Certification"); ?>
-                    <?php if(!empty($user->userCertificates)) { ?>
+                <?php if(!empty($user->userCertificates)) { ?>
+                    <li><?php echo Yii::t("base", "Certification"); ?>
                         <?php foreach($user->userCertificates as $cert) { ?>
                             <b><a href="<?php echo $this->createUrl('site/certificateView', array('id' => $cert->id)); ?>">
                                     <img src="<?php echo YHelper::getImagePath($cert->logo, 60); ?>" data-tooltip title="<?php echo $cert->name; ?>">
                             </a></b>
                         <?php } ?>
-                    <?php } ?>
-                </li>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -139,7 +139,7 @@
                 <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button large"><?php echo Yii::t("base", "Find Experts");?> <i class="fa fa-search"></i></a>
             <?php } ?>
             <?php if(Yii::app()->user->isGuest) { ?>
-                <?php echo CHtml::link(Yii::t("base", 'Become Expert').' <i class="fa fa-angle-right">', array('/registration'), array('class' => 'button large transparent')); ?>
+                <a href="<?php echo $this->createUrl('/registration'); ?>" class="button large"><?php echo Yii::t("base", "Become Expert");?> <i class="fa fa-angle-right"></i></a>
             <?php } ?>
         </div>
     </div>
