@@ -61,12 +61,26 @@
 </footer>
 
 
-<div class="cookie show">
-    <div class="cookie_msg">
-        <?php echo Yii::t("base", "This website uses cookies to help us give you the best experience when you visit."); ?>
+<?php if(!Yii::app()->request->cookies['accept']->value) { ?>
+    <div class="cookie show">
+        <div class="cookie_msg">
+            <?php echo Yii::t("base", "This website uses cookies to help us give you the best experience when you visit."); ?>
+        </div>
+        <div class="cookie_controls"><?php echo CHtml::ajaxLink(
+                $label = Yii::t("base", "Accept"),
+                $url = 'site/accept',
+                $ajaxOptions=array (
+                    'type'=>'POST',
+                    'dataType'=>'json',
+                    'success'=>'function(date) {
+                        if(date.result)
+                            jQuery(".cookie").hide();
+                    }',
+                ),
+                $htmlOptions=array('class' => 'accept')
+                ); ?><a href="<?php echo $this->createUrl('site/pages', array('id' => 1)); ?>"><?php echo Yii::t("base", "Learn More"); ?></a></div>
     </div>
-    <div class="cookie_controls"><a class='accept'><?php echo Yii::t("base", "Accept"); ?></a><a href="<?php echo $this->createUrl('site/pages', array('id' => 1)); ?>"><?php echo Yii::t("base", "Learn More"); ?></a></div>
-</div>
+<?php } ?>
 </body>
 <?php $this->widget('Notifications'); ?>
 </html>

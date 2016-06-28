@@ -21,7 +21,7 @@ class SiteController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'associationSuggest', 'seekerRegister', 'seekerConfirmation', 'certificateView', 'pages'),
+                'actions'=>array('login', 'index', 'register', 'webhook', 'error', 'search', 'uLogin', 'xing', 'feedback', 'suggest', 'associationSuggest', 'seekerRegister', 'seekerConfirmation', 'certificateView', 'pages', 'accept'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -366,6 +366,21 @@ class SiteController extends Frontend
             $model->attributes=$_GET['User'];
 
         $this->render('findexperts', array('model' => $model));
+    }
+
+    public function actionAccept()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            Yii::app()->request->cookies['accept'] = new CHttpCookie('accept', 1);
+
+            if(!Yii::app()->user->isGuest) {
+                $user = User::model()->findByPk(Yii::app()->user->id);
+                $user->accept = 1;
+                $user->saveAttributes(array('accept'));
+            }
+
+            Yii::app()->ajax->success();
+        }
     }
 
     public function actionFeedback()
