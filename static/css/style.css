@@ -7745,15 +7745,16 @@ label > span {
   color: #777;
 }
 
-.select2-container .select2-default {
+body .select2-container .select2-default {
   height: 3.125rem;
   border: 0;
   border-left: 2px solid #efefef;
   border-radius: 0;
 }
-.select2-container .select2-default .select2-chosen {
+body .select2-container .select2-default .select2-chosen {
   margin-right: 2.5rem;
   padding: 0.625rem 0.9375rem;
+  line-height: 1.875rem;
 }
 
 /*!
