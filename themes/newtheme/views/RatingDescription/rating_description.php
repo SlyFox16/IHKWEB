@@ -16,8 +16,8 @@
         ),
     )); ?>
         <label>
-            <span><?php echo $user->getAttributeLabel('description'); ?></span>
-            <?php echo $form->textArea($user, 'description', array('cols' => 30, 'rows' => 5)); ?>
+            <span><?php echo $model->getAttributeLabel('description'); ?></span>
+            <?php echo $form->textArea($model, 'description', array('cols' => 30, 'rows' => 5)); ?>
         </label>
         <?php echo $form->error($model, 'description'); ?>
         <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
