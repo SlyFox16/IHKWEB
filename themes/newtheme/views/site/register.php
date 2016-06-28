@@ -165,9 +165,7 @@
     }
 
     function productFormatResult(city) {
-        var markup = "<table class='result'><tr>";
-        markup += "<td class='info'><div class='title'>" + city.name + "</div>";
-        markup += "</td></tr></table>";
+        var markup = city.name;
         return markup;
     }
 </script>
