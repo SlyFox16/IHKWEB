@@ -112,7 +112,7 @@ class EOAuthUtils extends EOAuthComponent {
     $headers = curl_getinfo($ch);
     curl_close($ch);
 
-    if ($headers['http_code'] != 200) {
+    if ($headers['http_code'] != 200 && $headers['http_code'] != 201) {
       throw new OAuthException($response);
     }
 

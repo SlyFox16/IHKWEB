@@ -26,7 +26,7 @@ class LinkedinOAuthService extends EOAuthService {
 
 	protected $key = '';
 	protected $secret = '';
-	protected $scope = 'r_basicprofile'; // 'r_fullprofile r_emailaddress';
+	protected $scope = 'r_basicprofile r_emailaddress'; // 'r_fullprofile r_emailaddress';
 	protected $providerOptions = array(
 		'request' => 'https://api.linkedin.com/uas/oauth/requestToken',
 		'authorize' => 'https://www.linkedin.com/uas/oauth/authenticate', // https://www.linkedin.com/uas/oauth/authorize
@@ -34,12 +34,16 @@ class LinkedinOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-		$info = $this->makeSignedRequest('http://api.linkedin.com/v1/people/~:(id,first-name,last-name,public-profile-url)', array(), false); // json format not working :(
+		$info = $this->makeSignedRequest('http://api.linkedin.com/v1/people/~:(id,first-name,email-address,last-name,public-profile-url)', array(), false); // json format not working :(
 		$info = $this->parseInfo($info);
 
 		$this->attributes['id'] = $info['id'];
 		$this->attributes['name'] = $info['first-name'] . ' ' . $info['last-name'];
-		$this->attributes['url'] = $info['public-profile-url'];
+		$this->attributes['link'] = $info['public-profile-url'];
+        $this->attributes['email'] = $info['email-address'];
+        $this->attributes['first_name'] = $info['first-name'];
+        $this->attributes['last_name'] = $info['last-name'];
+        $this->attributes['network'] = 'linkedin';
 	}
 
 	/**

@@ -1,8 +1,8 @@
 <?php
 /**
- * LinkedinOAuthService class file.
+ * XingOAuthService class file.
  *
- * Register application: https://www.linkedin.com/secure/developer
+ * Register application: https://www.xing.com/developer
  * Note: Intagration URL should be filled with a valid callback url.
  *
  * @author Maxim Zemskov <nodge@yandex.ru>
@@ -13,12 +13,11 @@
 require_once dirname(dirname(__FILE__)) . '/EOAuthService.php';
 
 /**
- * LinkedIn provider class.
+ * Xing provider class.
  *
  * @package application.extensions.eauth.services
  */
 class XingOAuthService extends EOAuthService {
-
 	protected $name = 'xing';
 	protected $title = 'Xing';
 	protected $type = 'OAuth';
@@ -34,8 +33,7 @@ class XingOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-		$info = $this->makeSignedRequest('https://api.xing.com/v1/users/me', array(), false);
-
+		$info = $this->makeSignedRequest('https://api.xing.com/v1/', array(), false);
 		$info = $this->parseInfo($info);
 
 		$this->attributes['id'] = $info['id'];
