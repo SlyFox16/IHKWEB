@@ -7455,10 +7455,10 @@ p {
   border: 0;
   background: transparent;
 }
-.control .select2-container.form-control .select2-default .select2-choice select2-chosen {
+.control .select2-container.form-control .select2-default select2-chosen {
   margin: 0;
 }
-.control .select2-container.form-control .select2-default .select2-choice .select2-arrow {
+.control .select2-container.form-control .select2-default .select2-arrow {
   border: 0;
 }
 .control [type='text'], .control [type='password'],
