@@ -50,8 +50,8 @@
                     'placeholder' => 'Search',
                 ),
             )); ?>
-            <?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?>
         </li>
+        <li><?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?></li>
         <li>
             <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="fa fa-angle-right"></a>
         </li>
