@@ -5,7 +5,7 @@
                 <?php if($model->description) { ?>
                     <button class="close" aria-hidden="true" data-dismiss="modal" type="button"></button>
                 <?php } ?>
-                <h5 class="text-left p-b-5"><span class="semi-bold">Work description</span></h5>
+                <h5 class="text-left p-b-5"><span class="semi-bold"><?php echo Yii::t("base", "Work description");?></span></h5>
             </div>
             <div class="modal-body">
                 <?php $form = $this->beginWidget('CActiveForm', array(

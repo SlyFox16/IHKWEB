@@ -105,6 +105,7 @@ return array (
   'User association' => '',
   'View Profile' => '',
   'Wrong phone format' => '',
+  'Work description' => '',
   'Xing Login' => '',
   'You are already confirmed!' => '',
   'Your opinion will be taken into consideration.' => '',

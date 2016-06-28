@@ -5,7 +5,7 @@
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
-    <h1><?php echo Yii::t("base", "Restore password"); ?></h1>
+    <h1><?php echo Yii::t("base", "Work description"); ?></h1>
     <?php $form = $this->beginWidget('CActiveForm', array(
         'id' => 'rating-description',
         'action' => array('user/ratingDescr', 'id' => $user->id),
@@ -17,9 +17,9 @@
     )); ?>
         <label>
             <span><?php echo $user->getAttributeLabel('description'); ?></span>
-            <?php echo $form->textArea($user, 'description'); ?>
+            <?php echo $form->textArea($user, 'description', array('cols' => 30, 'rows' => 5)); ?>
         </label>
-        <?php echo $form->error($model, 'description', array('cols' => 30, 'rows' => 5)); ?>
+        <?php echo $form->error($model, 'description'); ?>
+        <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
     <?php $this->endWidget(); ?>
-    <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
 </div>
