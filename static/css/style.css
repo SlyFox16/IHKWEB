@@ -7455,6 +7455,12 @@ p {
   border: 0;
   background: transparent;
 }
+.control .select2-container.form-control .select2-default .select2-choice select2-chosen {
+  margin: 0;
+}
+.control .select2-container.form-control .select2-default .select2-choice .select2-arrow {
+  border: 0;
+}
 .control [type='text'], .control [type='password'],
 .control [type='date'], .control [type='datetime'],
 .control [type='datetime-local'], .control [type='month'],
@@ -7763,6 +7769,10 @@ body .select2-container .select2-choice .select2-chosen {
   margin-right: 2.5rem;
   padding: 0.625rem 0.9375rem;
   line-height: 1.875rem;
+}
+body .select2-container .select2-default .select2-arrow b,
+body .select2-container .select2-choice .select2-arrow b {
+  background-position: 0 0.75rem;
 }
 body .select2-container .select2-choices {
   border: 0;
