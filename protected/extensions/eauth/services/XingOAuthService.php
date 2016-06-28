@@ -26,6 +26,7 @@ class XingOAuthService extends EOAuthService {
 
 	protected $key = '';
 	protected $secret = '';
+    protected $scope = '';
 	protected $providerOptions = array(
 		'request' => 'https://api.xing.com/v1/request_token',
 		'authorize' => 'https://api.xing.com/v1/authorize',
