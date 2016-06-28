@@ -18,10 +18,10 @@
             <a href="<?php echo $this->createUrl('user/info', array('id' => $randUser->id)); ?>">
                 <img src="<?php echo YHelper::getImagePath($randUser->avatar, 280, 280); ?>" alt="<?php echo Yii::t("base", "Expert"); ?>">
             </a>
-            <?php if(!empty($randUser->certificates)) { ?>
+            <?php if(!empty($randUser->speciality)) { ?>
                 <ul class="expert_cat">
-                    <?php foreach($randUser->certificates as $cert) { ?>
-                        <li data-tooltip aria-haspopup="true" class="left" title="<?php echo $cert->certificate->name; ?>"><?php echo $cert->certificate->name; ?></li>
+                    <?php foreach($randUser->speciality as $spec) { ?>
+                        <li data-tooltip aria-haspopup="true" class="left" title="<?php echo $spec->speciality; ?>"><?php echo $spec->abbr; ?></li>
                     <?php } ?>
                 </ul>
             <?php } ?>
