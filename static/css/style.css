@@ -7444,7 +7444,7 @@ p {
   max-width: 6.25rem;
 }
 .control li input:focus {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 .control .select2-container.form-control {
   width: 100%;
@@ -7638,6 +7638,11 @@ p {
 }
 .cookie .cookie_msg {
   padding: 1.25rem 1.875rem;
+}
+
+/* Rating */
+body .rating-container {
+  vertical-align: none;
 }
 
 /*------------------------------------*\
