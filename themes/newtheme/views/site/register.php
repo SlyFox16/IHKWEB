@@ -149,14 +149,12 @@
         </div>
         <div class="medium-12 large-4 columns left-50">
             <h2><?php echo Yii::t("base", "Use already existing [b]social[/b] account to [b]sign up[/b]", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
-            <div class="socials">
-                <?php  $this->widget('application.components.UloginWidget', array(
-                    'params' => array(
-                        'redirect' => $this->createAbsoluteUrl('site/ulogin'),
-                        'logout_url' => $this->createAbsoluteUrl('site/logout'),
-                    )
-                )); ?>
-            </div>
+            <?php  $this->widget('application.components.UloginWidget', array(
+                'params' => array(
+                    'redirect' => $this->createAbsoluteUrl('site/ulogin'),
+                    'logout_url' => $this->createAbsoluteUrl('site/logout'),
+                )
+            )); ?>
         </div>
     </div>
 </section>
