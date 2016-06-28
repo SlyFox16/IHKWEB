@@ -268,7 +268,7 @@ abstract class EAuthServiceBase extends CComponent implements IAuthService {
 		if (curl_errno($ch) > 0) {
 			throw new EAuthException(curl_error($ch), curl_errno($ch));
 		}
-        echo $headers['http_code']; die();
+
 		if ($headers['http_code'] != 200) {
 			Yii::log(
 				'Invalid response http code: ' . $headers['http_code'] . '.' . PHP_EOL .
