@@ -7641,7 +7641,7 @@ p {
 }
 
 /* Rating */
-body .rating-container {
+body .rating-container.rating-gly-star {
   vertical-align: none;
 }
 
