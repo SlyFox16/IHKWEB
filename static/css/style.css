@@ -7761,7 +7761,10 @@ body .select2-drop {
   padding: 0.9375rem;
   border: 0;
   border-left: 2px solid #777;
-  borde-radius: 0;
+  border-radius: 0;
+}
+body .select2-drop .select2-search input {
+  border-radius: 0;
 }
 
 /*!
