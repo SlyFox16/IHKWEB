@@ -45,10 +45,10 @@
                 ); ?>
             </li>
             <li>
-                <?php echo $form->textField($model,'level',array('class'=>'span5', 'placeholder' => 'Level')); ?>
+                <?php echo $form->textField($model,'level',array('class'=>'span5 small', 'placeholder' => 'Level')); ?>
             </li>
             <li>
-                <?php echo $form->textField($model,'rating',array('class'=>'span5', 'placeholder' => 'Rating')); ?>
+                <?php echo $form->textField($model,'rating',array('class'=>'span5 small', 'placeholder' => 'Rating')); ?>
             </li>
             <li>
                 <?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?>
