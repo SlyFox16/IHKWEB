@@ -7745,7 +7745,7 @@ label > span {
   color: #777;
 }
 
-body .select2-container {
+body .select2-container.form-contorl {
   margin: 0 0 0.9375rem 0;
 }
 body .select2-container .select2-default,
