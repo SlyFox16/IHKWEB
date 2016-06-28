@@ -7446,11 +7446,11 @@ p {
 .control li input:focus {
   background: rgba(255, 255, 255, 0.2);
 }
-.control li input .select2-container.form-control {
+.control .select2-container.form-control {
   width: 100%;
   margin: 0;
 }
-.control li input .select2-container.form-control .select2-default {
+.control .select2-container.form-control .select2-default {
   width: 100%;
   border: 0;
   background: transparent;
