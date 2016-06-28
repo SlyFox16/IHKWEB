@@ -33,7 +33,11 @@ class XingOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-		$info = $this->makeSignedRequest('https://api.xing.com/v1/', array(), false);
+        $info = $this->makeSignedRequest('https://api.xing.com/v1/users/me.json',
+            array('query' => array(
+                'fields' => 'id, active_email',
+            ),
+        ), true);
 		$info = $this->parseInfo($info);
 
 		$this->attributes['id'] = $info['id'];
@@ -41,29 +45,16 @@ class XingOAuthService extends EOAuthService {
 		$this->attributes['url'] = $info['public-profile-url'];
 	}
 
-	/**
-	 *
-	 * @param string $xml
-	 * @return array
-	 */
-	protected function parseInfo($xml) {
-		/* @var $simplexml SimpleXMLElement */
-		$simplexml = simplexml_load_string($xml);
-		return $this->xmlToArray($simplexml);
-	}
+    /**
+     * Authenticate the user.
+     *
+     * @return boolean whether user was successfuly authenticated.
+     */
+    public function authenticate() {
+        if (isset($_GET['denied'])) {
+            $this->cancel();
+        }
 
-	/**
-	 *
-	 * @param SimpleXMLElement $element
-	 * @return array
-	 */
-	protected function xmlToArray($element) {
-		$array = (array)$element;
-		foreach ($array as $key => $value) {
-			if (is_object($value)) {
-				$array[$key] = $this->xmlToArray($value);
-			}
-		}
-		return $array;
-	}
+        return parent::authenticate();
+    }
 }

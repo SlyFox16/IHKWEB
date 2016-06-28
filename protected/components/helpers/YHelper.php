@@ -1,4 +1,6 @@
 <?php
+
+
 class YHelper
 {
     public static function yiisetting($name, $default = null, $title = false)
@@ -40,5 +42,22 @@ class YHelper
         }
 
         return $image;
+    }
+
+    public static function urldecodeUrl($param){
+        $params = array();
+        $url = urldecode(Yii::app()->request->requestUri);
+        $uri = parse_url($url, PHP_URL_QUERY);
+        $uri = explode('&', $uri);
+
+        if($uri) {
+            foreach($uri as $value) {
+                if(preg_match('~^(\w+)=(.*)$~', $value, $matches)) {
+                    $params[$matches[1]] = $matches[2];
+                }
+            }
+        }
+
+        return $params[$param];
     }
 }

@@ -84,7 +84,6 @@ class EOAuthUserIdentity extends EOAuthComponent implements IUserIdentity {
     }
 
     public function authenticate() {
-
         $session=Yii::app()->session;
 
         if (isset($_REQUEST['oauth_token'])) {

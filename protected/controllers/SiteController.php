@@ -143,7 +143,13 @@ class SiteController extends Frontend
     }
 
     private function eAuthAuthentication() {
-        $serviceName = Yii::app()->request->getQuery('service');
+        $serviceName = Yii::app()->request->getParam('service');
+        if(!$serviceName) {
+            $serviceName = YHelper::urldecodeUrl('service');
+            if($serviceName)
+                $this->redirect(urldecode(Yii::app()->request->requestUri));
+        }
+
         if (isset($serviceName)) {
             /** @var $eauth EAuthServiceBase */
             $eauth = Yii::app()->eauth->getIdentity($serviceName);
