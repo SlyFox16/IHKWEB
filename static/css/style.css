@@ -1910,7 +1910,7 @@ textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
-[type='text']:not(.select2-input):focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus,
+[type='text']:focus, [type='password']:focus, [type='date']:focus, [type='datetime']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='week']:focus, [type='email']:focus, [type='number']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='url']:focus, [type='color']:focus,
 textarea:focus {
   border: 1px solid #eaeaea;
   background-color: #fefefe;
@@ -7446,6 +7446,12 @@ p {
 .control li input.small {
   max-width: 6.25rem;
 }
+.control li input:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+.control li input .select2-default {
+  width: 100%;
+}
 .control [type='text'], .control [type='password'],
 .control [type='date'], .control [type='datetime'],
 .control [type='datetime-local'], .control [type='month'],
@@ -7590,7 +7596,7 @@ p {
 .cookie {
   position: fixed;
   right: 1.875rem;
-  bottom: 1.875rem;
+  bottom: -12.5rem;
   width: 25rem;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 0.25rem;
@@ -7647,7 +7653,7 @@ textarea {
   border-left-color: #777;
 }
 
-[type='text']:not(.select2-input):focus, [type='password']:focus,
+[type='text']:focus, [type='password']:focus,
 [type='date']:focus, [type='datetime']:focus,
 [type='datetime-local']:focus, [type='month']:focus,
 [type='week']:focus, [type='email']:focus,
@@ -7660,14 +7666,14 @@ textarea:focus {
   background: white;
 }
 
-label span:not(.select2-chosen) {
+label span {
   display: inline-block;
   padding: 0 0.9375rem;
   color: #e5e5e5;
   background: #777;
 }
 
-.errorMessage {
+.error {
   float: right;
   margin-top: -0.9375rem;
   display: block;
@@ -11055,36 +11061,3 @@ body .rating-gly-star {
 }
 
 /*# sourceMappingURL=style.css.map */
-
-.control .search > * {
-    display: inline-block;
-    vertical-align: top;
-}
-
-/*--------------------
-Custom Select ======*/
-
-
-
-body .select2-container .select2-choice {
-    height: 3.1rem;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-}
-
-body .select2-drop {
-    border: 0 none;
-    border-radius: 0;
-    padding: 5px;
-}
-
-body .select2-chosen, body .select2-choice > span:first-child, body .select2-container .select2-choices .select2-search-field input {
-    line-height: 1.2rem;
-    padding: 1rem;
-}
-
-.select2-result-label thead, .select2-result-label tbody, .select2-result-label tfoot {
-    border: 1px solid #f1f1f1;
-}
