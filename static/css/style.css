@@ -7641,8 +7641,12 @@ p {
 }
 
 /* Rating */
-body .rating-container {
-  vertical-align: none;
+body .star-rating {
+  padding: 0 0.9375rem;
+}
+body .rating-container.rating-gly-star {
+  vertical-align: middle;
+  margin-top: 0.3125rem;
 }
 
 /*------------------------------------*\
