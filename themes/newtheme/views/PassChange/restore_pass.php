@@ -20,6 +20,6 @@
             <?php echo $form->textField($model, 'email'); ?>
         </label>
         <?php echo $form->error($model, 'email'); ?>
+        <button class="button"><?php echo Yii::t("base", "Reset password"); ?></button>
     <?php $this->endWidget(); ?>
-    <button class="button"><?php echo Yii::t("base", "Reset password"); ?></button>
 </div>
