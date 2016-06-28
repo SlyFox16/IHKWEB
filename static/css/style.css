@@ -7745,6 +7745,9 @@ label > span {
   color: #777;
 }
 
+body .select2-container {
+  margin: 0 0 0.9375rem 0;
+}
 body .select2-container .select2-default,
 body .select2-container .select2-choice {
   height: 3.125rem;
@@ -7758,6 +7761,15 @@ body .select2-container .select2-choice .select2-chosen {
   margin-right: 2.5rem;
   padding: 0.625rem 0.9375rem;
   line-height: 1.875rem;
+}
+body .select2-container .select2-choices {
+  border: 0;
+  border-left: 2px solid #777;
+  border-radius: 0;
+}
+body .select2-container .select2-choices .select2-search-field input {
+  padding: 0.625rem 0.9375rem;
+  height: 3.125rem;
 }
 body .select2-drop {
   padding: 0.9375rem;
