@@ -7583,7 +7583,6 @@ p {
 .bottom-edge {
   position: absolute;
   bottom: 0;
-  width: 100%;
 }
 .bottom-edge .button {
   margin-bottom: 0;
@@ -7779,6 +7778,11 @@ body .select2-drop {
 }
 body .select2-drop .select2-search input {
   border-radius: 0;
+}
+body .dropzone {
+  border: 0;
+  border-radius: 0;
+  border-left: 2px solid #777;
 }
 
 /*!
