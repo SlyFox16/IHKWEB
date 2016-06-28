@@ -53,7 +53,7 @@
             <?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?>
         </li>
         <li>
-            <a href="" class="fa fa-angle-right"></a>
+            <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="fa fa-angle-right"></a>
         </li>
         <?php $this->endWidget(); ?>
     </ul>
