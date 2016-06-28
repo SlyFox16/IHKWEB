@@ -43,15 +43,28 @@ class XingOAuthService extends EOAuthService {
 	}
 
     /**
-     * Authenticate the user.
      *
-     * @return boolean whether user was successfuly authenticated.
+     * @param string $xml
+     * @return array
      */
-    public function authenticate() {
-        if (isset($_GET['denied'])) {
-            $this->cancel();
-        }
+    protected function parseInfo($xml) {
+        /* @var $simplexml SimpleXMLElement */
+        $simplexml = simplexml_load_string($xml);
+        return $this->xmlToArray($simplexml);
+    }
 
-        return parent::authenticate();
+    /**
+     *
+     * @param SimpleXMLElement $element
+     * @return array
+     */
+    protected function xmlToArray($element) {
+        $array = (array)$element;
+        foreach ($array as $key => $value) {
+            if (is_object($value)) {
+                $array[$key] = $this->xmlToArray($value);
+            }
+        }
+        return $array;
     }
 }
