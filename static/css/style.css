@@ -7587,6 +7587,9 @@ p {
   background: #efefef;
   border-radius: 0;
 }
+.reveal.error {
+  float: none;
+}
 
 /* Bottom Edge */
 .bottom-edge {
