@@ -7440,16 +7440,17 @@ p {
   height: 5rem;
   max-width: 9.375rem;
 }
-.control li input + * {
-  display: inline-block;
-}
 .control li input.small {
   max-width: 6.25rem;
 }
 .control li input:focus {
   background: rgba(255, 255, 255, 0.2);
 }
-.control li input .select2-default {
+.control li input .select2-container.form-control {
+  width: 100%;
+  margin: 0;
+}
+.control li input .select2-container.form-control .select2-default {
   width: 100%;
 }
 .control [type='text'], .control [type='password'],
