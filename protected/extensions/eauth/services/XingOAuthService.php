@@ -33,11 +33,38 @@ class XingOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-        $info = (object)$this->makeSignedRequest('https://api.xing.com/v1/users/me.json', array(), false);
+        $info = $this->makeSignedRequest('https://api.xing.com/v1/users/me.json', array(), false);
+		$info = $this->parseInfo($info);
         print_r($info); die();
 
 		$this->attributes['id'] = $info['id'];
 		$this->attributes['name'] = $info['first-name'] . ' ' . $info['last-name'];
 		$this->attributes['url'] = $info['public-profile-url'];
 	}
+
+    /**
+     *
+     * @param string $xml
+     * @return array
+     */
+    protected function parseInfo($xml) {
+        /* @var $simplexml SimpleXMLElement */
+        $simplexml = simplexml_load_string($xml);
+        return $this->xmlToArray($simplexml);
+    }
+
+    /**
+     *
+     * @param SimpleXMLElement $element
+     * @return array
+     */
+    protected function xmlToArray($element) {
+        $array = (array)$element;
+        foreach ($array as $key => $value) {
+            if (is_object($value)) {
+                $array[$key] = $this->xmlToArray($value);
+            }
+        }
+        return $array;
+    }
 }
