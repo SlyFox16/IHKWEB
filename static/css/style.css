@@ -7701,7 +7701,7 @@ label > span {
 .input-add {
   position: relative;
   width: 100%;
-  margin: 0;
+  margin: 0 0 0.9375rem 0;
   padding-right: 3.125rem;
   list-style: none;
 }
@@ -7748,13 +7748,20 @@ label > span {
 body .select2-container .select2-default {
   height: 3.125rem;
   border: 0;
-  border-left: 2px solid #efefef;
+  border-left: 2px solid #777;
   border-radius: 0;
+  box-shadow: none;
 }
 body .select2-container .select2-default .select2-chosen {
   margin-right: 2.5rem;
   padding: 0.625rem 0.9375rem;
   line-height: 1.875rem;
+}
+body .select2-drop {
+  padding: 0.9375rem;
+  border: 0;
+  border-left: 2px solid #777;
+  borde-radius: 0;
 }
 
 /*!
