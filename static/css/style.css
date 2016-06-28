@@ -7642,7 +7642,8 @@ p {
 
 /* Rating */
 body .rating-container.rating-gly-star {
-  vertical-align: none;
+  vertical-align: middle;
+  padding: 0 0.9375rem;
 }
 
 /*------------------------------------*\
