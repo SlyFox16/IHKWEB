@@ -8,10 +8,10 @@
     <div class="small-12 medium-8 columns">
         <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
             <li>
-                <?php echo $form->textField($model,'name'); ?>
+                <?php echo $form->textField($model,'name',array('placeholder' => 'Name')); ?>
             </li>
             <li>
-                <?php echo $form->textField($model,'surname'); ?>
+                <?php echo $form->textField($model,'surname',array('placeholder' => 'Surname')); ?>
             </li>
             <li>
                 <?php $this->widget(
