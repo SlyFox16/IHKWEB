@@ -7642,11 +7642,11 @@ p {
 
 /* Rating */
 body .star-rating {
-  margin-top: 0.3125rem;
   padding: 0 0.9375rem;
 }
 body .rating-container.rating-gly-star {
   vertical-align: middle;
+  margin-top: 0.3125rem;
 }
 
 /*------------------------------------*\
