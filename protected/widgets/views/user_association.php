@@ -84,9 +84,7 @@
     }
 
     function productFormatResult(user) {
-        var markup = "<table class='result'><tr>";
-        markup += "<td class='info'><div class='title'>" + user.label + "</div>";
-        markup += "</td></tr></table>";
+        var markup = user.label;
         return markup;
     }
 </script>
