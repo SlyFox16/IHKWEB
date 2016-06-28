@@ -38,9 +38,9 @@ class XingOAuthService extends EOAuthService {
                 'fields' => 'id, active_email, display_name, first_name, last_name, permalink',
             ),
         ), true);
-        print_r($info); die();
+        print_r($info->users->id); die();
 
-        $this->attributes['id'] = $info['id'];
+        $this->attributes['id'] = $info->users->id;
         $this->attributes['name'] = $info['first-name'] . ' ' . $info['last-name'];
         $this->attributes['link'] = $info['public-profile-url'];
         $this->attributes['email'] = $info['email-address'];
