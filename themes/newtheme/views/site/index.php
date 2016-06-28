@@ -94,8 +94,8 @@
                     <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>" class="button large"><?php echo Yii::t("base", "Find Experts");?> <i class="fa fa-search"></i></a>
                 <?php } ?>
                 <?php if(Yii::app()->user->isGuest) { ?>
-                    <?php echo CHtml::link(Yii::t("base", 'Become Expert').'<i class="fa fa-angle-right"></i>', array('/registration'), array('class' => 'button large transparent')); ?>
-                    <?php echo CHtml::link(Yii::t("base", 'Become Seeker').'<i class="fa fa-angle-right"></i>', array('site/seekerRegister'), array('class' => 'button large transparent')); ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Expert').' <i class="fa fa-angle-right"></i>', array('/registration'), array('class' => 'button large')); ?>
+                    <?php echo CHtml::link(Yii::t("base", 'Become Seeker').' <i class="fa fa-angle-right"></i>', array('site/seekerRegister'), array('class' => 'button large transparent')); ?>
                 <?php } ?>
             </div>
         </div>
