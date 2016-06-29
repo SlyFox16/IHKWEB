@@ -286,7 +286,7 @@ class User extends ActiveRecord
         $criteria->addCondition('is_staff = 0');
 
         if($param == 'new')
-            $criteria->addCondition('is_seen = 0');
+            $criteria->addCondition('is_seen = 0 AND is_staff = 0 AND is_seeker = 0');
         elseif($param == 'newlevel')
             $criteria->addCondition('level <> new_level');
 
