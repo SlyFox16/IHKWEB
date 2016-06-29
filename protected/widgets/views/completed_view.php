@@ -26,6 +26,9 @@
         <?php echo $form->error($model, 'name'); ?>
 
         <label>
+            <?php if(!empty($model->image)) { ?>
+                <image src="<?php echo YHelper::getImagePath($model->image, 120); ?>">
+            <?php } ?>
             <span><?php echo $model->getAttributeLabel('image'); ?></span>
             <?php echo $form->fileField($model, 'image', array('extensions' => '"gif", "png", "jpg", "jpeg"')); ?>
         </label>
