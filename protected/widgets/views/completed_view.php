@@ -16,6 +16,7 @@
             'validateOnSubmit' => true,
             'validateOnChange' => true
         ),
+        'htmlOptions'=>array("enctype"=>"multipart/form-data"),
     )); ?>
 
         <label>
@@ -23,6 +24,12 @@
             <?php echo $form->textField($model, 'name'); ?>
         </label>
         <?php echo $form->error($model, 'name'); ?>
+
+        <label>
+            <span><?php echo $model->getAttributeLabel('image'); ?></span>
+            <?php echo $form->fileField($model, 'image', array('extensions' => '"gif", "png", "jpg", "jpeg"')); ?>
+        </label>
+        <?php echo $form->error($model, 'image'); ?>
 
         <label>
             <span><?php echo $model->getAttributeLabel('description'); ?></span>

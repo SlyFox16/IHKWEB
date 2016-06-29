@@ -33,6 +33,7 @@ class CompletedProjects extends ActiveRecord
 			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('name, link', 'length', 'max'=>255),
             array('link', 'url'),
+            array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, name, description, date, link', 'safe', 'on'=>'search'),

@@ -75,7 +75,7 @@ class User extends ActiveRecord
             array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
             array('email', 'noEmail', 'on' => 'changepassword'),
             array('is_active', 'numerical', 'integerOnly' => true),
-            array('avatar', 'file', 'types'=>'png, jpg, gif', 'safe' => false,'allowEmpty'=>true),
+            array('avatar', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('vcf', 'file', 'types'=>'pdf', 'safe' => false,'allowEmpty'=>true),
             array('password', 'length', 'min' => 5),
             array('name', 'length', 'max' => 80, 'except' => 'userupdate'),

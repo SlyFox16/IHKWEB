@@ -61,10 +61,12 @@ if (!empty($model->$attributeClean)) {
 
 <?php if($swf == true && !empty($initial)) {
     $initialPreview = "\"<div class='file-preview-text'><h2><i class='glyphicon glyphicon-file'></i></h2>Filename.xlsx</div>\"";
-} elseif($path_info['extension'] == 'pdf') {
+} elseif(@$path_info['extension'] == 'pdf') {
     $initialPreview = "\"<div class='file-preview-text'><h2><i class='glyphicon glyphicon-file'></i></h2>File.pdf</div>\"";
 } else {
-    $initialPreview = '[\''.addslashes(trim($initial)).'\']';
+    $initialPreview = '';
+    if(!empty($initial))
+        $initialPreview = '[\''.addslashes(trim($initial)).'\']';
 } ?>
 
 
