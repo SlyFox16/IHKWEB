@@ -27,7 +27,7 @@
         </div>
         <div class="medium-6 columns">
             <div class="user-area">
-                <?php if(!Yii::app()->user->isGuest) { ?>
+                <?php if(!Yii::app()->user->isGuest && !Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>" title="<?php echo Yii::t("base", "View Profile"); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
                     <a data-tooltip href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders" title="<?php echo Yii::t("base", "Cabinet"); ?>"></a>
                     <?php if(Yii::app()->user->isStaff) { ?>

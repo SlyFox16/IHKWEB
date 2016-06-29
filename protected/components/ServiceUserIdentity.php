@@ -23,15 +23,12 @@ class ServiceUserIdentity implements IUserIdentity
             $this->id = $user->id;
             $this->name = $uloginModel->name;
 
-            $user->username = $uloginModel->name.rand(1, 999);
             $user->identity = $uloginModel->link;
             $user->network = $uloginModel->network;
-            $user->name = $uloginModel->first_name;
-            $user->surname = $uloginModel->last_name;
             $user->update();
         } else {
             $user = new User('socials');
-            $user->username = $uloginModel->name.rand(1, 999);
+            $user->username = YText::translit($uloginModel->first_name).YText::translit($uloginModel->last_name).rand(1, 999);
             $user->identity = $uloginModel->link;
             $user->network = $uloginModel->network;
             $user->email = $uloginModel->email;
@@ -40,7 +37,8 @@ class ServiceUserIdentity implements IUserIdentity
             $user->is_active = 1;
             $user->is_staff = 0;
 
-            $user->save();
+            if(!$user->save())
+                Yii::log(CHtml::errorSummary($user));
 
             $this->id = $user->id;
             $this->name = $user->name;

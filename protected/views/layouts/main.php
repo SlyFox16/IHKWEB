@@ -20,7 +20,7 @@
             <p>Innovation / Funding / Sourcing</p>
         </a>
         <div class="user-area">
-            <?php if(!Yii::app()->user->isGuest) { ?>
+            <?php if(!Yii::app()->user->isGuest && !Yii::app()->user->is_seeker) { ?>
                 <a href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>" title="View Profile"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
                 <a href="<?php echo $this->createUrl('/user/cabinet'); ?>" class="fa fa-sliders" title="Cabinet"></a>
                 <?php if(Yii::app()->user->isStaff) { ?>
