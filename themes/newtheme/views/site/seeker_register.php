@@ -71,12 +71,8 @@
             </div>
         </div>
         <div class="medium-12 large-4 columns left-50">
-            <h2>Use already existing <b>social</b> account to <b>sign up</b></h2>
-            <div class="socials">
-                <a href="" class="fa fa-facebook"></a>
-                <a href="" class="fa fa-twitter"></a>
-                <a href="" class="fa fa-xing"></a>
-            </div>
+            <h2><?php echo Yii::t("base", "Use already existing [b]social[/b] account to [b]sign up[/b]", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
+            <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/sLogin')); ?>
         </div>
         <?php $this->endWidget(); ?>
     </div>

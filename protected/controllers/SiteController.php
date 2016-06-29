@@ -142,7 +142,33 @@ class SiteController extends Frontend
         $this->render('login', array('model' => $model));
     }
 
-    private function eAuthAuthentication() {
+    public function actionSLogin()
+    {
+        if(!Yii::app()->user->isGuest) $this->redirect(Yii::app()->homeUrl);
+
+        $this->eAuthAuthentication(false);
+
+        $model = Yii::createComponent('application.models.LoginForm');
+
+        // if it is ajax validation request
+        if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        // collect user input data
+        if(isset($_POST['LoginForm']))
+        {
+            $model->attributes=$_POST['LoginForm'];
+            if($model->validate() && $model->login())
+                $this->redirect(Yii::app()->homeUrl);
+        }
+
+        $this->render('login', array('model' => $model));
+    }
+
+    private function eAuthAuthentication($expert = true) {
         $serviceName = Yii::app()->request->getParam('service');
         if(!$serviceName) {
             $serviceName = YHelper::urldecodeUrl('service');
@@ -159,7 +185,7 @@ class SiteController extends Frontend
             try {
                 if ($eauth->authenticate()) {
                     //var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());
-                    $identity = new ServiceUserIdentity();
+                    $identity = $expert ? new ServiceUserIdentity() : new ServiceSeekerIdentity();
 
                     // successful authentication
                     if ($identity->authenticate($eauth)) {
