@@ -128,7 +128,7 @@ class ActiveRecord extends CActiveRecord
     {
         $filename = $this->imageName($image);
 
-        if($this->$attribute == 'vcf') {
+        if($attribute == 'vcf') {
             $path = 'images/site/' . get_class($this) . "/vcf/" . $filename;
             $dir = Yii::getPathOfAlias("webroot") . '/images/site/' . get_class($this) . '/vcf/';
         } else {

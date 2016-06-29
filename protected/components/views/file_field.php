@@ -4,7 +4,7 @@
 ?>
 
 <div data-provides="fileinput" class="fileinput fileinput-new input-group">
-    <input id="<?php echo $id; ?>" type="file" data-show-cancel="false" data-show-upload="false" data-show-caption="true" name="<?php echo CHtml::activeName($model, $attribute) ?>" data-allowed-file-extensions='["png", "jpg", "jpeg", "gif"]'>
+    <input id="<?php echo $id; ?>" type="file" data-show-cancel="false" data-show-upload="false" data-show-caption="true" name="<?php echo CHtml::activeName($model, $attribute) ?>" data-allowed-file-extensions='[<?php echo $htmlOptions['extensions']; ?>]'>
     <?php echo CHtml::activeHiddenField($model, $attribute."_remove", array('value'=>0)); ?>
     <?php
         if(isset($htmlOptions['hintText']))
@@ -60,16 +60,15 @@ if (!empty($model->$attributeClean)) {
 ?>
 
 <?php if($swf == true && !empty($initial)) {
-    $initialPreview = "<div class='file-preview-text'>
-        <h2><i class='glyphicon glyphicon-file'></i></h2>
-        Filename.xlsx
-    </div>";
-} elseif(!empty($initial)) {
+    $initialPreview = "\"<div class='file-preview-text'><h2><i class='glyphicon glyphicon-file'></i></h2>Filename.xlsx</div>\"";
+} elseif($path_info['extension'] == 'pdf') {
+    $initialPreview = "\"<div class='file-preview-text'><h2><i class='glyphicon glyphicon-file'></i></h2>File.pdf</div>\"";
+} else {
     $initialPreview = '[\''.addslashes(trim($initial)).'\']';
 } ?>
 
 
-<?php Yii::app()->clientScript->registerScript('popoverActivate',"
+<?php Yii::app()->clientScript->registerScript('popoverActivate'.$id,"
         $(document).on('ready', function(){\$('#".$id."').fileinput({
             initialPreview: ".$initialPreview.",
             overwriteInitial: true
