@@ -7589,6 +7589,7 @@ p {
 }
 .reveal.error {
   float: none;
+  border-top: none;
 }
 
 /* Bottom Edge */
@@ -7650,6 +7651,54 @@ body .star-rating {
 body .rating-container.rating-gly-star {
   vertical-align: middle;
   margin-top: 0.3125rem;
+}
+
+/* Pagination */
+.pagination {
+  position: relative;
+  float: left;
+  clear: both;
+  margin: -1.5625rem 0 -1.5625rem 1.875rem;
+  list-style: none;
+  background: #00478c;
+  border-radius: 0.25rem;
+  z-index: 100;
+}
+
+.pagination li {
+  float: left;
+}
+
+.pagination a {
+  display: block;
+  width: 3.125rem;
+  height: 3.125rem;
+  line-height: 3.125rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+}
+
+.pagination a.selected {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pagination a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.pagination a.right,
+.pagination a.left {
+  font-family: 'FontAwesome';
+  display: inline-block;
+}
+
+.pagination a.right:before {
+  content: "\f105";
+}
+
+.pagination a.left:before {
+  content: "\f104";
 }
 
 /*------------------------------------*\
@@ -7790,6 +7839,11 @@ body .select2-container .select2-choices {
   border: 0;
   border-left: 2px solid #777;
   border-radius: 0;
+}
+body .select2-container .select2-choices:focus {
+  outline: 0;
+  border: 0;
+  box-shadow: 0;
 }
 body .select2-container .select2-choices .select2-search-field input {
   padding: 0.625rem 0.9375rem;
@@ -10986,6 +11040,13 @@ footer {
 .certification .more {
   font-size: 0.875rem;
   text-transform: uppercase;
+}
+.certification figure {
+  width: 100%;
+  margin: 0 0 0.625rem 0;
+}
+.certification figure img {
+  max-width: 50%;
 }
 
 /* Associates */

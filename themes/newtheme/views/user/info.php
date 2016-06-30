@@ -83,10 +83,10 @@
                 <?php foreach($completed as $cert) { ?>
                     <article class="certification">
                         <header>
-                            <img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>">
                             <h3><?php echo $cert->name; ?></h3> <span><?php echo Yii::app()->format->date($cert->date); ?></span>
                         </header>
                         <p><?php echo $cert->description; ?></p>
+                        <figure><img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>"></figure>
                         <a href="<?php echo $cert->link; ?>" class="more"><?php echo Yii::t("base", "Check out project"); ?> <i class="fa fa-angle-right"></i></a>
                     </article>
                 <?php } ?>
