@@ -7440,26 +7440,11 @@ p {
   height: 5rem;
   max-width: 9.375rem;
 }
+.control li input + * {
+  display: inline-block;
+}
 .control li input.small {
   max-width: 6.25rem;
-}
-.control li input:focus {
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-.control .select2-container.form-control {
-  width: 100%;
-  margin: 0;
-}
-.control .select2-container.form-control .select2-default {
-  width: 100%;
-  border: 0;
-  background: transparent;
-}
-.control .select2-container.form-control .select2-default select2-chosen {
-  margin: 0;
-}
-.control .select2-container.form-control .select2-default .select2-arrow {
-  border: 0;
 }
 .control [type='text'], .control [type='password'],
 .control [type='date'], .control [type='datetime'],
@@ -7587,15 +7572,12 @@ p {
   background: #efefef;
   border-radius: 0;
 }
-.reveal.error {
-  float: none;
-  border-top: none;
-}
 
 /* Bottom Edge */
 .bottom-edge {
   position: absolute;
   bottom: 0;
+  width: 100%;
 }
 .bottom-edge .button {
   margin-bottom: 0;
@@ -7608,7 +7590,7 @@ p {
 .cookie {
   position: fixed;
   right: 1.875rem;
-  bottom: -12.5rem;
+  bottom: 1.875rem;
   width: 25rem;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 0.25rem;
@@ -7642,63 +7624,6 @@ p {
 }
 .cookie .cookie_msg {
   padding: 1.25rem 1.875rem;
-}
-
-/* Rating */
-body .star-rating {
-  padding: 0 0.9375rem;
-}
-body .rating-container.rating-gly-star {
-  vertical-align: middle;
-  margin-top: 0.3125rem;
-}
-
-/* Pagination */
-.pagination {
-  position: relative;
-  float: left;
-  clear: both;
-  margin: -1.5625rem 0 -1.5625rem 1.875rem;
-  list-style: none;
-  background: #00478c;
-  border-radius: 0.25rem;
-  z-index: 100;
-}
-
-.pagination li {
-  float: left;
-}
-
-.pagination a {
-  display: block;
-  width: 3.125rem;
-  height: 3.125rem;
-  line-height: 3.125rem;
-  font-weight: 700;
-  color: #fff;
-  text-align: center;
-}
-
-.pagination a.selected {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.pagination a:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.pagination a.right,
-.pagination a.left {
-  font-family: 'FontAwesome';
-  display: inline-block;
-}
-
-.pagination a.right:before {
-  content: "\f105";
-}
-
-.pagination a.left:before {
-  content: "\f104";
 }
 
 /*------------------------------------*\
@@ -7735,7 +7660,7 @@ textarea:focus {
   background: white;
 }
 
-label > span {
+label span {
   display: inline-block;
   padding: 0 0.9375rem;
   color: #e5e5e5;
@@ -7770,7 +7695,7 @@ label > span {
 .input-add {
   position: relative;
   width: 100%;
-  margin: 0 0 0.9375rem 0;
+  margin: 0;
   padding-right: 3.125rem;
   list-style: none;
 }
@@ -7812,56 +7737,6 @@ label > span {
 .dropzone i {
   margin: 0;
   color: #777;
-}
-
-body .select2-container.form-control {
-  margin: 0 0 0.9375rem 0;
-}
-body .select2-container .select2-default,
-body .select2-container .select2-choice {
-  height: 3.125rem;
-  border: 0;
-  border-left: 2px solid #777;
-  border-radius: 0;
-  box-shadow: none;
-}
-body .select2-container .select2-default .select2-chosen,
-body .select2-container .select2-choice .select2-chosen {
-  margin-right: 2.5rem;
-  padding: 0.625rem 0.9375rem;
-  line-height: 1.875rem;
-}
-body .select2-container .select2-default .select2-arrow b,
-body .select2-container .select2-choice .select2-arrow b {
-  background-position: 0 0.75rem;
-}
-body .select2-container .select2-choices {
-  border: 0;
-  border-left: 2px solid #777;
-  border-radius: 0;
-}
-body .select2-container .select2-choices:focus {
-  outline: 0;
-  border: 0;
-  box-shadow: 0;
-}
-body .select2-container .select2-choices .select2-search-field input {
-  padding: 0.625rem 0.9375rem;
-  height: 3.125rem;
-}
-body .select2-drop {
-  padding: 0.9375rem;
-  border: 0;
-  border-left: 2px solid #777;
-  border-radius: 0;
-}
-body .select2-drop .select2-search input {
-  border-radius: 0;
-}
-body .dropzone {
-  border: 0;
-  border-radius: 0;
-  border-left: 2px solid #777;
 }
 
 /*!
@@ -11040,13 +10915,6 @@ footer {
 .certification .more {
   font-size: 0.875rem;
   text-transform: uppercase;
-}
-.certification figure {
-  width: 100%;
-  margin: 0 0 0.625rem 0;
-}
-.certification figure img {
-  max-width: 50%;
 }
 
 /* Associates */
