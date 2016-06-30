@@ -7589,6 +7589,7 @@ p {
 }
 .reveal.error {
   float: none;
+  border-top: none;
 }
 
 /* Bottom Edge */

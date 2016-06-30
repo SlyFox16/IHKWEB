@@ -162,8 +162,8 @@
                                     <?php } ?>
                                 <?php } ?>
                             </div>
-                            <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton')); ?>
-                            <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton')); ?>
+                            <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton button')); ?>
+                            <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton button transparent')); ?>
                         </fieldset>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
                         <fieldset class="fieldset">
                             <legend><?php echo Yii::t("base", "Completed projects"); ?></legend>
                             <?php if($completed = $user->completed) { ?>
-                                <ul class="attached-complete">
+                                <ul class="attached attached-complete">
                                     <?php foreach($completed as $complete) { ?>
                                         <li class="relateduser">
                                             <a data-toggle="complete<?php echo $complete->id; ?>"><?php echo $complete->name; ?></a>
@@ -182,7 +182,7 @@
                                     <?php } ?>
                                 </ul>
                             <?php } ?>
-                            <a data-toggle="complete"><?php echo Yii::t("base", 'ADD'); ?></a>
+                            <a data-toggle="complete" class="button"><?php echo Yii::t("base", 'ADD'); ?></a>
                         </fieldset>
                     </div>
                 </div>
