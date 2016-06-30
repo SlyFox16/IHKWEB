@@ -31,6 +31,7 @@
             )); ?>
                 <div class="row">
                     <div class="small-12 columns">
+                        <?php echo $user->level; ?>
                         <label>
                             <span><?php echo $user->getAttributeLabel('username'); ?></span>
                             <?php echo $form->textField($user, 'username'); ?>
