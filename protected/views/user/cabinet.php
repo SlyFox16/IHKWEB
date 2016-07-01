@@ -213,6 +213,13 @@
                             </li>
                             <li>
                                 <div class="field-content">
+                                    <div><?php echo $form->label($user, 'linkedin_url'); ?></div>
+                                    <div><?php echo $form->textField($user, 'linkedin_url'); ?></div>
+                                </div>
+                                <?php echo $form->error($user, 'linkedin_url'); ?>
+                            </li>
+                            <li>
+                                <div class="field-content">
                                     <div><?php echo $form->label($user, 'xing_url'); ?></div>
                                     <div><?php echo $form->textField($user, 'xing_url'); ?></div>
                                 </div>
