@@ -92,8 +92,8 @@ class User extends ActiveRecord
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
-            array('is_active', 'default', 'value' => 1,'setOnEmpty' => false, 'on' => 'insert'),
-            array('date_joined', 'default', 'value' => date("Y-m-d H:i:s"), 'setOnEmpty' => false, 'on' => 'insert, register, socials')
+            array('is_active', 'default', 'value' => 1,'setOnEmpty' => false, 'on' => 'insert, backendcreate'),
+            array('date_joined', 'default', 'value' => date("Y-m-d H:i:s"), 'setOnEmpty' => false, 'on' => 'insert, register, socials, backendcreate')
         );
     }
 

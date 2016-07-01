@@ -37,13 +37,15 @@ $form->htmlOptions = 'array("enctype"=>"multipart/form-data")';
             'booster.widgets.TbDatePicker',
             array(
                 'model'=>$certificate,
-                'attribute'=>"[$key]uDate",
+                'attribute'=>"[$count]uDate",
                 'options' => array(
                     'format' => 'dd/mm/yyyy',
                     'todayHighlight' => true,
                     'endDate' => '+0d',
                 ),
-
+                'htmlOptions' => array(
+                    'placeholder' => false
+                ),
             )
         ); ?>
         <?php echo $form->error($certificate, "[$count]date"); ?>
