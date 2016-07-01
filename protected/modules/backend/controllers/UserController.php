@@ -23,7 +23,7 @@ class UserController extends BackendController
      */
     public function actionCreate()
     {
-        $model=new User;
+        $model=new User('backendcreate');
         $model->unsetAttributes();
         if(isset($_POST['User'])) {
             $model->attributes = $_POST['User'];

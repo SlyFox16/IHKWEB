@@ -67,6 +67,7 @@ class User extends ActiveRecord
         return array(
             array('username, name, surname, email, password, password_repeat, address, country_id, city_id', 'required', 'on' => 'insert'),
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'seeker'),
+            array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'backendcreate'),
             array('username, name, surname, email', 'required', 'on' => 'update, socials'),
             array('username', 'required', 'on' => 'userupdate'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
