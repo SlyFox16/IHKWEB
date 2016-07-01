@@ -8,7 +8,7 @@
 ?>
 
 <?php if (!empty($model->$attribute)) { ?>
-    <?php if (getimagesize(Yii::app()->basePath . '/../' . $model->$attribute)) { ?>
+    <?php if (@getimagesize(Yii::app()->basePath . '/../' . $model->$attribute)) { ?>
         <div class="span5 fileupload-new thumbnail">
             <?php
                 $path_info = pathinfo($model->$attribute);
