@@ -72,7 +72,12 @@ class BackendController extends Controller
                     'adminMembers',
                     'createAdmin',
                     'ajaxTags',
-                    'confirmLevel'
+                    'confirmLevel',
+                    'UCDate',
+                    'UCCreate',
+                    'UCDelete',
+                    'UCUpdate',
+                    'completedProject',
                 ),
                 'expression'=>'isset(Yii::app()->user->id) && User::model()->findByPk(Yii::app()->user->id)->is_staff',
             ),

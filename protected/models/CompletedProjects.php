@@ -33,7 +33,8 @@ class CompletedProjects extends ActiveRecord
 			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('name, link', 'length', 'max'=>255),
             array('link', 'url'),
-            array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
+            array('confirm', 'safe'),
+            array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'allowEmpty'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, user_id, name, description, date, link', 'safe', 'on'=>'search'),
@@ -49,8 +50,16 @@ class CompletedProjects extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
+
+    public function scopes()
+    {
+        return array(
+            'confirmed'=>array('condition'=>"confirm = 1"),
+        );
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -118,5 +127,10 @@ class CompletedProjects extends ActiveRecord
     {
         $this->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($this->date, 'dd/MM/yyyy'));
         return parent::beforeSave();
+    }
+
+    public function getStatus() {
+        $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
+        return $stat[$this->confirm];
     }
 }

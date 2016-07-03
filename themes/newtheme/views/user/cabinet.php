@@ -32,12 +32,22 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <div class="user_level">
-                            <h2>Level <?php echo $user->level; ?></h2>
+                            <?php if($user->level) { ?>
+                                <h2>Level <?php echo $user->level; ?></h2>
+                            <?php } else { ?>
+                                <h2><?php echo Yii::t("base", "Please add an info about your certificates to to achieve new level."); ?></h2>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="small-12 columns">
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('title'); ?></span>
+                            <?php echo $form->textField($user, 'title'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'title'); ?>
+
                         <label>
                             <span><?php echo $user->getAttributeLabel('username'); ?></span>
                             <?php echo $form->textField($user, 'username'); ?>
@@ -61,22 +71,16 @@
                         <?php echo $form->error($user, 'surname'); ?>
 
                         <label>
-                            <span><?php echo $user->getAttributeLabel('title'); ?></span>
-                            <?php echo $form->textField($user, 'title'); ?>
-                        </label>
-                        <?php echo $form->error($user, 'title'); ?>
-
-                        <label>
-                            <span><?php echo $user->getAttributeLabel('zip'); ?></span>
-                            <?php echo $form->textField($user, 'zip'); ?>
-                        </label>
-                        <?php echo $form->error($user, 'zip'); ?>
-
-                        <label>
                             <span><?php echo $user->getAttributeLabel('email'); ?></span>
                             <?php echo $form->textField($user, 'email', array('readonly'=>true)); ?>
                         </label>
                         <?php echo $form->error($user, 'email'); ?>
+
+                        <label>
+                            <span><?php echo $user->getAttributeLabel('companyname'); ?></span>
+                            <?php echo $form->textField($user, 'companyname'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'companyname'); ?>
 
                         <label>
                             <span><?php echo $user->getAttributeLabel('position'); ?></span>
@@ -211,7 +215,7 @@
 
                             <label>
                                 <span><?php echo $user->getAttributeLabel('address'); ?></span>
-                                <?php echo $form->textField($user, 'address', array('readonly'=>true)); ?>
+                                <?php echo $form->textField($user, 'address'); ?>
                             </label>
                             <?php echo $form->error($user, 'address'); ?>
 

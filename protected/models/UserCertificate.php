@@ -35,7 +35,7 @@ class UserCertificate extends ActiveRecord
 			array('user_id, certificate_id, date', 'required', 'except' => 'check'),
             array('certificate_id, date', 'required', 'on'=>'check'),
 			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
-            array('uDate', 'safe'),
+            array('uDate, confirm', 'safe'),
             array('date', 'type', 'type' => 'date', 'message' => '{attribute}: in wrong format!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -56,6 +56,13 @@ class UserCertificate extends ActiveRecord
 		);
 	}
 
+    public function scopes()
+    {
+        return array(
+            'confirmed'=>array('condition'=>"confirm = 1"),
+        );
+    }
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -66,7 +73,8 @@ class UserCertificate extends ActiveRecord
 			'user_id' => Yii::t("base", 'User'),
 			'certificate_id' => Yii::t("base", 'Certificate'),
             'tebleDescr' => Yii::t("base", 'Certificate description'),
-            'date' => Yii::t("base", 'Date')
+            'date' => Yii::t("base", 'Date'),
+            'uDate' => Yii::t("base", 'Date')
         );
 	}
 
@@ -119,5 +127,10 @@ class UserCertificate extends ActiveRecord
 
     public function getUDate() {
         return Yii::app()->dateFormatter->format("dd/MM/yyyy", $this->date);
+    }
+
+    public function getStatus() {
+        $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
+        return $stat[$this->confirm];
     }
 }

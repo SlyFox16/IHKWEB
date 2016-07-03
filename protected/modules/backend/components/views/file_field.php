@@ -4,7 +4,6 @@
  * Date: 10/3/12
  * Time: 11:15 AM
  */
-
 ?>
 
 <?php if (!empty($model->$attribute)) { ?>
@@ -53,7 +52,7 @@
         Remove?</label>
 
 <?php } ?>
-<div class="fileupload fileupload-new" data-provides="fileupload">
+<div class="fileupload<?php echo $model->id; ?> fileupload-new" data-provides="fileupload">
     <div class="input-append">
         <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span
                 class="fileupload-preview"></span></div>
@@ -67,6 +66,6 @@
 
 <script>
     $().ready(function () {
-        $('.fileupload').fileupload({uploadtype: "file", name: "<?php echo CHtml::activeName($model, $attribute) ?>"})
+        $('.fileupload<?php echo $model->id; ?>').fileupload({uploadtype: "file", name: "<?php echo CHtml::activeName($model, $attribute) ?>"})
     });
 </script>

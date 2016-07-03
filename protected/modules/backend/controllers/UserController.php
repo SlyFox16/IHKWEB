@@ -63,6 +63,31 @@ class UserController extends BackendController
         ));
     }
 
+    public function actionUCUpdate()
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            $pk = Yii::app()->request->getPost('pk');
+            $name = Yii::app()->request->getPost('name');
+            $value = Yii::app()->request->getPost('value');
+
+            $model = UserCertificate::model()->findByPk($pk);
+            $model->$name = $value;
+
+            if($model->save(true, array($name))) {
+                if($name == 'confirm')
+                    $level = User::newLevel($model->user_id);
+
+                echo CJSON::encode(array('id' => $model->primaryKey, 'level' => $level));
+            } else {
+                $errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
+                echo CJSON::encode(array('errors' => $errors));
+            }
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -82,8 +107,6 @@ class UserController extends BackendController
         else
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
-
-
 
     /**
      * Manages all models.

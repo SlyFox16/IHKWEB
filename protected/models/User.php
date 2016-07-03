@@ -81,7 +81,7 @@ class User extends ActiveRecord
             array('password', 'length', 'min' => 5),
             array('name', 'length', 'max' => 80, 'except' => 'userupdate'),
             array('password, identity, network', 'length', 'max' => 512),
-            array('title, zip', 'length', 'max' => 20),
+            array('title, companyname', 'length', 'max' => 20),
             array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
             array('facebook_url, twitter_url, xing_url', 'url'),
             array('salt, username, phone, address', 'length', 'max' => 255, 'except' => 'userupdate'),
@@ -186,7 +186,7 @@ class User extends ActiveRecord
             'id' => 'ID',
             'identity' => Yii::t("base", 'Identity'),
             'network' => Yii::t("base", 'Network'),
-            'name' => Yii::t("base","Name"),
+            'name' => Yii::t("base","First Name"),
             'surname' => Yii::t("base","Second Name"),
             'email' => Yii::t("base","Email"),
             'password' => Yii::t("base","Password"),
@@ -202,6 +202,8 @@ class User extends ActiveRecord
             'address' => Yii::t("base","address"),
             'country_id' => Yii::t("base","Country"),
             'city_id' => Yii::t("base","City"),
+            'companyname' => Yii::t("base","Company name"),
+            'description' => Yii::t("base","Company description"),
         );
     }
 
@@ -252,6 +254,32 @@ class User extends ActiveRecord
         ));
     }
 
+    public function findCertificates()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->condition = 'user_id = :user_id';
+        $criteria->params[':user_id'] = $this->id;
+
+        return new CActiveDataProvider(new UserCertificate(), array(
+            'criteria' => $criteria,
+            'pagination' => false,
+        ));
+    }
+
+    public function findCompleted()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->condition = 'user_id = :user_id';
+        $criteria->params[':user_id'] = $this->id;
+
+        return new CActiveDataProvider(new CompletedProjects(), array(
+            'criteria' => $criteria,
+            'pagination' => false,
+        ));
+    }
+
     public function searchMember($param)
     {
         // Warning: Please modify the following code to remove attributes that
@@ -287,11 +315,19 @@ class User extends ActiveRecord
         $criteria->addCondition('is_staff = 0');
 
         if($param == 'new')
-            $criteria->addCondition('is_seen = 0 AND is_staff = 0 AND is_seeker = 0');
+            $criteria->addCondition('is_seen = 0 AND expert_confirm = 0 AND is_staff = 0 AND is_seeker = 0');
+        if($param == 'newcertificate') {
+            $criteria->join = 'LEFT JOIN user_certificate us ON us.user_id = t.id';
+            $criteria->addCondition('us.confirm = 0');
+        }
+        if($param == 'newprojects') {
+            $criteria->join = 'LEFT JOIN completed_projects cp ON cp.user_id = t.id';
+            $criteria->addCondition('cp.confirm = 0');
+        }
         elseif($param == 'newlevel')
             $criteria->addCondition('level <> new_level');
 
-        return new CActiveDataProvider($this, array(
+        return new CActiveDataProvider(new User, array(
             'criteria' => $criteria,
         ));
     }
@@ -399,23 +435,35 @@ class User extends ActiveRecord
 
     public function afterSave()
     {
-        Yii::log('level', "error");
         if (isset($_POST['UserCertificate'])) {
-            UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
-            $param = $_POST['UserCertificate'];
-
-            foreach ($param as $i => $item) {
+            $cert = array();
+            foreach ($_POST['UserCertificate'] as $i => $item) {
                 if (isset($_POST['UserCertificate'][$i]) && !empty($_POST['UserCertificate'][$i])) {
-                    $modelParam = new UserCertificate();
+                    $date =  Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
+
+                    $modelParam = UserCertificate::model()->find('user_id = :user AND certificate_id = :certid AND date = :date', array(':user' => Yii::app()->user->id, ':certid' => $_POST['UserCertificate'][$i]["certificate_id"], ':date' => $date));
+                    if(!isset($modelParam)) $modelParam = new UserCertificate();
+
                     $modelParam->user_id = Yii::app()->user->id;
                     $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
+                    $modelParam->uDate = $_POST['UserCertificate'][$i]["uDate"];
 
-                    $modelParam->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
                     if(!$modelParam->save()) {
                         Yii::log(CHtml::errorSummary($modelParam), "error");
-                    }
+                    } else
+                        $cert[] = $modelParam->id;
                 }
             }
+
+            $crt = new CDbCriteria;
+            $crt->condition = 'user_id = :user';
+            $crt->addNotInCondition('id', $cert);
+            $crt->params[':user'] = Yii::app()->user->id;
+
+            UserCertificate::model()->deleteAll($crt);
+        } else {
+            UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
+            self::newLevel(Yii::app()->user->id);
         }
 
         if($this->scenario == 'userupdate') {
@@ -557,5 +605,20 @@ class User extends ActiveRecord
         } else {
             return json_encode(array());
         }
+    }
+
+    public static function newLevel($id) {
+        $user = User::model()->findByPk($id);
+        $level = 0;
+        if($user) {
+            $certtificates = $user->certificates(array('scopes' => array('confirmed')));
+            if($certtificates)
+                foreach($certtificates as $cert)
+                    $level += $cert->certificate->points;
+
+            $user->level = $level;
+            $user->saveAttributes(array('level'));
+        }
+        return $level;
     }
 }

@@ -21,9 +21,14 @@ class ButtonColumn extends TbButtonColumn
 
     public $deleteButtonIcon = 'document_letter_remove';
 
+    public $renderPopUserId = false;
+
 
     protected function renderButton($id, $button, $row, $data)
     {
+        if($this->renderPopUserId)
+            Yii::app()->controller->widget('CompletedProject', array('model' => $data, 'renderPopUserId' => $this->renderPopUserId));
+
         if (isset($button['visible']) && !$this->evaluateExpression($button['visible'], array('row'=>$row, 'data'=>$data)))
             return;
 

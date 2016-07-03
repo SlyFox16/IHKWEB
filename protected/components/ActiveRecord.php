@@ -57,7 +57,6 @@ class ActiveRecord extends CActiveRecord
 
                 if($begin)
                 {
-
                     $attributes = array_map('trim',explode(",",$rule[0]));
                     foreach ($attributes as $attribute) {
 

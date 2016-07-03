@@ -98,6 +98,28 @@ class CompletedProjectsController extends BackendController
 		));
 	}
 
+    public function actionCompletedProject($id = null)
+    {
+        if(Yii::app()->request->isPostRequest) {
+            $image = CUploadedFile::getInstance(new CompletedProjects, 'image');
+            $model = isset($id) ? CompletedProjects::model()->findByPk($id) : new CompletedProjects();
+
+            if (isset($_POST['ajax'])) {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
+
+            if (isset($_POST["CompletedProjects"])) {
+                $model->attributes = $_POST["CompletedProjects"];
+
+                if ($model->save()) {
+                    $this->redirect(Yii::app()->request->urlReferrer);
+                }
+            }
+        }
+        throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -110,6 +132,28 @@ class CompletedProjectsController extends BackendController
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
+
+    public function actionUCUpdate()
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            $pk = Yii::app()->request->getPost('pk');
+            $name = Yii::app()->request->getPost('name');
+            $value = Yii::app()->request->getPost('value');
+
+            $model = CompletedProjects::model()->findByPk($pk);
+            $model->$name = $value;
+
+            if($model->save(true, array($name))) {
+                echo CJSON::encode(array('id' => $model->primaryKey));
+            } else {
+                $errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
+                echo CJSON::encode(array('errors' => $errors));
+            }
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
 
 	/**
 	 * Performs the AJAX validation.

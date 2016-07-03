@@ -62,11 +62,11 @@
             <ul class="stats">
                 <li><?php echo Yii::t("base", "Rating");?> <b><?php echo $user->rating; ?></b></li>
                 <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>
-                <?php if(!empty($user->userCertificates)) { ?>
+                <?php if($certisicates = $user->certificates(array('scopes' => array('confirmed')))) { ?>
                     <li><?php echo Yii::t("base", "Certification"); ?>
-                        <?php foreach($user->userCertificates as $cert) { ?>
-                            <b><a href="<?php echo $this->createUrl('site/certificateView', array('id' => $cert->id)); ?>">
-                                    <img src="<?php echo YHelper::getImagePath($cert->logo, 60); ?>" data-tooltip title="<?php echo $cert->name; ?>">
+                        <?php foreach($certisicates as $cert) { ?>
+                            <b><a href="<?php echo $this->createUrl('site/certificateView', array('id' => $cert->certificate->id)); ?>">
+                                    <img src="<?php echo YHelper::getImagePath($cert->certificate->logo, 60); ?>" data-tooltip title="<?php echo $cert->certificate->name; ?>">
                             </a></b>
                         <?php } ?>
                     </li>
@@ -79,7 +79,7 @@
 <section>
     <div class="row">
         <div class="medium-6 medium-offset-3 columns">
-            <?php if($completed = $user->completed) { ?>
+            <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
                 <?php foreach($completed as $cert) { ?>
                     <article class="certification">
                         <header>

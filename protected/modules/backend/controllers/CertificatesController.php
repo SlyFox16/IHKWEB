@@ -82,6 +82,44 @@ class CertificatesController extends BackendController
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
+    public function actionUCCreate($id)
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            $model=new UserCertificate();
+
+            if(isset($_POST['UserCertificate']))
+            {
+                $model->attributes=$_POST['UserCertificate'];
+                $model->user_id = $id;
+
+                if($model->save()) {
+                    User::newLevel($model->user_id);
+                    $this->redirect(Yii::app()->request->urlReferrer);
+                }
+            }
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
+    public function actionUCDelete($id)
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            // we only allow deletion via POST request
+            $model = UserCertificate::model()->findByPk($id);
+            if($model->delete())
+                User::newLevel($model->user->id);
+
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
 
 	/**
 	 * Manages all models.

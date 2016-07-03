@@ -104,8 +104,8 @@ h1 {
 }
 
 .modal {
-    width: 1000px;
-    margin: -300px 0 0 -500px;
+    width: 800px;
+    margin: -300px 0 0 -400px;
 }
 
 #confirm-dialog {

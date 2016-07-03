@@ -8,8 +8,10 @@
 class Nav extends CWidget
 {
     public function init(){
-        $isSeen = User::model()->count('is_seen = 0 AND is_staff = 0 AND is_seeker = 0');
+        $isSeen = User::model()->count('is_seen = 0 AND expert_confirm = 0 AND is_staff = 0 AND is_seeker = 0');
         $newLevel = User::model()->user()->count('level <> new_level');
-        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel));
+        $newCertificate = UserCertificate::model()->with('user')->count('user.is_staff = 0 AND confirm = 0');
+        $newProjects = CompletedProjects::model()->with('user')->count('user.is_staff = 0 AND confirm = 0');
+        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel, 'newCertificate' => $newCertificate, 'newProjects' => $newProjects));
     }
 }

@@ -6,14 +6,20 @@
             </a>
             <ul class="nav user_menu pull-right">
 
-                <?php if($isSeen || $newLevel) { ?>
+                <?php if($isSeen || $newLevel || $newCertificate || $newProjects) { ?>
                     <li class="hidden-phone hidden-tablet">
                         <div class="nb_boxes clearfix">
                             <?php if($isSeen) { ?>
                                 <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/new');?>" data-backdrop="static" data-toggle="modal" title="New members" aria-describedby="ui-tooltip-0"><?php echo $isSeen; ?> <i class="splashy-contact_blue"></i></a>
                             <?php } ?>
                             <?php if($newLevel) { ?>
-                                <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/newlevel');?>" data-backdrop="static" data-toggle="modal" title="New member levels" aria-describedby="ui-tooltip-0"><?php echo $newLevel; ?> <i class="splashy-contact_blue"></i></a>
+                                <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/newlevel');?>" data-backdrop="static" data-toggle="modal" title="New member levels" aria-describedby="ui-tooltip-0"><?php echo $newLevel; ?> <i class="splashy-arrow_large_up"></i></a>
+                            <?php } ?>
+                            <?php if($newCertificate) { ?>
+                                <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/newcertificate');?>" data-backdrop="static" data-toggle="modal" title="New user certificate" aria-describedby="ui-tooltip-0"><?php echo $newCertificate; ?> <i class="splashy-hcards_add"></i></a>
+                            <?php } ?>
+                            <?php if($newProjects) { ?>
+                                <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/newprojects');?>" data-backdrop="static" data-toggle="modal" title="New user projects" aria-describedby="ui-tooltip-0"><?php echo $newProjects; ?> <i class="splashy-hcards_add"></i></a>
                             <?php } ?>
                         </div>
                     </li>
