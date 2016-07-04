@@ -238,6 +238,12 @@
                             <?php echo $form->error($user, 'linkedin_url'); ?>
 
                             <label>
+                                <span><?php echo $user->getAttributeLabel('twitter_url'); ?></span>
+                                <?php echo $form->textField($user, 'twitter_url'); ?>
+                            </label>
+                            <?php echo $form->error($user, 'twitter_url'); ?>
+
+                            <label>
                                 <span><?php echo $user->getAttributeLabel('xing_url'); ?></span>
                                 <?php echo $form->textField($user, 'xing_url'); ?>
                             </label>
