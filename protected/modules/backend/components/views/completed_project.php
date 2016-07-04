@@ -9,7 +9,7 @@
                 <?php $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                     'id' => 'completed-form'.$model->id,
                     'action' => array("completedProjects/completedProject", 'id' => $model->id),
-                    'enableAjaxValidation' => false,
+                    'enableAjaxValidation' => true,
                     'type'=>'horizontal',
                     'clientOptions' => array(
                         'validateOnSubmit' => true,
