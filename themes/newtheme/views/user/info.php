@@ -35,7 +35,7 @@
         </div>
         <div class="small-9 medium-6 columns">
             <div class="expert_name">
-                <h2><b><?php echo $user->name; ?></b> <?php echo $user->surname; ?></h2>
+                <h2><?php echo $user->title; ?> <b><?php echo $user->name; ?></b> <?php echo $user->surname; ?></h2>
             </div>
             <h3><?php echo $user->position; ?></h3>
             <?php if($user->speciality) { ?>
