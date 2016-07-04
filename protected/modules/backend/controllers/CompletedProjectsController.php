@@ -102,7 +102,7 @@ class CompletedProjectsController extends BackendController
     {
         if(Yii::app()->request->isPostRequest) {
             $image = CUploadedFile::getInstance(new CompletedProjects, 'image');
-            $model = isset($id) ? CompletedProjects::model()->findByPk($id) : new CompletedProjects();
+            $model = isset($id) ? CompletedProjects::model()->findByPk($id) : new CompletedProjects('adminadd');
 
             if (isset($_POST['ajax'])) {
                 echo CActiveForm::validate($model);
