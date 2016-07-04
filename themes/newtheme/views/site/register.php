@@ -117,10 +117,10 @@
                         <?php echo $form->error($register_form, 'address'); ?>
 
                         <label>
-                            <span><?php echo $register_form->getAttributeLabel('zip'); ?></span>
-                            <?php echo $form->textField($register_form, 'zip'); ?>
+                            <span><?php echo $register_form->getAttributeLabel('companyname'); ?></span>
+                            <?php echo $form->textField($register_form, 'companyname'); ?>
                         </label>
-                        <?php echo $form->error($register_form, 'zip'); ?>
+                        <?php echo $form->error($register_form, 'companyname'); ?>
                     </div>
                 </div>
                 <div class="row">
