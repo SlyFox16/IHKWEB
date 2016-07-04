@@ -88,7 +88,7 @@ class User extends ActiveRecord
             array('email, username', 'unique', 'except' => 'changepassword, userupdate'),
             array('email', 'email', 'message' => 'Email is not valid.', 'except' => 'userupdate'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
-            array('password_repeat, certificates, facebook_url, linkedin_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm, new_level, seeker_pass', 'safe'),
+            array('password_repeat, certificates, facebook_url, linkedin_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm, level, new_level, seeker_pass', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
