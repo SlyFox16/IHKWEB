@@ -232,6 +232,12 @@
                             <?php echo $form->error($user, 'facebook_url'); ?>
 
                             <label>
+                                <span><?php echo $user->getAttributeLabel('linkedin_url'); ?></span>
+                                <?php echo $form->textField($user, 'linkedin_url'); ?>
+                            </label>
+                            <?php echo $form->error($user, 'linkedin_url'); ?>
+
+                            <label>
                                 <span><?php echo $user->getAttributeLabel('xing_url'); ?></span>
                                 <?php echo $form->textField($user, 'xing_url'); ?>
                             </label>
