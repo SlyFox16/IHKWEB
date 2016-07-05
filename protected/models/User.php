@@ -75,7 +75,7 @@ class User extends ActiveRecord
             array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => 'Wrong format!'),
             array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
             array('email', 'noEmail', 'on' => 'changepassword'),
-            array('is_active', 'numerical', 'integerOnly' => true),
+            array('is_active, level, new_level', 'numerical', 'integerOnly' => true),
             array('avatar', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('vcf', 'file', 'types'=>'pdf', 'safe' => false,'allowEmpty'=>true),
             array('password', 'length', 'min' => 5),
