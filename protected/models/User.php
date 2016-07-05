@@ -97,15 +97,6 @@ class User extends ActiveRecord
         );
     }
 
-    protected function beforeSave()
-    {
-        if(parent::beforeSave()) {
-            $this->username = YText::translit($this->first_name).YText::translit($this->last_name).rand(1, 999);
-            return true;
-        }
-        return false;
-    }
-
     public function scopes()
     {
         return array(
@@ -385,6 +376,7 @@ class User extends ActiveRecord
         if ($this->isNewRecord) {
             $this->salt = $this->generateSalt();
             $this->password = $this->hashPassword($this->password, $this->salt);
+            $this->username = YText::translit($this->first_name).YText::translit($this->last_name).rand(1, 999);
         }
 
         return parent::beforeSave();
