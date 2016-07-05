@@ -376,7 +376,7 @@ class User extends ActiveRecord
         if ($this->isNewRecord) {
             $this->salt = $this->generateSalt();
             $this->password = $this->hashPassword($this->password, $this->salt);
-            $this->username = YText::translit($this->first_name).YText::translit($this->last_name).rand(1, 999);
+            $this->username = YText::translit($this->name).YText::translit($this->surname).rand(1, 999);
         }
 
         return parent::beforeSave();
