@@ -35,7 +35,21 @@ Yii::app()->clientScript->registerScript('search', "
 		'who_received:user',
 		'num',
 		'description',
-		'confirmed:boolean',
+        array(
+            'class' => 'ext.editable.EditableColumn',
+            'name' => 'confirmed',
+            'value' => 'CHtml::value($data, "status")', //we need to set value because source is url
+            'headerHtmlOptions' => array('style' => 'width: 100px'),
+            'editable' => array(
+                'type'     => 'select',
+                'url'      => $this->createUrl('ratingLog/uCUpdate'),
+                'source'   => array(0 => 'Unconfirmed', 1 => 'Confirmed'),
+                'onRender' => 'js: function(e, editable) {
+                      var colors = {0: "red", 1: "green"};
+                      $(this).css("color", colors[editable.value]);
+                  }'
+            )
+        ),
         array(
             'class' => 'backend.components.ButtonColumn',
             'htmlOptions' => array('width' => '60px'),

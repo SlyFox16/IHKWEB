@@ -167,4 +167,9 @@ class RatingLog extends ActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function getStatus() {
+        $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
+        return $stat[$this->confirmed];
+    }
 }
