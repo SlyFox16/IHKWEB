@@ -10969,11 +10969,7 @@ footer {
   margin: 0;
   list-style: none;
 }
-.contacts *:nth-child(-n+3) {
-  display: block;
-}
 .contacts li {
-  display: none;
   position: relative;
   background: #efefef;
   color: #777;
