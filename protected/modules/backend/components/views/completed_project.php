@@ -55,7 +55,7 @@
                 <?php echo $form->hiddenField($model,'user_id',array('class'=>'span5','maxlength'=>255, 'value' => $renderPopUserId)); ?>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i> <?php echo Yii::t("base", "Sign in");?></button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i> <?php echo Yii::t("base", "Add");?></button>
                 </div>
                 <?php $this->endWidget(); ?>
             </div>

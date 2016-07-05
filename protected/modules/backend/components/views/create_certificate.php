@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i> <?php echo Yii::t("base", "Sign in");?></button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i> <?php echo Yii::t("base", "Add");?></button>
                 </div>
                 <?php $this->endWidget(); ?>
             </div>
