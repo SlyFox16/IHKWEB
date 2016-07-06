@@ -123,7 +123,7 @@ class User extends ActiveRecord
             )
         );
 
-        if(isset($model) && empty($model->identity)) {
+        if(isset($model) /*&& empty($model->identity)*/) {
             $error = false;
         }
 
