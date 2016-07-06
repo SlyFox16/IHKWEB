@@ -35,10 +35,10 @@ class ServiceUserIdentity implements IUserIdentity
             $user->name = $uloginModel->first_name;
             $user->surname = $uloginModel->last_name;
 
-            $user->companyname = @$uloginModel->company;
-            $user->description = @$uloginModel->description;
-            $user->position = @$uloginModel->position;
-            $user->avatar = @$uloginModel->avatar;
+            $user->companyname = isset($uloginModel->company) ? $uloginModel->company : '';
+            $user->description = isset($uloginModel->description) ? $uloginModel->description : '';
+            $user->position = isset($uloginModel->position) ? $uloginModel->position : '';
+            $user->avatar = isset($uloginModel->avatar) ? $uloginModel->avatar : '';
 
             $user->is_active = 1;
             $user->is_staff = 0;
