@@ -23,7 +23,7 @@ class IhkFacebookService extends FacebookOAuthService {
 				))
 			)
 		));
-print_r($this->attributes); die();
+print_r($this->attributes['picture']->data->url); die();
         $this->attributes['network'] = 'facebook';
         $this->attributes['avatar'] = $this->attributes->picture->data->url;
 	}
