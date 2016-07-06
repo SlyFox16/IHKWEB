@@ -19,7 +19,7 @@ class IhkFacebookService extends FacebookOAuthService {
 					'email',
 					'first_name',
 					'last_name',
-                    'picture',
+                    'picture.type(large)',
 				))
 			)
 		));
