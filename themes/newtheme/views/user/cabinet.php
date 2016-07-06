@@ -220,6 +220,63 @@
                             <?php echo $form->error($user, 'address'); ?>
 
                             <label>
+                                <span><?php echo $user->getAttributeLabel('country_id'); ?></span>
+                                <?php $this->widget(
+                                    'booster.widgets.TbSelect2',
+                                    [
+                                        'model'=>$user,
+                                        'attribute'=>'country_id',
+                                        'data' => User::model()->assocList,
+                                        'asDropDownList' => true,
+                                        'options' => [
+                                            'placeholder' => 'Select country',
+                                            'width' => '100%',
+                                            'allowClear' => true,
+                                        ],
+                                        'htmlOptions' => [
+                                            'class' => 'form-control'
+                                        ],
+                                    ]
+                                );?>
+                            </label>
+                            <?php echo $form->error($user, 'country_id'); ?>
+
+                            <label>
+                                <span><?php echo $user->getAttributeLabel('city_id'); ?></span>
+                                <?php $this->widget(
+                                    'booster.widgets.TbSelect2',
+                                    [
+                                        'model'=>$user,
+                                        'attribute'=>'city_id',
+                                        'data' => User::model()->cityList,
+                                        'asDropDownList' => false,
+                                        'options' => [
+                                            'minimumInputLength' => 2,
+                                            'placeholder' => 'Select city',
+                                            'width' => '100%',
+                                            'allowClear' => true,
+                                            'ajax' => [
+                                                'url' => Yii::app()->controller->createUrl('/user/citySearch'),
+                                                'dataType' => 'json',
+                                                'data' => 'js:function(term, page) {
+                                                            var country = $("#User_country_id").val();
+                                                            return {q: term,  country: country};
+                                                        }',
+                                                'results' => 'js:function(data) { return {results: data}; }',
+                                            ],
+                                            'initSelection' => 'js:cityInitSelection',
+                                            'formatResult' => 'js:productFormatResult',
+                                            'formatSelection' => 'js:productFormatSelection',
+                                        ],
+                                        'htmlOptions' => [
+                                            'class' => 'form-control'
+                                        ],
+                                    ]
+                                ); ?>
+                            </label>
+                            <?php echo $form->error($user, 'city_id'); ?>
+
+                            <label>
                                 <span><?php echo $user->getAttributeLabel('phone'); ?></span>
                                 <?php echo $form->textField($user, 'phone'); ?>
                             </label>
@@ -289,3 +346,20 @@
         });
     });
 ", CClientScript::POS_END); ?>
+
+<script>
+    function productFormatSelection(city) {
+        return city.name;
+    }
+
+    function productFormatResult(city) {
+        var markup = city.name;
+        return markup;
+    }
+    function cityInitSelection(element, callback) {
+        var ret = <?php echo $user->selectedCity; ?>;
+
+        var data = {'id':ret.id , 'name': ret.value};
+        callback(data);
+    }
+</script>
