@@ -25,6 +25,9 @@ class YHelper
     }
 
     public static function getImagePath($source_image, $width = 0, $height = 0, $default = '') {
+        if (preg_match('~^(http|https)://~', $source_image))
+            return $source_image;
+
         if (!empty($source_image) && file_exists($source_image)) {
             if (empty($width) && empty($height))
                 $image = '/' . $source_image;

@@ -34,16 +34,34 @@ class LinkedinOAuthService extends EOAuthService {
 	);
 
 	protected function fetchAttributes() {
-		$info = $this->makeSignedRequest('http://api.linkedin.com/v1/people/~:(id,first-name,email-address,last-name,public-profile-url)', array(), false); // json format not working :(
-		$info = $this->parseInfo($info);
+		$info = $this->makeSignedRequest('http://api.linkedin.com/v1/people/~:(id,first-name,email-address,picture-urls::(original),last-name,public-profile-url,positions:(id,title,summary,start-date,end-date,is-current,company))?format=json', array(), false); // json format not working :(
+        $info = $this->parseInfo($info);
 
-
-		$this->attributes['name'] = $info['first-name'] . ' ' . $info['last-name'];
-		$this->attributes['link'] = $info['public-profile-url'];
-        $this->attributes['email'] = $info['email-address'];
-        $this->attributes['first_name'] = $info['first-name'];
-        $this->attributes['last_name'] = $info['last-name'];
+		$this->attributes['name'] = @$info['first-name'] . ' ' . @$info['last-name'];
+		$this->attributes['link'] = @$info['public-profile-url'];
+        $this->attributes['email'] = @$info['email-address'];
+        $this->attributes['first_name'] = @$info['first-name'];
+        $this->attributes['last_name'] = @$info['last-name'];
         $this->attributes['network'] = 'linkedin';
+
+        if(@$info['picture-urls']['@attributes']['total'] == 1) {
+            $this->attributes['avatar'] = @$info['picture-urls']['picture-url'];
+        }
+
+        if(@$info['positions']['@attributes']['total'] > 1) {
+            foreach(@$info['positions']['position'] as $position) {
+                if($position->{'is-current'}) {
+                    $this->attributes['company'] = @$position->company->name;
+                    $this->attributes['description'] = @$position->summary;
+                    $this->attributes['position'] = @$position->title;
+                }
+                return;
+            }
+        } elseif(@$info['positions']['@attributes']['total'] == 1) {
+            $this->attributes['company'] = @$info['positions']['position']['company']['name'];
+            $this->attributes['description'] = @$info['positions']['position']['summary'];
+            $this->attributes['position'] = @$info['positions']['position']['title'];
+        }
 	}
 
 	/**
