@@ -13,7 +13,14 @@ class IhkFacebookService extends FacebookOAuthService {
 	protected function fetchAttributes() {
 		$this->attributes = (array)$this->makeSignedRequest('https://graph.facebook.com/v2.5/me', array(
 			'query' => array(
-
+				'fields' => join(',', array(
+					'name',
+                    'link',
+					'email',
+					'first_name',
+					'last_name',
+                    'picture',
+				))
 			)
 		));
 print_r($this->attributes); die();
