@@ -35,7 +35,7 @@ class XingOAuthService extends EOAuthService {
 	protected function fetchAttributes() {
         $info = (object)$this->makeSignedRequest('https://api.xing.com/v1/users/me.json', array(
             'query' => array(
-                'fields' => 'active_email, display_name, first_name, last_name, permalink, photo_urls',
+                'fields' => 'active_email, display_name, first_name, last_name, permalink, photo_urls:(size_256x256)',
             ),
         ), true);
 print_r($info); die();
