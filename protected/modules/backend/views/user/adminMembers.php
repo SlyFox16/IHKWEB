@@ -50,10 +50,20 @@ $('.search-form form').submit(function(){
             'filter'=>false,
         ),
         array(
-            'type' => 'boolean',
+            'class' => 'ext.editable.EditableColumn',
             'name' => 'expert_confirm',
             'filter' => array('Not Confirmed' , 'Confirmed'),
-            'value' => '$data->expert_confirm',
+            'value' => 'CHtml::value($data, "statusConfirm")', //we need to set value because source is url
+            'headerHtmlOptions' => array('style' => 'width: 100px'),
+            'editable' => array(
+                'type'     => 'select',
+                'url'      => $this->createUrl('user/staffUpdate'),
+                'source'   => array(0 => 'Unconfirmed', 1 => 'Confirmed'),
+                'onRender' => 'js: function(e, editable) {
+                      var colors = {0: "red", 1: "green"};
+                      $(this).css("color", colors[editable.value]);
+                  }'
+            )
         ),
         array(
             'type' => 'boolean',

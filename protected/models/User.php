@@ -629,4 +629,9 @@ class User extends ActiveRecord
         }
         return $level;
     }
+
+    public function getStatusConfirm() {
+        $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
+        return $stat[$this->expert_confirm];
+    }
 }
