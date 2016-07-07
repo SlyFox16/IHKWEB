@@ -66,10 +66,36 @@ $('.search-form form').submit(function(){
             )
         ),
         array(
-            'type' => 'boolean',
+            'class' => 'ext.editable.EditableColumn',
             'name' => 'is_active',
-            'filter' => array('Not Active' , 'Active'),
-            'value' => '$data->is_active',
+            'filter' => array('Inactive' , 'Active'),
+            'value' => 'CHtml::value($data, "statusActive")', //we need to set value because source is url
+            'headerHtmlOptions' => array('style' => 'width: 100px'),
+            'editable' => array(
+                'type'     => 'select',
+                'url'      => $this->createUrl('user/staffUpdate'),
+                'source'   => array(0 => 'Inactive', 1 => 'Active'),
+                'onRender' => 'js: function(e, editable) {
+                      var colors = {0: "red", 1: "green"};
+                      $(this).css("color", colors[editable.value]);
+                  }'
+            )
+        ),
+        array(
+            'class' => 'ext.editable.EditableColumn',
+            'name' => 'is_staff',
+            'filter' => false,
+            'value' => 'CHtml::value($data, "statusStaff")', //we need to set value because source is url
+            'headerHtmlOptions' => array('style' => 'width: 100px'),
+            'editable' => array(
+                'type'     => 'select',
+                'url'      => $this->createUrl('user/staffUpdate'),
+                'source'   => array(0 => 'User', 1 => 'Admin'),
+                'onRender' => 'js: function(e, editable) {
+                      var colors = {0: "green", 1: "blue"};
+                      $(this).css("color", colors[editable.value]);
+                  }'
+            )
         ),
         array(
             'name'=>'last_login',

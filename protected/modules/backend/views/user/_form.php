@@ -114,6 +114,8 @@
 
 <?php echo $form->checkBoxRow($model, 'expert_confirm'); ?>
 
+<?php echo $form->checkBoxRow($model, 'is_staff'); ?>
+
 <?php $this->widget('ImageGallery', array('model' => $model, 'noUpload' => true)); ?>
 
 <div class="form-actions">

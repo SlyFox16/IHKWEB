@@ -194,7 +194,7 @@ class User extends ActiveRecord
             'salt' => 'Salt',
             'fullName' => Yii::t("base", 'Full Name'),
             'is_active' => 'Is Active',
-            'is_staff' => 'Is Staff',
+            'is_staff' => 'Admin',
             'last_login' => 'Last Login',
             'date_joined' => 'Date Joined',
             'avatar' => Yii::t("base","Avatar"),
@@ -633,5 +633,15 @@ class User extends ActiveRecord
     public function getStatusConfirm() {
         $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
         return $stat[$this->expert_confirm];
+    }
+
+    public function getStatusActive() {
+        $stat = array(0 => 'Inactve', 1 => 'Active');
+        return $stat[$this->is_active];
+    }
+
+    public function getStatusStaff() {
+        $stat = array(0 => 'User', 1 => 'Admin');
+        return $stat[$this->is_staff];
     }
 }
