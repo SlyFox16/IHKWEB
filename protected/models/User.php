@@ -69,26 +69,26 @@ class User extends ActiveRecord
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'seeker'),
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'backendcreate'),
             array('username, name, surname, email', 'required', 'on' => 'update, socials'),
-            array('username', 'required', 'on' => 'userupdate'),
+            array('username, address, country_id, city_id, phone', 'required', 'on' => 'userupdate'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
-            array('username, name, surname, address, position','filter','filter'=>'strip_tags', 'except' => 'userupdate'),
+            array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
             array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => 'Wrong format!'),
             array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
             array('email', 'noEmail', 'on' => 'changepassword'),
-            array('is_active, level, new_level', 'numerical', 'integerOnly' => true),
+            array('is_active, is_staff, is_seeker, is_seen, level, new_level, expert_confirm', 'numerical', 'integerOnly' => true),
             array('avatar', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('vcf', 'file', 'types'=>'pdf', 'safe' => false,'allowEmpty'=>true),
             array('password', 'length', 'min' => 5),
-            array('name', 'length', 'max' => 80, 'except' => 'userupdate'),
+            array('name, surname', 'length', 'max' => 80),
             array('password, identity, network', 'length', 'max' => 512),
             array('title, companyname', 'length', 'max' => 20),
             array('phone', 'match', 'pattern'=>'/^[-+()0-9 ]+$/', 'message' => Yii::t("base",'Wrong phone format')),
             array('facebook_url, twitter_url, xing_url', 'url'),
-            array('salt, username, phone, address', 'length', 'max' => 255, 'except' => 'userupdate'),
-            array('email, username', 'unique', 'except' => 'changepassword, userupdate'),
-            array('email', 'email', 'message' => 'Email is not valid.', 'except' => 'userupdate'),
+            array('salt, username, email, phone, address, companyname, position, facebook_url, linkedin_url, twitter_url, 	xing_url', 'length', 'max' => 255),
+            array('email, username', 'unique', 'except' => 'changepassword'),
+            array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
-            array('password_repeat, certificates, facebook_url, linkedin_url, twitter_url, last_login, xing_url, date_joined, is_staff, identity, network, comment, position, description, expert_confirm, level, new_level, seeker_pass', 'safe'),
+            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -123,12 +123,12 @@ class User extends ActiveRecord
             )
         );
 
-        if(isset($model) && empty($model->identity)) {
+        if(isset($model) /*&& empty($model->identity)*/) {
             $error = false;
         }
 
         if ($error == true) {
-            $this->addError('email', 'This email-a is not in the database.');
+            $this->addError('email', Yii::t("base", 'This email-a is not in the database.'));
         }
     }
 
@@ -194,7 +194,7 @@ class User extends ActiveRecord
             'salt' => 'Salt',
             'fullName' => Yii::t("base", 'Full Name'),
             'is_active' => 'Is Active',
-            'is_staff' => 'Is Staff',
+            'is_staff' => 'Admin',
             'last_login' => 'Last Login',
             'date_joined' => 'Date Joined',
             'avatar' => Yii::t("base","Avatar"),
@@ -371,12 +371,19 @@ class User extends ActiveRecord
         ));
     }
 
+    protected function beforeValidate()
+    {
+        if($this->isNewRecord)
+            $this->username = YText::translit($this->name).YText::translit($this->surname).rand(1, 999);
+
+        return parent::beforeValidate();
+    }
+
     public function beforeSave()
     {
         if ($this->isNewRecord) {
             $this->salt = $this->generateSalt();
             $this->password = $this->hashPassword($this->password, $this->salt);
-            $this->username = YText::translit($this->name).YText::translit($this->surname).rand(1, 999);
         }
 
         return parent::beforeSave();
@@ -621,5 +628,20 @@ class User extends ActiveRecord
             $user->saveAttributes(array('level'));
         }
         return $level;
+    }
+
+    public function getStatusConfirm() {
+        $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
+        return $stat[$this->expert_confirm];
+    }
+
+    public function getStatusActive() {
+        $stat = array(0 => 'Inactve', 1 => 'Active');
+        return $stat[$this->is_active];
+    }
+
+    public function getStatusStaff() {
+        $stat = array(0 => 'User', 1 => 'Admin');
+        return $stat[$this->is_staff];
     }
 }

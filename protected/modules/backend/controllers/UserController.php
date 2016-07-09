@@ -89,6 +89,28 @@ class UserController extends BackendController
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
 
+    public function actionStaffUpdate()
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            $pk = Yii::app()->request->getPost('pk');
+            $name = Yii::app()->request->getPost('name');
+            $value = Yii::app()->request->getPost('value');
+
+            $model = User::model()->findByPk($pk);
+            $model->$name = $value;
+
+            if($model->save(true, array($name))) {
+                echo CJSON::encode(array('id' => $model->primaryKey));
+            } else {
+                $errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
+                echo CJSON::encode(array('errors' => $errors));
+            }
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
     /**
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.

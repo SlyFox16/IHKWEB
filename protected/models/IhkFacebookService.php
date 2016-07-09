@@ -19,10 +19,12 @@ class IhkFacebookService extends FacebookOAuthService {
 					'email',
 					'first_name',
 					'last_name',
+                    'picture.width(290).height(290)',
 				))
 			)
 		));
 
         $this->attributes['network'] = 'facebook';
+        $this->attributes['avatar'] = @$this->attributes['picture']->data->url;
 	}
 }

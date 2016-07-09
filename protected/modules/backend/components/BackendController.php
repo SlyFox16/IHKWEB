@@ -78,6 +78,7 @@ class BackendController extends Controller
                     'UCDelete',
                     'UCUpdate',
                     'completedProject',
+                    'staffUpdate',
                 ),
                 'expression'=>'isset(Yii::app()->user->id) && User::model()->findByPk(Yii::app()->user->id)->is_staff',
             ),

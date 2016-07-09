@@ -101,3 +101,7 @@
         </div>
     </div>
 </section>
+
+<?php if(Yii::app()->user->getFlash('mail_recover')) {
+    $this->widget('PassChange', array('change' => true, 'open' => true));
+} ?>

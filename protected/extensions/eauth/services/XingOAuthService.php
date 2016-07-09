@@ -45,5 +45,11 @@ class XingOAuthService extends EOAuthService {
         $this->attributes['first_name'] = $info->users[0]->first_name;
         $this->attributes['last_name'] = $info->users[0]->last_name;
         $this->attributes['network'] = 'xing';
+
+        $this->attributes['avatar'] = @$info->users[0]->photo_urls->size_1024x1024;
+
+        $this->attributes['company'] = @$info->users[0]->professional_experience->primary_company->name;
+        $this->attributes['description'] = @$info->users[0]->professional_experience->primary_company->description;
+        $this->attributes['position'] = @$info->users[0]->professional_experience->primary_company->title;
 	}
 }
