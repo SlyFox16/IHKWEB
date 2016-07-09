@@ -23,7 +23,9 @@
                     <p>Innovation / Funding / Sourcing</p>
                 </a>
             </div>
-
+            <div class=“partner”>
+                <img src="<?php echo $this->assetsUrl?>/images/DCV-logo.png">
+            </div>
         </div>
         <div class="medium-6 columns">
             <div class="user-area">
