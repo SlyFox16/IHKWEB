@@ -366,7 +366,7 @@ class SiteController extends Frontend
     public function actionPages($id){
         $model = Pages::model()->find($id);
         if(!$model)
-            throw new CHttpException(404,Yii::t("base","Запрашиваемая страница не существует!"));
+            throw new CHttpException(404,Yii::t("base","The requested page does not exist!"));
         $this->render("page",array('model'=>$model));
     }
 
