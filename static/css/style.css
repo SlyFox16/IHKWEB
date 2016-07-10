@@ -7287,9 +7287,14 @@ body > header {
 }
 .logo p {
   font-size: 1.875rem;
+  margin: 0;
   line-height: 2.1875rem;
   font-weight: 300;
   color: #777;
+}
+
+.partner {
+  max-width: 30%;
 }
 
 /* User Area */
