@@ -47,7 +47,7 @@
                     }",
                 ),
                 'htmlOptions'=>array(
-                    'placeholder' => 'Search',
+                    'placeholder' => Yii::t("base", 'Search'),
                 ),
             )); ?>
         </li>

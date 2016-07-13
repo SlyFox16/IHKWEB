@@ -19,8 +19,8 @@
         <div class="medium-6 columns">
             <div class="logo">
                 <a href="<?php echo Yii::app()->homeUrl; ?>">
-                    <h1>Crowd</h1>
-                    <p>Innovation / Funding / Sourcing</p>
+                    <h1><?php echo Yii::t("base", "Crowd");?></h1>
+                    <p><?php echo Yii::t("base", "Innovation");?> / <?php echo Yii::t("base", "Funding");?> / <?php echo Yii::t("base", "Sourcing");?></p>
                 </a>
             </div>
             <div class="partner">
@@ -39,7 +39,7 @@
                 <?php } elseif(Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } else {
-                    echo CHtml::link('Login', array('/site/login'), array('title' => 'Login', 'data-tooltip' => ''));
+                    echo CHtml::link(Yii::t("base", 'Login'), array('/site/login'), array('title' => 'Login', 'data-tooltip' => ''));
                 } ?>
             </div>
         </div>
