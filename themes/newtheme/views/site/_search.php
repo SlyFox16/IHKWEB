@@ -8,10 +8,10 @@
     <div class="small-12 medium-8 columns">
         <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
             <li>
-                <?php echo $form->textField($model,'name',array('placeholder' => 'Name')); ?>
+                <?php echo $form->textField($model,'name',array('placeholder' => Yii::t("base", 'First Name'))); ?>
             </li>
             <li>
-                <?php echo $form->textField($model,'surname',array('placeholder' => 'Surname')); ?>
+                <?php echo $form->textField($model,'surname',array('placeholder' => Yii::t("base", 'Second Name'))); ?>
             </li>
             <li>
                 <?php $this->widget(
@@ -22,7 +22,7 @@
                         'asDropDownList' => false,
                         'options' => [
                             'minimumInputLength' => 2,
-                            'placeholder' => 'Select City',
+                            'placeholder' => Yii::t("base", 'City'),
                             'width' => '100%',
                             'allowClear' => true,
                             'ajax' => [
@@ -45,10 +45,10 @@
                 ); ?>
             </li>
             <li>
-                <?php echo $form->textField($model,'level',array('class'=>'span5 small', 'placeholder' => 'Level')); ?>
+                <?php echo $form->textField($model,'level',array('class'=>'span5 small', 'placeholder' => Yii::t("base", 'Level'))); ?>
             </li>
             <li>
-                <?php echo $form->textField($model,'rating',array('class'=>'span5 small', 'placeholder' => 'Rating')); ?>
+                <?php echo $form->textField($model,'rating',array('class'=>'span5 small', 'placeholder' => Yii::t("base", 'Rating'))); ?>
             </li>
             <li>
                 <?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?>
