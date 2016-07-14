@@ -9,7 +9,7 @@
                     'asDropDownList' => false,
                     'options' => [
                         'minimumInputLength' => 2,
-                        'placeholder' => 'Select user',
+                        'placeholder' => Yii::t("base", 'Select user'),
                         'width' => '100%',
                         'allowClear' => true,
                         'ajax' => [
@@ -18,8 +18,8 @@
                             'data' => 'js:function(term, page) { return {term: term }; }',
                             'results' => 'js:function(data) { return {results: data}; }',
                         ],
-                        'formatResult' => 'js:productFormatResult',
-                        'formatSelection' => 'js:productFormatSelection',
+                        'formatResult' => 'js:productFormatResult1',
+                        'formatSelection' => 'js:productFormatSelection1',
                     ],
                     'htmlOptions' => [
                         'id' => 'user-select',
@@ -79,11 +79,11 @@
 ", CClientScript::POS_END); ?>
 
 <script type="text/javascript">
-    function productFormatSelection(product) {
+    function productFormatSelection1(product) {
         return product.label;
     }
 
-    function productFormatResult(user) {
+    function productFormatResult1(user) {
         var markup = user.label;
         return markup;
     }

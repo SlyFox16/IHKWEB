@@ -9,7 +9,7 @@
                     'asDropDownList' => false,
                     'options' => [
                         'minimumInputLength' => 2,
-                        'placeholder' => 'Select user',
+                        'placeholder' => Yii::t("base", 'Select association'),
                         'width' => '100%',
                         'allowClear' => true,
                         'ajax' => [
@@ -18,8 +18,8 @@
                             'data' => 'js:function(term, page) { return {term: term }; }',
                             'results' => 'js:function(data) { return {results: data}; }',
                         ],
-                        'formatResult' => 'js:productFormatResult',
-                        'formatSelection' => 'js:productFormatSelection',
+                        'formatResult' => 'js:productFormatResult2',
+                        'formatSelection' => 'js:productFormatSelection2',
                     ],
                     'htmlOptions' => [
                         'id' => 'user-association',
@@ -79,11 +79,11 @@
 ", CClientScript::POS_END); ?>
 
 <script type="text/javascript">
-    function productFormatSelection(product) {
+    function productFormatSelection2(product) {
         return product.label;
     }
 
-    function productFormatResult(user) {
+    function productFormatResult2(user) {
         var markup = user.label;
         return markup;
     }

@@ -130,4 +130,6 @@ return array (
     'Innovation' => 'Innovation',
     'Funding' => 'Finanzierung',
     'Sourcing' => 'Beschaffung',
+    'Select association' => 'Wählen Verband',
+    'Select user' => 'Wählen Benutzer',
 );
