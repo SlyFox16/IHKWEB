@@ -66,7 +66,6 @@ $this->menu=array(
     'id' => 'order-delivery-grid',
     'type' => 'striped bordered condensed',
     'dataProvider' => $model->findCertificates(),
-    'template' => '{items}',
     'htmlOptions'=>array('style'=>'padding:0;'),
     'columns' => array(
         array(
@@ -124,7 +123,6 @@ $this->menu=array(
     'id' => 'order-completed-grid',
     'type' => 'striped bordered condensed',
     'dataProvider' => $model->findCompleted(),
-    'template' => '{items}',
     'htmlOptions'=>array('style'=>'padding:0;'),
     'columns' => array(
         array(
