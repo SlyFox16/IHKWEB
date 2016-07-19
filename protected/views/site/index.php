@@ -58,22 +58,22 @@
             <div class="col-sm-4">
                 <div class="feature wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
                     <i class="fa fa-quote-left"></i>
-                    <h3><?php echo yiisetting('main_footer_1', null, true); ?></h3>
-                    <p><?php echo yiisetting('main_footer_1'); ?></p>
+                    <h3><?php echo Yii::t("base", "How it works"); ?></h3>
+                    <p><?php echo Yii::t("base", "HOW IT WORKS TEXT"); ?></p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="feature wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
                     <i class="fa fa-map-marker"></i>
-                    <h3><?php echo yiisetting('main_footer_2', null, true); ?></h3>
-                    <p><?php echo yiisetting('main_footer_2'); ?></p>
+                    <h3><?php echo Yii::t("base", "Why and WHERE to get CERTIFIED"); ?></h3>
+                    <p><?php echo Yii::t("base", "CERTIFIED TEXT"); ?></p>
                 </div>
             </div>
             <div class="col-sm-4">
                 <div class="feature wow fadeIn" data-wow-duration="1s" data-wow-delay="0.9s">
                     <i class="fa fa-area-chart"></i>
-                    <h3><?php echo yiisetting('main_footer_3', null, true); ?></h3>
-                    <p><?php echo yiisetting('main_footer_3'); ?></p>
+                    <h3><?php echo Yii::t("base", "Our work platforms"); ?></h3>
+                    <p><?php echo Yii::t("base", "WORK PLATFORMS TEXT"); ?></p>
                 </div>
             </div>
         </div>

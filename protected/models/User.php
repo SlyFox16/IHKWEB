@@ -474,7 +474,7 @@ class User extends ActiveRecord
             self::newLevel(Yii::app()->user->id);
         }
 
-        if($this->scenario == 'userupdate') {
+        if ($this->scenario == 'userupdate') {
             $certs = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
 
             $this->new_level = 0;

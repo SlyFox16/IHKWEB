@@ -132,4 +132,10 @@ return array (
     'Sourcing' => 'Beschaffung',
     'Select association' => 'Wählen Verband',
     'Select user' => 'Wählen Benutzer',
+    'How it works' => '',
+    'HOW IT WORKS TEXT' => '',
+    'Why and WHERE to get CERTIFIED' => '',
+    'CERTIFIED TEXT' => '',
+    'Our work platforms' => '',
+    'WORK PLATFORMS TEXT' => '',
 );
