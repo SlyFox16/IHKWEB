@@ -49,7 +49,7 @@ class CertificateRouter extends CBaseUrlRule
 
     private function dbExist($db, $slug)
     {
-        $user = $db::model()->find("name = '$slug'");
+        $user = $db::model()->find("slug = '$slug'");
 
         if($user)
             return $user->id;

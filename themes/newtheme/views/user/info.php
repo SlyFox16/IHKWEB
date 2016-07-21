@@ -65,6 +65,7 @@
                 <?php if($certisicates = $user->certificates(array('scopes' => array('confirmed')))) { ?>
                     <li><?php echo Yii::t("base", "Certification"); ?>
                         <?php foreach($certisicates as $cert) { ?>
+                            <?php echo 'lkjlkjlkj'; ?>
                             <b><a href="<?php echo $this->createUrl('site/certificateView', array('id' => $cert->certificate->id)); ?>">
                                     <img src="<?php echo YHelper::getImagePath($cert->certificate->logo, 60); ?>" data-tooltip title="<?php echo $cert->certificate->name; ?>">
                             </a></b>
