@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $(".addButton").on('click', function () {
-        var count = $('ul[class*=addfield]', $(this).closest('form')).length;
+        var count = $('div[class*=fields]', $(this).closest('form')).length;
 
         var self = $(this);
         $.ajax({
