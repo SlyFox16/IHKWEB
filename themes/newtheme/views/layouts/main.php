@@ -26,6 +26,9 @@
             <div class="partner">
                 <img src="<?php echo $this->assetsUrl?>/images/DCV-logo.png">
             </div>
+            <div class="ihklogo">
+                <img src="<?php echo $this->assetsUrl?>/images/ihk-logo.png">
+            </div>
         </div>
         <div class="medium-6 columns">
             <div class="user-area">
