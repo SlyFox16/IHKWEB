@@ -7278,6 +7278,7 @@ body > header {
 
 .logo {
   float: left;
+  width: 60%;
 }
 .logo h1 {
   margin: 0;
@@ -7294,7 +7295,13 @@ body > header {
 }
 
 .partner {
-  max-width: 30%;
+  width: 20%;
+  float: left;
+}
+
+.ihklogo {
+  width: 20%;
+  float: left;
 }
 
 /* User Area */
