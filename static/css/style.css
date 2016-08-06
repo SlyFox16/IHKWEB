@@ -7278,6 +7278,7 @@ body > header {
 
 .logo {
   float: left;
+  margin-bottom: 0.625rem;
 }
 .logo h1 {
   margin: 0;
@@ -7294,7 +7295,13 @@ body > header {
 }
 
 .partner {
-  max-width: 30%;
+  width: 20%;
+  float: left;
+}
+
+.ihklogo {
+  width: 20%;
+  float: left;
 }
 
 /* User Area */
@@ -11185,6 +11192,62 @@ body .rating-gly-star {
 \*------------------------------------*/
 .secondary-header .row {
   padding: 0.9375rem 0;
+}
+
+.expertcard {
+  width: 100%;
+  padding: 0 0.9375rem;
+}
+.expertcard + .expertcard {
+  margin-top: 1.875rem;
+  padding-top: 1.875rem;
+  border-top: 1px solid #d5d5d5;
+}
+.expertcard .expertcard_info {
+  padding-right: 1.875rem;
+  width: 50%;
+}
+.expertcard .expertcard_info .stats {
+  margin: 0.625rem 0 0 0;
+  text-align: left;
+  overflow: hidden;
+}
+.expertcard .expertcard_info .stats li {
+  float: left;
+}
+.expertcard .expertcard_info .stats li + li {
+  margin: 0 0 0 1.875rem;
+}
+.expertcard .expertcard_link {
+  width: 30%;
+  text-align: right;
+}
+.expertcard .expertcard_link .button {
+  margin: 0;
+}
+.expertcard > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+.expertcard > div + div {
+  padding-left: 1.875rem;
+}
+@media screen and (max-width: 39.9375em) {
+  .expertcard .expertcard_info {
+    width: 100%;
+  }
+  .expertcard .expertcard_link {
+    width: 100%;
+    padding-top: 0.9375rem;
+    text-align: left;
+  }
+  .expertcard > div {
+    display: block;
+  }
+  .expertcard > div + div {
+    padding: 0;
+    padding-top: 0.625rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

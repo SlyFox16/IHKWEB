@@ -1,13 +1,8 @@
-<!--===============================-->
-<!--== Experts ====================-->
-<!--===============================-->
-
-
 <!-- Search Header -->
 <section class="secondary-header">
     <div class="row">
         <div class="small-12 columns">
-            <h2><?php echo Yii::t("base", "Find certified [b]Crowd Experts[/b]> now.", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
+            <h2>Find certified <b>Crowd Experts</b> now.</h2>
         </div>
     </div>
 </section>
@@ -21,12 +16,10 @@
             ),
         )); ?>
     </div>
-
-    <!--== Page Control ==-->
+    <!-- Control -->
     <?php $this->renderPartial('_search',array(
         'model'=>$model,
     )); ?>
-    <!-- Control -->
 </div>
 
 <section class="separated separated--edge">
