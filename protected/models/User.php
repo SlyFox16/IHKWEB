@@ -531,14 +531,6 @@ class User extends ActiveRecord
     }
 
     public function suggestTag($keyword){
-        /*$users = User::model()->with('cities0')->findAll(array(
-            'condition'=>'name LIKE :keyword OR surname LIKE :keyword OR cities0.city_name_ASCII LIKE :keyword',
-            'params'=>array(
-                ':keyword'=>'%'.strtr($keyword,array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\')).'%',
-            ),
-            'scopes' => 'search_active',
-        ));*/
-
         $keyword = htmlspecialchars($keyword);
         $keyword = addslashes($keyword);
         $keyword = mb_strtolower($keyword, 'UTF-8');
