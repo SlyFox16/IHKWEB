@@ -16,21 +16,31 @@
 <!--===============================-->
 <header data-stellar-ratio="1.4">
     <div class="row">
-        <div class="medium-6 columns">
-            <div class="logo">
-                <a href="<?php echo Yii::app()->homeUrl; ?>">
-                    <h1><?php echo Yii::t("base", "Crowd");?></h1>
-                    <p><?php echo Yii::t("base", "Innovation");?> / <?php echo Yii::t("base", "Funding");?> / <?php echo Yii::t("base", "Sourcing");?></p>
-                </a>
-            </div>
-            <div class="partner">
-                <img src="<?php echo $this->assetsUrl?>/images/DCV-logo.png">
-            </div>
-            <div class="ihklogo">
-                <img src="<?php echo $this->assetsUrl?>/images/ihk-logo.png">
+        <div class="medium-8 columns">
+            <div class="row">
+                <div class="medium-12 large-6 columns">
+                    <div class="logo">
+                        <a href="<?php echo Yii::app()->homeUrl; ?>">
+                            <h1><?php echo Yii::t("base", "Crowd");?></h1>
+                            <p><?php echo Yii::t("base", "Innovation");?> / <?php echo Yii::t("base", "Funding");?> / <?php echo Yii::t("base", "Sourcing");?></p>
+                        </a>
+                    </div>  
+                </div>
+                <div class="medium-12 large-6 columns">
+                    <ul class="partners">
+                        <li>
+                            <span>präsentiert von</span>
+                            <img src="<?php echo $this->assetsUrl?>/images/DCV-logo.png">
+                        </li>
+                        <li>
+                            <span>gefördert durch</span>
+                            <img src="<?php echo $this->assetsUrl?>/images/ihk-logo.png">
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="medium-6 columns">
+        <div class="medium-4 columns">
             <div class="user-area">
                 <?php if(!Yii::app()->user->isGuest && !Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>" title="<?php echo Yii::t("base", "View Profile"); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>
