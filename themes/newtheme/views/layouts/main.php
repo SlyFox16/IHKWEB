@@ -16,9 +16,9 @@
 <!--===============================-->
 <header data-stellar-ratio="1.4">
     <div class="row">
-        <div class="medium-8 columns">
+        <div class="medium-6 large-9 columns">
             <div class="row">
-                <div class="medium-12 large-6 columns">
+                <div class="medium-12 large-8 columns">
                     <div class="logo">
                         <a href="<?php echo Yii::app()->homeUrl; ?>">
                             <h1><?php echo Yii::t("base", "Crowd");?></h1>
@@ -26,7 +26,7 @@
                         </a>
                     </div>  
                 </div>
-                <div class="medium-12 large-6 columns">
+                <div class="medium-12 large-4 columns">
                     <ul class="partners">
                         <li>
                             <span>präsentiert von</span>
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <div class="medium-4 columns">
+        <div class="medium-6 large-3 columns">
             <div class="user-area">
                 <?php if(!Yii::app()->user->isGuest && !Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/user/info', array('id' => Yii::app()->user->id)); ?>" title="<?php echo Yii::t("base", "View Profile"); ?>"><b><?php echo Yii::app()->user->name; ?></b> <?php echo Yii::app()->user->surname; ?></a>

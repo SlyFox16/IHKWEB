@@ -7294,14 +7294,16 @@ body > header {
   color: #777;
 }
 
-.partner {
-  width: 20%;
+.partners li {
   float: left;
+  width: 50%;
+  padding: 0 0.3125rem;
+  list-style: none;
 }
-
-.ihklogo {
-  width: 20%;
-  float: left;
+.partners li span {
+  display: block;
+  margin-bottom: 0.3125rem;
+  color: #777;
 }
 
 /* User Area */
