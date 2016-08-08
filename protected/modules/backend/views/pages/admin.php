@@ -31,6 +31,12 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+        array(
+            'name' => 'slug',
+            'value' => function($data) {
+                return Yii::app()->createAbsoluteUrl('site/pages', array('id' => $data->id));
+            }
+        ),
 		'title',
         array(
             'class' => 'backend.components.ButtonColumn',
