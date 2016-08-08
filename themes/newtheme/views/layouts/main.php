@@ -58,6 +58,7 @@
     <div class="row">
         <div class="small-8 columns">
             <p><?php echo yiisetting('footer_info'); ?></p>
+            <a href="<?php echo $this->createUrl('site/pages', array('id' => 2)); ?>"><?php echo Yii::t("base", "Impressum"); ?></a>
         </div>
         <div class="small-4 columns footer_contact">
             <a href="<?php echo $this->createUrl('site/feedback'); ?>" class="button"><i class="fa fa-envelope"></i> <?php echo Yii::t("base", "Get in touch"); ?></a>
