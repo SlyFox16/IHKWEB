@@ -286,7 +286,7 @@ class UserController extends Frontend
             if($model->sendEmail($subject, $body, $email)) {
                 Yii::app()->session['pass'] = array($pass => $model->email);
                 Yii::app()->session['passver'] =  $pass;
-                Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page.".$pass));
+                Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page."));
             } else {
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Could not send email."));
             }

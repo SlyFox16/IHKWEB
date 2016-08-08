@@ -6,20 +6,21 @@
                 'booster.widgets.TbSelect2',
                 [
                     'name' => 'ProductAssociation',
-                    'asDropDownList' => false,
+                    'asDropDownList' => true,
+                    'data' => AssociationMembership::model()->assocList,
                     'options' => [
-                        'minimumInputLength' => 2,
+                        /*'minimumInputLength' => 2,*/
                         'placeholder' => Yii::t("base", 'Select association'),
                         'width' => '100%',
                         'allowClear' => true,
-                        'ajax' => [
+                        /*'ajax' => [
                             'url' => Yii::app()->controller->createUrl('/site/associationSuggest'),
                             'dataType' => 'json',
                             'data' => 'js:function(term, page) { return {term: term }; }',
                             'results' => 'js:function(data) { return {results: data}; }',
                         ],
                         'formatResult' => 'js:productFormatResult2',
-                        'formatSelection' => 'js:productFormatSelection2',
+                        'formatSelection' => 'js:productFormatSelection2',*/
                     ],
                     'htmlOptions' => [
                         'id' => 'user-association',

@@ -99,4 +99,12 @@ class AssociationMembership extends ActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public function getAssocList()
+    {
+        $models = $this->findAll();
+        $list = CHtml::listData($models, 'id', 'name');
+
+        return $list;
+    }
 }
