@@ -167,7 +167,7 @@ class UserController extends Frontend
 
     public function actionUpdateMailPassword()
     {
-        $a = Yii::app()->session['pass'][Yii::app()->session['passver']];
+        $a = @Yii::app()->session['pass'][Yii::app()->session['passver']];
         if(isset($a))
         {
             $model=User::model()->findByAttributes(array('email' => $a));
@@ -188,8 +188,10 @@ class UserController extends Frontend
 
                 $model->password = $password;
                 $model->salt = $salt;
-                if($model->update())
+                if($model->update()) {
+                    unset(Yii::app()->session['passver']);
                     Yii::app()->user->setFlash('project_success', Yii::t("base", "Your password has been changed successfully!"));
+                }
 
                 $this->redirect(Yii::app()->homeUrl);
             }
@@ -271,7 +273,7 @@ class UserController extends Frontend
             Yii::app()->end();
         }
 
-        if(isset($_POST['User'])) {
+        if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
 
             $pass = $model->GenerateStr();
@@ -284,15 +286,15 @@ class UserController extends Frontend
             if($model->sendEmail($subject, $body, $email)) {
                 Yii::app()->session['pass'] = array($pass => $model->email);
                 Yii::app()->session['passver'] =  $pass;
-                Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page."));
+                Yii::app()->user->setFlash('project_success', Yii::t("base", "On your mailbox has been sent a letter with a link to the password change page.".$pass));
             } else {
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Could not send email."));
             }
-        } elseif(!empty($pass)) {
+        } elseif (!empty($pass)) {
             if (!isset(Yii::app()->session['passver']))
                 Yii::app()->session['passver'] = '';
 
-            if ($_GET['pass'] == Yii::app()->session['passver']) {
+            if ($pass == Yii::app()->session['passver']) {
                 Yii::app()->user->setFlash('mail_recover', true);
                 $this->redirect(Yii::app()->homeUrl);
             }
