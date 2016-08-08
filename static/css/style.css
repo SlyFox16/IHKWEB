@@ -7294,6 +7294,10 @@ body > header {
   color: #777;
 }
 
+.partners {
+  margin: 0;
+  overflow: hidden;
+}
 .partners li {
   float: left;
   width: 50%;
