@@ -26,7 +26,7 @@
                         </a>
                     </div>  
                 </div>
-                <div class="small-8 medium-8 large-4 columns">
+                <div class="small-8 medium-8 large-4 columns end">
                     <ul class="partners">
                         <li>
                             <span>präsentiert von</span>
