@@ -39,6 +39,7 @@ $this->menu=array(
         'facebook_url:url',
         'twitter_url:url',
         'xing_url:url',
+        'web_url:url',
         'rating',
         'level',
         array(

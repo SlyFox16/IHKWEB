@@ -101,6 +101,8 @@
 
 <?php echo $form->textFieldRow($model, 'xing_url', array('class' => 'span5', 'maxlength' => 255)); ?>
 
+<?php echo $form->textFieldRow($model, 'web_url', array('class' => 'span5', 'maxlength' => 255)); ?>
+
 <?php echo $form->textFieldRow($model, 'rating', array('class' => 'span5', 'maxlength' => 255)); ?>
 
 <?php echo $form->textFieldRow($model, 'level', array('class' => 'span5', 'maxlength' => 255)); ?>

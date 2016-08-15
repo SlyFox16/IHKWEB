@@ -83,6 +83,12 @@
                         <?php echo $form->error($user, 'companyname'); ?>
 
                         <label>
+                            <span><?php echo $user->getAttributeLabel('web_url'); ?></span>
+                            <?php echo $form->textField($user, 'web_url'); ?>
+                        </label>
+                        <?php echo $form->error($user, 'web_url'); ?>
+
+                        <label>
                             <span><?php echo $user->getAttributeLabel('position'); ?></span>
                             <?php echo $form->textField($user, 'position'); ?>
                         </label>
