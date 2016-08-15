@@ -107,6 +107,12 @@
                         <span><?php echo $user->phone; ?></span>
                     </li>
                 <?php } ?>
+                <?php if(!empty($user->web_url)) { ?>
+                    <li>
+                        <i class="fa fa-globe"></i>
+                        <a href="<?php echo $user->web_url; ?>"><?php echo $user->web_url; ?></a>
+                    </li>
+                <?php } ?>
                 <?php if(!empty($user->xing_url)) { ?>
                     <li>
                         <i class="fa fa-xing"></i>
