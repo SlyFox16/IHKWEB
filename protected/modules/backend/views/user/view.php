@@ -43,11 +43,11 @@ $this->menu=array(
         'level',
         array(
             'name' => 'country_id',
-            'value' => !empty($model->country_id) ? Countries::model()->find('iso = :country_id', array(':country_id' => $model->country_id)) : 'not defined',
+            'value' => User::getCityCountry($model->country_id, 'country'),
         ),
         array(
             'name' => 'city_id',
-            'value' => !empty($model->city_id) ? Cities::model()->findByPk($model->city_id) : 'not defined',
+            'value' => User::getCityCountry($model->city_id, 'city'),
         ),
         'expert_confirm:boolean',
         'is_active:boolean',

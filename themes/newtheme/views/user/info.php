@@ -113,6 +113,12 @@
                         <a href="<?php echo $user->xing_url; ?>"><?php echo $user->fullname;?></a>
                     </li>
                 <?php } ?>
+                <?php if(!empty($user->linkedin_url)) { ?>
+                    <li>
+                        <i class="fa fa-linkedin"></i>
+                        <a href="<?php echo $user->linkedin_url; ?>">Linkedin</a>
+                    </li>
+                <?php } ?>
                 <?php if(!empty($user->facebook_url)) { ?>
                     <li>
                         <i class="fa fa-facebook"></i>

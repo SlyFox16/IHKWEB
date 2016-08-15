@@ -607,6 +607,19 @@ class User extends ActiveRecord
         }
     }
 
+    public static function getCityCountry($id, $flag = 'city') {
+        $return = '';
+        if ($flag == 'city') {
+            $city = Cities::model()->findByPk($id);
+            $return = $city ? $city->city_name_UTF8 : Yii::t("base", 'not defined');
+        } else {
+            $country = Countries::model()->find('iso = :country_id', array(':country_id' => $id));
+            $return = $country ? $country->country_name : Yii::t("base", 'not defined');
+        }
+
+        return $return;
+    }
+
     public static function newLevel($id) {
         $user = User::model()->findByPk($id);
         $level = 0;
