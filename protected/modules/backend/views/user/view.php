@@ -41,6 +41,14 @@ $this->menu=array(
         'xing_url:url',
         'rating',
         'level',
+        array(
+            'name' => 'country_id',
+            'value' => !empty($model->country_id) ? Countries::model()->find('iso = :country_id', array(':country_id' => $model->country_id)) : 'not defined',
+        ),
+        array(
+            'name' => 'city_id',
+            'value' => !empty($model->city_id) ? Cities::model()->findByPk($model->city_id) : 'not defined',
+        ),
         'expert_confirm:boolean',
         'is_active:boolean',
         'is_staff:boolean',
