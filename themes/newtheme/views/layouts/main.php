@@ -16,9 +16,9 @@
 <!--===============================-->
 <header data-stellar-ratio="1.4">
     <div class="row">
-        <div class="medium-6 large-9 columns">
+        <div class="medium-6 large-8 columns">
             <div class="row">
-                <div class="medium-12 large-7 columns">
+                <div class="medium-12 large-8 columns">
                     <div class="logo">
                         <a href="<?php echo Yii::app()->homeUrl; ?>">
                             <h1><?php echo Yii::t("base", "Crowd");?></h1>

@@ -7296,6 +7296,7 @@ body > header {
 
 .partners {
   margin: 0;
+  margin-bottom: 0.625rem;
   overflow: hidden;
 }
 .partners li {
@@ -7327,6 +7328,11 @@ body > header {
 }
 .user-area a:hover {
   background: rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 39.9375em) {
+  .user-area {
+    float: left;
+  }
 }
 
 /*------------------------------------*\
