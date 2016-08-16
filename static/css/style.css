@@ -11204,6 +11204,7 @@ body .rating-gly-star {
 
 .expertcard {
   width: 100%;
+  overflow: hidden;
 }
 .expertcard + .expertcard {
   margin-top: 1.875rem;
