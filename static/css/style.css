@@ -11202,12 +11202,10 @@ body .rating-gly-star {
 
 .expertcard {
   width: 100%;
-  padding: 0 0.9375rem;
+  display: table-row;
 }
-.expertcard + .expertcard {
-  margin-top: 1.875rem;
-  padding-top: 1.875rem;
-  border-top: 1px solid #d5d5d5;
+.expertcard + expertcard > div {
+  border-top: 1px solid #c5c5c5;
 }
 .expertcard .expertcard_info {
   padding-right: 1.875rem;
@@ -11234,11 +11232,12 @@ body .rating-gly-star {
 .expertcard > div {
   display: table-cell;
   vertical-align: middle;
-}
-.expertcard > div + div {
-  padding-left: 1.875rem;
+  padding: 1.875rem 0.9375rem;
 }
 @media screen and (max-width: 39.9375em) {
+  .expertcard + expertcard > div {
+    border: 0;
+  }
   .expertcard .expertcard_info {
     width: 100%;
   }
