@@ -23,7 +23,7 @@
 </div>
 
 <section class="separated separated--edge">
-    <div class="row">
+    <div class="row relative">
         <?php $this->widget('ListView', array(
             'id'=>'rating-log-grid',
             'dataProvider' => $model->findMember(),
