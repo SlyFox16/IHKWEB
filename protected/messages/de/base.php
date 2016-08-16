@@ -138,4 +138,7 @@ return array (
     'CERTIFIED TEXT' => 'Um Crowdfunding Manager/in (IHK) werden zu können, gibt es derzeit 2 IHKs, die dafür entsprechende Kurse anbieten: IHK München und IHK Gießen-Friedberg. Da der DCV die Curricula erarbeitet hat, ist dies die Lizenz zum effektiven Durchführen einer Crowdfinancing-Kampagne.',
     'Our work platforms' => 'Sich aktiv in den DCV einbringen',
     'WORK PLATFORMS TEXT' => 'Der Deutschen Crowdsourcing Verbandes ist die füherende Interessensvertretung für Praktiker und Industrie. Unsere derzeitigen Arbeitsgruppen sind Crowdinnovation, Crowdfunding, Crowdworking und Crowdmarketing. Mehr dazu auf unserer Website.',
+    'Find certified experts, become a seeker.' => '',
+    'Expert register' => '',
+    'Seeker register' => '',
 );

@@ -7,7 +7,7 @@
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                Yii::t("base", 'Register')
+                Yii::t("base", 'Expert register')
             ),
         )); ?>
     </div>

@@ -7,7 +7,7 @@
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                Yii::t("base", 'Register')
+                Yii::t("base", 'Seeker register')
             ),
         )); ?>
     </div>
@@ -16,7 +16,7 @@
 <section class="separated separated--edge">
     <div class="row">
         <div class="medium-5 large-3 columns">
-            <h2>Join our program, <b>register</b> and become a certified expert.</h2>
+            <h2><?php echo Yii::t("base", "Find certified experts, become a seeker.", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
         </div>
         <div class="medium-7 large-5 columns separator right-50">
             <?php $form = $this->beginWidget('CActiveForm', array(
