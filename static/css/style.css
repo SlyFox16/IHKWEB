@@ -11204,53 +11204,22 @@ body .rating-gly-star {
 
 .expertcard {
   width: 100%;
-  display: table-row;
 }
-.expertcard + .expertcard > div {
+.expertcard + .expertcard {
+  margin-top: 1.875rem;
+  padding-top: 1.875rem;
   border-top: 1px solid #c5c5c5;
 }
-.expertcard .expertcard_info {
-  padding-right: 1.875rem;
-}
-.expertcard .expertcard_info .stats {
+.expertcard .stats {
   margin: 0.625rem 0 0 0;
   text-align: left;
   overflow: hidden;
 }
-.expertcard .expertcard_info .stats li {
+.expertcard .stats li {
   float: left;
 }
-.expertcard .expertcard_info .stats li + li {
+.expertcard .stats li + li {
   margin: 0 0 0 1.875rem;
-}
-.expertcard .expertcard_link {
-  text-align: right;
-}
-.expertcard .expertcard_link .button {
-  margin: 0;
-}
-.expertcard > div {
-  display: table-cell;
-  vertical-align: middle;
-  padding: 1.875rem 0.9375rem;
-}
-@media screen and (max-width: 39.9375em) {
-  .expertcard + .expertcard {
-    padding-top: 1.875rem;
-    margin-top: 1.875rem;
-    border-top: 1px solid #c5c5c5;
-  }
-  .expertcard + .expertcard > div {
-    border: 0;
-  }
-  .expertcard > div {
-    display: block;
-    padding: 0.9375rem;
-  }
-  .expertcard > div + div {
-    padding: 0;
-    padding-top: 0.625rem;
-  }
 }
 
 /*# sourceMappingURL=style.css.map */
