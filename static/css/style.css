@@ -11204,12 +11204,11 @@ body .rating-gly-star {
   width: 100%;
   display: table-row;
 }
-.expertcard + expertcard > div {
+.expertcard + .expertcard > div {
   border-top: 1px solid #c5c5c5;
 }
 .expertcard .expertcard_info {
   padding-right: 1.875rem;
-  width: 50%;
 }
 .expertcard .expertcard_info .stats {
   margin: 0.625rem 0 0 0;
@@ -11223,7 +11222,6 @@ body .rating-gly-star {
   margin: 0 0 0 1.875rem;
 }
 .expertcard .expertcard_link {
-  width: 30%;
   text-align: right;
 }
 .expertcard .expertcard_link .button {
@@ -11235,19 +11233,12 @@ body .rating-gly-star {
   padding: 1.875rem 0.9375rem;
 }
 @media screen and (max-width: 39.9375em) {
-  .expertcard + expertcard > div {
+  .expertcard + .expertcard > div {
     border: 0;
-  }
-  .expertcard .expertcard_info {
-    width: 100%;
-  }
-  .expertcard .expertcard_link {
-    width: 100%;
-    padding-top: 0.9375rem;
-    text-align: left;
   }
   .expertcard > div {
     display: block;
+    padding: 0.9375rem;
   }
   .expertcard > div + div {
     padding: 0;
