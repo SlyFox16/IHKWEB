@@ -312,7 +312,7 @@ class User extends ActiveRecord
             $_GET[$key] = Yii::app()->session[get_class($this) . '_page']; // set latest active page
         }
 
-        $criteria->addCondition('is_staff = 0');
+        $criteria->addCondition('is_staff = 0 AND is_seeker = 0');
 
         if($param == 'new')
             $criteria->addCondition('is_seen = 0 AND expert_confirm = 0 AND is_staff = 0 AND is_seeker = 0');

@@ -38,6 +38,23 @@ class UserController extends BackendController
         ));
     }
 
+    public function actionCreateUser()
+    {
+        $model=new User('backendcreate');
+        $model->unsetAttributes();
+        if(isset($_POST['User'])) {
+            $model->attributes = $_POST['User'];
+            $model->is_staff = 0;
+            if ($model->save()) {
+                $this->redirect(array('view', 'id' => $model->id));
+            }
+        }
+
+        $this->render('createMember',array(
+            'model'=>$model,
+        ));
+    }
+
     /**
      * Updates a particular model.
      * If update is successful, the browser will be redirected to the 'view' page.

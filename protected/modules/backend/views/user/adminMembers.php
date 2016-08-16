@@ -22,6 +22,17 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
+<div class="row-fluid">
+    <div class="span12">
+        <div class="btn-toolbar pull-right" style="margin-bottom: 10px">
+            <div class="btn-group">
+                <a class="btn btn-success" href="/backend/user/CreateUser/"><i class="icon-pencil icon-white"></i>
+                    Create User</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <legend>
     <?php if($param == 'new') { ?>
         New Users
