@@ -1,4 +1,3 @@
-
 <ul class="attached">
     <?php if (count($model->pdf) > 0) { ?>
         <?php foreach ($model->pdf as $image) { ?>
