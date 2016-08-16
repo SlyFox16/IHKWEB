@@ -11222,5 +11222,14 @@ body .rating-gly-star {
 .expertcard .stats li + li {
   margin: 0 0 0 1.875rem;
 }
+.expertcard .button {
+  margin: 0;
+  float: right;
+}
+@media screen and (max-width: 39.9375em) {
+  .expertcard .button {
+    float: left;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
