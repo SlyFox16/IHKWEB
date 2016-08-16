@@ -24,7 +24,6 @@
 <div class="control-group">
     <label class="control-label control-label required" for="User_username">
         <?php echo $model->getAttributeLabel('country_id'); ?>
-        <span class="required">*</span>
     </label>
     <div class="controls">
         <?php $this->widget(
@@ -45,12 +44,12 @@
             ]
         );?>
     </div>
+    <?php echo $form->error($model, 'country_id'); ?>
 </div>
 
 <div class="control-group">
     <label class="control-label control-label required" for="User_username">
         <?php echo $model->getAttributeLabel('city_id'); ?>
-        <span class="required">*</span>
     </label>
     <div class="controls">
         <?php $this->widget(
@@ -69,9 +68,9 @@
                         'url' => Yii::app()->controller->createUrl('/user/citySearch'),
                         'dataType' => 'json',
                         'data' => 'js:function(term, page) {
-                                                        var country = $("#User_country_id").val();
-                                                        return {q: term,  country: country};
-                                                    }',
+                            var country = $("#User_country_id").val();
+                            return {q: term,  country: country};
+                        }',
                         'results' => 'js:function(data) { return {results: data}; }',
                     ],
                     'formatResult' => 'js:productFormatResult',
@@ -83,6 +82,7 @@
             ]
         ); ?>
     </div>
+    <?php echo $form->error($model, 'city_id'); ?>
 </div>
 
 <?php echo $form->textAreaRow($model, 'address', array('rows'=>6, 'cols'=>50, 'class'=>'span5')); ?>
@@ -107,14 +107,15 @@
 
 <?php echo $form->textFieldRow($model, 'level', array('class' => 'span5', 'maxlength' => 255)); ?>
 
-<?php if($model->isNewRecord) : ?>
+<?php if($model->isNewRecord) { ?>
     <?php echo $form->passwordFieldRow($model,'password',array('class'=>'span5','maxlength'=>64)); ?>
     <?php echo $form->passwordFieldRow($model,'password_repeat',array('class'=>'span5','maxlength'=>64)); ?>
-<?php endif; ?>
+<?php } ?>
 
-<?php echo $form->checkBoxRow($model, 'is_active'); ?>
-
-<?php echo $form->checkBoxRow($model, 'expert_confirm'); ?>
+<?php if(!$model->isNewRecord) { ?>
+    <?php echo $form->checkBoxRow($model, 'is_active'); ?>
+    <?php echo $form->checkBoxRow($model, 'expert_confirm'); ?>
+<?php } ?>
 
 <?php echo $form->checkBoxRow($model, 'is_staff'); ?>
 

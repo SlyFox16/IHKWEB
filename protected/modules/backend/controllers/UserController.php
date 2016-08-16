@@ -45,6 +45,7 @@ class UserController extends BackendController
         if(isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
             $model->is_staff = 0;
+            $model->expert_confirm = 1;
             if ($model->save()) {
                 $this->redirect(array('view', 'id' => $model->id));
             }
