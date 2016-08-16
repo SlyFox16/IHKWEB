@@ -38,6 +38,12 @@ class WebUser extends CWebUser {
         return $user->is_seeker ? false : true;
     }
 
+    public function getAccept(){
+        $user = $this->loadUser(Yii::app()->user->id);
+        if(!$user) return false;
+        return $user->accept ? true : false;
+    }
+
     public function getIs_seeker(){
         $user = $this->loadUser(Yii::app()->user->id);
         return @$user->is_seeker;
