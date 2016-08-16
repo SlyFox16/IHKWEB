@@ -11233,6 +11233,11 @@ body .rating-gly-star {
   padding: 1.875rem 0.9375rem;
 }
 @media screen and (max-width: 39.9375em) {
+  .expertcard + .expertcard {
+    padding-top: 1.875rem;
+    margin-top: 1.875rem;
+    border-top: 1px solid #c5c5c5;
+  }
   .expertcard + .expertcard > div {
     border: 0;
   }
