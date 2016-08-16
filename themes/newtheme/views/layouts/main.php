@@ -18,7 +18,7 @@
     <div class="row">
         <div class="large-8 columns">
             <div class="row">
-                <div class="medium-12 large-8 columns">
+                <div class="medium-12 large-6 columns">
                     <div class="logo">
                         <a href="<?php echo Yii::app()->homeUrl; ?>">
                             <h1><?php echo Yii::t("base", "Crowd");?></h1>
@@ -26,7 +26,7 @@
                         </a>
                     </div>  
                 </div>
-                <div class="small-8 medium-8 large-4 columns end">
+                <div class="small-6 large-5 columns end">
                     <ul class="partners">
                         <li>
                             <span>präsentiert von</span>
