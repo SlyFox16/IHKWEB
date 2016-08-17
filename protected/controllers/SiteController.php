@@ -403,7 +403,9 @@ class SiteController extends Frontend
     public function actionAccept()
     {
         if (Yii::app()->request->isAjaxRequest) {
-            Yii::app()->request->cookies['accept'] = new CHttpCookie('accept', 1);
+            $cookie = new CHttpCookie('accept', 1);
+            $cookie->expire = time()+60*60*24*360;
+            Yii::app()->request->cookies['accept'] = $cookie;
 
             if(!Yii::app()->user->isGuest) {
                 $user = User::model()->findByPk(Yii::app()->user->id);

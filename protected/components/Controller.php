@@ -33,6 +33,11 @@ class Controller extends CController
         if (!Yii::app()->user->isGuest) {
             $user = User::model()->findByPk(Yii::app()->user->id);
 
+            if (@Yii::app()->request->cookies['accept']->value && !$user->accept) {
+                $user->accept = 1;
+                $user->saveAttributes(array('accept'));
+            }
+
             /**
              * Disconnect user if is not active
              */
