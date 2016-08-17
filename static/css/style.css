@@ -7316,7 +7316,6 @@ body > header {
   float: right;
   background: #efefef;
   border-radius: 0.25rem;
-  float: left;
 }
 .user-area a {
   float: left;
@@ -7329,6 +7328,11 @@ body > header {
 }
 .user-area a:hover {
   background: rgba(0, 0, 0, 0.2);
+}
+@media screen and (max-width: 63.9375em) {
+  .user-area {
+    float: left;
+  }
 }
 
 /*------------------------------------*\

@@ -1,5 +1,5 @@
 <div class="expertcard">
-    <div class="medium-3 columns">
+    <div class="medium-3 columns expertcard_photo">
         <a href="<?php echo $this->createUrl('user/info', array('id' => $data->id)); ?>"><img src="<?php echo YHelper::getImagePath($data->avatar, 280, 280); ?>" alt="<?php echo Yii::t("base", "Expert"); ?>"></a>
     </div>
     <div class="medium-6 columns">
