@@ -7,6 +7,7 @@
             <h2><b><?php echo $data->name; ?></b> <?php echo $data->surname; ?></h2>
         </div>
         <h3><?php echo $data->position; ?></h3>
+        <p><?php echo $data->uDescription; ?></p>
         <ul class="stats">
             <li><?php echo Yii::t("base", "Rating"); ?> <b><?php echo $data->rating; ?></b></li>
             <li><?php echo Yii::t("base", "Level"); ?> <b><?php echo $data->level; ?></b></li>
