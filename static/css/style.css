@@ -7296,6 +7296,7 @@ body > header {
 
 .partners {
   margin: 0;
+  margin-bottom: 1.875rem;
   overflow: hidden;
 }
 .partners li {
@@ -7315,6 +7316,7 @@ body > header {
   float: right;
   background: #efefef;
   border-radius: 0.25rem;
+  float: left;
 }
 .user-area a {
   float: left;
@@ -11202,57 +11204,32 @@ body .rating-gly-star {
 
 .expertcard {
   width: 100%;
-  padding: 0 0.9375rem;
+  overflow: hidden;
 }
 .expertcard + .expertcard {
   margin-top: 1.875rem;
   padding-top: 1.875rem;
-  border-top: 1px solid #d5d5d5;
+  border-top: 1px solid #c5c5c5;
 }
-.expertcard .expertcard_info {
-  padding-right: 1.875rem;
-  width: 50%;
-}
-.expertcard .expertcard_info .stats {
+.expertcard .stats {
   margin: 0.625rem 0 0 0;
   text-align: left;
   overflow: hidden;
 }
-.expertcard .expertcard_info .stats li {
+.expertcard .stats li {
   float: left;
 }
-.expertcard .expertcard_info .stats li + li {
+.expertcard .stats li + li {
   margin: 0 0 0 1.875rem;
 }
-.expertcard .expertcard_link {
-  width: 30%;
-  text-align: right;
-}
-.expertcard .expertcard_link .button {
+.expertcard .button {
   margin: 0;
-}
-.expertcard > div {
-  display: table-cell;
-  vertical-align: middle;
-}
-.expertcard > div + div {
-  padding-left: 1.875rem;
+  float: right;
 }
 @media screen and (max-width: 39.9375em) {
-  .expertcard .expertcard_info {
-    width: 100%;
-  }
-  .expertcard .expertcard_link {
-    width: 100%;
-    padding-top: 0.9375rem;
-    text-align: left;
-  }
-  .expertcard > div {
-    display: block;
-  }
-  .expertcard > div + div {
-    padding: 0;
-    padding-top: 0.625rem;
+  .expertcard .button {
+    float: left;
+    margin-top: 1.875rem;
   }
 }
 
