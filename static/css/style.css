@@ -11215,6 +11215,10 @@ body .rating-gly-star {
   padding-top: 1.875rem;
   border-top: 1px solid #c5c5c5;
 }
+.expertcard .expertcard_photo img {
+  width: 100%;
+  border-radius: 50%;
+}
 .expertcard .stats {
   margin: 0.625rem 0 0 0;
   text-align: left;
