@@ -27,7 +27,7 @@ Yii::app()->clientScript->registerScript('search', "
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'rating-log-grid',
     'type' => 'striped bordered condensed',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$model->search($param),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',

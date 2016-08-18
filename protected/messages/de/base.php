@@ -141,4 +141,5 @@ return array (
     'Find certified experts, become a seeker.' => '',
     'Expert register' => '',
     'Seeker register' => '',
+    'Rate' => '',
 );

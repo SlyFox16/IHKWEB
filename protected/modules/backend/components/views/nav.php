@@ -21,6 +21,9 @@
                             <?php if($newProjects) { ?>
                                 <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/user/adminMembers/newprojects');?>" data-backdrop="static" data-toggle="modal" title="New user projects" aria-describedby="ui-tooltip-0"><?php echo $newProjects; ?> <i class="splashy-hcards_add"></i></a>
                             <?php } ?>
+                            <?php if($unconfirmedRating) { ?>
+                                <a class="label ttip_b" href="<?php echo Yii::app()->createUrl('/backend/ratingLog/admin/unconfirmed');?>" data-backdrop="static" data-toggle="modal" title="Unconfirmed Rating" aria-describedby="ui-tooltip-0"><?php echo $unconfirmedRating; ?> <i class="splashy-hcards_add"></i></a>
+                            <?php } ?>
                         </div>
                     </li>
                     <li class="divider-vertical hidden-phone hidden-tablet"></li>
