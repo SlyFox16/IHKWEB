@@ -172,6 +172,42 @@ $this->menu=array(
 )); ?>
 <br />
 <a href="#completedProject" class="btn btn-inverse" data-toggle="modal">Add new project</a>
+<br />
+<br />
+<div class="heading clearfix"><h3 class="pull-left">Association membership</small></h3></div>
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'association-membership-grid',
+    'type' => 'striped bordered condensed',
+    'dataProvider' => $model->findAssociation(),
+    'htmlOptions'=>array('style'=>'padding:0;'),
+    'columns' => array(
+        array(
+            'name' => 'name',
+            'value' => '$data->assoc->name',
+        ),
+        array(
+            'name' => 'logo',
+            'type' => 'image',
+            'value' => '$data->assoc->logo',
+        ),
+        array(
+            'name' => 'link',
+            'type' => 'url',
+            'value' => '$data->assoc->link',
+        ),
+        array(
+            'class' => 'backend.components.ButtonColumn',
+            'htmlOptions' => array('width' => '60px'),
+            'template' => '{delete}',
+            'deleteButtonUrl' => function ($data){
+                return Yii::app()->createUrl("backend/associationMembership/deleteRelation", array('id' => $data->id));
+            },
+        ),
+    ),
+)); ?>
+<br />
+<a href="#associationMembership" class="btn btn-inverse" data-toggle="modal">Add new association</a>
 
-<?php $this->widget('CreateCertifivate', array('user' => $model->id)); ?>
+<?php $this->widget('CreateCertificate', array('user' => $model->id)); ?>
 <?php $this->widget('CompletedProject', array('renderPopUserId' => $model->id)); ?>
+<?php $this->widget('AddAssociation', array('user' => $model->id)); ?>
