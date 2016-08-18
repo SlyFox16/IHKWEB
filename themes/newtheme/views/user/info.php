@@ -12,7 +12,7 @@
     </div>
     <div class="small-12 medium-6 columns">
         <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
-            <li><?php $this->widget('StarRating', array('user' => $user)); ?></li>
+            <li title="<?php echo Yii::t('base', 'Rate this expert'); ?>"><?php $this->widget('StarRating', array('user' => $user)); ?></li>
             <li><a class="fa fa-flag" data-toggle="report"></a></li>
             <li>
                 <a href="" class="fa fa-share-alt"></a>
