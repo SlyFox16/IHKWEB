@@ -94,8 +94,27 @@ class CompletedProjects extends ActiveRecord
 
 		$criteria=new CDbCriteria;
 
+        if ($this->user_id) {
+            $queryTerms = explode(' ', $this->user_id);
+
+            $crt = new CDbCriteria;
+            $crt->select = 't.id as id';
+            $crt->with = array('user');
+
+            foreach ($queryTerms as $k => $req) {
+                $tCriteria = new CDbCriteria();
+                $tCriteria->condition = "user.name LIKE :$k OR user.surname LIKE :$k";
+                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+                $crt->mergeWith($tCriteria);
+            }
+
+            $info = CompletedProjects::model()->findAll($crt);
+            $in = CHtml::listData($info, 'id', 'id');
+
+            $criteria->addInCondition('id', $in);
+        }
+
 		$criteria->compare('id',$this->id);
-		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('date',$this->date,true);

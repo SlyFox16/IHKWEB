@@ -280,6 +280,19 @@ class User extends ActiveRecord
         ));
     }
 
+    public function findAssociation()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->condition = 'user_id = :user_id';
+        $criteria->params[':user_id'] = $this->id;
+
+        return new CActiveDataProvider(new UserAssociation(), array(
+            'criteria' => $criteria,
+            'pagination' => false,
+        ));
+    }
+
     public function searchMember($param)
     {
         // Warning: Please modify the following code to remove attributes that

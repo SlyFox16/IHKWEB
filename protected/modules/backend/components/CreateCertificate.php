@@ -5,7 +5,7 @@
  * Time: 3:30 PM
  */
 
-class CreateCertifivate extends CWidget
+class CreateCertificate extends CWidget
 {
     public $user;
 

@@ -38,6 +38,27 @@ class AssociationMembershipController extends BackendController
 		));
 	}
 
+    public function actionUCCreate($id)
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            $model=new UserAssociation();
+
+            if(isset($_POST['UserAssociation']))
+            {
+                $model->attributes=$_POST['UserAssociation'];
+                $model->user_id = $id;
+
+                if($model->save()) {
+                    User::newLevel($model->user_id);
+                    $this->redirect(Yii::app()->request->urlReferrer);
+                }
+            }
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -67,22 +88,39 @@ class AssociationMembershipController extends BackendController
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
 	 * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+	public function actionDeleteRelation($id)
 	{
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+            $model = UserAssociation::model()->findByPk($id);
+            if($model) {
+                $model->delete();
 
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+                // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+                if(!isset($_GET['ajax']))
+                    $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+            } else
+                throw new CHttpException(404,'The requested page does not exist.');
 		}
 		else
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
+    public function actionDelete($id)
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            // we only allow deletion via POST request
+            $this->loadModel($id)->delete();
 
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
 	/**
 	 * Manages all models.
 	 */
