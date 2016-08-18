@@ -39,7 +39,7 @@ class ExtendedFormatter extends CFormatter
         if ($user = User::model()->findByPk($value))
             return CHtml::link($user->name.' '.$user->surname, Yii::app()->createUrl("backend/user/view", array("id" => $user->id)));
         else
-            return '<span class="null">System</span>';
+            return '<span class="null">No user</span>';
     }
 
     public function formatArticleCataroryId($value)
@@ -47,7 +47,7 @@ class ExtendedFormatter extends CFormatter
         if ($articleCategory = ArticleCategory::model()->findByPk($value))
             return CHtml::link($articleCategory->name, Yii::app()->createUrl("backend/articleCategory/view", array("id" => $articleCategory->id)));
         else
-            return '<span class="null">System</span>';
+            return '<span class="null">No user</span>';
     }
 
     public function formatDate($value) {

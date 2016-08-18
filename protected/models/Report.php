@@ -46,6 +46,8 @@ class Report extends ActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'userInitiator' => array(self::BELONGS_TO, 'User', 'initiator'),
+            'userReceiver' => array(self::BELONGS_TO, 'User', 'receiver'),
 		);
 	}
 
@@ -81,9 +83,47 @@ class Report extends ActiveRecord
 
 		$criteria=new CDbCriteria;
 
+        if ($this->initiator) {
+            $queryTerms = explode(' ', $this->initiator);
+
+            $crt = new CDbCriteria;
+            $crt->select = 't.id as id';
+            $crt->with = array('userInitiator');
+
+            foreach ($queryTerms as $k => $req) {
+                $tCriteria = new CDbCriteria();
+                $tCriteria->condition = "userInitiator.name LIKE :$k OR userInitiator.surname LIKE :$k";
+                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+                $crt->mergeWith($tCriteria);
+            }
+
+            $info = Report::model()->findAll($crt);
+            $in = CHtml::listData($info, 'id', 'id');
+
+            $criteria->addInCondition('id', $in);
+        }
+
+        if ($this->receiver) {
+            $queryTerms = explode(' ', $this->receiver);
+
+            $crt = new CDbCriteria;
+            $crt->select = 't.id as id';
+            $crt->with = array('userReceiver');
+
+            foreach ($queryTerms as $k => $req) {
+                $tCriteria = new CDbCriteria();
+                $tCriteria->condition = "userReceiver.name LIKE :$k OR userReceiver.surname LIKE :$k";
+                $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
+                $crt->mergeWith($tCriteria);
+            }
+
+            $info = Report::model()->findAll($crt);
+            $in = CHtml::listData($info, 'id', 'id');
+
+            $criteria->addInCondition('id', $in);
+        }
+
 		$criteria->compare('id',$this->id);
-		$criteria->compare('initiator',$this->initiator);
-		$criteria->compare('receiver',$this->receiver);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('date',$this->date,true);
 
