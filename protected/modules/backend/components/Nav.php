@@ -12,6 +12,7 @@ class Nav extends CWidget
         $newLevel = User::model()->user()->count('level <> new_level');
         $newCertificate = UserCertificate::model()->with('user')->count('user.is_staff = 0 AND confirm = 0');
         $newProjects = CompletedProjects::model()->with('user')->count('user.is_staff = 0 AND confirm = 0');
-        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel, 'newCertificate' => $newCertificate, 'newProjects' => $newProjects));
+        $unconfirmedRating = RatingLog::model()->count('confirmed = 0');
+        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel, 'newCertificate' => $newCertificate, 'newProjects' => $newProjects, 'unconfirmedRating' => $unconfirmedRating));
     }
 }

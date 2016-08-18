@@ -103,7 +103,7 @@ class RatingLog extends ActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($param = null)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
@@ -152,8 +152,13 @@ class RatingLog extends ActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('num',$this->num);
 
+        if($param == 'unconfirmed') {
+            $criteria->addCondition('confirm = 0');
+        }
+
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort' => ['defaultOrder' => $this->getTableAlias() . '.id DESC'],
 		));
 	}
 

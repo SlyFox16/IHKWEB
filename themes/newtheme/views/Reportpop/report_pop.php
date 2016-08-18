@@ -21,6 +21,6 @@
         </label>
         <?php echo $form->error($model, 'text'); ?>
         <?php echo $form->hiddenField($model, 'receiver'); ?>
+        <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
     <?php $this->endWidget(); ?>
-    <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
 </div>

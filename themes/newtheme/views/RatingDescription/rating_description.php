@@ -20,6 +20,6 @@
             <?php echo $form->textArea($model, 'description', array('cols' => 30, 'rows' => 5)); ?>
         </label>
         <?php echo $form->error($model, 'description'); ?>
-        <button class="button"><?php echo Yii::t("base", "Send report"); ?></button>
+        <button class="button"><?php echo Yii::t("base", "Rate"); ?></button>
     <?php $this->endWidget(); ?>
 </div>

@@ -108,7 +108,7 @@ class RatingLogController extends BackendController
 	/**
 	 * Manages all models.
 	 */
-	public function actionAdmin()
+	public function actionAdmin($param = null)
 	{
 		$model=new RatingLog('search');
 		$model->unsetAttributes();  // clear any default values
@@ -117,6 +117,7 @@ class RatingLogController extends BackendController
 
 		$this->render('admin',array(
 			'model'=>$model,
+            'param' => $param
 		));
 	}
 
