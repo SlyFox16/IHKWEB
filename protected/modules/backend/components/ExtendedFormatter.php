@@ -26,7 +26,7 @@ class ExtendedFormatter extends CFormatter
 
     public function formatImage($value)
     {
-        return CHtml::image(Yii::app()->iwi->load($value)->adaptive(80, 80)->cache());
+        return CHtml::image(YHelper::getImagePath($value, 100));
     }
 
     public function formatLogo($value)

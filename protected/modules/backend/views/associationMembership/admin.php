@@ -43,7 +43,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
         array(
             'name' => 'logo',
             'type' => 'image',
-            'htmlOptions' => array('width' => '60px'),
+            'htmlOptions' => array('width' => '100px'),
             'filter' => false,
         ),
 		'link:url',
