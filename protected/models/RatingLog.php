@@ -153,7 +153,7 @@ class RatingLog extends ActiveRecord
 		$criteria->compare('num',$this->num);
 
         if($param == 'unconfirmed') {
-            $criteria->addCondition('confirm = 0');
+            $criteria->addCondition('confirmed = 0');
         }
 
 		return new CActiveDataProvider($this, array(
