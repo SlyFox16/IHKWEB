@@ -17,10 +17,10 @@
         )); ?>
     </div>
     <!-- Control -->
-    <?php $this->renderPartial('_search',array(
+    <?php /*$this->renderPartial('_search',array(
         'model'=>$model,
         'ratingList' => true
-    )); ?>
+    )); */?>
 </div>
 
 <section class="separated separated--edge">
