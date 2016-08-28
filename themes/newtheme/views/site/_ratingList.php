@@ -13,7 +13,4 @@
             <li><b><?php echo $data->level; ?></b> <?php echo Yii::t("base", "Level"); ?></li>
         </ul>
     </div>
-    <div class="experts_view">
-        <a href="<?php echo $this->createUrl('user/info', array('id' => $data->id)); ?>" class="button"><?php echo Yii::t("base", "View Profile"); ?></a>
-    </div>
 </li>
