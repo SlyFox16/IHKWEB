@@ -11280,7 +11280,10 @@ body .rating-gly-star {
   margin: 0;
 }
 .experts_info h2 a {
-  color: #777;
+  color: #000;
+}
+.experts_info h2 a:hover {
+  color: #00478c;
 }
 .experts_info span {
   font-size: 0.875rem;
