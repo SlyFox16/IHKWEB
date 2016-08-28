@@ -16,7 +16,7 @@ class ListView extends CListView
 
     public function renderItems()
     {
-        //echo CHtml::openTag($this->itemsTagName,array('class'=>$this->itemsCssClass))."\n";
+        echo CHtml::openTag($this->itemsTagName,array('class'=>$this->itemsCssClass))."\n";
         $data=$this->dataProvider->getData();
         if(($n=count($data))>0)
         {
@@ -37,6 +37,6 @@ class ListView extends CListView
         else
             $this->renderEmptyText();
 
-        //echo CHtml::closeTag($this->itemsTagName);
+        echo CHtml::closeTag($this->itemsTagName);
     }
 }
