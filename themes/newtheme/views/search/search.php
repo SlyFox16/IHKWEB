@@ -27,16 +27,25 @@
 
 <section class="separated separated--edge">
     <div class="row">
-        <?php $this->widget('zii.widgets.CListView', array(
-            'dataProvider' => $dataSearch,
-            'itemView' => '_user', // refers to the partial view named '_post'
-            'summaryText' => false,
-            'pager'=> "LinkPager",
-            'emptyText' => '<div class="col-sm-12 text-center">
+        <div class="small-12 columns">
+            <div class="small-12 columns">
+                <?php $this->widget('zii.widgets.CListView', array(
+                    'dataProvider' => $dataSearch,
+                    'itemView' => '_user', // refers to the partial view named '_post'
+                    'summaryText' => false,
+                    'pager'=> "LinkPager",
+                    'itemsTagName' => 'ul',
+                    'itemsCssClass' => 'experts experts--ranking',
+                    'loadingCssClass' => false,
+                    'template'=>'{items} {pager}',
+                    'cssFile' => false,
+                    'emptyText' => '<div class="col-sm-12 text-center">
                     <h1>404</h1>
                     <p>The page your are looking for was not found. <a class="angle" href="/">Go back</a></p>
                 </div>',
-            'cssFile' => false
-        )); ?>
+                    'cssFile' => false
+                )); ?>
+            </div>
+        </div>
     </div>
 </section>
