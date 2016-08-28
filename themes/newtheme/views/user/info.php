@@ -1,3 +1,10 @@
+<?php
+    $this->title = Yii::app()->name.' - '.$user->fullname;
+    $this->metaDescription = $user->position;
+    $this->canonical = $this->createAbsoluteUrl('user/info', array('id' => $user->id));
+?>
+
+
 <!--===============================-->
 <!--== Expert =====================-->
 <!--===============================-->

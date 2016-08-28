@@ -19,6 +19,13 @@ class Frontend extends Controller {
         return parent::init();
     }
 
+    public function behaviors()
+    {
+        return array(
+            'seo' => array('class' => 'application.vendor.chemezov.yii-seo.behaviors.SeoBehavior'),
+        );
+    }
+
     public function getAssetsUrl()
     {
         if ($this->_assetsUrl === null)

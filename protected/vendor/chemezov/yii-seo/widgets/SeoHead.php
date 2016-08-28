@@ -29,6 +29,7 @@ class SeoHead extends CWidget
      * @property string the page meta og image.
      */
     public $ogImage;
+    public $canonical;
     /**
      * @property array the page meta properties.
      */
@@ -43,6 +44,8 @@ class SeoHead extends CWidget
     protected $_properties = array();
     protected $_canonical;
 
+    private $_urlSeo;
+
     /**
      * Initializes the widget.
      */
@@ -53,24 +56,32 @@ class SeoHead extends CWidget
 
         if ($behavior !== null && $behavior->title !== null)
             $this->_title = $behavior->title;
+        elseif($title = $this->getSeo('title'))
+            $this->_title = $title;
+        elseif ($this->defaultTitle !== null)
+            $this->_title = $this->defaultTitle;
         elseif (!empty($this->controller->pageTitle))
             $this->_title = $this->controller->pageTitle;
-        else if ($this->defaultTitle !== null)
-            $this->_title = $this->defaultTitle;
 
         if ($behavior !== null && $behavior->metaDescription !== null)
             $this->_description = $behavior->metaDescription;
-        else if ($this->defaultDescription !== null)
+        elseif($description = $this->getSeo('description'))
+            $this->_description = $description;
+        elseif ($this->defaultDescription !== null)
             $this->_description = $this->defaultDescription;
 
         if ($behavior !== null && $behavior->metaKeywords !== null)
             $this->_keywords = $behavior->metaKeywords;
-        else if ($this->defaultKeywords !== null)
+        elseif($keywords = $this->getSeo('keywords'))
+            $this->_keywords = $keywords;
+        elseif ($this->defaultKeywords !== null)
             $this->_keywords = $this->defaultKeywords;
 
         if ($behavior !== null && $behavior->ogImage !== null)
             $this->_ogImage = $behavior->ogImage;
-        else if ($this->ogImage !== null)
+        elseif($image = $this->getSeo('image'))
+            $this->_ogImage = $image;
+        elseif ($this->ogImage !== null)
             $this->_ogImage = $this->ogImage;
 
         if ($behavior !== null)
@@ -80,6 +91,56 @@ class SeoHead extends CWidget
 
         if ($behavior !== null && $behavior->canonical !== null)
             $this->_canonical = $behavior->canonical;
+        elseif ($this->canonical !== null)
+            $this->_canonical = $this->canonical;
+    }
+
+    private function getSeo($param)
+    {
+        $urls = $this->getUrls();
+        if($this->_urlSeo) return $this->_urlSeo->$param;
+
+        foreach($urls as $url)
+        {
+            $crt = new CDbCriteria();
+            $crt->condition = "url = :param";
+            $crt->params = array(":param"=>$url);
+
+            $urlF = YiiseoUrl::model()->find($crt);
+            if($urlF !== null) {
+                $this->_urlSeo = $urlF;
+                return $urlF->$param;
+            }
+        }
+
+        return false;
+    }
+
+    private function getUrls()
+    {
+        $result = null;
+        $urls = Yii::app()->request->url;
+        $data = explode("/",$urls);
+        unset($data[0]);
+
+        while(count($data))
+        {
+            $_url = "";
+            $i = 0;
+            foreach($data as $key=>$d)
+            {
+                $_url .= $i++ ? "/".$d : $d ;
+            }
+
+            $result[] = $_url."/*";
+            $result[] = $_url;
+            unset($data[$key]);
+
+        }
+        $result[] = "/*";
+        $result[] = "/";
+
+        return $result;
     }
 
     /**

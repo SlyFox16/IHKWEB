@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <?php Yii::app()->getController()->widget(
+        'application.vendor.chemezov.yii-seo.widgets.SeoHead',
+        array(
+            'defaultTitle' => 'IHK',
+            'defaultDescription' => 'IHK Company',
+            'defaultKeywords' => 'IHK Keywords',
+            'canonical' => Yii::app()->createAbsoluteUrl(Yii::app()->request->requestUri)
+        )
+    ); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <!-- Fonts -->

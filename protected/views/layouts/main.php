@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>IHK - Homepage</title>
+    <?php Yii::app()->getController()->widget(
+        'application.vendor.chemezov.yii-seo.widgets.SeoHead',
+        array(
+            'defaultTitle' => 'IHK',
+            'defaultDescription' => 'IHK Company',
+            'defaultKeywords' => 'IHK Keywords',
+            'canonical' => Yii::app()->createAbsoluteUrl(Yii::app()->request->requestUri)
+        )
+    ); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800,600' rel='stylesheet' type='text/css'>
-
 </head>
 <body>
 <!--===============================-->
