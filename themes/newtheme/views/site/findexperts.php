@@ -20,12 +20,12 @@
 
 <section class="separated separated--edge">
     <div class="row">
-        <div class="small-3 columns">
+        <div class="medium-4 large-3 columns">
             <?php $this->renderPartial('_search',array(
                 'model'=>$model,
             )); ?>
         </div>
-        <div class="small-9 columns">
+        <div class="medium-8 large-9 columns">
             <?php $this->widget('ListView', array(
                 'id'=>'rating-log-grid',
                 'dataProvider' => $model->findMember(),
