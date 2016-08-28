@@ -16,15 +16,16 @@
             ),
         )); ?>
     </div>
-    <!-- Control -->
-    <?php $this->renderPartial('_search',array(
-        'model'=>$model,
-    )); ?>
 </div>
 
 <section class="separated separated--edge">
     <div class="row">
-        <div class="small-12 columns">
+        <div class="small-3 columns">
+            <?php $this->renderPartial('_search',array(
+                'model'=>$model,
+            )); ?>
+        </div>
+        <div class="small-9 columns">
             <?php $this->widget('ListView', array(
                 'id'=>'rating-log-grid',
                 'dataProvider' => $model->findMember(),

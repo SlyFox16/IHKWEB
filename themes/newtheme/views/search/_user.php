@@ -4,7 +4,7 @@
     </div>
     <div class="experts_info">
         <div class="expert_name">
-            <h2><b><?php echo $data->name; ?></b> <?php echo $data->surname; ?></h2>
+            <h2><a href="<?php echo $this->createUrl('user/info', array('id' => $data->id)); ?>"><b><?php echo $data->name; ?></b> <?php echo $data->surname; ?></a></h2>
         </div>
         <span><?php echo User::getCityCountry($data->country_id, 'country').', '.User::getCityCountry($data->city_id, 'city'); ?></span>
         <h3><?php echo $data->position; ?></h3>
@@ -21,8 +21,5 @@
             <li><b><?php echo $data->rating; ?></b> <?php echo Yii::t("base", "Rating"); ?></li>
             <li><b><?php echo $data->level; ?></b> <?php echo Yii::t("base", "Level"); ?></li>
         </ul>
-    </div>
-    <div class="experts_view">
-        <a class="button" href="<?php echo $this->createUrl('user/info', array('id' => $data->id)); ?>"><?php echo Yii::t("base", "View Profile"); ?></a>
     </div>
 </li>
