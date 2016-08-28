@@ -25,7 +25,7 @@ class SiteController extends Frontend
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('logout', 'findexperts'),
+                'actions'=>array('logout', 'findexperts', 'ratingList'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -398,6 +398,17 @@ class SiteController extends Frontend
             $model->attributes=$_GET['User'];
 
         $this->render('findexperts', array('model' => $model));
+    }
+
+    public function actionRatingList()
+    {
+        $model = new User();
+
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['User']))
+            $model->attributes=$_GET['User'];
+
+        $this->render('ratingList', array('model' => $model));
     }
 
     public function actionAccept()

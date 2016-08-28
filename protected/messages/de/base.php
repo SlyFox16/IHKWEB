@@ -142,4 +142,6 @@ return array (
     'Expert register' => '',
     'Seeker register' => '',
     'Rate' => '',
+    'Find certified [b]Crowd Experts[/b] now.' => '',
+    'Rating top' => '',
 );

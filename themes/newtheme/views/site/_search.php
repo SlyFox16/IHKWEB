@@ -60,17 +60,17 @@
 
 <?php
     Yii::app()->clientScript->registerScript('searchUser', "
-    $('.search-form form').submit(function(){
-        var self = $(this);
-        $.fn.yiiListView.update('rating-log-grid', {
-            data: $(this).serialize(),
-            complete:function() {
-                self.find('button').toggleClass('searching-class');
-            }
+        $('.search-form form').submit(function(){
+            var self = $(this);
+            $.fn.yiiListView.update('rating-log-grid', {
+                data: $(this).serialize(),
+                complete:function() {
+                    self.find('button').toggleClass('searching-class');
+                }
+            });
+            self.find('button').toggleClass('searching-class');
+            return false;
         });
-        self.find('button').toggleClass('searching-class');
-        return false;
-    });
     ");
 ?>
 

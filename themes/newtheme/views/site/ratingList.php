@@ -12,24 +12,25 @@
     <div class="small-12 medium-4 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                Yii::t("base", 'Search')
+                Yii::t("base", 'Rating top')
             ),
         )); ?>
     </div>
     <!-- Control -->
     <?php $this->renderPartial('_search',array(
         'model'=>$model,
+        'ratingList' => true
     )); ?>
 </div>
 
 <section class="separated separated--edge">
     <div class="row">
         <div class="small-12 columns">
-            <ul class="experts">
+            <ul class="experts experts--ranking">
                 <?php $this->widget('ListView', array(
-                    'id'=>'rating-log-grid',
-                    'dataProvider' => $model->findMember(),
-                    'itemView' => '//search/_user', // refers to the partial view named '_post'
+                    'id'=>'experts-ranking',
+                    'dataProvider' => $model->searchRatingList(),
+                    'itemView' => '_ratingList', // refers to the partial view named '_post'
                     'summaryText' => false,
                     'loadingCssClass' => false,
                     'pager'=> "LinkPager",

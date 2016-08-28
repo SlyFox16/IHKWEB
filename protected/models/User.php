@@ -293,6 +293,31 @@ class User extends ActiveRecord
         ));
     }
 
+    public function searchRatingList()
+    {
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
+        $criteria->compare('email', $this->email, true);
+        $criteria->compare('expert_confirm', $this->expert_confirm);
+        $criteria->compare('password', $this->password, true);
+        $criteria->compare('salt', $this->salt, true);
+        $criteria->compare('is_active', $this->is_active);
+        $criteria->compare('is_staff', $this->is_staff);
+        $criteria->compare('last_login', $this->last_login, true);
+        $criteria->compare('date_joined', $this->date_joined, true);
+
+        $criteria->addCondition('is_staff = 0 AND is_seeker = 0');
+        $criteria->order = 'rating DESC, level DESC';
+
+        return new CActiveDataProvider(new User, array(
+            'criteria' => $criteria,
+        ));
+    }
+
     public function searchMember($param)
     {
         // Warning: Please modify the following code to remove attributes that
