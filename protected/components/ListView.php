@@ -2,6 +2,18 @@
 Yii::import('zii.widgets.CListView');
 class ListView extends CListView
 {
+    public function run()
+    {
+        $this->registerClientScript();
+
+        //echo CHtml::openTag($this->tagName,$this->htmlOptions)."\n";
+
+        $this->renderContent();
+        $this->renderKeys();
+
+        //echo CHtml::closeTag($this->tagName);
+    }
+
     public function renderItems()
     {
         //echo CHtml::openTag($this->itemsTagName,array('class'=>$this->itemsCssClass))."\n";
@@ -25,6 +37,6 @@ class ListView extends CListView
         else
             $this->renderEmptyText();
 
-        ////echo CHtml::closeTag($this->itemsTagName);
+        //echo CHtml::closeTag($this->itemsTagName);
     }
 }

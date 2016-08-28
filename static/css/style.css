@@ -11206,39 +11206,121 @@ body .rating-gly-star {
   padding: 0.9375rem 0;
 }
 
-.expertcard {
+.experts {
+  display: table;
   width: 100%;
-  overflow: hidden;
-}
-.expertcard + .expertcard {
-  margin-top: 1.875rem;
-  padding-top: 1.875rem;
-  border-top: 1px solid #c5c5c5;
-}
-.expertcard .expertcard_photo img {
-  width: 100%;
-  border-radius: 50%;
-}
-.expertcard .stats {
-  margin: 0.625rem 0 0 0;
-  text-align: left;
-  overflow: hidden;
-}
-.expertcard .stats li {
-  float: left;
-}
-.expertcard .stats li + li {
-  margin: 0 0 0 1.875rem;
-}
-.expertcard .button {
   margin: 0;
-  float: right;
+}
+.experts > li {
+  display: table-row;
+}
+.experts > li + li > div {
+  border-top: 1px solid #d0d0d0;
+}
+.experts > li > div {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 1.875rem 0;
+}
+.experts > li > div:not(:first-child) {
+  padding-left: 1.875rem;
 }
 @media screen and (max-width: 39.9375em) {
-  .expertcard .button {
-    float: left;
-    margin-top: 1.875rem;
+  .experts {
+    display: block;
   }
+  .experts > li {
+    display: block;
+  }
+  .experts > li + li {
+    margin-top: 1.875rem;
+    padding-top: 1.875rem;
+    border-top: 1px solid #d0d0d0;
+  }
+  .experts > li + li > div {
+    border: 0;
+  }
+  .experts > li > div {
+    display: block;
+    padding: 0;
+  }
+  .experts > li > div:not(:first-child) {
+    padding: 0.9375rem 0 0 0;
+  }
+}
+
+.experts_photo {
+  width: 12.5rem;
+}
+.experts_photo img {
+  width: 100%;
+  border-radius: 50%;
+  height: auto;
+}
+@media screen and (max-width: 39.9375em) {
+  .experts_photo {
+    width: 50%;
+  }
+}
+
+.experts_info {
+  width: 50%;
+}
+.experts_info h2 {
+  font-size: 2.5rem;
+  line-height: 1.2em;
+  margin: 0;
+}
+.experts_info span {
+  font-size: 0.875rem;
+  color: #777;
+  text-transform: uppercase;
+}
+.experts_info h3 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+.experts_info .expert_domain {
+  margin: 0.625rem 0 0 0;
+}
+@media screen and (max-width: 39.9375em) {
+  .experts_info {
+    width: 100%;
+  }
+}
+
+.experts_meta .stats {
+  margin: 0;
+  overflow: hidden;
+}
+.experts_meta .stats li {
+  float: left;
+  text-align: left;
+}
+.experts_meta .stats li + li {
+  margin: 0 0 0 1.875rem;
+}
+.experts_meta .stats li b {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.2em;
+}
+
+.experts_view {
+  text-align: right;
+}
+.experts_view a {
+  font-size: 0.875rem;
+  margin: 0;
+}
+@media screen and (max-width: 39.9375em) {
+  .experts_view {
+    text-align: left;
+  }
+}
+
+.experts--ranking .experts_photo {
+  width: 9.375rem;
 }
 
 /*# sourceMappingURL=style.css.map */
