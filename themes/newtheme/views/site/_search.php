@@ -4,16 +4,18 @@
         'action'=>Yii::app()->createUrl($this->route),
         'method'=>'get',
     )); ?>
-    <!--== Page Control ==-->
-    <div class="small-12 medium-8 columns">
-        <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
-            <li>
-                <?php echo $form->textField($model,'name',array('placeholder' => Yii::t("base", 'First Name'))); ?>
-            </li>
-            <li>
+    <!--== Filters ==-->
+        <div class="filters">
+            <label>
+                <span>First Name</span>
+                 <?php echo $form->textField($model,'name',array('placeholder' => Yii::t("base", 'First Name'))); ?>
+            </label>
+            <label>
+                <span>Second Name</span>
                 <?php echo $form->textField($model,'surname',array('placeholder' => Yii::t("base", 'Second Name'))); ?>
-            </li>
-            <li>
+            </label>
+            <label>
+                <span>City</span>
                 <?php $this->widget(
                     'booster.widgets.TbSelect2',
                     [
@@ -43,18 +45,17 @@
                         ],
                     ]
                 ); ?>
-            </li>
-            <li>
+            </label>
+            <label>
+                <span>Level</span>
                 <?php echo $form->textField($model,'level',array('class'=>'span5 small', 'placeholder' => Yii::t("base", 'Level'))); ?>
-            </li>
-            <li>
+            </label>
+            <label>
+                <span>Rating</span>
                 <?php echo $form->textField($model,'rating',array('class'=>'span5 small', 'placeholder' => Yii::t("base", 'Rating'))); ?>
-            </li>
-            <li>
-                <?php echo CHtml::linkButton('', array('class' => 'fa fa-search')); ?>
-            </li>
-        </ul>
-    </div>
+            </label>
+            <?php echo CHtml::linkButton('Search', array('class' => 'button')); ?>
+        </div>
     <?php $this->endWidget(); ?>
 
 
