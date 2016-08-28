@@ -7678,11 +7678,18 @@ body .rating-container.rating-gly-star {
 }
 
 /* Pagination */
+.pager {
+  position: absolute;
+  bottom: -1.5625rem;
+  left: auto;
+  right: auto;
+}
+
 .pagination {
   position: relative;
   float: left;
   clear: both;
-  margin: -1.5625rem 0 -1.5625rem 1.875rem;
+  margin: 0;
   list-style: none;
   background: #00478c;
   border-radius: 0.25rem;
@@ -7695,6 +7702,7 @@ body .rating-container.rating-gly-star {
 
 .pagination a {
   display: block;
+  padding: 0;
   width: 3.125rem;
   height: 3.125rem;
   line-height: 3.125rem;
@@ -11271,6 +11279,9 @@ body .rating-gly-star {
   line-height: 1.2em;
   margin: 0;
 }
+.experts_info h2 a {
+  color: #777;
+}
 .experts_info span {
   font-size: 0.875rem;
   color: #777;
@@ -11292,10 +11303,10 @@ body .rating-gly-star {
 .experts_meta .stats {
   margin: 0;
   overflow: hidden;
+  float: right;
 }
 .experts_meta .stats li {
   float: left;
-  text-align: left;
 }
 .experts_meta .stats li + li {
   margin: 0 0 0 1.875rem;
@@ -11321,6 +11332,11 @@ body .rating-gly-star {
 
 .experts--ranking .experts_photo {
   width: 9.375rem;
+}
+
+.filters {
+  padding-right: 30px;
+  border-right: 1px solid #d0d0d0;
 }
 
 /*# sourceMappingURL=style.css.map */
