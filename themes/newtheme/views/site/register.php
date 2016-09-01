@@ -55,6 +55,30 @@
                         <?php echo $form->error($register_form, 'email'); ?>
 
                         <label>
+                            <span><?php echo Yii::t("base", "User association"); ?></span>
+                            <?php $this->widget(
+                                'booster.widgets.TbSelect2',
+                                [
+                                    'model'=>$register_form,
+                                    'attribute'=>'userAssociation',
+                                    'asDropDownList' => true,
+                                    'data' => AssociationMembership::model()->assocList,
+                                    'options' => [
+                                        'placeholder' => Yii::t("base", 'Select association'),
+                                        'width' => '100%',
+                                        'allowClear' => true,
+                                    ],
+                                    'htmlOptions' => [
+                                        'id' => 'user-association',
+                                        'class' => 'form-control'
+                                    ],
+                                ]
+                            );?>
+                        </label>
+                        <?php echo $form->error($register_form, 'userAssociation'); ?>
+
+
+                        <label>
                             <span><?php echo $register_form->getAttributeLabel('country_id'); ?></span>
                             <?php $this->widget(
                                 'booster.widgets.TbSelect2',

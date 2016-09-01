@@ -24,6 +24,7 @@ class User extends ActiveRecord
 {
     public $levelUp = false;
     public $levelDown = false;
+    public $userAssociation = false;
 
     /**
      * Returns the static model of the specified AR class.
@@ -88,7 +89,7 @@ class User extends ActiveRecord
             array('email, username', 'unique', 'except' => 'changepassword'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
-            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id, rating', 'safe'),
+            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id, rating, userAssociation', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -102,7 +103,7 @@ class User extends ActiveRecord
         return array(
             'user'=>array('condition'=>"is_staff = 0"),
             'staff'=>array('condition'=>"is_staff = 1"),
-            'expert_confirm'=>array('condition'=>"expert_confirm = 1"),
+            'expert_confirm'=>array('condition'=>"expert_confirm = 1 || (expert_confirm = 0 && is_staff = 1)"),
             'is_active'=>array('condition'=>"is_active = '1'"),
             'search_active' => array(
                 'condition' => '(is_active = 1 && expert_confirm = 1) OR is_staff = 1'
@@ -534,6 +535,17 @@ class User extends ActiveRecord
                 $categoryAttribute->save();
 
                 $categories[] = $value;
+            }
+        }
+
+        if (!empty($this->userAssociation)) {
+            $modelReceiver = AssociationMembership::model()->findByPk($this->userAssociation);
+
+            if ($modelReceiver) {
+                $reference = new UserAssociation();
+                $reference->user_id = $this->id;
+                $reference->association_id = $modelReceiver->id;
+                $reference->save();
             }
         }
 

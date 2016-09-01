@@ -276,10 +276,18 @@ class SiteController extends Frontend
             $register_form->attributes = $_POST["User"];
             $register_form->username = $register_form->name.$register_form->surname.rand(1, 999);
             $register_form->is_seeker = 1;
+            $register_form->is_active = 1;
             $register_form->seeker_pass = $register_form->GenerateStr();
 
             if($register_form->save()) {
-                $a = CHtml::link('Seeker Confirmation', $this->createAbsoluteUrl("site/seekerConfirmation", array('id' => $register_form->seeker_pass)));
+                $login = Yii::createComponent('application.models.LoginForm');
+                $login->email = $register_form->email;
+                $login->password = $_POST["User"]['password'];
+                if($login->autoLogin()) {
+                    Yii::app()->user->setFlash('user_register', Yii::t("base","Congratulations! You have registered successfully!"));
+                    $this->redirect(Yii::app()->homeUrl);
+                }
+                /*$a = CHtml::link('Seeker Confirmation', $this->createAbsoluteUrl("site/seekerConfirmation", array('id' => $register_form->seeker_pass)));
 
                 $body = "You've just logged in as seeker. Please confirm your registration by following this link ".$a;
                 $subject = "Seeker Login Confirmation ".Yii::app()->name;
@@ -287,7 +295,7 @@ class SiteController extends Frontend
                 if($register_form->sendEmail($subject, $body, $register_form->email)) {
                     Yii::app()->user->setFlash('seeker', true);
                     $this->redirect(Yii::app()->homeUrl);
-                }
+                }*/
             }
         }
 

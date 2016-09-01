@@ -452,4 +452,12 @@ class UserController extends Frontend
         } else
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
+
+    protected function getErrorSummary($model)
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $errors = CActiveForm::validate($model);
+            if ($errors !== '[]') Yii::app()->end($errors); // Sends model errors as json object
+        }
+    }
 }

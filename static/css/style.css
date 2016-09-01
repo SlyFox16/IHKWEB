@@ -7733,6 +7733,49 @@ body .rating-container.rating-gly-star {
   content: "\f104";
 }
 
+/* Tabs */
+.tabs {
+  display: table;
+  width: 100%;
+  background: none;
+  border: 0;
+}
+.tabs .tabs-title {
+  float: none;
+  display: table-cell;
+}
+.tabs .tabs-title a {
+  border: 2px solid transparent;
+  border-bottom-color: #d0d0d0;
+  font-size: 0.875rem;
+  color: #777;
+  text-align: center;
+}
+.tabs .tabs-title a:hover {
+  background: none;
+  color: #000;
+}
+.tabs .tabs-title a:focus, .tabs .tabs-title a[aria-selected='true'] {
+  border-color: #d0d0d0;
+  border-bottom-color: transparent;
+  background: none;
+  color: #000;
+}
+
+.tabs-content {
+  background: none;
+  border: 0;
+}
+.tabs-content .tabs-panel {
+  padding: 3.125rem 0 0 0;
+}
+.tabs-content .tabs-panel .note {
+  display: block;
+  margin-bottom: 3.125rem;
+  color: #777;
+  font-size: 1.25rem;
+}
+
 /*------------------------------------*\
     Forms
 \*------------------------------------*/
@@ -7744,14 +7787,13 @@ body .rating-container.rating-gly-star {
 [type='tel'], [type='time'],
 [type='url'], [type='color'],
 textarea {
-  background: rgba(255, 255, 255, 0.5);
+  background: #fff;
   padding: 0.9375rem;
   margin: 0 0 0.9375rem;
   line-height: 1.25rem;
   height: 3.125rem;
   border-radius: 0;
-  border-width: 0 0 0 0.125rem;
-  border-left-color: #777;
+  border: 0.125rem solid #d0d0d0;
 }
 
 [type='text']:focus, [type='password']:focus,
@@ -7762,16 +7804,15 @@ textarea {
 [type='tel']:focus, [type='time']:focus,
 [type='url']:focus, [type='color']:focus,
 textarea:focus {
-  border-left-color: #777;
-  border-width: 0 0 0 0.125rem;
-  background: white;
+  border-color: #00478c;
+  border-width: 0.125rem;
 }
 
 label > span {
   display: inline-block;
   padding: 0 0.9375rem;
-  color: #e5e5e5;
-  background: #777;
+  color: #777;
+  background: #d0d0d0;
 }
 
 .errorMessage {
@@ -7784,15 +7825,21 @@ label > span {
   border-top: 2px solid red;
 }
 
-.fieldset {
-  padding: 0.9375rem 0 0 0;
-  border-width: 1px 0 0 0;
-  border-color: #c0c0c0;
+fieldset .note {
+  display: block;
+  margin-bottom: 0.9375rem;
+  color: #777;
+  font-size: 0.875rem;
 }
-.fieldset legend {
+fieldset.fieldset {
+  padding: 0.9375rem 0 0 0;
+  border-width: 0.125rem 0 0 0;
+  border-color: #d0d0d0;
+}
+fieldset.fieldset legend {
   background: transparent;
   padding: 0 0.625rem;
-  color: #c0c0c0;
+  color: #777;
   font-size: 0.875rem;
   text-align: center;
   font-weight: 600;
@@ -7820,30 +7867,46 @@ label > span {
   color: #fff;
 }
 
-.attached {
-  list-style: none;
-  padding: 0.625rem;
-  margin: -0.9375rem 0 0.9375rem 0;
-  border-left: 0.125rem solid #777;
+.input-multiple {
+  display: table;
+  width: 100%;
 }
-.attached li {
-  font-size: 0.875rem;
-  color: #777;
-  line-height: 1.5625rem;
+.input-multiple > * {
+  display: table-cell;
+}
+.input-multiple > *:not(:first-child) {
+  padding-left: 0.625rem;
 }
 
-.dropzone {
-  margin-bottom: 0.9375rem;
-  padding: 2.5rem 0.9375rem;
-  background: rgba(255, 255, 255, 0.5);
-  border-top: 2px dashed #e5e5e5;
-  border-right: 2px dashed #e5e5e5;
-  border-bottom: 2px dashed #e5e5e5;
-  border-left: 2px solid #777;
+.attached {
+  margin: 0 0 0.9375rem 0;
 }
-.dropzone i {
-  margin: 0;
+.attached li {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  padding: 0.625rem 0.9375rem;
+  border: 0.125rem dashed #d0d0d0;
+  border-radius: 0.25rem;
+}
+.attached li:not(:last-child) {
+  margin-right: 10px;
+}
+.attached li a {
+  width: 1.5rem;
+  line-height: 1.5rem;
+  background: #d0d0d0;
   color: #777;
+  position: absolute;
+  top: -0.75rem;
+  right: -0.75rem;
+  text-align: center;
+  border-radius: 0.25rem;
+}
+.attached li span {
+  display: block;
+  font-size: 0.875rem;
+  color: #d0d0d0;
 }
 
 body .select2-container.form-control {
@@ -10919,11 +10982,26 @@ footer {
     Expert Page
 \*------------------------------------*/
 .expert_photo {
-  border-radius: 50%;
-  overflow: hidden;
+  position: relative;
 }
 .expert_photo img {
   width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.expert_photo .edit {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  background: #00478c;
+  color: #fff;
+  width: 3.75rem;
+  line-height: 3.75rem;
+  text-align: center;
+  border-radius: 50%;
+}
+.expert_photo .edit:hover {
+  opacity: 0.8;
 }
 
 .expert_name {

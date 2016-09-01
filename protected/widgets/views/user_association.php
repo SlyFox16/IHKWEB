@@ -38,7 +38,7 @@
     <?php $connected = $user->connectedAssoc;
     if($connected) { ?>
         <?php foreach($connected as $conUser) { ?>
-            <li class="relateduser">
+            <li>
                 <?php echo $conUser->name; ?>
                 <a href="javascript:void(0)" title="<?php echo Yii::t("base", "Remove"); ?>" class="delete fa fa-times" data-id="<?php echo $conUser->id; ?>">
                 </a>
