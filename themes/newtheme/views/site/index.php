@@ -87,7 +87,7 @@
 <!--===============================-->
 <section>
     <div class="row">
-        <div class="small-12">
+        <div class="small-12 columns">
             <div class="cta">
                 <h2><?php echo Yii::t("base", "Awesome call to action headline goes here!");?></h2>
                 <?php if(!Yii::app()->user->isGuest) { ?>
