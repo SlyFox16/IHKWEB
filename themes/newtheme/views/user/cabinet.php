@@ -40,7 +40,6 @@
                         </ul>
                         <div class="tabs-content" data-tabs-content="example-tabs">
                             <div class="tabs-panel is-active" id="panel1">
-                                <h4 class="note"><?php echo Yii::t("base", "Please add an info about your certificates to to achieve new level."); ?></h4>
                                 <fieldset class="input-multiple">
                                     <label>
                                         <span><?php echo $user->getAttributeLabel('title'); ?></span>
@@ -59,7 +58,7 @@
                                     <?php echo $form->error($user, 'surname'); ?>
                                 </fieldset>
 
-                                <fieldset class="fieldset">
+                                <fieldset>
                                     <label>
                                         <span><?php echo $user->getAttributeLabel('username'); ?></span>
                                         <?php echo $form->textField($user, 'username'); ?>
@@ -138,8 +137,7 @@
                                 </fieldset>
                             </div>
                             <div class="tabs-panel" id="panel2">
-                                <h4 class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
-                                <fieldset class="fieldset">
+                                <fieldset>
                                     <label>
                                         <span><?php echo $user->getAttributeLabel('country_id'); ?></span>
                                         <?php $this->widget(
@@ -239,9 +237,7 @@
                                 </fieldset>
                             </div>
                             <div class="tabs-panel" id="panel3">
-                                <h4 class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
-                                <fieldset class="fieldset">
-                                    <legend><?php echo Yii::t("base", "Certifications"); ?></legend>
+                                <fieldset>
                                     <div class="fields">
                                         <label>
                                             <span><?php echo $certificate->getAttributeLabel('certificate_id'); ?></span>
@@ -321,7 +317,7 @@
                                 </fieldset>
                             </div>
                             <div class="tabs-panel" id="panel4">
-                                <h4 class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
+                                <a data-toggle="complete" class="button"><?php echo Yii::t("base", 'ADD'); ?></a>
                                 <fieldset class="fieldset">
                                     <legend><?php echo Yii::t("base", "Completed projects"); ?></legend>
                                     <?php if($completed = $user->completed) { ?>
@@ -335,7 +331,6 @@
                                             <?php } ?>
                                         </ul>
                                     <?php } ?>
-                                    <a data-toggle="complete" class="button"><?php echo Yii::t("base", 'ADD'); ?></a>
                                 </fieldset>
                             </div>
                         </div>
