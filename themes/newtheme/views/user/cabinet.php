@@ -241,54 +241,59 @@
                                 <h4 class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
                                 <fieldset class="fieldset">
                                     <legend><?php echo Yii::t("base", "Certifications"); ?></legend>
-                                    <div class="wheretoadd">
-                                        <?php foreach ($certificates as $key => $certificate) { ?>
-                                            <?php if(!$certificate->isNewRecord) { ?>
-                                                <div class="fields">
-                                                    <label>
-                                                        <span><?php echo $certificate->getAttributeLabel('certificate_id'); ?></span>
-                                                        <?php $this->widget(
-                                                            'booster.widgets.TbSelect2',
-                                                            [
-                                                                'model'=>$certificate,
-                                                                'attribute'=>"[$key]certificate_id",
-                                                                'data' => $certificate->allCertificates,
-                                                                'asDropDownList' => true,
-                                                                'options' => [
-                                                                    'placeholder' => 'Select product',
-                                                                    'width' => '100%',
-                                                                    'allowClear' => true,
-                                                                ],
-                                                                'htmlOptions' => [
-                                                                    'class' => 'form-control'
-                                                                ],
-                                                            ]
-                                                        );?>
-                                                    </label>
-                                                    <?php $form->error($certificate, "[$key]certificate_id"); ?>
+                                    <div class="fields">
+                                        <label>
+                                            <span><?php echo $certificate->getAttributeLabel('certificate_id'); ?></span>
+                                            <?php $this->widget(
+                                                'booster.widgets.TbSelect2',
+                                                [
+                                                    'model'=>$certificate,
+                                                    'attribute'=>"certificate_id",
+                                                    'data' => $certificate->allCertificates,
+                                                    'asDropDownList' => true,
+                                                    'options' => [
+                                                        'placeholder' => 'Select product',
+                                                        'width' => '100%',
+                                                        'allowClear' => true,
+                                                    ],
+                                                    'htmlOptions' => [
+                                                        'class' => 'form-control'
+                                                    ],
+                                                ]
+                                            );?>
+                                        </label>
+                                        <?php $form->error($certificate, "certificate_id"); ?>
 
-                                                    <label>
-                                                        <span><?php echo $certificate->getAttributeLabel('date'); ?></span>
-                                                        <?php $this->widget(
-                                                            'booster.widgets.TbDatePicker',
-                                                            array(
-                                                                'model'=>$certificate,
-                                                                'attribute'=>"[$key]uDate",
-                                                                'options' => array(
-                                                                    'format' => 'dd/mm/yyyy',
-                                                                    'todayHighlight' => true,
-                                                                    'endDate' => '+1d',
-                                                                ),
-                                                            )
-                                                        ); ?>
-                                                    </label>
-                                                </div>
-                                                <?php echo $form->error($certificate, "[$key]date"); ?>
-                                            <?php } ?>
-                                        <?php } ?>
+                                        <label>
+                                            <span><?php echo $certificate->getAttributeLabel('date'); ?></span>
+                                            <?php $this->widget(
+                                                'booster.widgets.TbDatePicker',
+                                                array(
+                                                    'model'=>$certificate,
+                                                    'attribute'=>"uDate",
+                                                    'options' => array(
+                                                        'format' => 'dd/mm/yyyy',
+                                                        'todayHighlight' => true,
+                                                        'endDate' => '+1d',
+                                                    ),
+                                                )
+                                            ); ?>
+                                        </label>
                                     </div>
-                                    <?php echo CHtml::link(Yii::t("base", 'ADD'), '#', array('class' => 'addButton button')); ?>
-                                    <?php echo CHtml::link(Yii::t("base", 'REMOVE'), '#', array('class' => 'removeButton button transparent')); ?>
+                                    <?php echo $form->error($certificate, "date"); ?>
+                                    <?php echo CHtml::ajaxButton(
+                                        'update',
+                                        Yii::app()->createUrl('/user/saveCertificate'),
+                                        array(
+                                            'type'=>'POST',
+                                            'data'=> 'js:{"UserCertificate[\"certificate_id\"]": $("#UserCertificate_certificate_id").val(), "UserCertificate[\"date\"]": $("#UserCertificate_uDate").val()}',
+                                            /*'success'=>'callback',
+                                            'beforeSend'=>'before',*/
+                                        ),
+                                        array(
+                                            'class'=>'certifSend button',
+                                        )
+                                    ); ?>
                                 </fieldset>
                                 <fieldset class="fieldset">
                                     <legend><?php echo Yii::t("base", "Completed projects"); ?></legend>

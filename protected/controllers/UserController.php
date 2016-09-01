@@ -22,7 +22,7 @@ class UserController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('recover', 'updateMailPassword', 'citySearch'),
+                'actions'=>array('recover', 'updateMailPassword', 'citySearch', 'saveCertificate'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -35,11 +35,11 @@ class UserController extends Frontend
             ),
             array('allow',
                 'actions'=>array('completedProject', 'deleteComplete'),
-                'expression'=>'CAuthHelper::isUseresProject($_GET["id"])',
+                'expression'=>'CAuthHelper::isUseresProject(@$_GET["id"])',
             ),
             array('allow',
                 'actions'=>array('info'),
-                'expression'=>'CAuthHelper::isIssetExpert($_GET["id"])',
+                'expression'=>'CAuthHelper::isIssetExpert(@$_GET["id"])',
             ),
             array('allow',
                 'actions'=>array('index', 'updatePassword', 'report', 'ratingDescr'),
@@ -69,28 +69,13 @@ class UserController extends Frontend
     public function actionCabinet()
     {
         $user = User::model()->findByPk(Yii::app()->user->id);
-        if($user->certificates)
-            $certificates = $user->certificates;
-        else
-            $certificates[] = new UserCertificate();
-
         $user->scenario = 'userupdate';
 
         //=================================================================
-
-        if (isset($_POST['ajax']) && $_POST['ajax'] == 'cabinet-form') {
-            $cert = array();
-            if (isset($_POST['UserCertificate'])) {
-                foreach ($_POST['UserCertificate'] as $key => $value) {
-                    $cert[$key] = new UserCertificate('check');
-                }
-            }
-            $f1 = json_decode(CActiveForm::validate($user), 1);
-            $f2 = json_decode(CActiveForm::validateTabular($cert), 1);
-            echo json_encode(array_merge($f1, $f2));
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'cabinet-form') {
+            echo CActiveForm::validate($user);
             Yii::app()->end();
         }
-
         //=================================================================
 
         if (isset($_POST["User"])) {
@@ -101,7 +86,7 @@ class UserController extends Frontend
             }
         }
 
-        $this->render('cabinet', array('user' => $user, 'certificates' => $certificates));
+        $this->render('cabinet', array('user' => $user, 'certificate' => new UserCertificate()));
     }
 
     public function actionInfo($id)
@@ -160,6 +145,49 @@ class UserController extends Frontend
                 if ($model->save()) {
                     $this->redirect(Yii::app()->request->urlReferrer);
                 }
+            }
+        }
+        throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
+
+    public function actionSaveCertificate() {
+        if(Yii::app()->request->isAjaxRequest) {
+            $model = new UserCertificate();
+
+            if (isset($_POST['ajax'])) {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
+
+            if (isset($_POST['UserCertificate'])) {
+                $cert = array();
+                foreach ($_POST['UserCertificate'] as $i => $item) {
+                    if (isset($_POST['UserCertificate'][$i]) && !empty($_POST['UserCertificate'][$i])) {
+                        $date =  Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
+
+                        $modelParam = UserCertificate::model()->find('user_id = :user AND certificate_id = :certid AND date = :date', array(':user' => Yii::app()->user->id, ':certid' => $_POST['UserCertificate'][$i]["certificate_id"], ':date' => $date));
+                        if(!isset($modelParam)) $modelParam = new UserCertificate();
+
+                        $modelParam->user_id = Yii::app()->user->id;
+                        $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
+                        $modelParam->uDate = $_POST['UserCertificate'][$i]["uDate"];
+
+                        if(!$modelParam->save()) {
+                            Yii::log(CHtml::errorSummary($modelParam), "error");
+                        } else
+                            $cert[] = $modelParam->id;
+                    }
+                }
+
+                $crt = new CDbCriteria;
+                $crt->condition = 'user_id = :user';
+                $crt->addNotInCondition('id', $cert);
+                $crt->params[':user'] = Yii::app()->user->id;
+
+                UserCertificate::model()->deleteAll($crt);
+            } else {
+                UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
+                self::newLevel(Yii::app()->user->id);
             }
         }
         throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');

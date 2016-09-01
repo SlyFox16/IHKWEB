@@ -26,6 +26,9 @@ class User extends ActiveRecord
     public $levelDown = false;
     public $userAssociation = false;
 
+    public $certificate;
+    public $certificate_date;
+
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
@@ -482,37 +485,6 @@ class User extends ActiveRecord
 
     public function afterSave()
     {
-        if (isset($_POST['UserCertificate'])) {
-            $cert = array();
-            foreach ($_POST['UserCertificate'] as $i => $item) {
-                if (isset($_POST['UserCertificate'][$i]) && !empty($_POST['UserCertificate'][$i])) {
-                    $date =  Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
-
-                    $modelParam = UserCertificate::model()->find('user_id = :user AND certificate_id = :certid AND date = :date', array(':user' => Yii::app()->user->id, ':certid' => $_POST['UserCertificate'][$i]["certificate_id"], ':date' => $date));
-                    if(!isset($modelParam)) $modelParam = new UserCertificate();
-
-                    $modelParam->user_id = Yii::app()->user->id;
-                    $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
-                    $modelParam->uDate = $_POST['UserCertificate'][$i]["uDate"];
-
-                    if(!$modelParam->save()) {
-                        Yii::log(CHtml::errorSummary($modelParam), "error");
-                    } else
-                        $cert[] = $modelParam->id;
-                }
-            }
-
-            $crt = new CDbCriteria;
-            $crt->condition = 'user_id = :user';
-            $crt->addNotInCondition('id', $cert);
-            $crt->params[':user'] = Yii::app()->user->id;
-
-            UserCertificate::model()->deleteAll($crt);
-        } else {
-            UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
-            self::newLevel(Yii::app()->user->id);
-        }
-
         if ($this->scenario == 'userupdate') {
             $certs = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
 
