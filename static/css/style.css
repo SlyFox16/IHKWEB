@@ -7892,7 +7892,7 @@ fieldset.fieldset legend {
 .attached li:not(:last-child) {
   margin-right: 10px;
 }
-.attached li a {
+.attached li a.delete {
   width: 1.5rem;
   line-height: 1.5rem;
   background: #d0d0d0;
@@ -7933,6 +7933,9 @@ body .select2-container .select2-choice .select2-arrow {
 body .select2-container .select2-default .select2-arrow b,
 body .select2-container .select2-choice .select2-arrow b {
   background-position: 0 0.75rem;
+}
+body .select2-container.select2-dropdown-open .select2-choice .select2-arrow {
+  border-color: transparent;
 }
 body .select2-container .select2-choices {
   border: 2px solid #d0d0d0 !important;
@@ -11279,7 +11282,7 @@ li:hover > .share {
 }
 
 body .star-rating {
-  margin: 0;
+  margin: 0.625rem 0 0 0;
   height: 2rem;
 }
 
