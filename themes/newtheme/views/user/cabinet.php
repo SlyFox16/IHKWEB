@@ -58,7 +58,7 @@
                                     <?php echo $form->error($user, 'surname'); ?>
                                 </fieldset>
 
-                                <fieldset class="fieldset">
+                                <fieldset>
                                     <label>
                                         <span><?php echo $user->getAttributeLabel('username'); ?></span>
                                         <?php echo $form->textField($user, 'username'); ?>
