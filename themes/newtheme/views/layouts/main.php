@@ -74,12 +74,18 @@
 <!--===============================-->
 <footer>
     <div class="row">
-        <div class="small-8 columns">
+        <div class="small-12 medium-8 columns">
             <p><?php echo yiisetting('footer_info'); ?></p>
-            <a href="<?php echo $this->createUrl('site/pages', array('id' => 1)); ?>"><?php echo Yii::t("base", "Impressum"); ?></a>
         </div>
-        <div class="small-4 columns footer_contact">
-            <a href="<?php echo $this->createUrl('site/feedback'); ?>" class="button"><i class="fa fa-envelope"></i> <?php echo Yii::t("base", "Get in touch"); ?></a>
+        <div class="small-12 medium-4 columns footer_contact">
+            <ul>
+                <li>
+                    <a href="<?php echo $this->createUrl('site/feedback'); ?>"><?php echo Yii::t("base", "Get in touch"); ?></a>   
+                </li>
+                <li>
+                    <a href="<?php echo $this->createUrl('site/pages', array('id' => 1)); ?>"><?php echo Yii::t("base", "Impressum"); ?></a>
+                </li>
+            </ul>
         </div>
     </div>
 </footer>
