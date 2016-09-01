@@ -152,42 +152,25 @@ class UserController extends Frontend
 
     public function actionSaveCertificate() {
         if(Yii::app()->request->isAjaxRequest) {
-            $model = new UserCertificate();
+            $model = new UserCertificate('check');
 
-            if (isset($_POST['ajax'])) {
+            if (isset($_POST['ajax']) && $_POST['ajax'] === 'cabinet-form') {
                 echo CActiveForm::validate($model);
                 Yii::app()->end();
             }
 
             if (isset($_POST['UserCertificate'])) {
-                $cert = array();
-                foreach ($_POST['UserCertificate'] as $i => $item) {
-                    if (isset($_POST['UserCertificate'][$i]) && !empty($_POST['UserCertificate'][$i])) {
-                        $date =  Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate'][$i]["uDate"], 'dd/MM/yyyy'));
+                //$date =  Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate']["date"], 'dd/MM/yyyy'));
+                $modelParam = new UserCertificate();
 
-                        $modelParam = UserCertificate::model()->find('user_id = :user AND certificate_id = :certid AND date = :date', array(':user' => Yii::app()->user->id, ':certid' => $_POST['UserCertificate'][$i]["certificate_id"], ':date' => $date));
-                        if(!isset($modelParam)) $modelParam = new UserCertificate();
+                $modelParam->user_id = Yii::app()->user->id;
+                $modelParam->certificate_id = $_POST['UserCertificate']['certificate_id'];
+                $modelParam->uDate = $_POST['UserCertificate']['date'];
 
-                        $modelParam->user_id = Yii::app()->user->id;
-                        $modelParam->certificate_id = $_POST['UserCertificate'][$i]["certificate_id"];
-                        $modelParam->uDate = $_POST['UserCertificate'][$i]["uDate"];
-
-                        if(!$modelParam->save()) {
-                            Yii::log(CHtml::errorSummary($modelParam), "error");
-                        } else
-                            $cert[] = $modelParam->id;
-                    }
-                }
-
-                $crt = new CDbCriteria;
-                $crt->condition = 'user_id = :user';
-                $crt->addNotInCondition('id', $cert);
-                $crt->params[':user'] = Yii::app()->user->id;
-
-                UserCertificate::model()->deleteAll($crt);
-            } else {
-                UserCertificate::model()->deleteAll('user_id = :user', array(':user' => Yii::app()->user->id));
-                self::newLevel(Yii::app()->user->id);
+                if($modelParam->save())
+                    Yii::app()->ajax->success();
+                else
+                    Yii::log(CHtml::errorSummary($modelParam), "error");
             }
         }
         throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
