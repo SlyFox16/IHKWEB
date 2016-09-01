@@ -26,7 +26,7 @@ class UserController extends Frontend
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'userAssoc', 'deleteRelation', 'deleteAssoc'),
+                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'userAssoc', 'deleteRelation', 'deleteAssoc', 'deleteCert'),
                 'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
@@ -151,7 +151,7 @@ class UserController extends Frontend
     }
 
     public function actionSaveCertificate() {
-        if(Yii::app()->request->isAjaxRequest) {
+        if(Yii::app()->request->isPostRequest) {
             $model = new UserCertificate('check');
 
             if (isset($_POST['ajax']) && $_POST['ajax'] === 'cabinet-form') {
@@ -160,20 +160,24 @@ class UserController extends Frontend
             }
 
             if (isset($_POST['UserCertificate'])) {
-                //$date =  Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($_POST['UserCertificate']["date"], 'dd/MM/yyyy'));
                 $modelParam = new UserCertificate();
-
+                $modelParam->attributes = $_POST['UserCertificate'];
                 $modelParam->user_id = Yii::app()->user->id;
-                $modelParam->certificate_id = $_POST['UserCertificate']['certificate_id'];
-                $modelParam->uDate = $_POST['UserCertificate']['date'];
 
-                if($modelParam->save())
-                    Yii::app()->ajax->success();
-                else
-                    Yii::log(CHtml::errorSummary($modelParam), "error");
+                $certificate = Certificates::model()->findByPk($modelParam->certificate_id);
+                if ($certificate) {
+                    $check = UserCertificate::model()->count(array('condition' => 'user_id = :user_id && certificate_id = :certificate_id', 'params' => array(':user_id' => Yii::app()->user->id, ':certificate_id' => $certificate->id)));
+
+                    if(!$check && $modelParam->save()) {
+                        $ret = $this->renderPartial('li_certif', array('modelReceiver' => $modelParam), true);
+                        Yii::app()->ajax->raw($ret);
+                    } else {
+                        echo CHtml::errorSummary($modelParam);
+                    }
+                }
             }
-        }
-        throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        } else
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
     public function actionUpdateMailPassword()
@@ -343,6 +347,17 @@ class UserController extends Frontend
     public function actionDeleteAssoc() {
         $id = (int)$_POST["id"];
         $model = UserAssociation::model()->findByAttributes(array('user_id' => Yii::app()->user->id, 'association_id' => $id));
+
+        if($model)
+            if($model->delete())
+                Yii::app()->ajax->success();
+            else
+                Yii::app()->ajax->failure();
+    }
+
+    public function actionDeleteCert() {
+        $id = (int)$_POST["id"];
+        $model = UserCertificate::model()->findByAttributes(array('user_id' => Yii::app()->user->id, 'certificate_id' => $id));
 
         if($model)
             if($model->delete())

@@ -34,8 +34,9 @@
                     <div class="small-12 columns">
                         <ul class="tabs" data-tabs id="example-tabs">
                             <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"><?php echo Yii::t("base", "General"); ?></a></li>
-                            <li class="tabs-title"><a href="#panel2" aria-selected="true"><?php echo Yii::t("base", "Contact info"); ?></a></li>
-                            <li class="tabs-title"><a href="#panel3"><?php echo Yii::t("base", "Certificates"); ?></a></li>
+                            <li class="tabs-title"><a href="#panel2" aria-selected="true"><?php echo Yii::t("base", "Contacts"); ?></a></li>
+                            <li class="tabs-title"><a href="#panel3"><?php echo Yii::t("base", "Certifications"); ?></a></li>
+                            <li class="tabs-title"><a href="#panel4"><?php echo Yii::t("base", "Projects"); ?></a></li>
                         </ul>
                         <div class="tabs-content" data-tabs-content="example-tabs">
                             <div class="tabs-panel is-active" id="panel1">
@@ -262,7 +263,7 @@
                                                 ]
                                             );?>
                                         </label>
-                                        <?php $form->error($certificate, "certificate_id"); ?>
+                                        <?php echo $form->error($certificate, "certificate_id"); ?>
 
                                         <label>
                                             <span><?php echo $certificate->getAttributeLabel('date'); ?></span>
@@ -270,7 +271,7 @@
                                                 'booster.widgets.TbDatePicker',
                                                 array(
                                                     'model'=>$certificate,
-                                                    'attribute'=>"uDate",
+                                                    'attribute'=>"date",
                                                     'options' => array(
                                                         'format' => 'dd/mm/yyyy',
                                                         'todayHighlight' => true,
@@ -281,15 +282,17 @@
                                         </label>
                                     </div>
                                     <?php echo $form->error($certificate, "date"); ?>
-                                    <?php echo CHtml::ajaxButton(
+                                    <?php echo CHtml::ajaxSubmitButton(
                                         'update',
                                         Yii::app()->createUrl('/user/saveCertificate'),
                                         array(
                                             'type'=>'POST',
-                                            'data'=> 'js:{"UserCertificate[certificate_id]": $("#UserCertificate_certificate_id").val(), "UserCertificate[date]": $("#UserCertificate_uDate").val(), "ajax": "cabinet-form"}',
+                                            'data'=> 'js:{"UserCertificate[certificate_id]": $("#UserCertificate_certificate_id").val(), "UserCertificate[date]": $("#UserCertificate_date").val(), "ajax": "cabinet-form"}',
+                                            'dataType' => 'json',
                                             'success'=>'function(data) {
-                                                if(data == []) {
+                                                if(data.length == 0) {
                                                     hideFormErrors(form="#cabinet-form");
+                                                    callback();
                                                 } else {
                                                     formErrors(data,form="#cabinet-form");
                                                 }
@@ -300,6 +303,25 @@
                                         )
                                     ); ?>
                                 </fieldset>
+                                <fieldset class="fieldset">
+                                    <legend><?php echo Yii::t("base", "My Certificates"); ?></legend>
+                                    <ul class="attachCert attached">
+                                        <?php $certificates = $user->certificates;
+                                        if($certificates) { ?>
+                                            <?php foreach($certificates as $certificate) { ?>
+                                                <li>
+                                                    <?php echo $certificate->certificate->name; ?>
+                                                    <span><?php echo $certificate->uDate; ?></span>
+                                                    <a href="javascript:void(0)" title="<?php echo Yii::t("base", "Remove"); ?>" class="delete fa fa-times" data-id="<?php echo $certificate->certificate_id; ?>">
+                                                    </a>
+                                                </li>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </ul>
+                                </fieldset>
+                            </div>
+                            <div class="tabs-panel" id="panel4">
+                                <h4 class="note">Lorem ipsum dolor sit amet, consectetur adipisicing elit. </h4>
                                 <fieldset class="fieldset">
                                     <legend><?php echo Yii::t("base", "Completed projects"); ?></legend>
                                     <?php if($completed = $user->completed) { ?>
@@ -352,6 +374,19 @@
         });
     });
 ", CClientScript::POS_END); ?>
+<?php Yii::app()->clientScript->registerScript('add-assoc-to-user', "
+    $('.attachCert').on('click', '.delete', function () {
+        var self = $(this);
+        $.ajax({
+            type:'POST',
+            data:{id:self.data('id')},
+            url: '".Yii::app()->controller->createUrl('/user/deleteCert')."',
+            success:function (msg) {
+                self.closest('li').fadeOut();
+            }
+        });
+    });
+", CClientScript::POS_END); ?>
 
 <script>
     function productFormatSelection(city) {
@@ -377,7 +412,7 @@ console.log(data);
             $(form+" #"+key+"_em_").html(val.toString());
             $(form+" #"+key+"_em_").show();
 
-            $("#"+key).parent().addClass("row error");
+            $("#"+key).parent().addClass("error");
             summary = summary + "<ul><li>" + val.toString() + "</li></ul>";
         });
         $(form+"_es_").html(summary.toString());
@@ -393,5 +428,16 @@ console.log(data);
         $(form+"_es_").html('');
         $(form+"_es_").hide();
         $("[id$='_em_']").html('');
+    }
+    function callback() {
+        $.ajax({
+            url: "/user/saveCertificate",
+            type: "post",
+            data: {"UserCertificate[certificate_id]": $("#UserCertificate_certificate_id").val(), "UserCertificate[date]": $("#UserCertificate_date").val()},
+            dataType: "json",
+            success: function (data) {
+            $(".attachCert").append(data);
+        }
+    });
     }
 </script>

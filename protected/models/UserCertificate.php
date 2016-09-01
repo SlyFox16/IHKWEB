@@ -24,6 +24,13 @@ class UserCertificate extends ActiveRecord
 		return 'user_certificate';
 	}
 
+    protected function beforeValidate()
+    {
+        if (!empty($this->date))
+            $this->date = Yii::app()->dateFormatter->format("yyyy-MM-dd", CDateTimeParser::parse($this->date, 'dd/MM/yyyy'));
+        return parent::beforeValidate();
+    }
+
 	/**
 	 * @return array validation rules for model attributes.
 	 */
@@ -35,7 +42,6 @@ class UserCertificate extends ActiveRecord
 			array('user_id, certificate_id, date', 'required', 'except' => 'check'),
             array('certificate_id, date', 'required', 'on'=>'check'),
 			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
-            array('uDate, confirm', 'safe'),
             array('date', 'type', 'type' => 'date', 'message' => '{attribute}: in wrong format!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
