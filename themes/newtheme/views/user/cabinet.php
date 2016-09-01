@@ -355,6 +355,7 @@
     </div>
 </section>
 <?php $this->widget('PassChange', array('change' => true)); ?>
+<?php $this->widget('PassChange', array('change' => true)); ?>
 <?php if($completed = $user->completed) { ?>
     <?php foreach($completed as $complete) { ?>
         <?php $this->widget("CompletedWidget", array('project_id' => $complete->id)); ?>
@@ -404,10 +405,9 @@
         callback(data);
     }
     function formErrors(data,form){
-        console.log('error show');
         var summary = '';
         summary="<p>Please solve following errors:</p>";
-console.log(data);
+
         $.each(data, function(key, val) {
             $(form+" #"+key+"_em_").html(val.toString());
             $(form+" #"+key+"_em_").show();
@@ -423,7 +423,6 @@ console.log(data);
         $('#ajax-status').text('');
     }
     function hideFormErrors(form){
-        console.log('error hide');
         //alert (form+"_es_");
         $(form+"_es_").html('');
         $(form+"_es_").hide();

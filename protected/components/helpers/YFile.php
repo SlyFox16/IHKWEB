@@ -146,4 +146,41 @@ class YFile extends CFileHelper
 
         return static::rmFile($file);
     }
+
+    public function saveImage($model, $attribute, $item = null) {
+        $uploadedFile = CUploadedFile::getInstance($model, $attribute);
+        $attributeClean = preg_replace('~^\[[0-9]+\]~', '', $attribute);
+
+        if (!empty($model->verification_document_remove))
+            $model->$attributeClean = "";
+
+        if (!empty($uploadedFile)) {
+            $model->dinamicImage($model, $attribute, $item);
+            //Yii::log($model->$attributeClean, "error");
+            return $model->$attributeClean;
+        }
+
+        return false;
+    }
+
+    protected function saveTabular($param)
+    {
+        $flag = true;
+        foreach ($param as $i => $item) {
+            $setting = Settings::model()->findByPk($item['cur_id']);
+            $setting->attributes = $item;
+            $uploadedFile=CUploadedFile::getInstance($setting,'['.$i.']value');
+            if(!empty($uploadedFile))
+                $setting->dinamicImage($setting, '['.$i.']value');
+
+            if (!empty($item['image_remove']))
+                $setting->image = "";
+
+            if(!$setting->save()){
+                $flag = false;
+                Yii::log(CHtml::errorSummary($setting), "error");
+            }
+        }
+        return $flag;
+    }
 }

@@ -1,5 +1,4 @@
 <?php
-
 class PassChange extends CWidget
 {
     public $change = false;

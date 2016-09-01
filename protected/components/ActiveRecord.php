@@ -170,15 +170,20 @@ class ActiveRecord extends CActiveRecord
         Yii::app()->user->setFlash('success', "$name was successfully deleted.");
     }
 
-    public function dinamicImage($model, $attribute)
+    public function dinamicImage($model, $attribute, $item = null)
     {
-        $attributeClean = preg_replace('~^\[[0-9]+\]~', '', $attribute);
+        $attributeClean = preg_replace('~^\[(.*)+\]~', '', $attribute);
 
         $image=CUploadedFile::getInstance($model, $attribute);
         $filename = $this->imageName($image);
 
         $path = 'images/site/' . get_class($this) . "/" . $filename;
         $dir = Yii::getPathOfAlias("webroot") . '/images/site/' . get_class($this) . '/';
+
+        if($item) {
+            $path = 'images/site/' . get_class($this) . "/" . $item .'/'. $filename;
+            $dir = Yii::getPathOfAlias("webroot") . '/images/site/'. get_class($this) . '/'. $item . '/';
+        }
 
         $path = strtolower($path);
         $dir = strtolower($dir);
