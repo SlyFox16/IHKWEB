@@ -13,7 +13,7 @@
     <div class="row">
         <div class="small-3 medium-3 columns">
             <div class="expert_photo">
-                <a href="" class="edit fa fa-pencil"></a>
+                <a class="edit fa fa-pencil" data-toggle="avatarhange" aria-haspopup="true"></a>
                 <img src="<?php echo YHelper::getImagePath($user->avatar, 200, 200); ?>" alt="<?php echo Yii::t("base", "Profile picture"); ?>">
             </div>
         </div>
@@ -355,7 +355,7 @@
     </div>
 </section>
 <?php $this->widget('PassChange', array('change' => true)); ?>
-<?php $this->widget('PassChange', array('change' => true)); ?>
+<?php $this->widget('AvatarChange'); ?>
 <?php if($completed = $user->completed) { ?>
     <?php foreach($completed as $complete) { ?>
         <?php $this->widget("CompletedWidget", array('project_id' => $complete->id)); ?>

@@ -20,14 +20,16 @@ class ActiveForm extends TbActiveForm
     public function fileField($model, $attribute, $htmlOptions = array())
     {
         $booster = Booster::getBooster();
+        $booster->cs->coreScriptPosition = CClientScript::POS_HEAD;
         $booster->cs->registerPackage('kartik-fileupload');
 
         return $this->render("file_field",array("model"=>$model,"attribute"=>$attribute, 'htmlOptions' => $htmlOptions));
     }
 
-    public function multipleFileField($model, $relation, $module, $attribute, $htmlOptions = array())
+    public function multipleFileField($model, $relation, $module, $attribute)
     {
         $booster = Booster::getBooster();
+        $booster->cs->coreScriptPosition = CClientScript::POS_HEAD;
         $booster->cs->registerPackage('kartik-fileupload');
 
         return $this->render("file_field_multiple", array("model"=>$model, "module" => $module, "relation" => $relation, "attribute"=>$attribute));

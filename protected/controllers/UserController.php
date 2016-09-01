@@ -26,7 +26,7 @@ class UserController extends Frontend
                 'users'=>array('*'),
             ),
             array('allow',
-                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'userAssoc', 'deleteRelation', 'deleteAssoc', 'deleteCert'),
+                'actions'=>array('cabinet', 'additem', 'deleteitem', 'upload', 'imagedel', 'download', 'userRow', 'userAssoc', 'deleteRelation', 'deleteAssoc', 'deleteCert', 'avatarChange'),
                 'expression'=>'CAuthHelper::isUsersCAbinet()',
             ),
             array('allow',
@@ -484,6 +484,54 @@ class UserController extends Frontend
         if (Yii::app()->request->isAjaxRequest) {
             $errors = CActiveForm::validate($model);
             if ($errors !== '[]') Yii::app()->end($errors); // Sends model errors as json object
+        }
+    }
+
+    /*public function actionAvatarChange()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            if (!empty($_FILES['User'])) {
+                foreach ($_FILES['ProductImage']['name'] as $key => $value) {
+                    if ($this->checkExtension($value['path'])) {
+                        $productImage = new ProductImage();
+                        if ($path = $this->saveImage($productImage, '[' . $key . ']path', $product->id)) {
+                            $productImage->product_id = $product->id;
+                            $productImage->caption = $value['path'];
+                            $productImage->path = $path;
+
+                            if ($productImage->save())
+                                $success[] = array('id' => $productImage->id, 'PhotoUrl' => $productImage->path);
+                            else
+                                $errors[] = $productImage->getErrors();
+                        }
+                    } else
+                        $errors[$value['path']] = Yii::t("base", 'Wrong image extension');
+                }
+
+                if (empty($errors))
+                    Yii::app()->ajax->apiOK($success);
+                else
+                    Yii::app()->ajax->apiERROR($errors);
+            }
+
+            Yii::app()->ajax->apiERROR(Yii::t("base", 'No image was sent'));
+        }
+    }*/
+
+    public function actionAvatarChange()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $model = User::model()->findByPk(Yii::app()->id);
+
+            if(isset($_POST['User']))
+            {
+                $model->attributes=$_POST['User'];
+                if($avatar = $this->saveImage($model, 'avatar', $model->id));
+                    $model->avatar = $avatar;
+
+                if($model->save())
+                    $this->redirect(array('view','id'=>$model->id));
+            }
         }
     }
 }
