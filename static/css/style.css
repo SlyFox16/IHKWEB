@@ -7475,15 +7475,15 @@ p {
   padding: 1.25rem 5rem 1.25rem 1.25rem;
   line-height: 2.5rem;
   height: 5rem;
-  max-width: 12.5rem;
+  max-width: 18.75rem;
 }
 .control li.search a {
   position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  line-height: 2.5rem;
+  top: 0;
+  right: 0;
+  width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
 }
 .control [type='text'], .control [type='password'],
 .control [type='date'], .control [type='datetime'],
@@ -7947,10 +7947,6 @@ body .select2-container .select2-choices:focus {
 body .select2-container .select2-choices .select2-search-field input {
   padding: 0.625rem 0.9375rem;
   height: 3.125rem;
-  border: 1px solid #d0d0d0;
-}
-body .select2-container .select2-choices .select2-search-field input:focus {
-  border: 1px solid #d0d0d0;
 }
 body .select2-drop {
   padding: 0.9375rem;
@@ -7971,7 +7967,7 @@ body .dropzone {
 
 body .ui-menu {
   border: 0;
-  border-radius: 0;
+  border-radius: 0.25rem;
   padding: 0.625rem 0 0 0;
   background: none;
 }
