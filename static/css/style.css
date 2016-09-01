@@ -7444,46 +7444,46 @@ p {
 }
 .control li {
   position: relative;
-  display: inline-block;
+  float: left;
+}
+.control li:nth-child(2) {
+  background: rgba(255, 255, 255, 0.05);
+}
+.control li:nth-child(3) {
+  background: rgba(255, 255, 255, 0.1);
+}
+.control li:nth-child(4) {
+  background: rgba(255, 255, 255, 0.15);
 }
 .control li a {
   display: block;
-  width: 5rem;
+  padding: 0 1.25rem;
   line-height: 5rem;
   text-align: center;
   color: #fff;
 }
 .control li a:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.3);
 }
-.control li input {
+.control li a.fa {
+  padding: 0;
+  width: 5rem;
+}
+.control li.search input {
   display: inline-block;
   margin: 0;
-  padding: 1.25rem 1.25rem;
+  padding: 1.25rem 5rem 1.25rem 1.25rem;
   line-height: 2.5rem;
   height: 5rem;
-  max-width: 9.375rem;
+  max-width: 12.5rem;
 }
-.control li input.small {
-  max-width: 6.25rem;
-}
-.control li input:focus {
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-.control .select2-container.form-control {
-  width: 100%;
-  margin: 0;
-}
-.control .select2-container.form-control .select2-default {
-  width: 100%;
-  border: 0;
-  background: transparent;
-}
-.control .select2-container.form-control .select2-default select2-chosen {
-  margin: 0;
-}
-.control .select2-container.form-control .select2-default .select2-arrow {
-  border: 0;
+.control li.search a {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
 }
 .control [type='text'], .control [type='password'],
 .control [type='date'], .control [type='datetime'],
@@ -7528,7 +7528,7 @@ p {
 }
 .button.large {
   padding: 1.25rem;
-  font-size: 1rem;
+  font-size: 0.9375rem;
 }
 .button.transparent {
   background: none;
@@ -7916,7 +7916,7 @@ body .select2-container .select2-default,
 body .select2-container .select2-choice {
   height: 3.125rem;
   border: 0;
-  border-left: 2px solid #777;
+  border: 2px solid #d0d0d0;
   border-radius: 0;
   box-shadow: none;
 }
@@ -7926,14 +7926,19 @@ body .select2-container .select2-choice .select2-chosen {
   padding: 0.625rem 0.9375rem;
   line-height: 1.875rem;
 }
+body .select2-container .select2-default .select2-arrow,
+body .select2-container .select2-choice .select2-arrow {
+  border-left: 2px solid #d0d0d0;
+}
 body .select2-container .select2-default .select2-arrow b,
 body .select2-container .select2-choice .select2-arrow b {
   background-position: 0 0.75rem;
 }
 body .select2-container .select2-choices {
   border: 0;
-  border-left: 2px solid #777;
+  border: 2px solid #d0d0d0;
   border-radius: 0;
+  box-shadow: none !important;
 }
 body .select2-container .select2-choices:focus {
   outline: 0;
@@ -7946,8 +7951,9 @@ body .select2-container .select2-choices .select2-search-field input {
 }
 body .select2-drop {
   padding: 0.9375rem;
-  border: 0;
-  border-left: 2px solid #777;
+  margin-top: -2px;
+  border-top: 0;
+  border: 2px solid #d0d0d0;
   border-radius: 0;
 }
 body .select2-drop .select2-search input {
@@ -7957,6 +7963,23 @@ body .dropzone {
   border: 0;
   border-radius: 0;
   border-left: 2px solid #777;
+}
+
+body .ui-menu {
+  border: 0;
+  border-radius: 0;
+  padding: 0.625rem 0 0 0;
+  background: none;
+}
+body .ui-menu .ui-menu-item {
+  background: #00478c;
+}
+body .ui-menu .ui-menu-item a {
+  color: #fff;
+  border-radius: 0;
+}
+body .ui-menu .ui-menu-item a:hover {
+  background: rgba(0, 0, 0, 0.3);
 }
 
 /*!
@@ -10865,8 +10888,8 @@ footer {
 .footer_contact {
   position: relative;
   margin: -3.75rem 0;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3.75rem;
+  padding-bottom: 3.75rem;
   background: #2d2d2d;
 }
 .footer_contact::after {
@@ -10882,6 +10905,29 @@ footer {
 .footer_contact .button {
   margin: 0 0 0 0.9375rem;
   background: transparent;
+}
+@media screen and (max-width: 39.9375em) {
+  .footer_contact {
+    margin: 0 0 -3.75rem 0;
+    padding-top: 1.875rem;
+  }
+}
+
+.footer_contact ul {
+  margin: 0 0 0 1.25rem;
+  list-style: none;
+}
+.footer_contact ul li a {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+.footer_contact ul li a:hover {
+  color: white;
+}
+@media screen and (max-width: 39.9375em) {
+  .footer_contact ul {
+    margin: 0;
+  }
 }
 
 /*------------------------------------*\
