@@ -7935,9 +7935,8 @@ body .select2-container .select2-choice .select2-arrow b {
   background-position: 0 0.75rem;
 }
 body .select2-container .select2-choices {
-  border: 0;
-  border: 2px solid #d0d0d0;
-  border-radius: 0;
+  border: 2px solid #d0d0d0 !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
 }
 body .select2-container .select2-choices:focus {
@@ -7948,12 +7947,17 @@ body .select2-container .select2-choices:focus {
 body .select2-container .select2-choices .select2-search-field input {
   padding: 0.625rem 0.9375rem;
   height: 3.125rem;
+  border: 1px solid #d0d0d0;
+}
+body .select2-container .select2-choices .select2-search-field input:focus {
+  border: 1px solid #d0d0d0;
 }
 body .select2-drop {
   padding: 0.9375rem;
   margin-top: -2px;
-  border-top: 0;
-  border: 2px solid #d0d0d0;
+  border-width: 0 2px 2px 2px;
+  border-style: solid;
+  border-color: #d0d0d0;
   border-radius: 0;
 }
 body .select2-drop .select2-search input {
