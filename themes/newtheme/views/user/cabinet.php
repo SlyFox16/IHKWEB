@@ -347,9 +347,6 @@
                 </div>
             <?php $this->endWidget(); ?>
         </div>
-        <div class="hide-on-small-only medium-2 columns">
-            <h3 class="note"><?php echo Yii::t("base", "Please add an info about your certificates to to achieve new level."); ?></h3>
-        </div>
     </div>
 </section>
 <?php $this->widget('PassChange', array('change' => true)); ?>
