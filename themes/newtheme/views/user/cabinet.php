@@ -95,11 +95,11 @@
 
                                     <?php $this->renderPartial('application.widgets.views.user_association', array('user' => $user)); ?>
 
-                                    <label>
-                                        <span><?php echo $user->getAttributeLabel('avatar'); ?></span>
-                                        <?php echo $form->fileField($user, 'avatar', array('extensions' => '"gif", "png", "jpg", "jpeg"')); ?>
+                                    <!--<label>
+                                        <span><?php /*echo $user->getAttributeLabel('avatar'); */?></span>
+                                        <?php /*echo $form->fileField($user, 'avatar', array('extensions' => '"gif", "png", "jpg", "jpeg"')); */?>
                                     </label>
-                                    <?php echo $form->error($user, 'avatar'); ?>
+                                    --><?php /*echo $form->error($user, 'avatar'); */?>
 
                                     <!--<label>
                                         <span><?php /*echo $user->getAttributeLabel('vcf'); */?></span>
