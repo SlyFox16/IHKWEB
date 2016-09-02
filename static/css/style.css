@@ -7909,8 +7909,12 @@ fieldset.fieldset legend {
   color: #d0d0d0;
 }
 
-.errorSummary {
-  margin-top: 0.9375rem;
+.errorSummary ul {
+  margin-bottom: 0;
+}
+.errorSummary ul li {
+  font-size: 0.875rem;
+  color: red;
 }
 
 body .select2-container.form-control {
