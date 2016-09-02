@@ -336,10 +336,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <?php echo $form->errorSummary($user); ?>
+                    </div>
+                </div>
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
                         <div class="button-group">
-                            <?php echo $form->errorSummary($user); ?>
                             <?php echo CHtml::linkButton(Yii::t("base", 'Save').' <i class="fa fa-circle-o-notch"></i>', array('class' => 'button large')); ?>
                             <a class="button large" data-toggle="passchange"><?php echo Yii::t("base", "Recover Password"); ?></a>
                         </div>
