@@ -498,8 +498,10 @@ class UserController extends Frontend
             if($avatar = YFile::saveImage($model, 'avatar', $model->id));
                 $model->avatar = $avatar;
 
-            if($model->saveAttributes(array('avatar')))
-                $this->redirect(Yii::app()->request->urlReferrer);
+            if(!empty($model->avatar))
+                $model->saveAttributes(array('avatar'));
+
+            $this->redirect(Yii::app()->request->urlReferrer);
         }
         //}
     }
