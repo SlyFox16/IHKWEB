@@ -101,11 +101,11 @@
                                     </label>
                                     <?php echo $form->error($user, 'avatar'); ?>
 
-                                    <label>
-                                        <span><?php echo $user->getAttributeLabel('vcf'); ?></span>
-                                        <?php echo $form->fileField($user, 'vcf', array('extensions' => '"pdf"')); ?>
+                                    <!--<label>
+                                        <span><?php /*echo $user->getAttributeLabel('vcf'); */?></span>
+                                        <?php /*echo $form->fileField($user, 'vcf', array('extensions' => '"pdf"')); */?>
                                     </label>
-                                    <?php echo $form->error($user, 'vcf'); ?>
+                                    --><?php /*echo $form->error($user, 'vcf'); */?>
                                 </fieldset>
 
                                 <fieldset class="fieldset">
@@ -279,7 +279,7 @@
                                     </div>
                                     <?php echo $form->error($certificate, "date"); ?>
                                     <?php echo CHtml::ajaxSubmitButton(
-                                        'update',
+                                        'Add certificate',
                                         Yii::app()->createUrl('/user/saveCertificate'),
                                         array(
                                             'type'=>'POST',
