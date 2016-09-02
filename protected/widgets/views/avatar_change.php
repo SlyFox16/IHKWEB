@@ -6,7 +6,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
     <h1><?php echo Yii::t("base", "Change avatar"); ?></h1>
-    <?php $form = $this->beginWidget('ActiveForm', array(
+    <?php $form = $this->beginWidget('CActiveForm', array(
         'id' => 'changeavatar-form',
         'action' => '/user/avatarChange',
         'enableAjaxValidation' => false,
