@@ -520,18 +520,18 @@ class UserController extends Frontend
 
     public function actionAvatarChange()
     {
-        if (Yii::app()->request->isAjaxRequest) {
-            $model = User::model()->findByPk(Yii::app()->id);
+        //if (Yii::app()->request->isAjaxRequest) {
+        $model = User::model()->findByPk(Yii::app()->user->id);
 
-            if(isset($_POST['User']))
-            {
-                $model->attributes=$_POST['User'];
-                if($avatar = $this->saveImage($model, 'avatar', $model->id));
-                    $model->avatar = $avatar;
+        if(isset($_POST['User']))
+        {
+            $model->attributes=$_POST['User'];
+            if($avatar = YFile::saveImage($model, 'avatar', $model->id));
+                $model->avatar = $avatar;
 
-                if($model->save())
-                    $this->redirect(array('view','id'=>$model->id));
-            }
+            if($model->saveAttributes(array('avatar')))
+                $this->redirect(Yii::app()->request->urlReferrer);
         }
+        //}
     }
 }
