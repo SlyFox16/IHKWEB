@@ -43,7 +43,7 @@
                 </div>
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
-                        <?php echo CHtml::linkButton('Login', array('class' => 'button large')); ?>
+                        <?php echo CHtml::linkButton(Yii::t("base", 'Login'), array('class' => 'button large')); ?>
                     </div>
                 </div>
             <?php $this->endWidget(); ?>

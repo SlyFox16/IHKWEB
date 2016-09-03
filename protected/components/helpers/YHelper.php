@@ -34,7 +34,7 @@ class YHelper
             elseif (!empty($width) && empty($height))
                 $image = Yii::app()->iwi->load($source_image)->resize($width, 0)->cache();
             else
-                $image = Yii::app()->iwi->load($source_image)->adaptive($width, $height)->cache();
+                $image = Yii::app()->iwi->load($source_image)->adaptive($width, $height, true)->cache();
         } else {
             if (!empty($width) && !empty($height)) {
                 $image = $default ? : Yii::app()->params['noImage'];

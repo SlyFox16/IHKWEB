@@ -119,7 +119,7 @@ class UserController extends Frontend
                     $model->password = $password;
                     $model->salt = $salt;
                     if($model->update()) {
-                        Yii::app()->user->setFlash('project_success', 'You have successfully changed your password!');
+                        Yii::app()->user->setFlash('project_success', Yii::t("base", 'You have successfully changed your password!'));
                         $this->redirect('/user/cabinet');
                     }
                 }
@@ -147,7 +147,7 @@ class UserController extends Frontend
                 }
             }
         }
-        throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
     public function actionSaveCertificate() {
@@ -177,7 +177,7 @@ class UserController extends Frontend
                 }
             }
         } else
-            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+            throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
     public function actionUpdateMailPassword()
@@ -232,7 +232,7 @@ class UserController extends Frontend
                 if($log->save())
                     Yii::app()->ajax->success($user->rating);
             } else
-                throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+                throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
 
             Yii::app()->end();
         }
@@ -245,7 +245,7 @@ class UserController extends Frontend
             $ret = array();
             $count = (int) $_GET['count'];
 
-            if(!is_int($count)) throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            if(!is_int($count)) throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
 
             Yii::app()->clientScript->scriptMap = array(
                 'jquery.js' => false,
@@ -266,7 +266,7 @@ class UserController extends Frontend
         if (Yii::app()->request->isAjaxRequest) {
             $count = (int) $_GET['attr'];
 
-            if(!is_int($count)) throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            if(!is_int($count)) throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
 
             $deleteModel = UserCertificate::model()->findByAttributes(array('id' => $count, 'user_id' => Yii::app()->user->id));
             if($deleteModel->delete())
@@ -456,7 +456,7 @@ class UserController extends Frontend
                 }
             }
         } else
-            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
     public function actionUserAssoc($user_assoc)
@@ -476,7 +476,7 @@ class UserController extends Frontend
                 }
             }
         } else
-            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
     protected function getErrorSummary($model)
