@@ -487,51 +487,22 @@ class UserController extends Frontend
         }
     }
 
-    /*public function actionAvatarChange()
-    {
-        if (Yii::app()->request->isAjaxRequest) {
-            if (!empty($_FILES['User'])) {
-                foreach ($_FILES['ProductImage']['name'] as $key => $value) {
-                    if ($this->checkExtension($value['path'])) {
-                        $productImage = new ProductImage();
-                        if ($path = $this->saveImage($productImage, '[' . $key . ']path', $product->id)) {
-                            $productImage->product_id = $product->id;
-                            $productImage->caption = $value['path'];
-                            $productImage->path = $path;
-
-                            if ($productImage->save())
-                                $success[] = array('id' => $productImage->id, 'PhotoUrl' => $productImage->path);
-                            else
-                                $errors[] = $productImage->getErrors();
-                        }
-                    } else
-                        $errors[$value['path']] = Yii::t("base", 'Wrong image extension');
-                }
-
-                if (empty($errors))
-                    Yii::app()->ajax->apiOK($success);
-                else
-                    Yii::app()->ajax->apiERROR($errors);
-            }
-
-            Yii::app()->ajax->apiERROR(Yii::t("base", 'No image was sent'));
-        }
-    }*/
-
     public function actionAvatarChange()
     {
-        if (Yii::app()->request->isAjaxRequest) {
-            $model = User::model()->findByPk(Yii::app()->id);
+        //if (Yii::app()->request->isAjaxRequest) {
+        $model = User::model()->findByPk(Yii::app()->user->id);
 
-            if(isset($_POST['User']))
-            {
-                $model->attributes=$_POST['User'];
-                if($avatar = $this->saveImage($model, 'avatar', $model->id));
-                    $model->avatar = $avatar;
+        if(isset($_POST['User']))
+        {
+            $model->attributes=$_POST['User'];
+            if($avatar = YFile::saveImage($model, 'avatar', $model->id));
+                $model->avatar = $avatar;
 
-                if($model->save())
-                    $this->redirect(array('view','id'=>$model->id));
-            }
+            if(!empty($model->avatar))
+                $model->saveAttributes(array('avatar'));
+
+            $this->redirect(Yii::app()->request->urlReferrer);
         }
+        //}
     }
 }

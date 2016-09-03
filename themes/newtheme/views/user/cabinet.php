@@ -95,17 +95,17 @@
 
                                     <?php $this->renderPartial('application.widgets.views.user_association', array('user' => $user)); ?>
 
-                                    <label>
-                                        <span><?php echo $user->getAttributeLabel('avatar'); ?></span>
-                                        <?php echo $form->fileField($user, 'avatar', array('extensions' => '"gif", "png", "jpg", "jpeg"')); ?>
+                                    <!--<label>
+                                        <span><?php /*echo $user->getAttributeLabel('avatar'); */?></span>
+                                        <?php /*echo $form->fileField($user, 'avatar', array('extensions' => '"gif", "png", "jpg", "jpeg"')); */?>
                                     </label>
-                                    <?php echo $form->error($user, 'avatar'); ?>
+                                    --><?php /*echo $form->error($user, 'avatar'); */?>
 
-                                    <label>
-                                        <span><?php echo $user->getAttributeLabel('vcf'); ?></span>
-                                        <?php echo $form->fileField($user, 'vcf', array('extensions' => '"pdf"')); ?>
+                                    <!--<label>
+                                        <span><?php /*echo $user->getAttributeLabel('vcf'); */?></span>
+                                        <?php /*echo $form->fileField($user, 'vcf', array('extensions' => '"pdf"')); */?>
                                     </label>
-                                    <?php echo $form->error($user, 'vcf'); ?>
+                                    --><?php /*echo $form->error($user, 'vcf'); */?>
                                 </fieldset>
 
                                 <fieldset class="fieldset">
@@ -279,7 +279,7 @@
                                     </div>
                                     <?php echo $form->error($certificate, "date"); ?>
                                     <?php echo CHtml::ajaxSubmitButton(
-                                        'update',
+                                        'Add certificate',
                                         Yii::app()->createUrl('/user/saveCertificate'),
                                         array(
                                             'type'=>'POST',
@@ -336,10 +336,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <?php echo $form->errorSummary($user); ?>
+                    </div>
+                </div>
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
                         <div class="button-group">
-                            <?php echo $form->errorSummary($user); ?>
                             <?php echo CHtml::linkButton(Yii::t("base", 'Save').' <i class="fa fa-circle-o-notch"></i>', array('class' => 'button large')); ?>
                             <a class="button large" data-toggle="passchange"><?php echo Yii::t("base", "Recover Password"); ?></a>
                         </div>
