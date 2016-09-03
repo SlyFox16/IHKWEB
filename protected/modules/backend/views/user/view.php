@@ -39,6 +39,18 @@ $this->menu=array(
             'name' => 'city_id',
             'value' => User::getCityCountry($model->city_id, 'city'),
         ),
+        array(
+            'name' => 'speciality',
+            'value' => function($data) {
+                $ret = array();
+                if($data->speciality) {
+                    foreach($data->speciality as $speciality) {
+                        $ret[] = $speciality->speciality;
+                    }
+                }
+                return implode(', ', $ret);
+            },
+        ),
         'address',
         'position',
         'description',

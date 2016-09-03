@@ -86,6 +86,33 @@
     <?php echo $form->error($model, 'city_id'); ?>
 </div>
 
+<div class="control-group">
+    <label class="control-label control-label required" for="User_username">
+        <?php echo $model->getAttributeLabel('speciality'); ?>
+    </label>
+    <div class="controls">
+        <?php $this->widget(
+            'booster.widgets.TbSelect2',
+            [
+                'model'=>$model,
+                'attribute'=>"speciality",
+                'data' => $model->specialityList,
+                'asDropDownList' => true,
+                'options' => [
+                    'placeholder' => 'Select speciality',
+                    'width' => '68%',
+                    'allowClear' => true,
+                ],
+                'htmlOptions' => [
+                    'multiple' => true,
+                    'class' => 'form-control'
+                ],
+            ]
+        ); ?>
+    </div>
+    <?php echo $form->error($model, 'speciality'); ?>
+</div>
+
 <?php echo $form->textAreaRow($model, 'address', array('rows'=>6, 'cols'=>50, 'class'=>'span5')); ?>
 
 <?php echo $form->textFieldRow($model, 'companyname', array('class' => 'span5', 'maxlength' => 255)); ?>
