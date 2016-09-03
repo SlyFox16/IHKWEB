@@ -73,6 +73,7 @@
                         }',
                         'results' => 'js:function(data) { return {results: data}; }',
                     ],
+                    'initSelection' => 'js:cityInitSelection',
                     'formatResult' => 'js:productFormatResult',
                     'formatSelection' => 'js:productFormatSelection',
                 ],
@@ -148,5 +149,12 @@
     function productFormatResult(city) {
         var markup = city.name;
         return markup;
+    }
+
+    function cityInitSelection(element, callback) {
+        var ret = <?php echo $model->selectedCity; ?>;
+
+        var data = {'id':ret.id , 'name': ret.value};
+        callback(data);
     }
 </script>
