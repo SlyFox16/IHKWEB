@@ -76,9 +76,9 @@ $this->menu=array(
                 'url'      => $this->createUrl('user/uCUpdate'),
                 'source'   => array(0 => 'Unconfirmed', 1 => 'Confirmed'),
                 'onRender' => 'js: function(e, editable) {
-                      var colors = {0: "red", 1: "green"};
-                      $(this).css("color", colors[editable.value]);
-                  }'
+                    var colors = {0: "red", 1: "green"};
+                    $(this).css("color", colors[editable.value]);
+                }'
             )
         ),
         array(

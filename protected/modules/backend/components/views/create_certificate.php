@@ -48,7 +48,7 @@
                             'booster.widgets.TbDatePicker',
                             array(
                                 'model'=>$model,
-                                'attribute'=>"uDate",
+                                'attribute'=>"date",
                                 'options' => array(
                                     'format' => 'dd/mm/yyyy',
                                     'todayHighlight' => true,
