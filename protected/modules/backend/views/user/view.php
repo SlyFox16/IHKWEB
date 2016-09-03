@@ -31,6 +31,14 @@ $this->menu=array(
         'email',
         'avatar:image',
         'phone',
+        array(
+            'name' => 'country_id',
+            'value' => User::getCityCountry($model->country_id, 'country'),
+        ),
+        array(
+            'name' => 'city_id',
+            'value' => User::getCityCountry($model->city_id, 'city'),
+        ),
         'address',
         'position',
         'description',
@@ -40,14 +48,6 @@ $this->menu=array(
         'web_url:url',
         'rating',
         'level',
-        array(
-            'name' => 'country_id',
-            'value' => User::getCityCountry($model->country_id, 'country'),
-        ),
-        array(
-            'name' => 'city_id',
-            'value' => User::getCityCountry($model->city_id, 'city'),
-        ),
         'expert_confirm:boolean',
         'is_active:boolean',
         'is_staff:boolean',
