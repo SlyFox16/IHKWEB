@@ -15,7 +15,7 @@
 
 <?php echo $form->textFieldRow($model, 'surname', array('class' => 'span5', 'maxlength' => 255)); ?>
 
-<?php echo $form->fileFieldRow($model,'avatar',array('class'=>'span5','maxlength'=>255,'hint'=>'The recommended size is <b>240x120</b>')); ?>
+<?php echo $form->fileFieldRow($model,'avatar',array('class'=>'span5','maxlength'=>255,'hint'=>'The recommended size is <b>280x280</b>')); ?>
 
 <?php echo $form->textFieldRow($model, 'email', array('class' => 'span5', 'maxlength' => 255)); ?>
 
