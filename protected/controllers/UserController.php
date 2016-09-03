@@ -416,7 +416,7 @@ class UserController extends Frontend
         $country = Yii::app()->getRequest()->getQuery('country') ? : false;
 
         $criteria = new CDbCriteria;
-        $criteria->condition = 'city_name_ASCII LIKE :q';
+        $criteria->condition = 'city_name_ASCII LIKE :q OR city_name_UTF8 LIKE :q';
 
         if($country) {
             $criteria->addCondition("country = :country");
