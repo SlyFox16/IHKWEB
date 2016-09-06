@@ -21,6 +21,7 @@ class Email extends CApplicationComponent
         $senderEmail = YHelper::yiisettingSenderEmail('rating_email', Yii::app()->name);
 
         $this->body = preg_replace('~\[:mark\]~', $mark, $this->body);
+        echo $this->body; die();
         $this->body = $this->changeAttr($user, $this->body);
 
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
