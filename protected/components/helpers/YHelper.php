@@ -14,6 +14,17 @@ class YHelper
         return $default;
     }
 
+    public static function yiisettingSenderEmail($name, $default = null)
+    {
+        if ($setting = Settings::model()->findByAttributes(array("name"=>$name))) {
+            if (isset($setting))
+                if (!empty($setting->sender_email))
+                    return $setting->sender_email;
+        }
+
+        return $default;
+    }
+
     public static function formatCurrency($value, $currency = "mdl", $format = '#,##0 ¤')
     {        
         return number_format($value, 0, ' ', ' ')." ".$currency; //Yii::app()->numberFormatter->format($format, $value, $currency);

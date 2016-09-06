@@ -206,7 +206,7 @@ return CMap::mergeArray(
         // using Yii::app()->params['paramName']
         'params' => array(
             'noImage' => 'static/images/profile-no-photo.png',
-            'no-replyEmail' => 'no-reply@' . $_SERVER['SERVER_NAME'] . '.md',
+            'no-replyEmail' => 'no-reply@' . $_SERVER['SERVER_NAME'],
             'adminEmail' => 'jenya@idol-it.com',
             'defaultPageSize' => 10,
             'albumPageSize' => 18,

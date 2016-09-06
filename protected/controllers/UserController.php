@@ -119,6 +119,7 @@ class UserController extends Frontend
                     $model->password = $password;
                     $model->salt = $salt;
                     if($model->update()) {
+                        Yii::app()->email->restorePassEmail($model);
                         Yii::app()->user->setFlash('project_success', Yii::t("base", 'You have successfully changed your password!'));
                         $this->redirect('/user/cabinet');
                     }
@@ -359,11 +360,13 @@ class UserController extends Frontend
         $id = (int)$_POST["id"];
         $model = UserCertificate::model()->findByAttributes(array('user_id' => Yii::app()->user->id, 'certificate_id' => $id));
 
-        if($model)
-            if($model->delete())
+        if ($model) {
+            if ($model->delete()) {
+                User::newLevel(Yii::app()->user->id);
                 Yii::app()->ajax->success();
-            else
+            } else
                 Yii::app()->ajax->failure();
+        }
     }
 
     public function actionReport()

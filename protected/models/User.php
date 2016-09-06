@@ -494,11 +494,12 @@ class User extends ActiveRecord
             $certs = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
 
             $this->new_level = 0;
-            foreach($certs as $cert) {
+            foreach ($certs as $cert) {
                 $this->new_level += $cert->certificate->points;
             }
 
             if($this->saveAttributes(array('new_level'))) {
+                User::newLevel(Yii::app()->user->id);
                 Yii::app()->user->setFlash('project_success1', Yii::t("base", 'Your level have been changed to ').$this->new_level);
             }
         }

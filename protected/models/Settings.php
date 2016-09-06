@@ -40,7 +40,7 @@ class Settings extends ActiveRecord
         return array(
             // array('name, value', 'required'),
             array('name', 'length', 'max'=>255),
-            array('value, title, data', 'safe'),
+            array('value, title, data, sender_email', 'safe'),
             array('value', 'file', 'types'=>'jpg, gif, png','allowEmpty'=>true, 'on' => 'img'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
