@@ -7380,6 +7380,10 @@ p {
   font-size: 1rem;
 }
 
+.bottom-50 {
+  margin-bottom: 3.125rem;
+}
+
 .separated {
   background: #efefef;
   overflow: hidden;
@@ -7774,6 +7778,37 @@ body .rating-container.rating-gly-star {
   margin-bottom: 3.125rem;
   color: #777;
   font-size: 1.25rem;
+}
+
+.accordion {
+  background: none;
+}
+.accordion .accordion-item {
+  border-right: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  border-left: 1px solid #d0d0d0;
+}
+.accordion .accordion-item:first-child {
+  border-top: 1px solid #d0d0d0;
+}
+.accordion .accordion-item .accordion-title {
+  padding: 1.875rem 3.75rem 1.875rem 1.875rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.3em;
+  color: #000;
+}
+.accordion .accordion-item .accordion-title::before {
+  color: #777;
+  right: 1.875rem;
+  font-size: 1.875rem;
+  margin-top: -0.9375rem;
+}
+.accordion .accordion-item .accordion-content {
+  padding: 1.875rem;
+}
+.accordion .accordion-item .accordion-content p {
+  font-size: 0.9375rem;
 }
 
 /*------------------------------------*\
