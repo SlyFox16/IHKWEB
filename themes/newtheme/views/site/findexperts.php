@@ -2,7 +2,7 @@
 <section class="secondary-header">
     <div class="row">
         <div class="small-12 columns">
-            <h2><?php echo Yii::t("base", "Find certified [b]Crowd Experts[/b] now.", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
+            <h2><?php $this->widget('GetSearchHeader', array('model' => $model)); ?></h2>
         </div>
     </div>
 </section>

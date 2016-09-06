@@ -69,6 +69,7 @@ return array(
     'General' => '',
     'Get in touch' => 'Nehmen Sie jetzt Kontakt auf',
     'Go back' => 'Zurück',
+    'Here is what we found for' => '',
     'Home' => 'Zuhause',
     'HOW IT WORKS TEXT' => 'Mitglieder des Deutschen Crowdsourcing Verbandes e.V. und unabhängige Crowd-X Experten können sich mit ihren jeweiligen Spezialgebieten registrieren. Dies erleichtert Unternehmen und Projektstartern die Arbeit nach der Suche für den jeweils passenden Berater, Coach oder geistigen Sparringspartner.',
     'How it works' => 'Wie es funktioniert',

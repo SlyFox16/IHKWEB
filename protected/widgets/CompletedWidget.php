@@ -1,5 +1,4 @@
 <?php
-
 class CompletedWidget extends CWidget
 {
     public $project_id = false;
