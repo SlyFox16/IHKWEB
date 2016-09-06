@@ -638,10 +638,10 @@ class User extends ActiveRecord
         $return = '';
         if ($flag == 'city') {
             $city = Cities::model()->findByPk($id);
-            $return = $city ? $city->city_name_UTF8 : Yii::t("base", 'not defined');
+            $return = $city ? $city->city_name_UTF8 : '';
         } else {
             $country = Countries::model()->find('iso = :country_id', array(':country_id' => $id));
-            $return = $country ? $country->country_name : Yii::t("base", 'not defined');
+            $return = $country ? $country->country_name : '';
         }
 
         return $return;
@@ -675,5 +675,9 @@ class User extends ActiveRecord
     public function getStatusStaff() {
         $stat = array(0 => 'User', 1 => 'Admin');
         return $stat[$this->is_staff];
+    }
+
+    public function getClearUrl() {
+        return preg_replace("(^https?://)", "", $this->web_url);
     }
 }

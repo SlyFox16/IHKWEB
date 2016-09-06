@@ -118,7 +118,7 @@
                 <?php if(!empty($user->web_url)) { ?>
                     <li>
                         <i class="fa fa-globe"></i>
-                        <a href="<?php echo $user->web_url; ?>"><?php echo $user->web_url; ?></a>
+                        <a href="<?php echo $user->web_url; ?>"><?php echo $user->clearUrl; ?></a>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->xing_url)) { ?>
