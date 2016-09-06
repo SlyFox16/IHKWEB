@@ -382,6 +382,7 @@ class UserController extends Frontend
             $model->attributes = $_POST["Report"];
 
             if($model->save()) {
+                Yii::app()->email->restoreReportEmail($model->userReceiver);
                 Yii::app()->user->setFlash('project_success', Yii::t("base", "Your opinion will be taken into consideration."));
                 $this->redirect(Yii::app()->request->urlReferrer);
             }
