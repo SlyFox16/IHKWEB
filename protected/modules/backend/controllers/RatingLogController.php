@@ -74,7 +74,7 @@ class RatingLogController extends BackendController
             $model->$name = $value;
 
             if($model->save(true, array($name))) {
-                Yii::app()->email->restorePassEmail($model->whoReceived);
+                Yii::app()->email->restorePassEmail($model->whoReceived, $value);
 
                 echo CJSON::encode(array('id' => $model->primaryKey));
             } else {
