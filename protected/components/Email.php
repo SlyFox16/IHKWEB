@@ -20,7 +20,7 @@ class Email extends CApplicationComponent
         $this->body = YHelper::yiisetting('rating_email');
         $senderEmail = YHelper::yiisettingSenderEmail('rating_email', Yii::app()->name);
 
-        $this->body = preg_replace('\[:mark\]', $mark, $this->body);
+        $this->body = preg_replace('~\[:mark\]~', $mark, $this->body);
         $this->body = $this->changeAttr($user, $this->body);
 
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
@@ -38,10 +38,10 @@ class Email extends CApplicationComponent
 
     private function changeAttr($user, $body)
     {
-        $body = preg_replace('\[:first_name\]', $user->name, $body);
-        $body = preg_replace('\[:last_name\]', $user->surname, $body);
-        $body = preg_replace('\[:rating\]', $user->rating, $body);
-        $body = preg_replace('\[:level\]', $user->level, $body);
+        $body = preg_replace('~\[:first_name\]~', $user->name, $body);
+        $body = preg_replace('~\[:last_name\]~', $user->surname, $body);
+        $body = preg_replace('~\[:rating\]~', $user->rating, $body);
+        $body = preg_replace('~\[:level\]~', $user->level, $body);
 
         return $body;
     }
