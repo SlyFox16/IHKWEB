@@ -109,7 +109,7 @@ class SiteController extends Frontend
 					"Content-Type: text/plain; charset=UTF-8";
 
 				mail(Yii::app()->params['adminEmail'],$subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				Yii::app()->user->setFlash('contact', Yii::t("base", 'Thank you for contacting us. We will respond to you as soon as possible.'));
 				$this->refresh();
 			}
 		}
@@ -345,7 +345,7 @@ class SiteController extends Frontend
             }
         }
         else
-            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
     public function actionSuggest(){

@@ -201,6 +201,11 @@ class User extends ActiveRecord
             'is_staff' => 'Admin',
             'last_login' => 'Last Login',
             'date_joined' => 'Date Joined',
+            'position' => Yii::t("base","Position"),
+            'speciality' => Yii::t("base","Speciality"),
+            'username' => Yii::t("base","UserName"),
+            'level' => Yii::t("base","Level"),
+            'rating' => Yii::t("base","Rating"),
             'avatar' => Yii::t("base","Avatar"),
             'phone' => Yii::t("base","phone"),
             'address' => Yii::t("base","address"),
@@ -494,7 +499,7 @@ class User extends ActiveRecord
             }
 
             if($this->saveAttributes(array('new_level'))) {
-                Yii::app()->user->setFlash('project_success1', 'Your level have been changed to '.$this->new_level);
+                Yii::app()->user->setFlash('project_success1', Yii::t("base", 'Your level have been changed to ').$this->new_level);
             }
         }
 

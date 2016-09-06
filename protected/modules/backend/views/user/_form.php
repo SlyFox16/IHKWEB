@@ -15,7 +15,7 @@
 
 <?php echo $form->textFieldRow($model, 'surname', array('class' => 'span5', 'maxlength' => 255)); ?>
 
-<?php echo $form->fileFieldRow($model,'avatar',array('class'=>'span5','maxlength'=>255,'hint'=>'The recommended size is <b>240x120</b>')); ?>
+<?php echo $form->fileFieldRow($model,'avatar',array('class'=>'span5','maxlength'=>255,'hint'=>'The recommended size is <b>280x280</b>')); ?>
 
 <?php echo $form->textFieldRow($model, 'email', array('class' => 'span5', 'maxlength' => 255)); ?>
 
@@ -73,6 +73,7 @@
                         }',
                         'results' => 'js:function(data) { return {results: data}; }',
                     ],
+                    'initSelection' => 'js:cityInitSelection',
                     'formatResult' => 'js:productFormatResult',
                     'formatSelection' => 'js:productFormatSelection',
                 ],
@@ -83,6 +84,33 @@
         ); ?>
     </div>
     <?php echo $form->error($model, 'city_id'); ?>
+</div>
+
+<div class="control-group">
+    <label class="control-label control-label required" for="User_username">
+        <?php echo $model->getAttributeLabel('speciality'); ?>
+    </label>
+    <div class="controls">
+        <?php $this->widget(
+            'booster.widgets.TbSelect2',
+            [
+                'model'=>$model,
+                'attribute'=>"speciality",
+                'data' => $model->specialityList,
+                'asDropDownList' => true,
+                'options' => [
+                    'placeholder' => 'Select speciality',
+                    'width' => '68%',
+                    'allowClear' => true,
+                ],
+                'htmlOptions' => [
+                    'multiple' => true,
+                    'class' => 'form-control'
+                ],
+            ]
+        ); ?>
+    </div>
+    <?php echo $form->error($model, 'speciality'); ?>
 </div>
 
 <?php echo $form->textAreaRow($model, 'address', array('rows'=>6, 'cols'=>50, 'class'=>'span5')); ?>
@@ -148,5 +176,12 @@
     function productFormatResult(city) {
         var markup = city.name;
         return markup;
+    }
+
+    function cityInitSelection(element, callback) {
+        var ret = <?php echo $model->selectedCity; ?>;
+
+        var data = {'id':ret.id , 'name': ret.value};
+        callback(data);
     }
 </script>

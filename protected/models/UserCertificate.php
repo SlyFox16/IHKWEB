@@ -41,7 +41,7 @@ class UserCertificate extends ActiveRecord
 		return array(
 			array('user_id, certificate_id, date', 'required', 'except' => 'check'),
             array('certificate_id, date', 'required', 'on'=>'check'),
-			array('user_id, certificate_id', 'numerical', 'integerOnly'=>true),
+			array('user_id, certificate_id, confirm', 'numerical', 'integerOnly'=>true),
             array('date', 'type', 'type' => 'date', 'message' => '{attribute}: in wrong format!', 'dateFormat' => 'yyyy-MM-dd'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

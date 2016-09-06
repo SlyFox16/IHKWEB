@@ -7,15 +7,15 @@
     <!--== Filters ==-->
         <div class="filters">
             <label>
-                <span>First Name</span>
+                <span><?php echo $model->getAttributeLabel('name'); ?></span>
                  <?php echo $form->textField($model,'name',array('placeholder' => Yii::t("base", 'First Name'))); ?>
             </label>
             <label>
-                <span>Second Name</span>
+                <span><?php echo $model->getAttributeLabel('surname'); ?></span>
                 <?php echo $form->textField($model,'surname',array('placeholder' => Yii::t("base", 'Second Name'))); ?>
             </label>
             <label>
-                <span>City</span>
+                <span><?php echo $model->getAttributeLabel('city_id'); ?></span>
                 <?php $this->widget(
                     'booster.widgets.TbSelect2',
                     [
@@ -47,14 +47,14 @@
                 ); ?>
             </label>
             <label>
-                <span>Level</span>
+                <span><?php echo $model->getAttributeLabel('level'); ?></span>
                 <?php echo $form->textField($model,'level',array('class'=>'span5 small', 'placeholder' => Yii::t("base", 'Level'))); ?>
             </label>
             <label>
-                <span>Rating</span>
+                <span><?php echo $model->getAttributeLabel('rating'); ?></span>
                 <?php echo $form->textField($model,'rating',array('class'=>'span5 small', 'placeholder' => Yii::t("base", 'Rating'))); ?>
             </label>
-            <?php echo CHtml::linkButton('Search', array('class' => 'button')); ?>
+            <?php echo CHtml::linkButton(Yii::t("base", 'Search'), array('class' => 'button')); ?>
         </div>
     <?php $this->endWidget(); ?>
 
