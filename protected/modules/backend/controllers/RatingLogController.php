@@ -75,7 +75,7 @@ class RatingLogController extends BackendController
 
             if($model->save(true, array($name))) {
                 if ($name == 'confirmed' && $value == 1)
-                    Yii::app()->email->restoreRatingEmail($model->whoReceived, $value);
+                    Yii::app()->email->restoreRatingEmail($model->whoReceived, $model->num);
 
                 echo CJSON::encode(array('id' => $model->primaryKey));
             } else {
