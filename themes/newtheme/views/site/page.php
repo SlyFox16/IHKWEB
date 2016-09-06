@@ -17,7 +17,11 @@
     <div class="row">
         <div class="small-12 columns text-center">
             <h1><?php echo $model->title; ?></h1>
-            <p><?php echo $model->content; ?></p>
+            <?php if ($model->id == 1) { ?>
+                <!--//your code-->
+            <?php } else { ?>
+                <p><?php echo $model->content; ?></p>
+            <?php } ?>
         </div>
     </div>
 </section>
