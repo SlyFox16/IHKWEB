@@ -12,7 +12,7 @@
     <button class="close-button" data-close aria-label="Close reveal" type="button">
         <span aria-hidden="true">&times;</span>
     </button>
-    <h1><?php echo Yii::t("base", "Restore password"); ?></h1>
+    <h1><?php echo Yii::t("base", "Change pass"); ?></h1>
     <?php $form = $this->beginWidget('CActiveForm', array(
         'id' => 'changepass-form',
         'action' => $url,
