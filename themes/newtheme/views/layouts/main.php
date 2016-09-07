@@ -34,7 +34,7 @@
                         </a>
                     </div>  
                 </div>
-                <div class="small-8 medium-6 large-6 columns end">
+                <div class="small-10 medium-6 large-6 columns end">
                     <ul class="partners">
                         <li>
                             <span>präsentiert von</span>
