@@ -7676,6 +7676,13 @@ p {
 .cookie .cookie_msg {
   padding: 1.25rem 1.875rem;
 }
+@media screen and (max-width: 39.9375em) {
+  .cookie {
+    right: 0.625rem;
+    left: 0.625rem;
+    width: auto;
+  }
+}
 
 /* Rating */
 body .star-rating {
@@ -7769,6 +7776,20 @@ body .rating-container.rating-gly-star {
   border-bottom-color: transparent;
   background: none;
   color: #000;
+}
+@media screen and (max-width: 39.9375em) {
+  .tabs {
+    display: block;
+  }
+  .tabs .tabs-title {
+    float: left;
+    display: block;
+    margin-right: 0.625rem;
+  }
+  .tabs .tabs-title a {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .tabs-content {
@@ -7916,6 +7937,18 @@ fieldset.fieldset legend {
 }
 .input-multiple > *:not(:first-child) {
   padding-left: 0.625rem;
+}
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .input-multiple {
+    display: block;
+  }
+  .input-multiple > * {
+    display: block;
+    width: 100%;
+  }
+  .input-multiple > *:not(:first-child) {
+    padding: 0;
+  }
 }
 
 .attached {
