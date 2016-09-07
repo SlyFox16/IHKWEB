@@ -2,7 +2,7 @@
 
 class PagesController extends BackendController
 {
-    public $sidebar_tab = "content";
+    public $sidebar_tab = "configuration";
 
 	/**
 	 * Displays a particular model.
