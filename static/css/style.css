@@ -11293,12 +11293,17 @@ footer {
 
 /* Associates */
 .associates {
+  display: table;
+  border-collapse: collapse;
   margin: 0;
   list-style: none;
 }
 .associates li {
+  display: table-cell;
+  padding: 0.625rem;
   max-width: 6.25rem;
-  float: left;
+  vertical-align: middle;
+  border: 1px solid #d0d0d0;
 }
 .associates li img {
   width: 100%;
