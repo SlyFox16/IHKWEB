@@ -7524,6 +7524,11 @@ p {
 .cta * + * {
   margin: 0 0 0 0.9375rem;
 }
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .cta * + * {
+    margin: 0.9375rem 0 0 0;
+  }
+}
 
 /* Buttons */
 .button {
@@ -11032,6 +11037,12 @@ footer {
 .expert_info a {
   color: #000;
 }
+@media screen and (max-width: 39.9375em) {
+  .expert_info {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
 
 .expert_cat {
   position: absolute;
@@ -11489,6 +11500,11 @@ body .rating-gly-star {
   font-size: 2.5rem;
   line-height: 1.2em;
 }
+@media screen and (max-width: 39.9375em) {
+  .experts_meta .stats {
+    float: none;
+  }
+}
 
 .experts_view {
   text-align: right;
@@ -11510,6 +11526,12 @@ body .rating-gly-star {
 .filters {
   padding-right: 30px;
   border-right: 1px solid #d0d0d0;
+}
+@media screen and (max-width: 39.9375em) {
+  .filters {
+    margin: 0;
+    border: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
