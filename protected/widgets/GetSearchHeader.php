@@ -8,17 +8,19 @@ class GetSearchHeader extends CWidget
         $serchQuery = array();
         $name = ''; $surname = '';
 
-        if ($this->model->name) $name = '<b>'.$this->model->name.'</b>';
-        if ($this->model->surname) $surname = '<b>'.$this->model->surname.'</b>';
+        if ($this->model->name) $name = $this->model->name;
+        if ($this->model->surname) $surname = $this->model->surname;
 
-        $serchQuery[] = trim($name.' '.$surname);
+        $full_name = '';
+        if ($name) $full_name .= '<b>'.$name.'</b>';
+        if ($surname && $name) $full_name .= '<b>'.$name.'</b> <b>'.$surname.'</b>';
+        if ($surname && !$name) $full_name .= '<b>'.$surname.'</b>';
+
+        $serchQuery[] = trim($full_name);
         if ($this->model->city_id) $serchQuery[] = '<b>'.User::getCityCountry($this->model->city_id, 'city').'</b>';
         if ($this->model->level >= 0 && $this->model->level != NULL) $serchQuery[] = Yii::t("base", 'level').': <b>'.$this->model->level.'</b>';
         if ($this->model->rating >= 0 && $this->model->rating != NULL) $serchQuery[] = Yii::t("base", 'rating').': <b>'.$this->model->rating.'</b>';
 
-        foreach ($serchQuery as $key => $value)
-            if (trim($value) == ' ')
-                unset($serchQuery[$key]);
 
         $serchQuery = implode(', ',$serchQuery);
 
