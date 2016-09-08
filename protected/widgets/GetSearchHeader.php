@@ -13,8 +13,8 @@ class GetSearchHeader extends CWidget
 
         $serchQuery[] = trim($name.' '.$surname);
         if ($this->model->city_id) $serchQuery[] = '<b>'.User::getCityCountry($this->model->city_id, 'city').'</b>';
-        if (isset($this->model->level)) $serchQuery[] = Yii::t("base", 'level').': <b>'.$this->model->level.'</b>';
-        if (isset($this->model->rating)) $serchQuery[] = Yii::t("base", 'rating').': <b>'.$this->model->rating.'</b>';
+        if ($this->model->level >= 0 && $this->model->level != NULL) $serchQuery[] = Yii::t("base", 'level').': <b>'.$this->model->level.'</b>';
+        if ($this->model->rating >= 0 && $this->model->rating != NULL) $serchQuery[] = Yii::t("base", 'rating').': <b>'.$this->model->rating.'</b>';
 
         $serchQuery = implode(', ',$serchQuery);
 

@@ -11,13 +11,13 @@
 
 <section class="separated separated--edge">
     <div class="row">
-        <div class="small-3 medium-3 columns">
+        <div class="medium-3 columns">
             <div class="expert_photo">
                 <a class="edit fa fa-pencil" data-toggle="avatarhange" aria-haspopup="true"></a>
                 <img src="<?php echo YHelper::getImagePath($user->avatar, 200, 200); ?>" alt="<?php echo Yii::t("base", "Profile picture"); ?>">
             </div>
         </div>
-        <div class="small-9 medium-7 columns end">
+        <div class="medium-7 columns end">
             <?php $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'cabinet-form',
                 'enableAjaxValidation' => true,

@@ -28,9 +28,9 @@ class Email extends CApplicationComponent
 
     public function restoreReportEmail($user)
     {
-        $this->subject = YHelper::yiisetting('rating_email', Yii::app()->name.' you\'ve been reported', true);
-        $this->body = YHelper::yiisetting('rating_email');
-        $senderEmail = YHelper::yiisettingSenderEmail('rating_email', Yii::app()->name);
+        $this->subject = YHelper::yiisetting('report_email', Yii::app()->name.' you\'ve been reported', true);
+        $this->body = YHelper::yiisetting('report_email');
+        $senderEmail = YHelper::yiisettingSenderEmail('report_email', Yii::app()->name);
         $body = $this->changeAttr($user, $this->body);
 
         $this->sendEmail($this->subject, $body, $user->email, $senderEmail);

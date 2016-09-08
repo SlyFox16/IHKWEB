@@ -7524,6 +7524,11 @@ p {
 .cta * + * {
   margin: 0 0 0 0.9375rem;
 }
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .cta * + * {
+    margin: 0.9375rem 0 0 0;
+  }
+}
 
 /* Buttons */
 .button {
@@ -7671,6 +7676,13 @@ p {
 .cookie .cookie_msg {
   padding: 1.25rem 1.875rem;
 }
+@media screen and (max-width: 39.9375em) {
+  .cookie {
+    right: 0.625rem;
+    left: 0.625rem;
+    width: auto;
+  }
+}
 
 /* Rating */
 body .star-rating {
@@ -7764,6 +7776,20 @@ body .rating-container.rating-gly-star {
   border-bottom-color: transparent;
   background: none;
   color: #000;
+}
+@media screen and (max-width: 39.9375em) {
+  .tabs {
+    display: block;
+  }
+  .tabs .tabs-title {
+    float: left;
+    display: block;
+    margin-right: 0.625rem;
+  }
+  .tabs .tabs-title a {
+    border: 0;
+    padding: 0;
+  }
 }
 
 .tabs-content {
@@ -7911,6 +7937,18 @@ fieldset.fieldset legend {
 }
 .input-multiple > *:not(:first-child) {
   padding-left: 0.625rem;
+}
+@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  .input-multiple {
+    display: block;
+  }
+  .input-multiple > * {
+    display: block;
+    width: 100%;
+  }
+  .input-multiple > *:not(:first-child) {
+    padding: 0;
+  }
 }
 
 .attached {
@@ -11032,6 +11070,12 @@ footer {
 .expert_info a {
   color: #000;
 }
+@media screen and (max-width: 39.9375em) {
+  .expert_info {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
 
 .expert_cat {
   position: absolute;
@@ -11249,12 +11293,17 @@ footer {
 
 /* Associates */
 .associates {
+  display: table;
+  border-collapse: collapse;
   margin: 0;
   list-style: none;
 }
 .associates li {
+  display: table-cell;
+  padding: 0.625rem;
   max-width: 6.25rem;
-  float: left;
+  vertical-align: middle;
+  border: 1px solid #d0d0d0;
 }
 .associates li img {
   width: 100%;
@@ -11489,6 +11538,11 @@ body .rating-gly-star {
   font-size: 2.5rem;
   line-height: 1.2em;
 }
+@media screen and (max-width: 39.9375em) {
+  .experts_meta .stats {
+    float: none;
+  }
+}
 
 .experts_view {
   text-align: right;
@@ -11510,6 +11564,12 @@ body .rating-gly-star {
 .filters {
   padding-right: 30px;
   border-right: 1px solid #d0d0d0;
+}
+@media screen and (max-width: 39.9375em) {
+  .filters {
+    margin: 0;
+    border: 0;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
