@@ -7800,16 +7800,10 @@ body .rating-container.rating-gly-star {
 }
 @media screen and (max-width: 39.9375em) {
   .tabs {
-    display: block;
-  }
-  .tabs .tabs-title {
-    float: left;
-    display: block;
-    margin-right: 0.625rem;
+    margin-top: 0.625rem;
   }
   .tabs .tabs-title a {
-    border: 0;
-    padding: 0;
+    font-size: 0.75rem;
   }
 }
 
@@ -7960,7 +7954,7 @@ fieldset.fieldset legend {
 .input-multiple > *:not(:first-child) {
   padding-left: 0.625rem;
 }
-@media screen and (min-width: 40em) and (max-width: 63.9375em) {
+@media screen and (max-width: 39.9375em) {
   .input-multiple {
     display: block;
   }
