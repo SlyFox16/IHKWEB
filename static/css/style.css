@@ -7645,9 +7645,10 @@ p {
 @media screen and (max-width: 63.9375em) {
   .bottom-edge {
     position: relative;
+    margin-bottom: 3.125rem;
   }
   .bottom-edge .button {
-    margin-bottom: 3.125rem;
+    margin-bottom: 0;
     -webkit-transform: none;
     -moz-transform: none;
     transform: none;
@@ -11419,6 +11420,7 @@ body .rating-gly-star {
 \*------------------------------------*/
 .socials {
   overflow: hidden;
+  margin: 0;
 }
 .socials * {
   float: left;
