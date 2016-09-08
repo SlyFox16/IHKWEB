@@ -17,7 +17,8 @@ class GetSearchHeader extends CWidget
         if ($this->model->rating >= 0 && $this->model->rating != NULL) $serchQuery[] = Yii::t("base", 'rating').': <b>'.$this->model->rating.'</b>';
 
         foreach ($serchQuery as $key => $value)
-            $serchQuery[$key] = trim($value);
+            if (ctype_space($value))
+                unset($serchQuery[$key]);
 
         $serchQuery = implode(', ',$serchQuery);
 
