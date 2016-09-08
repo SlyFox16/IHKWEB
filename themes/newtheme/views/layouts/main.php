@@ -86,6 +86,13 @@
                 <li>
                     <a href="<?php echo $this->createUrl('site/pages', array('id' => 1)); ?>"><?php echo Yii::t("base", "Impressum"); ?></a>
                 </li>
+                <li>
+                    <?php if (Yii::app()->user->isGuest) { ?>
+                        <a href="<?php echo $this->createUrl('/registration'); ?>"><?php echo Yii::t("base", "Become Expert"); ?></a>
+                    <?php } else { ?>
+                        <a href="<?php echo $this->createUrl('site/findexperts'); ?>"><?php echo Yii::t("base", "Find experts"); ?></a>
+                    <?php } ?>
+                </li>
             </ul>
         </div>
     </div>
