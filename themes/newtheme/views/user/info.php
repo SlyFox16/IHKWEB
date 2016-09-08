@@ -9,7 +9,7 @@
 <!--== Expert =====================-->
 <!--===============================-->
 <div class="row">
-    <div class="medium-12 columns">
+    <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
                 Yii::t("base", 'Experts') => array('site/findexperts'),
@@ -17,11 +17,11 @@
             ),
         )); ?>
     </div>
-</div>
-
-<section class="separated">
-    <div class="row">
-        <ul class="control expert--control">
+    <div class="small-12 medium-6 columns">
+        <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
+            <?php if (!Yii::app()->user->is_seeker) { ?>
+                <li title="<?php echo Yii::t('base', 'Rate this expert'); ?>"><?php $this->widget('StarRating', array('user' => $user)); ?></li>
+            <?php } ?>
             <li><a class="fa fa-flag" data-toggle="report"></a></li>
             <li>
                 <a href="" class="fa fa-share-alt"></a>
@@ -33,6 +33,9 @@
             </li>
         </ul>
     </div>
+</div>
+
+<section class="separated">
     <div class="row">
         <div class="small-5 medium-3 columns">
             <div class="expert_photo">
