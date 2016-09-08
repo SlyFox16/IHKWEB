@@ -11089,6 +11089,9 @@ footer {
 }
 @media screen and (max-width: 39.9375em) {
   .expert_info {
+    bottom: 0.625rem;
+    left: 0.625rem;
+    right: 0.625rem;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
