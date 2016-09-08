@@ -15,8 +15,9 @@ class GetSearchHeader extends CWidget
         if ($name) $full_name .= '<b>'.$name.'</b>';
         if ($surname && $name) $full_name .= '<b>'.$name.'</b> <b>'.$surname.'</b>';
         if ($surname && !$name) $full_name .= '<b>'.$surname.'</b>';
+        if (!$surname && !$name) $full_name = null;
 
-        $serchQuery[] = trim($full_name);
+        if($full_name) $serchQuery[] = trim($full_name);
         if ($this->model->city_id) $serchQuery[] = '<b>'.User::getCityCountry($this->model->city_id, 'city').'</b>';
         if ($this->model->level >= 0 && $this->model->level != NULL) $serchQuery[] = Yii::t("base", 'level').': <b>'.$this->model->level.'</b>';
         if ($this->model->rating >= 0 && $this->model->rating != NULL) $serchQuery[] = Yii::t("base", 'rating').': <b>'.$this->model->rating.'</b>';
