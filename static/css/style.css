@@ -7481,6 +7481,11 @@ p {
   height: 5rem;
   max-width: 18.75rem;
 }
+@media screen and (max-width: 39.9375em) {
+  .control li.search input {
+    max-width: 12.5rem;
+  }
+}
 .control li.search a {
   position: absolute;
   top: 0;
@@ -7635,6 +7640,17 @@ p {
   -webkit-transform: translateY(50%);
   -moz-transform: translateY(50%);
   transform: translateY(50%);
+}
+@media screen and (max-width: 39.9375em) {
+  .bottom-edge {
+    position: relative;
+  }
+  .bottom-edge .button {
+    margin-bottom: 3.125rem;
+    -webkit-transform: 0;
+    -moz-transform: 0;
+    transform: 0;
+  }
 }
 
 /* Cookie */
