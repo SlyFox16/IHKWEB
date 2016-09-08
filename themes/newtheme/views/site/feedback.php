@@ -53,7 +53,7 @@
                 </div>
             <?php $this->endWidget(); ?>
         </div>
-        <div class="medium-8 medium-offset-4 large-4 columns left-50">
+        <div class="medium-8 medium-offset-4 large-4 large-offset-0 columns left-50">
             <h2><?php echo Yii::t("base", "[b]Follow us[/b] on the web", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
             <?php $this->widget('Social'); ?>
         </div>
