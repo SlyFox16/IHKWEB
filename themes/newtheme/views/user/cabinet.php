@@ -11,7 +11,7 @@
 
 <section class="separated separated--edge">
     <div class="row">
-        <div class="medium-3 columns">
+        <div class="small-5 medium-3 columns">
             <div class="expert_photo">
                 <a class="edit fa fa-pencil" data-toggle="avatarhange" aria-haspopup="true"></a>
                 <img src="<?php echo YHelper::getImagePath($user->avatar, 200, 200); ?>" alt="<?php echo Yii::t("base", "Profile picture"); ?>">
