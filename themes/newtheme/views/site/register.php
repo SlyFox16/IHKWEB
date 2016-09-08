@@ -171,7 +171,7 @@
                 </div>
             <?php $this->endWidget(); ?>
         </div>
-        <div class="medium-12 large-4 columns left-50">
+        <div class="medium-8 medium-offset-4 large-4 columns left-50">
             <h2><?php echo Yii::t("base", "Use already existing [b]social[/b] account to [b]sign up[/b]", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
             <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/Login')); ?>
         </div>

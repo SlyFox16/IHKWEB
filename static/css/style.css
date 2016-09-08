@@ -7593,7 +7593,7 @@ p {
   text-decoration: none;
 }
 
-@media screen and (min-width: 64em) and (max-width: 74.9375em) {
+@media screen and (min-width: 64em) {
   .separator {
     margin: -5rem 0;
     padding-bottom: 5rem;
