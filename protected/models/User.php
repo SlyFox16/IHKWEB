@@ -73,7 +73,7 @@ class User extends ActiveRecord
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'seeker'),
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'backendcreate'),
             array('username, name, surname, email', 'required', 'on' => 'update, socials'),
-            array('username, address, country_id, city_id, phone', 'required', 'on' => 'userupdate'),
+            array('username, address, country_id, city_id', 'required', 'on' => 'userupdate'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
             array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
             array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => 'Wrong format!'),
