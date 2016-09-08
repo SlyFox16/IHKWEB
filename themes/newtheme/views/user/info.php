@@ -37,12 +37,12 @@
 
 <section class="separated">
     <div class="row">
-        <div class="small-3 medium-3 columns">
+        <div class="small-5 medium-3 columns">
             <div class="expert_photo">
                 <img src="<?php echo YHelper::getImagePath($user->avatar, 200, 200); ?>" alt="<?php echo Yii::t("base", "Expert photo"); ?>">
             </div>
         </div>
-        <div class="small-9 medium-6 columns">
+        <div class="medium-6 columns">
             <div class="expert_name">
                 <h2><?php echo $user->title; ?> <b><?php echo $user->name; ?></b> <?php echo $user->surname; ?></h2>
             </div>
@@ -67,7 +67,7 @@
                 </ul>
             <?php } ?>
         </div>
-        <div class="small-9 small-offset-3 medium-3 medium-offset-0 columns">
+        <div class="medium-3 medium-offset-0 columns">
             <ul class="stats">
                 <li><?php echo Yii::t("base", "Rating");?> <b><?php echo $user->rating; ?></b></li>
                 <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>

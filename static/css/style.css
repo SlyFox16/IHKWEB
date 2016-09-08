@@ -11174,11 +11174,14 @@ footer {
 }
 
 .expert_domain {
+  width: 100%;
+  float: left;
+  margin: 0;
   list-style: none;
-  margin: 0 0 0.625rem 0;
 }
 .expert_domain li {
-  display: inline-block;
+  float: left;
+  margin: 0 0.3125rem 0.3125rem 0;
   padding: 0.3125rem 0.625rem;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -11579,12 +11582,13 @@ body .rating-gly-star {
 }
 
 .filters {
-  padding-right: 30px;
+  padding-right: 1.875rem;
   border-right: 1px solid #d0d0d0;
 }
 @media screen and (max-width: 39.9375em) {
   .filters {
-    margin: 0;
+    margin: 0 0 0.9375rem 0;
+    padding: 0;
     border: 0;
   }
 }
