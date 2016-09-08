@@ -15,10 +15,10 @@
 
 <section class="separated separated--edge">
     <div class="row">
-        <div class="medium-5 large-3 columns">
+        <div class="medium-4 large-3 columns">
             <h2><?php echo Yii::t("base", "Join our program, [b]register[/b] and become a certified expert.", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
         </div>
-        <div class="medium-7 large-5 columns separator right-50">
+        <div class="medium-8 large-5 columns separator right-50">
             <?php $form = $this->beginWidget('CActiveForm', array(
                 'id' => 'register-form',
                 'enableAjaxValidation' => true,
@@ -171,7 +171,7 @@
                 </div>
             <?php $this->endWidget(); ?>
         </div>
-        <div class="medium-12 large-4 columns left-50">
+        <div class="medium-8 medium-offset-4 large-4 columns left-50">
             <h2><?php echo Yii::t("base", "Use already existing [b]social[/b] account to [b]sign up[/b]", array('[b]' => '<b>', '[/b]' => '</b>')); ?></h2>
             <?php $this->widget('ext.eauth.EAuthWidget', array('action' => 'site/Login')); ?>
         </div>

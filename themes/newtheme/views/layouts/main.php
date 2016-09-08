@@ -60,8 +60,8 @@
                 <?php } elseif(Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } else {
-                    echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('title' => Yii::t("base", 'Become Expert'), 'data-tooltip' => ''));
-                    echo CHtml::link(Yii::t("base", 'Login'), array('/site/login'), array('title' => Yii::t("base", 'Login'), 'data-tooltip' => ''));
+                    echo CHtml::link(Yii::t("base", 'Login'), array('/site/login'), array('title' => Yii::t("base", 'Login')));
+                    echo CHtml::link(Yii::t("base", 'Become Expert'), array('/registration'), array('title' => Yii::t("base", 'Become Expert')));
                 } ?>
             </div>
         </div>

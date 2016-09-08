@@ -7529,9 +7529,10 @@ p {
 .cta * + * {
   margin: 0 0 0 0.9375rem;
 }
-@media screen and (min-width: 40em) and (max-width: 63.9375em) {
-  .cta * + * {
-    margin: 0.9375rem 0 0 0;
+@media screen and (max-width: 63.9375em) {
+  .cta h2 {
+    display: block;
+    margin-bottom: 0.3125rem;
   }
 }
 
@@ -7592,7 +7593,7 @@ p {
   text-decoration: none;
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 64em) {
   .separator {
     margin: -5rem 0;
     padding-bottom: 5rem;
@@ -7641,15 +7642,15 @@ p {
   -moz-transform: translateY(50%);
   transform: translateY(50%);
 }
-@media screen and (max-width: 39.9375em) {
+@media screen and (max-width: 63.9375em) {
   .bottom-edge {
     position: relative;
   }
   .bottom-edge .button {
     margin-bottom: 3.125rem;
-    -webkit-transform: 0;
-    -moz-transform: 0;
-    transform: 0;
+    -webkit-transform: none;
+    -moz-transform: none;
+    transform: none;
   }
 }
 
@@ -7697,6 +7698,9 @@ p {
     right: 0.625rem;
     left: 0.625rem;
     width: auto;
+  }
+  .cookie.visible {
+    bottom: 0.625rem;
   }
 }
 
@@ -7909,6 +7913,7 @@ fieldset .note {
   font-size: 0.875rem;
 }
 fieldset.fieldset {
+  margin: 0;
   padding: 0.9375rem 0 0 0;
   border-width: 0.125rem 0 0 0;
   border-color: #d0d0d0;
