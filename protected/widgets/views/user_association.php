@@ -48,7 +48,7 @@
 </ul>
 
 
-<?php Yii::app()->clientScript->registerScript('add-assoc-to-user', "
+<?php Yii::app()->clientScript->registerScript('add-assoc-to-user23', "
     $('#add-assoc-to-user').click(function (e) {
         e.preventDefault();
         var userId = $('#user-association').select2('val');
