@@ -245,7 +245,7 @@ class SiteController extends Frontend
 
             $register_form->is_active = 1;
             if($register_form->save()) {
-                $subject = YHelper::yiisetting('register_email', 'Ihk.com register', true);
+                $subject = YHelper::yiisetting('register_email', Yii::app()->name.' register', true);
                 $body = YHelper::yiisetting('register_email');
 
                 Yii::app()->email->sendEmail($subject, $body, $register_form->email);
