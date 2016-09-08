@@ -33,10 +33,10 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <ul class="tabs" data-tabs id="example-tabs">
-                            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"><span class=“hide-for-small-only”><?php echo Yii::t("base", "General"); ?></span><i class=“fa fa-cog show-for-small-only”></i></a></li>
-                            <li class="tabs-title"><a href="#panel2" aria-selected="true"><span class=“hide-for-small-only”><?php echo Yii::t("base", "Contacts"); ?></span><i class=“fa fa-cog show-for-small-only”></i></a></li>
-                            <li class="tabs-title"><a href="#panel3"><span class=“hide-for-small-only”><?php echo Yii::t("base", "Certifications"); ?></span><i class=“fa fa-cog show-for-small-only”></i></a></li>
-                            <li class="tabs-title"><a href="#panel4"><span class=“hide-for-small-only”><?php echo Yii::t("base", "Projects"); ?></span><i class=“fa fa-cog show-for-small-only”></i></a></li>
+                            <li class="tabs-title is-active"><a href="#panel1" aria-selected="true"><span class="hide-for-small-only"><?php echo Yii::t("base", "General"); ?></span><i class="fa fa-cog show-for-small-only"></i></a></li>
+                            <li class="tabs-title"><a href="#panel2" aria-selected="true"><span class="hide-for-small-only"><?php echo Yii::t("base", "Contacts"); ?></span><i class="fa fa-cog show-for-small-only"></i></a></li>
+                            <li class="tabs-title"><a href="#panel3"><span class="hide-for-small-only"><?php echo Yii::t("base", "Certifications"); ?></span><i class="fa fa-cog show-for-small-only"></i></a></li>
+                            <li class="tabs-title"><a href="#panel4"><span class="hide-for-small-only"><?php echo Yii::t("base", "Projects"); ?></span><i class="fa fa-cog show-for-small-only"></i></a></li>
                         </ul>
                         <div class="tabs-content" data-tabs-content="example-tabs">
                             <div class="tabs-panel is-active" id="panel1">
