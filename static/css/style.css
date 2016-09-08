@@ -7313,14 +7313,16 @@ body > header {
 
 /* User Area */
 .user-area {
+  display: table;
   float: right;
   background: #efefef;
   border-radius: 0.25rem;
 }
 .user-area a {
-  float: left;
-  line-height: 0.9375rem;
+  display: table-cell;
+  line-height: 1.25rem;
   padding: 1.25rem;
+  vertical-align: middle;
   color: #000;
 }
 .user-area a:not(:last-child) {
@@ -11326,7 +11328,7 @@ footer {
 .associates li {
   display: table-cell;
   padding: 0.625rem;
-  max-width: 6.25rem;
+  max-width: 8.75rem;
   vertical-align: middle;
   border: 1px solid #d0d0d0;
 }
