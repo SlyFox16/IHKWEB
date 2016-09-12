@@ -73,7 +73,6 @@ class DefaultController extends BackendController
 
                 if($users) {
                     $countUsers = 0;
-
                     foreach($users as $user) {
                         if (Yii::app()->email->sendEmail($model->subject, $model->body, $user->email, $model->sender_email))
                             $countUsers++;
