@@ -672,6 +672,7 @@ class User extends ActiveRecord
 
             $sList = implode(', ', $sList);
         }
+        $sList = !empty($sList) ? "für \"$sList\" " : '';
 
         $aList = array();
         if ($connected = $this->connectedAssoc) {
@@ -681,8 +682,9 @@ class User extends ActiveRecord
 
             $aList = implode(', ', $aList);
         }
+        $aList = !empty($aList) ? "Mitglied bei - \"$aList\"" : '';
 
-        return $this->fullname.' - Crowd Expert für '.'"'.$sList.'" in "'.self::getCityCountry($this->city_id, 'city').'" Mitglied bei - "'.$aList.'"';
+        return "{$this->fullname} - Crowd Expert {$sList}in \"".self::getCityCountry($this->city_id, 'city')."\" $aList" ;
     }
 
     public function getStatusConfirm() {
