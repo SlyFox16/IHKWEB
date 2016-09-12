@@ -83,7 +83,8 @@ class DefaultController extends BackendController
                         $this->refresh();
                     } else
                         Yii::app()->user->setFlash('success', "Oops, something went wrong.");
-                }
+                } else
+                    Yii::app()->user->setFlash('success', "No user were fetched.");
             } else {
                 echo CHtml::errorSummary($model); die();
             }
