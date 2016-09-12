@@ -32,10 +32,10 @@
 
     <?php if(in_array($model->id, array(1,2,3,10,11,12,13))) { ?>
         <?php echo $form->textFieldRow($model, 'title', array('class' => 'span5', 'maxlength' => 80)); ?>
-        <?php echo $form->textFieldRow($model, 'sender_email', array('class' => 'span5', 'maxlength' => 255)); ?>
     <?php } ?>
 
-    <?php if(in_array($model->id, array(10))) { ?>
+    <?php if(in_array($model->id, array(10,11,12,13))) { ?>
+        <?php echo $form->textFieldRow($model, 'sender_email', array('class' => 'span5', 'maxlength' => 255)); ?>
         <?php echo $form->tinyMceRow($model,'value',array('rows'=>6, 'cols'=>50, 'class'=>'span5')); ?>
     <?php } else { ?>
         <?php echo $form->textAreaRow($model,'value',array('rows'=>6, 'cols'=>50, 'class'=>'span5')); ?>

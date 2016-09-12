@@ -22,15 +22,21 @@ class ActiveForm extends TbActiveForm
      */
     public function tinyMceRow($model, $attribute, $htmlOptions = array(), $button_position = 'top',$details=null)
     {
+        if(isset($htmlOptions['name']))
+            $active_id = CHtml::getIdByName($htmlOptions['name']);
+        else
+            $active_id = CHtml::activeId($model, $attribute);
 
-        $active_id = CHtml::activeId($model, $attribute);
         Yii::app()->clientScript->registerScriptFile(
             $this->controller->module->assetsUrl . "/js/tinymce/js/tinymce/tinymce.min.js",
             CClientScript::POS_END);
 
+        $directory_path = urlencode(Yii::getPathOfAlias('webroot')).'/images'; //full path to directory of files
+        $directory_url = urlencode(Yii::app()->createAbsoluteUrl("images"));
+
         Yii::app()->clientScript->registerScript('tinymce_initialize_details', 'tinymce.init({
                 toolbar: "link | image",
-                file_browser_callback: RoxyFileBrowser,
+                file_browser_callback: elFinderBrowser,
                 mode : "specific_textareas",
                 editor_selector : "mceEditor",
                 plugins: [
@@ -43,6 +49,10 @@ class ActiveForm extends TbActiveForm
                 toolbar2: "cut copy paste | searchreplace | bullist numlist | outdent indent blockquote | undo redo | link unlink anchor image media code | insertdatetime preview | forecolor backcolor",
                 toolbar3: "table | hr removeformat | subscript superscript | charmap emoticons | print fullscreen | ltr rtl | spellchecker | visualchars visualblocks nonbreaking template pagebreak restoredraft",
 
+                relative_urls : false,
+                remove_script_host : false,
+                convert_urls : true,
+
                 width:"100%",
                 height:"400px",
                 language : "en",
@@ -50,11 +60,12 @@ class ActiveForm extends TbActiveForm
                 template_templates:[
                     {
                         title:"Product Details",
-                        src: "'.$this->controller->module->assetsUrl.'/js/tiny_mce/plugins/template/product_details.htm",
+                        src: "'.$this->controller->module->assetsUrl.'/js/tinymce/js/tinymce/plugins/template/product_details.htm",
                         description:"Product Details"
                     }
                 ],
 
+                forced_root_block : "",
                 extended_valid_elements : "iframe[src|title|width|height|allowfullscreen|frameborder]",
 
             });
@@ -83,9 +94,26 @@ class ActiveForm extends TbActiveForm
                   }, {     window: win,     input: field_name    });
                   return false;
                 }
-        ');
 
-        return $this->render("tmc", array('model'=>$model,'attribute'=>$attribute,'htmlOptions'=>$htmlOptions,'active_id'=>$active_id,'button_position'=>$button_position), true);
+
+                function elFinderBrowser (field_name, url, type, win) {
+
+                  tinymce.activeEditor.windowManager.open({
+                    file: "'.$this->controller->module->assetsUrl.'/js/elfinder-2.0/elfinder.php?directory_path='.$directory_path.'&directory_url='.$directory_url.'",// use an absolute path!
+                    title: "elFinder 2.0",
+                    width: 900,
+                    height: 450,
+                    resizable: "yes"
+                  }, {
+                    setUrl: function (url) {
+                      win.document.getElementById(field_name).value = url;
+                    }
+                  });
+                  return false;
+                }
+            ');
+
+        return $this->render("tmc", array('model' => $model, 'attribute' => $attribute, 'htmlOptions' => $htmlOptions, 'active_id' => $active_id, 'button_position' => $button_position), true);
     }
 
     public function tinyMceRowMaxsize($model, $attribute, $htmlOptions = array(), $button_position = 'top',$details=null)
