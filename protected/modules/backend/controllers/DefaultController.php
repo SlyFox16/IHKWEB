@@ -72,13 +72,14 @@ class DefaultController extends BackendController
                 $users = User::model()->findAll('id = 1 OR id = 9');
 
                 if($users) {
-                    $countUsers = count($users);
+                    $countUsers = 0;
 
-                    $usersEmail = array();
-                    foreach($users as $user)
-                        $usersEmail[] = $user->email;
+                    foreach($users as $user) {
+                        if (Yii::app()->email->sendEmail($model->subject, $model->body, $user->email, $model->sender_email))
+                            $countUsers++;
+                    }
 
-                    if (Yii::app()->email->sendEmail($model->subject, $model->body, $usersEmail, $model->sender_email)) {
+                    if ($countUsers > 0) {
                         Yii::app()->user->setFlash('success', "All $countUsers emails were successfully sent.");
                         $this->refresh();
                     } else
