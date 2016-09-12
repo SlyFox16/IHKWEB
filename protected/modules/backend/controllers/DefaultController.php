@@ -69,7 +69,7 @@ class DefaultController extends BackendController
         if (isset($_POST['MailAll'])) {
             $model->attributes = $_POST['MailAll'];
             if ($model->validate()) {
-                $users = User::model()->findAll('id = 1 && id = 9');
+                $users = User::model()->findAll('id = 1 OR id = 9');
                 print_r($users); die();
                 if($users) {
                     $countUsers = count($users);
