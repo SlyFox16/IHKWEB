@@ -53,7 +53,7 @@ $(document).ready(function(){
         console.log(output);
     }
 
-    $('#cabinet-form a').on('click', function(){
+    $('#cabinet-form .button-group a').on('click', function(){
         $(this).find("i").toggleClass('fa-spin');
     });
 

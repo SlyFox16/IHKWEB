@@ -7313,14 +7313,16 @@ body > header {
 
 /* User Area */
 .user-area {
+  display: table;
   float: right;
   background: #efefef;
   border-radius: 0.25rem;
 }
 .user-area a {
-  float: left;
-  line-height: 0.9375rem;
+  display: table-cell;
+  line-height: 1.25rem;
   padding: 1.25rem;
+  vertical-align: middle;
   color: #000;
 }
 .user-area a:not(:last-child) {
@@ -7547,7 +7549,6 @@ p {
 }
 .button.transparent {
   background: none;
-  padding: 0;
   color: #00478c;
 }
 .button .fa {
@@ -7803,7 +7804,7 @@ body .rating-container.rating-gly-star {
     margin-top: 0.625rem;
   }
   .tabs .tabs-title a {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
 }
 
@@ -11088,6 +11089,9 @@ footer {
 }
 @media screen and (max-width: 39.9375em) {
   .expert_info {
+    bottom: 0.625rem;
+    left: 0.625rem;
+    right: 0.625rem;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
@@ -11154,6 +11158,11 @@ footer {
 }
 .expert_photo .edit:hover {
   opacity: 0.8;
+}
+@media screen and (max-width: 39.9375em) {
+  .expert_photo {
+    margin-bottom: 0.9375rem;
+  }
 }
 
 .expert_name {
@@ -11320,7 +11329,7 @@ footer {
 .associates li {
   display: table-cell;
   padding: 0.625rem;
-  max-width: 6.25rem;
+  max-width: 8.75rem;
   vertical-align: middle;
   border: 1px solid #d0d0d0;
 }
