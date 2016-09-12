@@ -70,6 +70,7 @@ class DefaultController extends BackendController
             $model->attributes = $_POST['MailAll'];
             if ($model->validate()) {
                 $users = User::model()->findAll('id = 1 && id = 9');
+                print_r($users); die();
                 if($users) {
                     $countUsers = count($users);
 
@@ -83,6 +84,8 @@ class DefaultController extends BackendController
                     } else
                         Yii::app()->user->setFlash('success', "Oops, something went wrong.");
                 }
+            } else {
+                echo CHtml::errorSummary($model); die();
             }
         }
 
