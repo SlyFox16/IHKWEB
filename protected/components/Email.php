@@ -55,7 +55,6 @@ class Email extends CApplicationComponent
         $mailer->From = Yii::app()->params['no-replyEmail'];
         $mailer->AddReplyTo($senderEmail);
 
-        print_r($to); die();
         foreach($to as $toEmail)
             $mailer->AddAddress($toEmail);
 
