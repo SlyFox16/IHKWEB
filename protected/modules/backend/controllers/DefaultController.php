@@ -69,15 +69,16 @@ class DefaultController extends BackendController
         if (isset($_POST['MailAll'])) {
             $model->attributes = $_POST['MailAll'];
             if ($model->validate()) {
-                $users = User::model()->findAll('expert_confirm = 1');
+                $users = User::model()->findAll('id = 1 && id = 9');
                 if($users) {
                     $countUsers = count($users);
+
                     $usersEmail = array();
                     foreach($users as $user)
                         $usersEmail[] = $user->email;
 
                     if ($this->sendEmail($model->subject, $model->body, $usersEmail, $model->senderEmail)) {
-                        Yii::app()->user->setFlash('success', "All mails were successfully sent.");
+                        Yii::app()->user->setFlash('success', "All $countUsers emails were successfully sent.");
                         $this->refresh();
                     } else
                         Yii::app()->user->setFlash('success', "Oops, something went wrong.");
