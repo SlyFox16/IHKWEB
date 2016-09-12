@@ -663,6 +663,28 @@ class User extends ActiveRecord
         return $level;
     }
 
+    public function getPageTitle() {
+        $sList = array();
+        if ($specList = $this->speciality) {
+            foreach($specList as $speciality) {
+                $sList[] = $speciality->speciality;
+            }
+
+            $sList = implode(', ', $sList);
+        }
+
+        $aList = array();
+        if ($connected = $this->connectedAssoc) {
+            foreach($connected as $conUser) {
+                $aList[] = $conUser->name;
+            }
+
+            $aList = implode(', ', $aList);
+        }
+
+        return $this->fullname.' - Crowd Expert für '.'"'.$sList.'" in "'.self::getCityCountry($this->city_id, 'city').'" Mitglied bei - "'.$aList.'"';
+    }
+
     public function getStatusConfirm() {
         $stat = array(0 => 'Unconfirmed', 1 => 'Confirmed');
         return $stat[$this->expert_confirm];

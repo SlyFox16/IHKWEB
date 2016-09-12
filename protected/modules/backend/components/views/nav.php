@@ -5,8 +5,7 @@
                 <?php echo CHtml::image($this->controller->module->assetsUrl.'/img/Logo.png', 'Logo', array('width' => '70px')); ?>
             </a>
             <ul class="nav user_menu pull-right">
-
-                <?php if($isSeen || $newLevel || $newCertificate || $newProjects) { ?>
+                <?php if($isSeen || $newCertificate || $newProjects || $unconfirmedRating) { ?>
                     <li class="hidden-phone hidden-tablet">
                         <div class="nb_boxes clearfix">
                             <?php if($isSeen) { ?>

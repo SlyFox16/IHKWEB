@@ -59,4 +59,32 @@ class DefaultController extends BackendController
         $this->redirect(Yii::app()->getModule('backend')->user->loginUrl);
     }
 
+    public function actionMailAll(){
+        ini_set('max_execution_time', 0);
+        ini_set('memory_limit', '64M');
+
+        $model = new MailAll();
+
+        // if it is ajax validation request
+        if (isset($_POST['MailAll'])) {
+            $model->attributes = $_POST['MailAll'];
+            if ($model->validate()) {
+                $users = User::model()->findAll('expert_confirm = 1');
+                if($users) {
+                    $countUsers = count($users);
+                    $usersEmail = array();
+                    foreach($users as $user)
+                        $usersEmail[] = $user->email;
+
+                    if ($this->sendEmail($model->subject, $model->body, $usersEmail, $model->senderEmail)) {
+                        Yii::app()->user->setFlash('success', "All mails were successfully sent.");
+                        $this->refresh();
+                    } else
+                        Yii::app()->user->setFlash('success', "Oops, something went wrong.");
+                }
+            }
+        }
+
+        $this->render('mailAll', array('model' => $model));
+    }
 }

@@ -48,10 +48,10 @@ class Email extends CApplicationComponent
 
     public function sendEmail($subject, $body, $to, $senderEmail = null)
     {
-        $to = explode(',', $to);
+        if (!is_array($to)) $to = explode(',', $to);
         $mailer = Yii::createComponent('application.extensions.mailer.EMailer');
-        $mailer->From = $senderEmail;
-        $mailer->AddReplyTo(Yii::app()->params['no-replyEmail']);
+        $mailer->From = Yii::app()->params['no-replyEmail'];
+        $mailer->AddReplyTo($senderEmail);
 
         foreach($to as $toEmail)
             $mailer->AddAddress($toEmail);
