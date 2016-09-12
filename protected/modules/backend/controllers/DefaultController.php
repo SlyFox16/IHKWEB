@@ -78,6 +78,7 @@ class DefaultController extends BackendController
                     foreach($users as $user)
                         $usersEmail[] = $user->email;
 
+                    print_r($usersEmail); die();
                     if (Yii::app()->email->sendEmail($model->subject, $model->body, $usersEmail, $model->sender_email)) {
                         Yii::app()->user->setFlash('success', "All $countUsers emails were successfully sent.");
                         $this->refresh();
