@@ -69,9 +69,9 @@ class DefaultController extends BackendController
         if (isset($_POST['MailAll'])) {
             $model->attributes = $_POST['MailAll'];
             if ($model->validate()) {
-                $users = User::model()->findAll('id = 1 OR id = 9');
+                $users = User::model()->findAll('expert_confirm = 1');
 
-                if($users) {
+                if ($users) {
                     $countUsers = 0;
                     foreach($users as $user) {
                         if (Yii::app()->email->sendEmail($model->subject, $model->body, $user->email, $model->sender_email))
