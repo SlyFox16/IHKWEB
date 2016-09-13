@@ -76,7 +76,7 @@ class User extends ActiveRecord
             array('username, address, country_id, city_id', 'required', 'on' => 'userupdate'),
             array('password, password_repeat', 'required', 'on' => 'updatepassword'),
             array('username, name, surname, address, position','filter','filter'=>'strip_tags'),
-            array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => 'Wrong format!'),
+            array('username', 'match', 'pattern' => '/^[a-zA-Z0-9\._-]+$/', 'message' => Yii::t("base", 'Wrong format!')),
             array('description','filter','filter'=>array($this->htmlpurifier,'purify')),
             array('email', 'noEmail', 'on' => 'changepassword'),
             array('is_active, is_staff, is_seeker, is_seen, level, new_level, expert_confirm', 'numerical', 'integerOnly' => true),

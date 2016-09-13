@@ -145,6 +145,7 @@ return array(
     'Why and WHERE to get CERTIFIED' => 'Zertifizierter Experte werden',
     'Work description' => 'Detailbeschreibung des Projekts / Auftrages',
     'Wrong phone format' => 'Falsches Format für die Telefonnummer - bitte wiederholen',
+    'Wrong format' => '',
     'Xing Login' => 'Einloggen über Ihren Xing Zugang',
     'You are already confirmed!' => 'Sie sind bereits angemeldet und haben Ihr Konto bestätigt',
     'You have successfully changed your password!' => '',
