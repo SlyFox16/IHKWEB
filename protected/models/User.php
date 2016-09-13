@@ -639,7 +639,7 @@ class User extends ActiveRecord
         $return = '';
         if ($flag == 'city') {
             $city = Cities::model()->findByPk($id);
-            $return = $city ? $city->city_name_ASCII : '';
+            $return = $city ? $city->city_name_UTF8 : '';
         } else {
             $country = Countries::model()->find('iso = :country_id', array(':country_id' => $id));
             $return = $country ? $country->country_name : '';
@@ -682,9 +682,9 @@ class User extends ActiveRecord
 
             $aList = implode(', ', $aList);
         }
-        $aList = !empty($aList) ? "Mitglied bei - \"$aList\"" : '';
+        $aList = !empty($aList) ? "Mitglied bei - $aList" : '';
 
-        return "{$this->fullname} - Crowd Expert {$sList}in \"".self::getCityCountry($this->city_id, 'city')."\" $aList" ;
+        return "{$this->fullname} - Crowd Expert {$sList}in ".self::getCityCountry($this->city_id, 'city')." $aList" ;
     }
 
     public function getStatusConfirm() {
