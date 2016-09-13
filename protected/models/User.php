@@ -672,7 +672,7 @@ class User extends ActiveRecord
 
             $sList = implode(', ', $sList);
         }
-        $sList = !empty($sList) ? "für \"$sList\" " : '';
+        $sList = !empty($sList) ? "für $sList " : '';
 
         $aList = array();
         if ($connected = $this->connectedAssoc) {
