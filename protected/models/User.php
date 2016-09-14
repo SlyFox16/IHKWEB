@@ -579,7 +579,7 @@ class User extends ActiveRecord
         foreach ($queryTerms as $k => $req) {
             $tCriteria = new CDbCriteria();
 
-            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR speciality.speciality LIKE :$k";
+            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR cities0.city_name_UTF8 LIKE :$k OR speciality.speciality LIKE :$k";
             $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
 
             $crt->mergeWith($tCriteria);
@@ -622,13 +622,13 @@ class User extends ActiveRecord
 
     public function getCityList()
     {
-        return CHtml::listData(Cities::model()->findAll(), 'geonameid', 'city_name_ASCII');
+        return CHtml::listData(Cities::model()->findAll(), 'geonameid', 'city_name_UTF8');
     }
 
     public function getSelectedCity() {
         $model = Cities::model()->find(array('condition' => 'geonameid = :id', 'params' => array(':id' => $this->city_id)));
         if($model) {
-            $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_ASCII);
+            $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_UTF8);
             return json_encode($ret_arr);
         } else {
             return json_encode(array());
