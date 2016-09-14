@@ -109,21 +109,17 @@ class UserController extends Frontend
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            if ($model->validate()) {
 
-                // Generating Password
-                $salt = $model->generateSalt();
-                $password = $model->hashPassword($model->password, $salt);
+            // Generating Password
+            $salt = $model->generateSalt();
+            $password = $model->hashPassword($model->password, $salt);
 
-                if($model->save()){
-                    $model->password = $password;
-                    $model->salt = $salt;
-                    if($model->update()) {
-                        Yii::app()->email->restorePassEmail($model);
-                        Yii::app()->user->setFlash('project_success', Yii::t("base", 'You have successfully changed your password!'));
-                        $this->redirect('/user/cabinet');
-                    }
-                }
+            $model->password = $password;
+            $model->salt = $salt;
+            if($model->update()) {
+                Yii::app()->email->restorePassEmail($model);
+                Yii::app()->user->setFlash('project_success', Yii::t("base", 'You have successfully changed your password!'));
+                $this->redirect('/user/cabinet');
             }
         }
         else
