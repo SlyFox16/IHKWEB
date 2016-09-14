@@ -579,7 +579,7 @@ class User extends ActiveRecord
         foreach ($queryTerms as $k => $req) {
             $tCriteria = new CDbCriteria();
 
-            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR speciality.speciality LIKE :$k";
+            $tCriteria->condition = "name LIKE :$k OR surname LIKE :$k OR cities0.city_name_ASCII LIKE :$k OR cities0.city_name_UTF8 LIKE :$k OR speciality.speciality LIKE :$k";
             $tCriteria->params[":$k"] = '%'.strtr($req, array('%'=>'\%', '_'=>'\_', '\\'=>'\\\\', '(' => '', ')' => '')).'%';
 
             $crt->mergeWith($tCriteria);
