@@ -628,7 +628,7 @@ class User extends ActiveRecord
     public function getSelectedCity() {
         $model = Cities::model()->find(array('condition' => 'geonameid = :id', 'params' => array(':id' => $this->city_id)));
         if($model) {
-            $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_ASCII);
+            $ret_arr = array('id' => $model->geonameid, 'value' => $model->city_name_UTF8);
             return json_encode($ret_arr);
         } else {
             return json_encode(array());

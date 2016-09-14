@@ -436,7 +436,7 @@ class UserController extends Frontend
         foreach ($model as $city) {
             $data[] = [
                 'id' => $city->geonameid,
-                'name' => $city->city_name_ASCII,
+                'name' => $city->city_name_UTF8,
             ];
         }
 
