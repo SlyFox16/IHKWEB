@@ -222,19 +222,15 @@ class UserController extends BackendController
 
         if (isset($_POST['User'])) {
             $model->attributes = $_POST['User'];
-            if ($model->validate()) {
 
-                // Generating Password
-                $salt = $model->generateSalt();
-                $password = $model->hashPassword($model->password, $salt);
+            // Generating Password
+            $salt = $model->generateSalt();
+            $password = $model->hashPassword($model->password, $salt);
 
-                if($model->save()){
-                    $model->password = $password;
-                    $model->salt = $salt;
-                    $model->update();
-                    $this->redirect(array('view', 'id' => $model->id));
-                }
-            }
+            $model->password = $password;
+            $model->salt = $salt;
+            $model->update();
+                $this->redirect(array('view', 'id' => $model->id));
         }
 
         $this->render("update_password",array("model"=>$model));
