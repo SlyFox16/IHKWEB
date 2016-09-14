@@ -208,7 +208,7 @@ return CMap::mergeArray(
             'noImage' => 'static/images/profile-no-photo.png',
             'no-replyEmail' => 'crowdexperts@' . $_SERVER['SERVER_NAME'],
             'adminEmail' => 'jenya@idol-it.com',
-            'defaultPageSize' => 4,
+            'defaultPageSize' => 10,
             'albumPageSize' => 18,
         ),
     ),
