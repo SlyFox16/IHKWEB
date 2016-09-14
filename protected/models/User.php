@@ -622,7 +622,7 @@ class User extends ActiveRecord
 
     public function getCityList()
     {
-        return CHtml::listData(Cities::model()->findAll(), 'geonameid', 'city_name_ASCII');
+        return CHtml::listData(Cities::model()->findAll(), 'geonameid', 'city_name_UTF8');
     }
 
     public function getSelectedCity() {
