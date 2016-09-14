@@ -12,6 +12,7 @@
     <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
         <?php $form = $this->beginWidget('CActiveForm', array(
             'id'=>'search-form',
+            'method' => 'get',
             'action' => array('/search/search'),
             'enableAjaxValidation'=>true,
             'clientOptions' => array(
@@ -25,8 +26,7 @@
 
         <li class="search">
             <?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-                'model'=>$model,
-                'attribute'=>'searchfield',
+                'name'=>'searchfield',
                 'source'=>"js:function(request, response) {
                     $.getJSON('".Yii::app()->createUrl('site/suggest')."', {
                     term: extractLast(request.term)
