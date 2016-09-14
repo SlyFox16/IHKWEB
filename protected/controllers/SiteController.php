@@ -355,8 +355,8 @@ class SiteController extends Frontend
             foreach ($models as $m) {
                 if(isset($m->cities0->city_name_ASCII))
                     $result[] = array(
-                        'label' => $m->name." ".$m->surname." (".$m->cities0->city_name_ASCII.")",
-                        'value' => $m->name." ".$m->surname." (".$m->cities0->city_name_ASCII.")",
+                        'label' => $m->name." ".$m->surname." (".$m->cities0->city_name_UTF8.")",
+                        'value' => $m->name." ".$m->surname." (".$m->cities0->city_name_UTF8.")",
                         'id' => $m->id,
                     );
                 else
