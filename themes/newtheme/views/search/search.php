@@ -32,6 +32,8 @@
                 <?php $this->widget('zii.widgets.CListView', array(
                     'dataProvider' => $dataSearch,
                     'itemView' => '_user', // refers to the partial view named '_post'
+                    'afterAjaxUpdate' => 'function(){
+$("html, body").animate({scrollTop: $(".secondary-header").position().top }, 100);}',
                     'summaryText' => false,
                     'pager'=> "LinkPager",
                     'itemsTagName' => 'ul',

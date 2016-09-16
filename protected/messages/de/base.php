@@ -93,6 +93,7 @@ return array(
     'Name' => 'Nachname',
     'Network' => 'Netzwerk / Zugehörigkeit',
     'Notification' => 'Hinweis',
+    'No expert was found!' => '',
     'On your mailbox has been sent a letter with a link to the password change page.' => 'Bitte prüfen Sie Ihre E-Mail Inbox. Sie haben eine E-Mail zum Ändern Ihres Passworts erhalten.',
     'Our work platforms' => 'Sich aktiv in den DCV einbringen',
     'Page does not exist' => 'Leider existiert diese Seite nicht. Bitte gehen Sie mit Ihrem Browser eine Seite zurück',
