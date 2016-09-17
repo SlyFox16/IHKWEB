@@ -184,14 +184,12 @@ class SiteController extends Frontend
 
             try {
                 if ($eauth->authenticate()) {
-                    //var_dump($eauth->getIsAuthenticated(), $eauth->getAttributes());
                     $identity = $expert ? new ServiceUserIdentity() : new ServiceSeekerIdentity();
 
                     // successful authentication
                     if ($identity->authenticate($eauth)) {
                         $duration = 3600*24*30;
                         Yii::app()->user->login($identity, $duration);
-                        //var_dump($identity->id, $identity->name, Yii::app()->user->id);exit;
 
                         // special redirect with closing popup window
                         $eauth->redirect();
