@@ -120,6 +120,8 @@ return array(
     'Second Name' => 'Nachname',
     'Seeker register' => '',
     'Select association' => 'Wählen Verband',
+    'Select country' => 'Land auswähen',
+    'Select city' => 'Stadt auswählen',
     'Select user' => 'Wählen Benutzer',
     'Send Feedback' => 'Feedback senden',
     'Send info' => 'Informationen senden',

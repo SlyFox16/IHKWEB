@@ -88,7 +88,7 @@
                                     'data' => User::model()->assocList,
                                     'asDropDownList' => true,
                                     'options' => [
-                                        'placeholder' => 'Select country',
+                                        'placeholder' => Yii::t("base", 'Select country'),
                                         'width' => '100%',
                                         'allowClear' => true,
                                     ],
@@ -111,7 +111,7 @@
                                     'asDropDownList' => false,
                                     'options' => [
                                         'minimumInputLength' => 2,
-                                        'placeholder' => 'Select city',
+                                        'placeholder' => Yii::t("base", 'Select city'),
                                         'width' => '100%',
                                         'allowClear' => true,
                                         'ajax' => [

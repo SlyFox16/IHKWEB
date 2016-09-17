@@ -593,10 +593,10 @@ class User extends ActiveRecord
     public function getAssocList()
     {
         $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
-        $list = CHtml::listData($models, 'iso', 'country_name');
-        $list = $this->moveToTop($list, 'Switzerland');
-        $list = $this->moveToTop($list, 'Austria');
-        $list = $this->moveToTop($list, 'Germany');
+        $list = CHtml::listData($models, 'iso', 'country_de');
+        $list = $this->moveToTop($list, 'CH');
+        $list = $this->moveToTop($list, 'AT');
+        $list = $this->moveToTop($list, 'DE');
 
         return $list;
     }
@@ -604,7 +604,7 @@ class User extends ActiveRecord
     private function moveToTop($array, $key) {
         $insert = '';
         foreach ($array as $index => $value) {
-            if($value != $key)
+            if($index != $key)
                 $newArray[$index] = $value;
             else
                 $insert[$index] = $value;
