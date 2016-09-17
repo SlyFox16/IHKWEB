@@ -348,7 +348,7 @@ class SiteController extends Frontend
             throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
-    public function actionSuggest(){
+    public function actionSuggest() {
         if (Yii::app()->request->isAjaxRequest && isset($_GET['term'])) {
             $models = User::model()->suggestTag($_GET['term']);
             $result = array();
