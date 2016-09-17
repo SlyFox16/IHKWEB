@@ -77,6 +77,27 @@
                         </label>
                         <?php echo $form->error($register_form, 'userAssociation'); ?>
 
+                        <label>
+                            <span><?php echo $register_form->getAttributeLabel('speciality'); ?></span>
+                            <?php $this->widget(
+                                'booster.widgets.TbSelect2',
+                                [
+                                    'model'=>$register_form,
+                                    'attribute'=>"speciality",
+                                    'data' => $register_form->specialityList,
+                                    'asDropDownList' => true,
+                                    'options' => [
+                                        'placeholder' => 'Select speciality',
+                                        'width' => '100%',
+                                        'allowClear' => true,
+                                    ],
+                                    'htmlOptions' => [
+                                        'multiple' => true,
+                                        'class' => 'form-control'
+                                    ],
+                                ]
+                            );?>
+                        </label>
 
                         <label>
                             <span><?php echo $register_form->getAttributeLabel('country_id'); ?></span>
