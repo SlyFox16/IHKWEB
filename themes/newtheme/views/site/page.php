@@ -169,6 +169,25 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="medium-12 columns">
+                        <ul class="accordion" data-accordion data-allow-all-closed="true">
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Impressum</a>
+                                <div class="accordion-content" data-tab-content>
+                                    <p>
+                                        Das Dienstangebot, die Datenbankstruktur und Inhalte, die HTML Programmierung, das grafische Design und Umsetzungskonzept, inklusive sämtlicher Nutzungsrechte für Crowd Experts liegen bei
+                                    </p>
+                                    <p>
+                                        Crowd Mentor Network <br>
+                                        Dr. Michael Gebert <br>
+                                        Sollnerstrasse 21 <br>
+                                        82049 Pullach <br>
+                                        <a href="http://www.crowdmentor.de" title="Crowd Mentor">www.crowdmentor.de</a>
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             <?php } else { ?>
                 <?php echo $model->content; ?>
