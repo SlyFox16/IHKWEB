@@ -642,7 +642,7 @@ class User extends ActiveRecord
             $return = $city ? $city->city_name_UTF8 : '';
         } else {
             $country = Countries::model()->find('iso = :country_id', array(':country_id' => $id));
-            $return = $country ? $country->country_name : '';
+            $return = $country ? $country->country_de : '';
         }
 
         return $return;
