@@ -175,7 +175,7 @@
                                 <a href="#" class="accordion-title">Dienstangebot , Datenbank und Nutzungsrecht</a>
                                 <div class="accordion-content" data-tab-content>
                                     <p>
-                                        Anbieter i.S.d. § 5 Telemediengesetz (TMG), sowie Inhaber und Eigentümer der Domain <a href="http://crowdexerts.de">crowdexerts.de</a>  ist der Deutscher Crowdsourcing Verband e.V. 
+                                        Anbieter i.S.d. § 5 Telemediengesetz (TMG), sowie Inhaber und Eigentümer der Domain <a href="http://crowdexperts.de">crowdexperts.de</a>  ist der Deutscher Crowdsourcing Verband e.V. 
                                     </p>
                                     <p>
                                         Inhaber des technischen Dienstangebotes, der Datenbank, Datenbankstruktur und deren Inhalte, die HTML- und PHP Programmierung, das grafische Konzept,  Design und Umsetzungskonzept, sowie sämtliche Nutzungsrechte für
