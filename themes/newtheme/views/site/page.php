@@ -172,10 +172,14 @@
                     <div class="medium-12 columns">
                         <ul class="accordion" data-accordion data-allow-all-closed="true">
                             <li class="accordion-item" data-accordion-item>
-                                <a href="#" class="accordion-title">Impressum</a>
+                                <a href="#" class="accordion-title">Dienstangebot , Datenbank und Nutzungsrecht</a>
                                 <div class="accordion-content" data-tab-content>
                                     <p>
-                                        Das Dienstangebot, die Datenbankstruktur und Inhalte, die HTML Programmierung, das grafische Design und Umsetzungskonzept, inklusive sämtlicher Nutzungsrechte für Crowd Experts liegen bei
+                                        Anbieter i.S.d. § 5 Telemediengesetz (TMG), sowie Inhaber und Eigentümer der Domain <a href="http://crowdexerts.de">crowdexerts.de</a>  ist der Deutscher Crowdsourcing Verband e.V. 
+                                    </p>
+                                    <p>
+                                        Inhaber des technischen Dienstangebotes, der Datenbank, Datenbankstruktur und deren Inhalte, die HTML- und PHP Programmierung, das grafische Konzept,  Design und Umsetzungskonzept, sowie sämtliche Nutzungsrechte für
+                                        die Datenbank liegen bei:
                                     </p>
                                     <p>
                                         Crowd Mentor Network <br>
@@ -183,6 +187,11 @@
                                         Sollnerstrasse 21 <br>
                                         82049 Pullach <br>
                                         <a href="http://www.crowdmentor.de" title="Crowd Mentor">www.crowdmentor.de</a>
+                                    </p>
+                                    <p>
+                                        Das technische Dienstangebot der Datenbank von Experten zu CrowdSourcing, CrowdFunding und CrowdInnovation wird dem Deutschen CrowdSourcing Verband e.V. kostenfrei auf unbestimmte Zeit vom Inhaber des Dienstangebots zu Verfügung gestellt. 
+                                        Crowd Mentor Network räumt dem Deutschen CrowdSourcing Verband e.V. das ausschließliche, zeitlich und räumlich unbeschränkte Recht ein, das entwickelte Design und die Datenbank in allen denkbaren Nutzungsarten zu nutzen. 
+                                        Der Deutschen CrowdSourcing Verband e.V.  ist berechtigt, einzelne Elemente wie Grafiken und Schriftzüge der Oberflächengestaltung des Designs gesondert für seine Werbung zu verwerten und das Design zu bearbeiten und auf seine aktuellen geschäftlichen Zwecke anzupassen. 
                                     </p>
                                 </div>
                             </li>
