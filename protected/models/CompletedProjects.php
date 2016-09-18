@@ -70,6 +70,7 @@ class CompletedProjects extends ActiveRecord
 			'id' => 'ID',
 			'user_id' => Yii::t("base", 'User'),
 			'name' => Yii::t("base", 'Name'),
+            'image' => Yii::t("base", 'Image'),
 			'description' => Yii::t("base", 'Description'),
 			'date' => Yii::t("base", 'Date'),
 			'link' => Yii::t("base", 'Link'),

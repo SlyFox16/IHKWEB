@@ -457,7 +457,7 @@ class User extends ActiveRecord
     public function getUDescription()
     {
         if(empty($this->description))
-            return 'no description';
+            return Yii::t("base", 'no description');
 
         return nl2br($this->description);
     }

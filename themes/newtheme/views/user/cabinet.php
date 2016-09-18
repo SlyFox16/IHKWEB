@@ -249,7 +249,7 @@
                                                     'data' => $certificate->allCertificates,
                                                     'asDropDownList' => true,
                                                     'options' => [
-                                                        'placeholder' => 'Select product',
+                                                        'placeholder' => Yii::t("base", 'Select product'),
                                                         'width' => '100%',
                                                         'allowClear' => true,
                                                     ],

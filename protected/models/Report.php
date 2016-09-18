@@ -60,7 +60,7 @@ class Report extends ActiveRecord
 			'id' => 'ID',
 			'initiator' => 'Initiator',
 			'receiver' => 'Receiver',
-			'text' => 'Reason',
+			'text' => Yii::t("base", 'Reason'),
 			'date' => 'Date',
 		);
 	}

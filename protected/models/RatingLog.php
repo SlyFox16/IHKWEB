@@ -72,6 +72,7 @@ class RatingLog extends ActiveRecord
 			'id' => 'ID',
 			'who_vote' => 'Who Voted',
 			'who_received' => 'Who Received',
+            'description' => Yii::t("base", 'Description'),
 			'num' => 'Points',
 		);
 	}
