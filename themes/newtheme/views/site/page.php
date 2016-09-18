@@ -36,7 +36,7 @@
                         <p>
                             Vorstandsvorsitzender: Dr. Michael Gebert
                             Stellv. Vorstandsvorsitzender: Dennis Schenkel
-                            Vorstände: Ines Zimzinski, Thomas Andersen, Christoph Sieciechowicz
+                            Vorstände: Ines Zimzinski,<br> Thomas Andersen,<br> Christoph Sieciechowicz
                         </p>
                     </div>
                     <div class="medium-4 columns">
