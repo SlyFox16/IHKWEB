@@ -126,6 +126,7 @@ return array(
     'Select country' => 'Land auswähen',
     'Select city' => 'Stadt auswählen',
     'Select product' => '',
+    'Select speciality' => '',
     'Select user' => 'Wählen Benutzer',
     'Send Feedback' => 'Feedback senden',
     'Send info' => 'Informationen senden',

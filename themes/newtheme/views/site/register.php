@@ -87,7 +87,7 @@
                                     'data' => $register_form->specialityList,
                                     'asDropDownList' => true,
                                     'options' => [
-                                        'placeholder' => 'Select speciality',
+                                        'placeholder' => Yii::t("base", 'Select speciality'),
                                         'width' => '100%',
                                         'allowClear' => true,
                                     ],

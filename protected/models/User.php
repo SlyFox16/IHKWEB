@@ -684,7 +684,7 @@ class User extends ActiveRecord
         }
         $aList = !empty($aList) ? "Mitglied bei - $aList" : '';
 
-        return "{$this->fullname} - Crowd Expert {$sList}in ".self::getCityCountry($this->city_id, 'city')." $aList" ;
+        return "{$this->title} {$this->fullname} - Crowd Expert {$sList}in ".self::getCityCountry($this->city_id, 'city')." $aList" ;
     }
 
     public function getStatusConfirm() {
