@@ -39,7 +39,7 @@ class YHelper
         if (preg_match('~^(http|https)://~', $source_image))
             return $source_image;
 
-        if (!empty($source_image) && file_exists($source_image) && exif_imagetype($source_image)) {
+        if (!empty($source_image) && file_exists($source_image)) {
             if (empty($width) && empty($height))
                 $image = '/' . $source_image;
             elseif (!empty($width) && empty($height))
