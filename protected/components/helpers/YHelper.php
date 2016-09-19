@@ -39,7 +39,12 @@ class YHelper
         if (preg_match('~^(http|https)://~', $source_image))
             return $source_image;
 
-        if (!empty($source_image) && file_exists($source_image) && exif_imagetype($source_image)) {
+        $readable = true;
+
+        $image_info = getimagesize($source_image);
+        if (!is_array($image_info) OR count($image_info) < 3) $readable = false;
+
+        if (!empty($source_image) && file_exists($source_image) && $readable) {
             if (empty($width) && empty($height))
                 $image = '/' . $source_image;
             elseif (!empty($width) && empty($height))
