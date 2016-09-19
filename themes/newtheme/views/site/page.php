@@ -36,7 +36,7 @@
                         <p>
                             Vorstandsvorsitzender: Dr. Michael Gebert
                             Stellv. Vorstandsvorsitzender: Dennis Schenkel
-                            Vorstände: Ines Zimzinski, Thomas Andersen, Christoph Sieciechowicz
+                            Vorstände: Ines Zimzinski,<br> Thomas Andersen,<br> Christoph Sieciechowicz
                         </p>
                     </div>
                     <div class="medium-4 columns">
@@ -165,6 +165,34 @@
                                 <a href="#" class="accordion-title">Rechtswirksamkeit dieses Haftungsausschlusses</a>
                                 <div class="accordion-content" data-tab-content>
                                     <p>Dieser Haftungsausschluss ist als Teil des Internetangebotes zu betrachten, von dem aus auf diese Seite verwiesen wurde. Sofern Teile oder einzelne Formulierungen dieses Textes der geltenden Rechtslage nicht, nicht mehr oder nicht vollständig entsprechen sollten, bleiben die übrigen Teile des Dokumentes in ihrem Inhalt und ihrer Gültigkeit davon unberührt.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="medium-12 columns">
+                        <ul class="accordion" data-accordion data-allow-all-closed="true">
+                            <li class="accordion-item" data-accordion-item>
+                                <a href="#" class="accordion-title">Dienstangebot , Datenbank und Nutzungsrecht</a>
+                                <div class="accordion-content" data-tab-content>
+                                    <p>
+                                        Anbieter i.S.d. § 5 Telemediengesetz (TMG), sowie Inhaber und Eigentümer der Domain <a href="http://crowdexperts.de">crowdexperts.de</a>  ist der Deutscher Crowdsourcing Verband e.V. 
+                                    </p>
+                                    <p>
+                                        Inhaber des technischen Dienstangebotes, der Datenbank, Datenbankstruktur und deren Inhalte, die HTML- und PHP Programmierung, das grafische Konzept,  Design und Umsetzungskonzept, sowie sämtliche Nutzungsrechte für
+                                        die Datenbank liegen bei:
+                                    </p>
+                                    <p>
+                                        Crowd Mentor Network <br>
+                                        Dr. Michael Gebert <br>
+                                        Sollnerstrasse 21 <br>
+                                        82049 Pullach <br>
+                                        <a href="http://www.crowdmentor.de" title="Crowd Mentor">www.crowdmentor.de</a>
+                                    </p>
+                                    <p>
+                                        Das technische Dienstangebot der Datenbank von Experten zu CrowdSourcing, CrowdFunding und CrowdInnovation wird dem Deutschen CrowdSourcing Verband e.V. kostenfrei auf unbestimmte Zeit vom Inhaber des Dienstangebots zu Verfügung gestellt. 
+                                        Crowd Mentor Network räumt dem Deutschen CrowdSourcing Verband e.V. das ausschließliche, zeitlich und räumlich unbeschränkte Recht ein, das entwickelte Design und die Datenbank in allen denkbaren Nutzungsarten zu nutzen. 
+                                        Der Deutschen CrowdSourcing Verband e.V.  ist berechtigt, einzelne Elemente wie Grafiken und Schriftzüge der Oberflächengestaltung des Designs gesondert für seine Werbung zu verwerten und das Design zu bearbeiten und auf seine aktuellen geschäftlichen Zwecke anzupassen. 
+                                    </p>
                                 </div>
                             </li>
                         </ul>

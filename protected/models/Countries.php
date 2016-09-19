@@ -25,11 +25,11 @@ class Countries extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('country_name', 'required'),
-			array('iso, country_name', 'length', 'max'=>255),
+			array('country_name, country_de', 'required'),
+			array('iso, country_name, country_de', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('iso, country_name', 'safe', 'on'=>'search'),
+			array('iso, country_name, country_de', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +52,7 @@ class Countries extends CActiveRecord
 		return array(
 			'iso' => 'Iso',
 			'country_name' => 'Country Name',
+            'country_de' => 'Country name in german'
 		);
 	}
 

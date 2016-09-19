@@ -457,7 +457,7 @@ class User extends ActiveRecord
     public function getUDescription()
     {
         if(empty($this->description))
-            return 'no description';
+            return Yii::t("base", 'no description');
 
         return nl2br($this->description);
     }
@@ -593,10 +593,10 @@ class User extends ActiveRecord
     public function getAssocList()
     {
         $models = Countries::model()->findAll(array('order'=>'country_name ASC'));
-        $list = CHtml::listData($models, 'iso', 'country_name');
-        $list = $this->moveToTop($list, 'Switzerland');
-        $list = $this->moveToTop($list, 'Austria');
-        $list = $this->moveToTop($list, 'Germany');
+        $list = CHtml::listData($models, 'iso', 'country_de');
+        $list = $this->moveToTop($list, 'CH');
+        $list = $this->moveToTop($list, 'AT');
+        $list = $this->moveToTop($list, 'DE');
 
         return $list;
     }
@@ -604,7 +604,7 @@ class User extends ActiveRecord
     private function moveToTop($array, $key) {
         $insert = '';
         foreach ($array as $index => $value) {
-            if($value != $key)
+            if($index != $key)
                 $newArray[$index] = $value;
             else
                 $insert[$index] = $value;
@@ -642,7 +642,7 @@ class User extends ActiveRecord
             $return = $city ? $city->city_name_UTF8 : '';
         } else {
             $country = Countries::model()->find('iso = :country_id', array(':country_id' => $id));
-            $return = $country ? $country->country_name : '';
+            $return = $country ? $country->country_de : '';
         }
 
         return $return;
@@ -684,7 +684,7 @@ class User extends ActiveRecord
         }
         $aList = !empty($aList) ? "Mitglied bei - $aList" : '';
 
-        return "{$this->fullname} - Crowd Expert {$sList}in ".self::getCityCountry($this->city_id, 'city')." $aList" ;
+        return "{$this->title} {$this->fullname} - Crowd Expert {$sList}in ".self::getCityCountry($this->city_id, 'city')." $aList" ;
     }
 
     public function getStatusConfirm() {

@@ -77,6 +77,27 @@
                         </label>
                         <?php echo $form->error($register_form, 'userAssociation'); ?>
 
+                        <label>
+                            <span><?php echo $register_form->getAttributeLabel('speciality'); ?></span>
+                            <?php $this->widget(
+                                'booster.widgets.TbSelect2',
+                                [
+                                    'model'=>$register_form,
+                                    'attribute'=>"speciality",
+                                    'data' => $register_form->specialityList,
+                                    'asDropDownList' => true,
+                                    'options' => [
+                                        'placeholder' => Yii::t("base", 'Select speciality'),
+                                        'width' => '100%',
+                                        'allowClear' => true,
+                                    ],
+                                    'htmlOptions' => [
+                                        'multiple' => true,
+                                        'class' => 'form-control'
+                                    ],
+                                ]
+                            );?>
+                        </label>
 
                         <label>
                             <span><?php echo $register_form->getAttributeLabel('country_id'); ?></span>
@@ -88,7 +109,7 @@
                                     'data' => User::model()->assocList,
                                     'asDropDownList' => true,
                                     'options' => [
-                                        'placeholder' => 'Select country',
+                                        'placeholder' => Yii::t("base", 'Select country'),
                                         'width' => '100%',
                                         'allowClear' => true,
                                     ],
@@ -111,7 +132,7 @@
                                     'asDropDownList' => false,
                                     'options' => [
                                         'minimumInputLength' => 2,
-                                        'placeholder' => 'Select city',
+                                        'placeholder' => Yii::t("base", 'Select city'),
                                         'width' => '100%',
                                         'allowClear' => true,
                                         'ajax' => [
