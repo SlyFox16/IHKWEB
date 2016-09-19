@@ -40,20 +40,18 @@ class YHelper
             return $source_image;
 
         if (!empty($source_image) && file_exists($source_image)) {
-            if (empty($width) && empty($height))
-                $image = '/' . $source_image;
-            elseif (!empty($width) && empty($height))
-                $image = Yii::app()->iwi->load($source_image)->resize($width, 0)->cache();
-            else
-                $image = Yii::app()->iwi->load($source_image)->adaptive($width, $height, true)->cache();
-        } else {
-            if (!empty($width) && !empty($height)) {
-                $image = $default ? : Yii::app()->params['noImage'];
-                $image = Yii::app()->iwi->load($image)->adaptive($width, $height)->cache();
-            } else {
-                $image = $default ? : '/' . Yii::app()->params['noImage'];
-            }
-        }
+            $image_info = getimagesize($source_image);
+            if (!is_array($image_info) OR count($image_info) < 3)
+                $source_image = $default ? : Yii::app()->params['noImage'];
+        } else
+            $source_image = $default ? : Yii::app()->params['noImage'];
+
+        if (empty($width) && empty($height))
+            $image = '/' . $source_image;
+        elseif (!empty($width) && empty($height))
+            $image = Yii::app()->iwi->load($source_image)->resize($width, 0)->cache();
+        else
+            $image = Yii::app()->iwi->load($source_image)->adaptive($width, $height, true)->cache();
 
         return $image;
     }
