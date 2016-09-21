@@ -27,7 +27,7 @@
             <?php } ?>
             <div class="expert_info">
                 <h3><a href="<?php echo $this->createUrl('user/info', array('id' => $randUser->id)); ?>"><b><?php echo $randUser->name; ?></b> <?php echo $randUser->surname; ?></a></h3>
-                <span class="expert_level"><?php echo Yii::t("base", "Level"); ?> <?php echo $randUser->level; ?></span>
+                <span class="expert_level"><?php echo Yii::t("base", "level"); ?> <?php echo $randUser->level; ?></span>
             </div>
         </div>
     <?php } ?>
