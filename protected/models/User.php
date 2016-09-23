@@ -560,7 +560,7 @@ class User extends ActiveRecord
 
     public function suggestTag($keyword){
         $keyword = htmlspecialchars($keyword);
-        $keyword = addslashes($keyword);
+        //$keyword = addslashes($keyword);
         $keyword = mb_strtolower($keyword, 'UTF-8');
 
         $users = User::model()->findAll($this->searchCriteria($keyword));
