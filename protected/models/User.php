@@ -482,6 +482,14 @@ class User extends ActiveRecord
         return $this->name.' '.$this->surname;
     }
 
+    public function getSuggest($q) {
+        $c = new CDbCriteria();
+        $c->addSearchCondition('name', $q, true, 'OR');
+        $c->addSearchCondition('surname', $q, true, 'OR');
+        $c->addSearchCondition('email', $q, true, 'OR');
+        return $this->findAll($c);
+    }
+
     public function requiredClass($attr) {
         return $this->isAttributeRequired($attr) ? 'class="required"' : '';
     }
