@@ -4,7 +4,7 @@ class SearchController extends Frontend
     public function actionSearchResult($q)
     {
         $q = htmlspecialchars($q);
-        $q = addslashes($q);
+        //$q = addslashes($q);
         $q = mb_strtolower($q, 'UTF-8');
 
         if(strlen($q) >= 5) {

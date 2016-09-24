@@ -252,13 +252,11 @@ class User extends ActiveRecord
         $criteria->compare('date_joined', $this->date_joined, true);
 
         $criteria->scopes = 'search_active';
+        $criteria->order = 'rating DESC, level DESC';
         //$criteria->addCondition('is_active = 1 && is_staff = 0 && expert_confirm = 1');
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-            'sort' => array(
-                'defaultOrder' => "RAND()",
-            ),
             'pagination' => array('Pagesize' => Yii::app()->params['defaultPageSize']),
         ));
     }
