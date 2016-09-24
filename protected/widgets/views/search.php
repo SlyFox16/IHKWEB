@@ -1,14 +1,4 @@
 <div class="container relative no-padding">
-
-    <?php echo CHtml::script("
-        function split(val) {
-            return val.split(/,\s*/);
-        }
-        function extractLast(term) {
-            return split(term).pop();
-        }
-    ")?>
-
     <!--== Page Control ==-->
     <ul class="page-control wow bounceInRight" data-wow-duration="0.5s" data-wow-delay="0.5s">
         <li class="search">
@@ -30,7 +20,7 @@
                         'attribute'=>'searchfield',
                         'source'=>"js:function(request, response) {
                             $.getJSON('".Yii::app()->createUrl('site/suggest')."', {
-                            term: extractLast(request.term)
+                            term: request.term
                             }, response);
                         }",
                         'options'=>array(
@@ -39,7 +29,6 @@
                             'showAnim'=>'fold',
                             'multiple'=>true,
                             'select'=>"js:function(event, ui) {
-                                var terms = split(this.value);
                                 // remove the current input
                                 // add the selected item
                                 this.value = ui.item.value;

@@ -53,6 +53,11 @@ return CMap::mergeArray(
                     'bootstrap.gii',
                 ),
             ),
+            'message' => array(
+                'userModel' => 'User',
+                'getNameMethod' => 'getFullName',
+                'getSuggestMethod' => 'getSuggest',
+            ),
             'backend',
         ),
 

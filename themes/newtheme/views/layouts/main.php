@@ -57,6 +57,13 @@
                         <a data-tooltip href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-bar-chart" title="<?php echo Yii::t("base", "Backend"); ?>"></a>
                     <?php } ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
+                    <!--//====messages====-->
+                    <?php $messageCount = Yii::app()->getModule('message')->getCountUnreadedMessages(Yii::app()->user->getId()) ? : 0; ?>
+
+                    <a data-tooltip href="<?php echo Yii::app()->getModule('message')->inboxUrl; ?>" title="<?php echo Yii::t("base", "Logout"); ?>">
+                        <?php echo Yii::t("base", "Messages"); ?> (<?php echo $messageCount; ?>)
+                    </a>
+                    <!--//====messages====-->
                 <?php } elseif(Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } else {
