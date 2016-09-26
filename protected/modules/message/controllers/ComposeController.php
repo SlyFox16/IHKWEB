@@ -11,6 +11,7 @@ class ComposeController extends Frontend
 			$receiverName = Yii::app()->request->getPost('receiver');
 		    $message->attributes = Yii::app()->request->getPost('Message');
 			$message->sender_id = Yii::app()->user->getId();
+            $message->chat_id = md5(microtime() . rand(0, 9999));
 			if ($message->save()) {
 				Yii::app()->user->setFlash('messageModule', MessageModule::t('Message has been sent'));
 			    $this->redirect($this->createUrl('inbox/'));

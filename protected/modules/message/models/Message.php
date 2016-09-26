@@ -55,13 +55,13 @@ class Message extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sender_id, receiver_id', 'required'),
+			array('sender_id, receiver_id, chat_id', 'required'),
 			array('sender_id, receiver_id', 'numerical', 'integerOnly'=>true),
-			array('subject', 'required'),
+			array('subject', 'required', 'on'=>'insert'),
 			array('subject', 'length', 'max'=>256),
 			array('is_read', 'length', 'max'=>1),
 			array('deleted_by', 'length', 'max'=>8),
-			array('body', 'safe'),
+			array('body, chat_id', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, sender_id, receiver_id, subject, body, is_read, deleted_by, created_at', 'safe', 'on'=>'search'),
@@ -161,6 +161,24 @@ class Message extends CActiveRecord
 		$messagesProvider = new CActiveDataProvider('Message', array('criteria' => $c));
 		return $messagesProvider;
 	}
+
+    public static function getNewAdapterForInbox($userId) {
+        $c = new CDbCriteria();
+        $c->addCondition('t.receiver_id = :userId');
+        $c->addCondition('t.deleted_by <> :deleted_by_receiver OR t.deleted_by IS NULL');
+        $c->addCondition('t.sender_id = :userId', "OR");
+        $c->addCondition('t.deleted_by <> :deleted_by_sender OR t.deleted_by IS NULL');
+        $c->order = 't.created_at DESC';
+        $c->group = 't.chat_id';
+        $c->params = array(
+            'userId' => $userId,
+            'deleted_by_receiver' => Message::DELETED_BY_RECEIVER,
+            'deleted_by_sender' => Message::DELETED_BY_SENDER,
+        );
+
+        $messagesProvider = new CActiveDataProvider('Message', array('criteria' => $c));
+        return $messagesProvider;
+    }
 
 	public static function getAdapterForSent($userId) {
 		$c = new CDbCriteria();

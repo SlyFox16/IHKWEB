@@ -29,7 +29,7 @@
                 <?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
                     'name' => 'receiver',
                     'source'=>"js:function(request, response) {
-                            $.getJSON('".Yii::app()->createUrl('site/suggest')."', {
+                            $.getJSON('".Yii::app()->createUrl(Yii::app()->getModule('message')->getSuggestMethod)."', {
                             term: request.term
                             }, response);
                         }",

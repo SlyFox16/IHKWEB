@@ -24,7 +24,7 @@ class MessageModule extends CWebModule
 		    throw new Exception(MessageModule::t("Class {userModel} not defined", array('{userModel}' => $this->userModel)));
 		}
 
-		foreach (array('getNameMethod', 'getSuggestMethod') as $methodName) {
+		foreach (array('getNameMethod') as $methodName) {
 			if (!$this->$methodName) {
 				throw new Exception(MessageModule::t("Property MessageModule::{methodName} not defined", array('{methodName}' => $methodName)));
 			}

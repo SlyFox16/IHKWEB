@@ -56,7 +56,7 @@ return CMap::mergeArray(
             'message' => array(
                 'userModel' => 'User',
                 'getNameMethod' => 'getFullName',
-                'getSuggestMethod' => 'getSuggest',
+                'getSuggestMethod' => 'site/suggest',
             ),
             'backend',
         ),

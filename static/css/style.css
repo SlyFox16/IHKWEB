@@ -7601,6 +7601,10 @@ p {
     padding-top: 5rem;
     border-right: 0.3125rem solid #fff;
   }
+  .separator.separator--left {
+    border-right: 0;
+    border-left: 0.3125rem solid #fff;
+  }
 }
 /* Notification */
 .notification {
@@ -11599,6 +11603,56 @@ body .rating-gly-star {
     padding: 0;
     border: 0;
   }
+}
+
+/*------------------------------------*\
+    Messages
+\*------------------------------------*/
+.messages_list {
+  display: table;
+  width: 100%;
+  margin: 0;
+  font-size: 1rem;
+  color: #777;
+}
+.messages_list li {
+  display: table-row;
+}
+.messages_list li > * {
+  display: table-cell;
+  padding: 1.875rem;
+}
+.messages_list li > *:first-child {
+  padding-left: 0;
+}
+.messages_list li > * h3 {
+  font-size: 1.125rem;
+  margin-bottom: 0;
+  font-weight: 400;
+}
+.messages_list li > * h3 a {
+  color: #000;
+}
+.messages_list li:first-child > * {
+  padding-top: 0;
+}
+.messages_list li:not(:first-child) > * {
+  border-top: 1px solid #d1d1d1;
+}
+.messages_list li:last-child > * {
+  padding-bottom: 0;
+}
+
+.messages_menu {
+  list-style: none;
+  margin: 0;
+}
+.messages_menu li a {
+  color: #777;
+  font-size: 1.125rem;
+}
+.messages_menu li.selected a, .messages_menu li:hover a {
+  color: #000;
 }
 
 /*# sourceMappingURL=style.css.map */
