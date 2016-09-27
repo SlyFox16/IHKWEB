@@ -230,7 +230,7 @@ class Message extends CActiveRecord
 	}
 
 	public function markAsRead() {
-        self::model()->updateAll(array('is_read'=>true), 'receiver_id = :user_id', array(':chat_id' => $this->chat_id, ':user_id' => Yii::app()->user->id));
+        self::model()->updateAll(array('is_read'=>true), 'receiver_id = :user_id', array(':user_id' => Yii::app()->user->id));
 		/*if (!$this->is_read) {
 			$this->is_read = true;
 			$this->save();
