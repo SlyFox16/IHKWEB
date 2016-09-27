@@ -60,7 +60,7 @@
                     <!--//====messages====-->
                     <?php $messageCount = Yii::app()->getModule('message')->getCountUnreadedMessages(Yii::app()->user->getId()) ? : 0; ?>
 
-                    <a data-tooltip href="<?php echo Yii::app()->getModule('message')->inboxUrl; ?>" title="<?php echo Yii::t("base", "Logout"); ?>">
+                    <a data-tooltip href="<?php echo $this->createUrl('/message'); ?>" title="<?php echo Yii::t("base", "Logout"); ?>">
                         <?php echo Yii::t("base", "Messages"); ?> (<?php echo $messageCount; ?>)
                     </a>
                     <!--//====messages====-->
