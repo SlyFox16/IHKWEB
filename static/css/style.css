@@ -11658,10 +11658,13 @@ body .rating-gly-star {
 .messages_flow {
   margin: 0;
   list-style: none;
+  max-height: 25rem;
+  overflow-x: scroll;
 }
 .messages_flow li {
   padding: 0.9375rem;
   border: 1px solid #d1d1d1;
+  background: white;
 }
 .messages_flow li + li {
   margin-top: 0.625rem;
@@ -11669,6 +11672,16 @@ body .rating-gly-star {
 
 .reply {
   margin-top: 1.875rem;
+}
+
+.message_header {
+  padding: 0 0 0.625rem 0;
+  margin: 0 0 0.625rem 0;
+  border-bottom: 1px solid #d1d1d1;
+}
+.message_header time {
+  float: right;
+  color: #777;
 }
 
 /*# sourceMappingURL=style.css.map */

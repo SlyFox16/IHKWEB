@@ -35,7 +35,7 @@
                         </ul>
                         <div class="reply">
                             <label>
-                                <span><?php echo $message->getAttributeLabel('body'); ?></span>
+                                <span><?php echo $message->getAttributeLabel('Message'); ?></span>
                                 <?php echo $form->textArea($message,'body', array('cols' => '30', 'rows' => 10)); ?>
                                 <?php echo $form->error($message,'body'); ?>
                             </label>
