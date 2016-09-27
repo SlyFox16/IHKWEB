@@ -237,6 +237,11 @@ class Message extends CActiveRecord
 		}*/
 	}
 
+    public function unreadInThisChat() {
+        $count = self::model()->count("chat_id = :chat_id AND is_read = '0'", array(':chat_id' => $this->chat_id));
+        return $count > 0;
+    }
+
 	public function getCountUnreaded($userId) {
 		if (!$this->unreadMessagesCount) {
 			$c = new CDbCriteria();

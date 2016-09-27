@@ -26,7 +26,7 @@
                         <div class="small-12 columns">
                             <ul class="messages_list">
                                 <?php foreach ($messagesAdapter->data as $index => $message) { ?>
-                                    <li>
+                                    <li class="<?php echo $message->unreadInThisChat() ? 'unread' : ''; ?>">
                                         <div>
                                             <h3>
                                                 <a href="<?php echo $this->createUrl('view/', array('id' => $message->chat_id)) ?>">
