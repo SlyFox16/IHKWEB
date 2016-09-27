@@ -1,5 +1,4 @@
 <?php $this->title=Yii::app()->name . ' - '.MessageModule::t("Compose Message"); ?>
-<?php $this->renderPartial(Yii::app()->getModule('message')->viewPath . '/_flash') ?>
 
 <!-- Breadcrumbs -->
 <div class="row">
