@@ -173,10 +173,10 @@ return CMap::mergeArray(
                     'user/recover/<pass:\w+>' => 'user/recover',
                     'message/inbox' => 'message/inbox/inbox',
                     'message' => 'message/inbox/inbox',
+                    'message/<id:\w+>' => 'message/view',
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                    '<controller:\w+>/<id:\w+>' => '<controller>/view',
                     '<module:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>' => '<module>/<controller>/<action>',
                     '<module:\w+>/<controller:\w+>/<action:\w+>/<param:\w+>' => '<module>/<controller>/<action>',
                     '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>'
