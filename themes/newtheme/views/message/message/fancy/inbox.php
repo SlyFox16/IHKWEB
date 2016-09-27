@@ -1,11 +1,11 @@
-<?php $this->pageTitle=Yii::app()->name . ' - '.MessageModule::t("Messages:inbox"); ?>
+<?php $this->pageTitle=Yii::app()->name . ' - '. Yii::t("base", "Messages:inbox"); ?>
 
 <!-- Breadcrumbs -->
 <div class="row">
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                MessageModule::t("Inbox"),
+                Yii::t("base", "Inbox"),
             ),
         )); ?>
     </div>
@@ -54,14 +54,14 @@
                     <div class="row bottom-edge">
                         <div class="small-12 columns">
                             <div class="button-group">
-                                <?php echo CHtml::linkButton(MessageModule::t('Delete selected'), array('class' => 'button large')); ?>
+                                <?php echo CHtml::linkButton(Yii::t("base", 'Delete selected'), array('class' => 'button large')); ?>
                             </div>
                         </div>
                     </div>
                 <?php $this->endWidget(); ?>
             <?php } else { ?>
-                <h3><?php echo MessageModule::t("Your inbox is empty.")?></h3>
-                <p>Start a discussion <a href="<?php echo $this->createUrl('compose/') ?>">here</a>.</p>
+                <h3><?php echo Yii::t("base", "Your inbox is empty."); ?></h3>
+                <p><?php echo Yii::t("base", "Start a discussion"); ?> <a href="<?php echo $this->createUrl('compose/') ?>"><?php echo Yii::t("base", "here"); ?></a>.</p>
             <?php } ?>
         </div>
     </div>

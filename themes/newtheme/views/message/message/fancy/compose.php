@@ -1,4 +1,4 @@
-<?php $this->title=Yii::app()->name . ' - '.MessageModule::t("Compose Message"); ?>
+<?php $this->title=Yii::app()->name . ' - '. Yii::t("base", "Compose Message"); ?>
 
 <!-- Breadcrumbs -->
 <div class="row">
@@ -6,7 +6,7 @@
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
                 Yii::t("base", 'Mail') => array('/message/inbox'),
-                MessageModule::t("Compose"),
+                Yii::t("base", "Compose"),
             ),
         )); ?>
     </div>
@@ -28,7 +28,7 @@
                     <div class="small-12 columns">
                         <div class="row">
                             <div class="small-12 columns">
-                                <h2><?php echo MessageModule::t('Compose New Message'); ?></h2>
+                                <h2><?php echo Yii::t("base", 'Compose New Message'); ?></h2>
                             </div>
                         </div>
                         <div class="row">

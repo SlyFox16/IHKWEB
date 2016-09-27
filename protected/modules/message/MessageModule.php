@@ -61,8 +61,8 @@ class MessageModule extends CWebModule
 		}
 	}
 
-	public static function t($str='',$params=array(),$dic='message') {
-		return Yii::t("MessageModule.".$dic, $str, $params);
+	public static function t($str='',$params=array()) {
+		return Yii::t("base", $str, $params);
 	}
 
 	public function getCountUnreadedMessages($userId) {

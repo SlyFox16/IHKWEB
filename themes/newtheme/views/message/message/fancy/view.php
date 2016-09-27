@@ -1,4 +1,4 @@
-<?php $this->pageTitle=Yii::app()->name . ' - ' . MessageModule::t("Compose Message"); ?>
+<?php $this->pageTitle=Yii::app()->name . ' - ' . Yii::t("base", "Compose Message"); ?>
 
 <!-- Breadcrumbs -->
 <div class="row">
@@ -46,7 +46,7 @@
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
                         <div class="button-group">
-                            <?php echo CHtml::linkButton(MessageModule::t('Reply'), array('class' => 'button large')); ?>
+                            <?php echo CHtml::linkButton(Yii::t("base", 'Reply'), array('class' => 'button large')); ?>
                         </div>
                     </div>
                 </div>
