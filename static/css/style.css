@@ -11625,6 +11625,10 @@ body .rating-gly-star {
 .messages_list li > *:first-child {
   padding-left: 0;
 }
+.messages_list li > *:last-child {
+  padding-right: 0;
+  text-align: right;
+}
 .messages_list li > * h3 {
   font-size: 1.125rem;
   margin-bottom: 0;
@@ -11641,6 +11645,9 @@ body .rating-gly-star {
 }
 .messages_list li:last-child > * {
   padding-bottom: 0;
+}
+.messages_list li.unread > * h3 a {
+  color: #00478c;
 }
 
 .messages_menu {
