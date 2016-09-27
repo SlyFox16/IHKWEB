@@ -53,3 +53,8 @@
         </div>
     </div>
 </section>
+
+<?php Yii::app()->clientScript->registerScript('toBottom',"
+    var objDiv = document.getElementById('.messages_flow');
+    objDiv.scrollTop = objDiv.scrollHeight;
+", CClientScript::POS_LOAD);?>
