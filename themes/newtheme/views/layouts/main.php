@@ -59,8 +59,8 @@
                     <!--//====messages====-->
                     <?php $messageCount = Yii::app()->getModule('message')->getCountUnreadedMessages(Yii::app()->user->getId()) ? : 0; ?>
 
-                    <a data-tooltip href="<?php echo $this->createUrl('/message'); ?>" class="mail" title="<?php echo Yii::t("base", "Messages"); ?>">
-                        <i class="fa fa-mail"></i> <span>(<?php echo $messageCount; ?>)</span>
+                    <a data-tooltip href="<?php echo $this->createUrl('/message'); ?>" class="fa fa-envelope" title="<?php echo Yii::t("base", "Messages"); ?>">
+                        <span><?php echo $messageCount; ?></span>
                     </a>
                     <!--//====messages====-->
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
