@@ -22,11 +22,13 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <h3><?php echo $viewedMessage[0]->subject; ?></h3>
-                        <ul>
+                        <ul class="messages_flow">
                             <?php foreach ($viewedMessage as $messageList) { ?>
                                 <li>
-                                    <span><?php echo $messageList->sender->fullname; ?></span>
-                                    <time><?php echo date(Yii::app()->getModule('message')->dateFormat, strtotime($messageList->created_at)) ?><time>
+                                    <div class="message_header">
+                                        <span><?php echo $messageList->sender->fullname; ?></span>
+                                        <time><?php echo date(Yii::app()->getModule('message')->dateFormat, strtotime($messageList->created_at)) ?></time>
+                                    </div>
                                     <p><?php echo CHtml::encode($messageList->body) ?></p>
                                 </li>
                             <?php } ?>
