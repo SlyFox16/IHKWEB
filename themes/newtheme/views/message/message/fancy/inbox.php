@@ -60,7 +60,7 @@
                     </div>
                 <?php $this->endWidget(); ?>
             <?php } else { ?>
-                <?php echo MessageModule::t("No messages yet resived")?>
+                <h3><?php echo MessageModule::t("Your inbox is empty.")?></h3>
             <?php } ?>
         </div>
     </div>
