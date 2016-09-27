@@ -5,7 +5,7 @@
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                Yii::t("base", 'Messages') => array('message/inbox'),
+                Yii::t("base", 'Mail') => array('/message/inbox'),
                 MessageModule::t("Compose"),
             ),
         )); ?>

@@ -5,7 +5,8 @@
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                MessageModule::t("Chat"),
+                Yii::t("base", 'Mail') => array('/message/inbox'),
+                $viewedMessage[0]->subject
             ),
         )); ?>
     </div>
