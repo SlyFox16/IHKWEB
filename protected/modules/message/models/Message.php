@@ -164,10 +164,9 @@ class Message extends CActiveRecord
 
     public static function getNewAdapterForInbox($userId) {
         $c = new CDbCriteria();
-        $c->addCondition('t.receiver_id = :userId');
-        $c->addCondition('t.deleted_by <> :deleted_by_receiver OR t.deleted_by IS NULL');
-        $c->addCondition('t.sender_id = :userId', "OR");
-        $c->addCondition('t.deleted_by <> :deleted_by_sender OR t.deleted_by IS NULL');
+        $c->addCondition('t.receiver_id = :userId AND (t.deleted_by <> :deleted_by_receiver OR t.deleted_by IS NULL)');
+        $c->addCondition('t.sender_id = :userId AND (t.deleted_by <> :deleted_by_sender OR t.deleted_by IS NULL)', "OR");
+        $c->addCondition('t.subject <> ""');
         $c->order = 't.created_at DESC';
         $c->group = 't.chat_id';
         $c->params = array(
@@ -231,10 +230,11 @@ class Message extends CActiveRecord
 	}
 
 	public function markAsRead() {
-		if (!$this->is_read) {
+        $this->updateAll(array('is_read'=>true), 'chat_id = :chat_id', array(':chat_id' => $this->chat_id));
+		/*if (!$this->is_read) {
 			$this->is_read = true;
 			$this->save();
-		}
+		}*/
 	}
 
 	public function getCountUnreaded($userId) {

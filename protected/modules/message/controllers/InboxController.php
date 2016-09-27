@@ -5,6 +5,7 @@ class InboxController extends Frontend
 	public $defaultAction = 'inbox';
 
 	public function actionInbox() {
+        $this->_curNav = 'inbox';
 		$messagesAdapter = Message::getNewAdapterForInbox(Yii::app()->user->getId());
 		$pager = new CPagination($messagesAdapter->totalItemCount);
 		$pager->pageSize = 10;

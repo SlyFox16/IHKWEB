@@ -6,6 +6,7 @@ class ComposeController extends Frontend
 	public $defaultAction = 'compose';
 
 	public function actionCompose($id = null) {
+        $this->_curNav = 'compose';
 		$message = new Message();
 		if (Yii::app()->request->getPost('Message')) {
 			$receiverName = Yii::app()->request->getPost('receiver');
