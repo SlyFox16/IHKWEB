@@ -56,14 +56,14 @@
                     <?php if(Yii::app()->user->isStaff) { ?>
                         <a data-tooltip href="<?php echo $this->createUrl('/backend'); ?>" class="fa fa-bar-chart" title="<?php echo Yii::t("base", "Backend"); ?>"></a>
                     <?php } ?>
-                    <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                     <!--//====messages====-->
                     <?php $messageCount = Yii::app()->getModule('message')->getCountUnreadedMessages(Yii::app()->user->getId()) ? : 0; ?>
 
-                    <a data-tooltip href="<?php echo $this->createUrl('/message'); ?>" title="<?php echo Yii::t("base", "Logout"); ?>">
-                        <?php echo Yii::t("base", "Messages"); ?> (<?php echo $messageCount; ?>)
+                    <a data-tooltip href="<?php echo $this->createUrl('/message'); ?>" class="mail" title="<?php echo Yii::t("base", "Messages"); ?>">
+                        <i class="fa fa-mail"></i> <span>(<?php echo $messageCount; ?>)</span>
                     </a>
                     <!--//====messages====-->
+                    <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } elseif(Yii::app()->user->is_seeker) { ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } else {
