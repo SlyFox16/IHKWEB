@@ -238,7 +238,7 @@ class Message extends CActiveRecord
 	}
 
     public function unreadInThisChat() {
-        $count = self::model()->count("chat_id = :chat_id AND is_read = '0'", array(':chat_id' => $this->chat_id));
+        $count = self::model()->count("receiver_id = :user_id AND chat_id = :chat_id AND is_read = '0'", array(':chat_id' => $this->chat_id, ':user_id' => Yii::app()->user->id));
         return $count > 0;
     }
 
