@@ -5,6 +5,7 @@ class ViewController extends Frontend {
 	public $defaultAction = 'view';
 
 	public function actionView() {
+        $this->_curNav = 'inbox';
 		$messageId = (int)Yii::app()->request->getParam('id');
 
         $crt = new CDbCriteria();
