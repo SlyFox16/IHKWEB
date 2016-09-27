@@ -171,8 +171,6 @@ return CMap::mergeArray(
                     'feedback' => 'site/feedback',
                     'ratingtop' => 'site/ratingList',
                     'user/recover/<pass:\w+>' => 'user/recover',
-                    'message/inbox' => 'message/inbox/inbox',
-                    'message' => 'message/inbox/inbox',
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
                     '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                     '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
