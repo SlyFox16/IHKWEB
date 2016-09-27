@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="small-12 columns">
                         <h3><?php echo $viewedMessage[0]->subject; ?></h3>
-                        <ul class="messages_flow">
+                        <ul id="chatArea" class="messages_flow">
                             <?php foreach ($viewedMessage as $messageList) { ?>
                                 <li>
                                     <div class="message_header">
@@ -55,6 +55,6 @@
 </section>
 
 <?php Yii::app()->clientScript->registerScript('toBottom',"
-    var objDiv = document.getElementById('.messages_flow');
+    var objDiv = document.getElementById('chatArea');
     objDiv.scrollTop = objDiv.scrollHeight;
 ", CClientScript::POS_LOAD);?>
