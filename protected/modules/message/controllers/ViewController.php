@@ -41,11 +41,11 @@ class ViewController extends Frontend {
 			$message->sender_id = $userId;
             $message->chat_id = $viewedMessage[0]->chat_id;
 			if ($message->save()) {
+                Yii::app()->email->gotMessage($message);
+
 				Yii::app()->user->setFlash('project_success', MessageModule::t('Message has been sent'));
-					$this->redirect(Yii::app()->request->urlReferrer);
-			} else {
-                echo CHtml::errorSummary($message); die();
-            }
+				$this->redirect(Yii::app()->request->urlReferrer);
+			}
 		}
 
 		$viewedMessage[0]->markAsRead();

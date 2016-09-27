@@ -4,7 +4,7 @@ class Email extends CApplicationComponent
     public $subject;
     public $body;
 
-    public function restorePassEmail($user)
+    public function passEmail($user)
     {
         $this->subject = YHelper::yiisetting('change_pass_email', Yii::app()->name.' change password email', true);
         $this->body = YHelper::yiisetting('change_pass_email');
@@ -14,7 +14,7 @@ class Email extends CApplicationComponent
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
-    public function restoreRatingEmail($user, $mark)
+    public function ratingEmail($user, $mark)
     {
         $this->subject = YHelper::yiisetting('rating_email', Yii::app()->name.' you\'ve been rated', true);
         $this->body = YHelper::yiisetting('rating_email');
@@ -26,7 +26,28 @@ class Email extends CApplicationComponent
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
-    public function restoreReportEmail($user)
+    public function gotMessage($message)
+    {
+        $user = User::model()->findByPk($message->receiver_id);
+        $sender = User::model()->findByPk($message->sender_id);
+
+        $this->subject = YHelper::yiisetting('message_email', Yii::app()->name.' you\'ve been rated', true);
+        $this->body = YHelper::yiisetting('message_email');
+        $senderEmail = YHelper::yiisettingSenderEmail('message_email', Yii::app()->name);
+
+        $this->body = preg_replace('~\[:message\]~', $message->body, $this->body);
+        if ($user)
+            $this->body = $this->changeAttr($user, $this->body);
+
+        if ($sender) {
+            $this->body = preg_replace('~\[:sender_first_name\]~', $sender->name, $this->body);
+            $this->body = preg_replace('~\[:sender_last_name\]~', $sender->surname, $this->body);
+        }
+
+        $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
+    }
+
+    public function reportEmail($user)
     {
         $this->subject = YHelper::yiisetting('report_email', Yii::app()->name.' you\'ve been reported', true);
         $this->body = YHelper::yiisetting('report_email');
