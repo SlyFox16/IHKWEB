@@ -13,7 +13,7 @@ class ComposeController extends Frontend
 			$message->sender_id = Yii::app()->user->getId();
             $message->chat_id = md5(microtime() . rand(0, 9999));
 			if ($message->save()) {
-				Yii::app()->user->setFlash('messageModule', MessageModule::t('Message has been sent'));
+				Yii::app()->user->setFlash('project_success', MessageModule::t('Message has been sent'));
 			    $this->redirect($this->createUrl('inbox/'));
 			} else if ($message->hasErrors('receiver_id')) {
 				$message->receiver_id = null;

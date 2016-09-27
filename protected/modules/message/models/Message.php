@@ -206,7 +206,7 @@ class Message extends CActiveRecord
 
 		if ($this->sender_id == $userId) {
 			if ($this->deleted_by == self::DELETED_BY_RECEIVER) {
-				$this->delete();
+				$this->deleteAll('chat_id = :chat_id', array(':chat_id' => $this->chat_id));
 			} else {
 				$this->deleted_by = self::DELETED_BY_SENDER;
 				$this->save();
@@ -217,7 +217,7 @@ class Message extends CActiveRecord
 
 		if ($this->receiver_id == $userId) {
 			if ($this->deleted_by == self::DELETED_BY_SENDER) {
-				$this->delete();
+                $this->deleteAll('chat_id = :chat_id', array(':chat_id' => $this->chat_id));
 			} else {
 				$this->deleted_by = self::DELETED_BY_RECEIVER;
 				$this->save();

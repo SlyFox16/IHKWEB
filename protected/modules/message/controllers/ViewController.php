@@ -35,7 +35,7 @@ class ViewController extends Frontend {
 			$message->sender_id = $userId;
             $message->chat_id = $viewedMessage[0]->chat_id;
 			if ($message->save()) {
-				Yii::app()->user->setFlash('success', MessageModule::t('Message has been sent'));
+				Yii::app()->user->setFlash('project_success', MessageModule::t('Message has been sent'));
 					$this->redirect($this->createUrl('inbox/'));
 			} else {
                 echo CHtml::errorSummary($message); die();

@@ -19,7 +19,7 @@ class DeleteController extends Frontend {
 				}
 			}
 			if ($counter) {
-				Yii::app()->user->setFlash('messageModule', MessageModule::t('{count} message'.($counter > 1 ? 's' : '').' has been deleted', array('{count}' => $counter)));
+				Yii::app()->user->setFlash('project_success', MessageModule::t('{count} message'.($counter > 1 ? 's' : '').' has been deleted', array('{count}' => $counter)));
 			}
 			$this->redirect(Yii::app()->request->getUrlReferrer());
 		} else {
@@ -32,7 +32,7 @@ class DeleteController extends Frontend {
 			$folder = $message->receiver_id == Yii::app()->user->getId() ? 'inbox/' : 'sent/';
 
 			if ($message->deleteByUser(Yii::app()->user->getId())) {
-				Yii::app()->user->setFlash('messageModule', MessageModule::t('Message has been deleted'));
+				Yii::app()->user->setFlash('project_success', MessageModule::t('Message has been deleted'));
 			}
 			$this->redirect($this->createUrl($folder));
 		}
