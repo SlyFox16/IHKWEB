@@ -6,7 +6,12 @@ class ViewController extends Frontend {
 
 	public function actionView() {
 		$messageId = (int)Yii::app()->request->getParam('id');
-		$viewedMessage = Message::model()->findAll('chat_id = :id', array(':id' => $messageId));
+
+        $crt = new CDbCriteria();
+        $crt->condition = 'chat_id = :id';
+        $crt->params[':id'] = $messageId;
+        $crt->order = 'created_at ASC';
+		$viewedMessage = Message::model()->findAll($crt);
 
 		if (!$viewedMessage[0]) {
 			 throw new CHttpException(404, MessageModule::t('Message not found'));
