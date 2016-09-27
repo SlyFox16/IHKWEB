@@ -60,7 +60,8 @@
                     </div>
                 <?php $this->endWidget(); ?>
             <?php } else { ?>
-                <?php echo MessageModule::t("No messages yet resived")?>
+                <h3><?php echo MessageModule::t("Your inbox is empty.")?></h3>
+                <p>Start a discussion <a href="<?php echo $this->createUrl('compose/') ?>">here</a>.</p>
             <?php } ?>
         </div>
     </div>
