@@ -172,6 +172,7 @@ return CMap::mergeArray(
                     'ratingtop' => 'site/ratingList',
                     'user/recover/<pass:\w+>' => 'user/recover',
                     'message/inbox' => 'message/inbox/inbox',
+                    'message/compose' => 'message/compose/compose',
                     'message' => 'message/inbox/inbox',
                     'message/<id:\w+>' => 'message/view',
                     '<controller:\w+>/<id:\d+>' => '<controller>/view',
