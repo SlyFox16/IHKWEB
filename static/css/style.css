@@ -11655,4 +11655,20 @@ body .rating-gly-star {
   color: #000;
 }
 
+.messages_flow {
+  margin: 0;
+  list-style: none;
+}
+.messages_flow li {
+  padding: 0.9375rem;
+  border: 1px solid #d1d1d1;
+}
+.messages_flow li + li {
+  margin-top: 0.625rem;
+}
+
+.reply {
+  margin-top: 1.875rem;
+}
+
 /*# sourceMappingURL=style.css.map */
