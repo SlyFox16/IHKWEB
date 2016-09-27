@@ -48,9 +48,7 @@ class ViewController extends Frontend {
             }
 		}
 
-		if ($isIncomeMessage) {
-			$viewedMessage[0]->markAsRead();
-		}
+		$viewedMessage[0]->markAsRead();
 
 		$this->render(Yii::app()->getModule('message')->viewPath . '/view', array('viewedMessage' => $viewedMessage, 'message' => $message));
 	}
