@@ -163,6 +163,7 @@ class Message extends CActiveRecord
 	}
 
     public static function getNewAdapterForInbox($userId) {
+        echo $userId;
         $c = new CDbCriteria();
         $c->addCondition('t.receiver_id = :userId AND (t.deleted_by <> :deleted_by_receiver OR t.deleted_by IS NULL)');
         $c->addCondition('t.sender_id = :userId AND (t.deleted_by <> :deleted_by_sender OR t.deleted_by IS NULL)', "OR");
