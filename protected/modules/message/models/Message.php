@@ -145,7 +145,7 @@ class Message extends CActiveRecord
 
 	public function getReceiverName() {
 		if ($this->receiver) {
-		    return call_user_func(array($this->receiver, Yii::app()->getModule('message')->getNameMethod));
+            return call_user_func(array($this->receiver, Yii::app()->getModule('message')->getNameMethod));
 		}
 	}
 

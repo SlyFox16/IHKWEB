@@ -59,7 +59,7 @@
                                     ),
                                     'htmlOptions'=>array(
                                         'size'=>'40',
-                                        'placeholder' => 'Search',
+                                        'placeholder' => Yii::t("base", 'Search'),
                                         'value' => $receiverName
                                     ),
                                     )); ?>

@@ -16,7 +16,7 @@ class ComposeController extends Frontend
 			if ($message->save()) {
                 Yii::app()->email->gotMessage($message);
 
-				Yii::app()->user->setFlash('project_success', MessageModule::t('Message has been sent'));
+				Yii::app()->user->setFlash('project_success', Yii::t("base", 'Message has been sent'));
 			    $this->redirect($this->createUrl('inbox/'));
 			} else if ($message->hasErrors('receiver_id')) {
 				$message->receiver_id = null;

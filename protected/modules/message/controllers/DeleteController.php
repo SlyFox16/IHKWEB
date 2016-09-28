@@ -19,20 +19,20 @@ class DeleteController extends Frontend {
 				}
 			}
 			if ($counter) {
-				Yii::app()->user->setFlash('project_success', MessageModule::t('{count} message'.($counter > 1 ? 's' : '').' has been deleted', array('{count}' => $counter)));
+				Yii::app()->user->setFlash('project_success', Yii::t("base", '{count} group of messages has been deleted|{count} groups of messages has been deleted', array($counter, '{count}' => $counter)));
 			}
 			$this->redirect(Yii::app()->request->getUrlReferrer());
 		} else {
 			$message = Message::model()->findByPk($id);
 
 			if (!$message) {
-				throw new CHttpException(404, MessageModule::t('Message not found'));
+				throw new CHttpException(404, Yii::t("base", 'Message not found'));
 			}
 
 			$folder = $message->receiver_id == Yii::app()->user->getId() ? 'inbox/' : 'sent/';
 
 			if ($message->deleteByUser(Yii::app()->user->getId())) {
-				Yii::app()->user->setFlash('project_success', MessageModule::t('Message has been deleted'));
+				Yii::app()->user->setFlash('project_success', Yii::t("base", 'Message has been deleted'));
 			}
 			$this->redirect($this->createUrl($folder));
 		}
