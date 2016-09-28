@@ -30,9 +30,16 @@ class YHelper
         return number_format($value, 0, ' ', ' ')." ".$currency; //Yii::app()->numberFormatter->format($format, $value, $currency);
     }
 
-    public static function formatDate($value)
+    public static function formatDate($formatGet, $date = null, $formatSet = 'yyyy-MM-dd')
     {
-        return Yii::app()->format->date($value);
+        if($date && $formatSet)
+            $newDate =  Yii::app()->dateFormatter->format($formatGet, CDateTimeParser::parse($date, $formatSet));
+        elseif ($date)
+            $newDate =  Yii::app()->dateFormatter->format($formatGet, $date);
+        else
+            $newDate = Yii::app()->format->date($formatGet);
+
+        return $newDate;
     }
 
     public static function getImagePath($source_image, $width = 0, $height = 0, $default = '') {

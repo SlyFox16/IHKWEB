@@ -92,7 +92,7 @@
                 <?php foreach($completed as $cert) { ?>
                     <article class="certification">
                         <header>
-                            <h3><?php echo $cert->name; ?></h3> <span><?php echo Yii::app()->format->date($cert->date); ?></span>
+                            <h3><?php echo $cert->name; ?></h3> <span><?php echo YHelper::formatDate('dd MMMM yyyy', $cert->date, 'dd/MM/yyyy'); ?></span>
                         </header>
                         <p><?php echo $cert->description; ?></p>
                         <figure><img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>"></figure>

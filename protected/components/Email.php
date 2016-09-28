@@ -6,22 +6,27 @@ class Email extends CApplicationComponent
 
     public function passEmail($user)
     {
-        $this->subject = YHelper::yiisetting('change_pass_email', Yii::app()->name.' change password email', true);
+        $this->subject = YHelper::yiisetting('change_pass_email', Yii::app()->name, true);
         $this->body = YHelper::yiisetting('change_pass_email');
         $senderEmail = YHelper::yiisettingSenderEmail('change_pass_email', Yii::app()->name);
+
         $this->body = $this->changeAttr($user, $this->body);
+        $this->subject = $this->changeAttr($user, $this->subject);
 
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
     public function ratingEmail($user, $mark)
     {
-        $this->subject = YHelper::yiisetting('rating_email', Yii::app()->name.' you\'ve been rated', true);
+        $this->subject = YHelper::yiisetting('rating_email', Yii::app()->name, true);
         $this->body = YHelper::yiisetting('rating_email');
         $senderEmail = YHelper::yiisettingSenderEmail('rating_email', Yii::app()->name);
 
         $this->body = preg_replace('~\[:mark\]~', $mark, $this->body);
+        $this->subject = preg_replace('~\[:mark\]~', $mark, $this->subject);
+
         $this->body = $this->changeAttr($user, $this->body);
+        $this->subject = $this->changeAttr($user, $this->subject);
 
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
@@ -31,17 +36,24 @@ class Email extends CApplicationComponent
         $user = User::model()->findByPk($message->receiver_id);
         $sender = User::model()->findByPk($message->sender_id);
 
-        $this->subject = YHelper::yiisetting('message_email', Yii::app()->name.' you\'ve been rated', true);
+        $this->subject = YHelper::yiisetting('message_email', Yii::app()->name, true);
         $this->body = YHelper::yiisetting('message_email');
         $senderEmail = YHelper::yiisettingSenderEmail('message_email', Yii::app()->name);
 
         $this->body = preg_replace('~\[:message\]~', $message->body, $this->body);
-        if ($user)
+        $this->subject = preg_replace('~\[:message\]~', $message->body, $this->subject);
+
+        if ($user) {
             $this->body = $this->changeAttr($user, $this->body);
+            $this->subject = $this->changeAttr($user, $this->subject);
+        }
 
         if ($sender) {
             $this->body = preg_replace('~\[:sender_first_name\]~', $sender->name, $this->body);
+            $this->subject = preg_replace('~\[:sender_first_name\]~', $sender->name, $this->subject);
+
             $this->body = preg_replace('~\[:sender_last_name\]~', $sender->surname, $this->body);
+            $this->subject = preg_replace('~\[:sender_last_name\]~', $sender->surname, $this->subject);
         }
 
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
@@ -49,12 +61,14 @@ class Email extends CApplicationComponent
 
     public function reportEmail($user)
     {
-        $this->subject = YHelper::yiisetting('report_email', Yii::app()->name.' you\'ve been reported', true);
+        $this->subject = YHelper::yiisetting('report_email', Yii::app()->name, true);
         $this->body = YHelper::yiisetting('report_email');
         $senderEmail = YHelper::yiisettingSenderEmail('report_email', Yii::app()->name);
-        $body = $this->changeAttr($user, $this->body);
 
-        $this->sendEmail($this->subject, $body, $user->email, $senderEmail);
+        $this->body = $this->changeAttr($user, $this->body);
+        $this->subject = $this->changeAttr($user, $this->subject);
+
+        $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
     private function changeAttr($user, $body)
