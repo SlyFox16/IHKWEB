@@ -91,10 +91,10 @@ class Message extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'sender_id' => 'Sender',
-			'receiver_id' => 'Receiver',
-			'subject' => 'Subject',
-			'body' => 'Body',
+			'sender_id' => Yii::t("base", 'Sender'),
+			'receiver_id' => Yii::t("base", 'Receiver'),
+			'subject' => Yii::t("base", 'Subject'),
+			'body' => Yii::t("base", 'Body'),
 			'is_read' => 'Is Read',
 			'deleted_by' => 'Deleted By',
 			'created_at' => 'Created At',
