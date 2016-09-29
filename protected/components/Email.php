@@ -93,7 +93,7 @@ class Email extends CApplicationComponent
         foreach($to as $toEmail)
             $mailer->AddAddress($toEmail);
 
-        $mailer->FromName = Yii::app()->name;
+        $mailer->FromName = YHelper::yiisetting('email_title', Yii::app()->name);
         $mailer->CharSet = 'UTF-8';
         $mailer->Subject = $subject;
         $mailer->IsHTML(true);  // set email format to HTML
