@@ -6,12 +6,12 @@ class ListView extends CListView
     {
         $this->registerClientScript();
 
-        //echo CHtml::openTag($this->tagName,$this->htmlOptions)."\n";
+        echo CHtml::openTag($this->tagName,$this->htmlOptions)."\n";
 
         $this->renderContent();
         $this->renderKeys();
 
-        //echo CHtml::closeTag($this->tagName);
+        echo CHtml::closeTag($this->tagName);
     }
 
     public function renderItems()
