@@ -17,24 +17,9 @@
         )); ?>
     </div>
 </div>
-
+<!--hello world-->
 <section class="separated separated--edge">
     <div class="row">
-        <!--<div class="form">
-            https://kakousis.wordpress.com/2013/05/11/dropdown-ajax-based-filtering-of-clistview-in-yii/
-            <?php /*$form=$this->beginWidget('CActiveForm', array(
-                'id'=>'menu-dropdown-form',
-                'enableAjaxValidation'=>true,
-            ));
-
-            echo CHtml::dropDownList('category_id',
-                1,
-                array('1' => 'Rating', '2' => 'Register date'),
-                array('prompt'=>'Order by')
-            );
-
-            $this->endWidget(); */?>
-        </div>-->
         <div class="medium-4 large-3 columns">
             <?php $this->renderPartial('_search',array(
                 'model'=>$model,
@@ -63,11 +48,3 @@
         </div>
     </div>
 </section>
-
-<?php /*Yii::app()->clientScript->registerScript('items_update',
-    "$('#category_id').change(function(){
-        $.fn.yiiListView.update('rating-log-grid', {
-            data: $(this).serialize(),
-        });
-    });
-return false;"); */?>
