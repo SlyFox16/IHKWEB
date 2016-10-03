@@ -54,7 +54,7 @@
                 <?php if(!empty($user->address)) { ?>
                     <li>
                         <span><i class="fa fa-map-marker"></i>
-                        <?php echo User::getCityCountry($user->country_id, 'country').'<br> '.User::getCityCountry($user->city_id, 'city').'<br> '.$user->address; ?></span>
+                        <?php echo User::getCityCountry($user->country_id, 'country').' '.User::getCityCountry($user->city_id, 'city'); ?></span>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->phone)) { ?>
