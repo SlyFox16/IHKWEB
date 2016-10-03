@@ -144,7 +144,7 @@
                     <span><?php echo Yii::t("base", "Projects"); ?></span>
                         <ul class="accordion projects" data-accordion>
                             <?php foreach($completed as $key => $cert) { ?>
-                            <li class="accordion-item <?php echo $key == 1 ? 'is-active' : ''; ?>" data-accordion-item>
+                            <li class="accordion-item <?php echo $key == 0 ? 'is-active' : ''; ?>" data-accordion-item>
                                 <a href="#" class="accordion-title"><?php echo $cert->name; ?> <span><?php echo YHelper::formatDate('dd MMMM yyyy', $cert->date, 'dd/MM/yyyy'); ?></span></a>
                                 <div class="accordion-content" data-tab-content>
                                     <img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>">
