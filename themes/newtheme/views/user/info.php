@@ -23,7 +23,7 @@
             <?php } ?>
             <li><a title="<?php echo Yii::t("base", "Report"); ?>" class="fa fa-flag" data-toggle="report"></a></li>
             <?php if (!Yii::app()->user->is_seeker) { ?>
-                <li><a title="<?php echo Yii::t("base", "Send mail"); ?>" class="fa fa-flag" href="<?php echo $this->createUrl('/message/compose/compose', array('param' => $user->username)); ?>"></a></li>
+                <li><a title="<?php echo Yii::t("base", "Send mail"); ?>" class="fa fa-envelope" href="<?php echo $this->createUrl('/message/compose/compose', array('param' => $user->username)); ?>"></a></li>
             <?php } ?>
             <li>
                 <a href="" class="fa fa-share-alt"></a>
