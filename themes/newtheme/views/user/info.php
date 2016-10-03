@@ -114,19 +114,19 @@
 <section class="bottom-separator">
     <div class="row">
         <div class="medium-6 medium-offset-3 columns">
-            <div class="expert_section">
-                <span><?php echo Yii::t("base", "Specialities"); ?></span>
-                <?php if($user->speciality) { ?>
+            <?php if($user->speciality) { ?>
+                <div class="expert_section">
+                    <span><?php echo Yii::t("base", "Specialities"); ?></span>
                     <ul class="items">
                         <?php foreach($user->speciality as $speciality) { ?>
                             <li><span><?php echo $speciality->speciality; ?></span></li>
                         <?php } ?>
                     </ul>
-                <?php } ?>
-            </div>
-            <div class="expert_section">
-                <span><?php echo Yii::t("base", "Associations"); ?></span>
-                <?php if($user->connectedAssoc) { ?>
+                </div>
+            <?php } ?>
+            <?php if($user->connectedAssoc) { ?>
+                <div class="expert_section">
+                    <span><?php echo Yii::t("base", "Associations"); ?></span>
                     <ul class="associates">
                         <?php foreach($user->connectedAssoc as $assoc) { ?>
                             <li data-tooltip aria-haspopup="true" title="<?php echo $assoc->name; ?>">
@@ -136,25 +136,26 @@
                             </li>
                         <?php } ?>
                     </ul>
-                <?php } ?>
-            </div>
-            <div class="expert_section">
-                <span><?php echo Yii::t("base", "Projects"); ?></span>
-                <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
-                    <ul class="accordion projects" data-accordion>
-                        <?php foreach($completed as $key => $cert) { ?>
-                        <li class="accordion-item <?php echo $key == 1 ? 'is-active' : ''; ?>" data-accordion-item>
-                            <a href="#" class="accordion-title"><?php echo $cert->name; ?> <span><?php echo YHelper::formatDate('dd MMMM yyyy', $cert->date, 'dd/MM/yyyy'); ?></span></a>
-                            <div class="accordion-content" data-tab-content>
-                                <img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>">
-                                <p><?php echo $cert->description; ?></p>
-                                <a href="<?php echo $cert->link; ?>" class="more"><?php echo Yii::t("base", "Check out project"); ?> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </li>
-                        <?php } ?>
-                    </ul>
-                <?php } ?>
-            </div>
+                </div>
+            <?php } ?>
+
+            <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
+                <div class="expert_section">
+                    <span><?php echo Yii::t("base", "Projects"); ?></span>
+                        <ul class="accordion projects" data-accordion>
+                            <?php foreach($completed as $key => $cert) { ?>
+                            <li class="accordion-item <?php echo $key == 1 ? 'is-active' : ''; ?>" data-accordion-item>
+                                <a href="#" class="accordion-title"><?php echo $cert->name; ?> <span><?php echo YHelper::formatDate('dd MMMM yyyy', $cert->date, 'dd/MM/yyyy'); ?></span></a>
+                                <div class="accordion-content" data-tab-content>
+                                    <img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>">
+                                    <p><?php echo $cert->description; ?></p>
+                                    <a href="<?php echo $cert->link; ?>" class="more"><?php echo Yii::t("base", "Check out project"); ?> <i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </section>
