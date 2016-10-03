@@ -26,7 +26,6 @@
 
         <li class="search">
             <?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-                //'model'=>$model,
                 'name'=>'searchfield',
                 'source'=>"js:function(request, response) {
                     $.getJSON('".Yii::app()->createUrl('site/suggest')."', {

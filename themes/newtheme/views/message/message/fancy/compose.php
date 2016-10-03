@@ -36,18 +36,20 @@
                                 <label>
                                     <span><?php echo $model->getAttributeLabel('receiver_id'); ?></span>
                                     <?php $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
-                                        'name' => 'receiver',
-                                        'source'=>"js:function(request, response) {
-                                            $.getJSON('".Yii::app()->createUrl(Yii::app()->getModule('message')->getSuggestMethod)."', {
-                                            term: request.term
-                                            }, response);
-                                        }",
-                                        'options'=>array(
-                                            'delay'=>300,
-                                            'minLength'=>2,
-                                            'showAnim'=>'fold',
-                                            'multiple'=>true,
-                                            'focus' => "function(event, ui) {
+                                    'model'=>$model,
+                                    'attribute'=>"receiver",
+                                    //'name' => 'receiver',
+                                    'source'=>"js:function(request, response) {
+                                        $.getJSON('".Yii::app()->createUrl(Yii::app()->getModule('message')->getSuggestMethod)."', {
+                                        term: request.term
+                                        }, response);
+                                    }",
+                                    'options'=>array(
+                                        'delay'=>300,
+                                        'minLength'=>2,
+                                        'showAnim'=>'fold',
+                                        'multiple'=>true,
+                                        'focus' => "function(event, ui) {
                                             $('#receiver').val(ui.item.label);
                                             return false;
                                         }",

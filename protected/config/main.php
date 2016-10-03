@@ -155,6 +155,7 @@ return CMap::mergeArray(
                 'urlFormat' => 'path',
                 'showScriptName' => false,
                 'rules' => array(
+                    'message/compose/<param:\w+>' => 'message/compose/compose',
                     array('class' => 'staticPagesRouter'),
                     array('class' => 'ihkUserRouter'),
                     array('class' => 'CertificateRouter'),

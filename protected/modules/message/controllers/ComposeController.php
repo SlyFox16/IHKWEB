@@ -5,11 +5,11 @@ class ComposeController extends Frontend
 
 	public $defaultAction = 'compose';
 
-	public function actionCompose($id = null) {
+	public function actionCompose($param = null) {
         $this->_curNav = 'compose';
 		$message = new Message();
 		if (Yii::app()->request->getPost('Message')) {
-			$receiverName = Yii::app()->request->getPost('receiver');
+			$receiverName = Yii::app()->request->getPost('Message[receiver]');
 		    $message->attributes = Yii::app()->request->getPost('Message');
 			$message->sender_id = Yii::app()->user->getId();
             $message->chat_id = md5(microtime() . rand(0, 9999));
@@ -23,8 +23,8 @@ class ComposeController extends Frontend
 				$receiverName = '';
 			}
 		} else {
-			if ($id) {
-				$receiver = call_user_func(array(call_user_func(array(Yii::app()->getModule('message')->userModel, 'model')), 'findByPk'), $id);
+			if ($param) {
+                $receiver = User::model()->find('username = :username', array(':username' => $param));
 				if ($receiver) {
 					$receiverName = call_user_func(array($receiver, Yii::app()->getModule('message')->getNameMethod));
 					$message->receiver_id = $receiver->id;

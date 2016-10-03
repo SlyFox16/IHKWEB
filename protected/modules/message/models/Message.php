@@ -20,6 +20,7 @@ class Message extends CActiveRecord
 
 	public $userModel;
 	public $userModelRelation;
+    public $receiver;
 
 	public $unreadMessagesCount;
 
