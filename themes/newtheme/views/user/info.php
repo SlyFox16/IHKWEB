@@ -4,7 +4,6 @@
     $this->canonical = $this->createAbsoluteUrl('user/info', array('id' => $user->id));
 ?>
 
-
 <!--===============================-->
 <!--== Expert =====================-->
 <!--===============================-->
@@ -37,115 +36,116 @@
 
 <section class="separated">
     <div class="row">
-        <div class="small-5 medium-3 columns">
+        <div class="small-3 medium-3 columns">
             <div class="expert_photo">
                 <img src="<?php echo YHelper::getImagePath($user->avatar, 200, 200); ?>" alt="<?php echo Yii::t("base", "Expert photo"); ?>">
             </div>
         </div>
-        <div class="medium-6 columns">
+        <div class="small-9 medium-6 columns">
             <div class="expert_name">
                 <h2><?php echo $user->title; ?> <b><?php echo $user->name; ?></b> <?php echo $user->surname; ?></h2>
             </div>
             <h3><?php echo $user->position; ?></h3>
-            <?php if($user->speciality) { ?>
-                <ul class="expert_domain">
-                    <?php foreach($user->speciality as $speciality) { ?>
-                        <li><?php echo $speciality->speciality; ?></li>
-                    <?php } ?>
-                </ul>
-            <?php } ?>
             <p><?php echo $user->uDescription; ?></p>
-            <?php if($user->connectedAssoc) { ?>
-                <ul class="associates">
-                    <?php foreach($user->connectedAssoc as $assoc) { ?>
-                        <li data-tooltip aria-haspopup="true" title="<?php echo $assoc->name; ?>">
-                            <a href="<?php echo $assoc->link; ?>" target="_blank">
-                                <img src="<?php echo YHelper::getImagePath($assoc->logo); ?>" alt="">
-                            </a>
-                        </li>
-                    <?php } ?>
-                </ul>
-            <?php } ?>
-        </div>
-        <div class="medium-3 medium-offset-0 columns">
-            <ul class="stats">
-                <li><?php echo Yii::t("base", "Rating");?> <b><?php echo $user->rating; ?></b></li>
-                <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>
-                <?php if($certisicates = $user->certificates(array('scopes' => array('confirmed')))) { ?>
-                    <li><?php echo Yii::t("base", "Certification"); ?>
-                        <?php foreach($certisicates as $cert) { ?>
-                            <b><a href="<?php echo $this->createUrl('site/certificateView', array('id' => $cert->certificate->id)); ?>">
-                                    <img src="<?php echo YHelper::getImagePath($cert->certificate->logo, 60); ?>" data-tooltip title="<?php echo $cert->certificate->name; ?>">
-                            </a></b>
-                        <?php } ?>
-                    </li>
-                <?php } ?>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section>
-    <div class="row">
-        <div class="medium-6 medium-offset-3 columns">
-            <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
-                <?php foreach($completed as $cert) { ?>
-                    <article class="certification">
-                        <header>
-                            <h3><?php echo $cert->name; ?></h3> <span><?php echo YHelper::formatDate('dd MMMM yyyy', $cert->date, 'dd/MM/yyyy'); ?></span>
-                        </header>
-                        <p><?php echo $cert->description; ?></p>
-                        <figure><img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>"></figure>
-                        <a href="<?php echo $cert->link; ?>" class="more"><?php echo Yii::t("base", "Check out project"); ?> <i class="fa fa-angle-right"></i></a>
-                    </article>
-                <?php } ?>
-            <?php } ?>
-        </div>
-        <div class="medium-3 columns">
-            <ul class="contacts">
+            <ul class="items">
                 <?php if(!empty($user->address)) { ?>
                     <li>
-                        <i class="fa fa-map-marker"></i>
-                        <span><?php echo User::getCityCountry($user->country_id, 'country').'<br> '.User::getCityCountry($user->city_id, 'city').'<br> '.$user->address; ?></span>
+                        <span><i class="fa fa-map-marker"></i>
+                        <?php echo User::getCityCountry($user->country_id, 'country').'<br> '.User::getCityCountry($user->city_id, 'city').'<br> '.$user->address; ?></span>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->phone)) { ?>
                     <li>
-                        <i class="fa fa-phone"></i>
-                        <span><?php echo $user->phone; ?></span>
+                        <span><i class="fa fa-phone"></i>
+                        <?php echo $user->phone; ?></span>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->web_url)) { ?>
                     <li>
-                        <i class="fa fa-globe"></i>
-                        <a href="<?php echo $user->web_url; ?>"><?php echo $user->clearUrl; ?></a>
+                        <a class="fa fa-globe" href="<?php echo $user->web_url; ?>"><?php echo $user->clearUrl; ?></a>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->xing_url)) { ?>
                     <li>
-                        <i class="fa fa-xing"></i>
-                        <a href="<?php echo $user->xing_url; ?>"><?php echo $user->fullname;?></a>
+                        <a class="fa fa-xing" href="<?php echo $user->xing_url; ?>"><?php echo $user->fullname;?></a>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->linkedin_url)) { ?>
                     <li>
-                        <i class="fa fa-linkedin"></i>
-                        <a href="<?php echo $user->linkedin_url; ?>">Linkedin</a>
+                        <a class="fa fa-linkedin" href="<?php echo $user->linkedin_url; ?>">Linkedin</a>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->facebook_url)) { ?>
                     <li>
-                        <i class="fa fa-facebook"></i>
-                        <a href="<?php echo $user->facebook_url; ?>">Facebook</a>
+                        <a class="fa fa-facebook" href="<?php echo $user->facebook_url; ?>">Facebook</a>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->twitter_url)) { ?>
                     <li>
-                        <i class="fa fa-twitter"></i>
-                        <a href="<?php echo $user->twitter_url; ?>">Twitter</a>
+                        <a class="fa fa-twitter" href="<?php echo $user->twitter_url; ?>">Twitter</a>
                     </li>
                 <?php } ?>
+
+                <li><span><i class="fa fa-phone"></i> +1 (234) 567 89</span></li>
+                <li><span><i class="fa fa-map-marker"></i> Moldova, Chisinau</span></li>
+                <li><a href="" class="fa fa-facebook"></a></li>
+                <li><a href="" class="fa fa-twitter"></a></li>
+                <li><a href="" class="fa fa-xing"></a></li>
             </ul>
+        </div>
+        <div class="small-9 small-offset-3 medium-3 medium-offset-0 columns">
+            <ul class="stats">
+                <li>Rating <b>0</b></li>
+                <li>Level <b>0</b></li>
+                <li>Certification
+                    <ul class="certifications">
+                        <li data-tooltip aria-haspopup="true" title="Certification Title"><img src="assets/images/ihk.png" alt=""></li>
+                        <li data-tooltip aria-haspopup="true" title="Certification Title"><img src="assets/images/ihk.png" alt=""></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="bottom-separator">
+    <div class="row">
+        <div class="medium-6 medium-offset-3 columns">
+            <div class="expert_section">
+                <span>Specialities</span>
+                <ul class="items">
+                    <li><span>CrowdInnovation</span></li>
+                    <li><span>CrowdSourcing</span></li>
+                    <li><span>CrowdFunding</span></li>
+                </ul>
+            </div>
+            <div class="expert_section">
+                <span>Associations</span>
+                <ul class="associates">
+                    <li data-tooltip aria-haspopup="true" title="Deutscher Crowdsourcing Verband Member"><img src="assets/images/DCV-logo.png" alt=""></li>
+                    <li data-tooltip aria-haspopup="true" title="Deutscher Crowdsourcing Verband Member"><img src="assets/images/BC-logo.png" alt=""></li>
+                </ul>
+            </div>
+            <div class="expert_section">
+                <span>Projects</span>
+                <ul class="accordion projects" data-accordion>
+                    <li class="accordion-item is-active" data-accordion-item>
+                        <a href="#" class="accordion-title">activoris Medzintechnik GmbH <span>02 Januar 2016</span></a>
+                        <div class="accordion-content" data-tab-content>
+                            <img src="assets/images/ihk.png" alt="Image">
+                            <p>
+                                Ein erstklassiger Medizintechnik-Dienstleister, der alle Stolpersteine aus dem Weg räumt!
+                                <a href="">Project details ></a>
+                            </p>
+                        </div>
+                    </li>
+                    <li class="accordion-item" data-accordion-item>
+                        <a href="#" class="accordion-title">Accordion 1</a>
+                        <div class="accordion-content" data-tab-content>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic vel, iusto omnis harum officia est modi nobis sapiente placeat incidunt eos voluptatibus veritatis sequi natus voluptates consequuntur sed velit commodi?
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
@@ -157,18 +157,8 @@
 <section>
     <div class="row">
         <div class="small-12 medium-9 medium-offset-3 columns">
-            <?php if(!Yii::app()->user->isGuest) { ?>
-                <a href="<?php echo $this->createUrl('site/findexperts'); ?>" class="button large"><?php echo Yii::t("base", "Find Experts");?> <i class="fa fa-search"></i></a>
-            <?php } ?>
-            <?php if(Yii::app()->user->isGuest) { ?>
-                <a href="<?php echo $this->createUrl('/registration'); ?>" class="button large"><?php echo Yii::t("base", "Become Expert");?> <i class="fa fa-angle-right"></i></a>
-            <?php } ?>
+            <a href="" class="button large">Find Experts <i class="fa fa-search"></i></a>
+            <a href="" class="button large transparent">Become Expert <i class="fa fa-angle-right"></i></a>
         </div>
     </div>
 </section>
-
-<?php $this->widget('RatingDescription', array('user' => $user)); ?>
-<?php $this->widget('Reportpop', array('receiver' => $user->id)); ?>
-<?php Yii::app()->clientScript->registerScript('username',"
-        username = '$user->username'
-"); ?>

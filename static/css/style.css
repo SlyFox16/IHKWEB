@@ -11322,6 +11322,99 @@ footer {
   max-width: 50%;
 }
 
+.bottom-separator {
+  border-bottom: 1px solid #efefef;
+}
+
+/* Expert Section */
+.expert_section {
+  width: 100%;
+  float: left;
+  position: relative;
+  margin-top: 1.5625rem;
+  padding: 1.25rem;
+  background: #efefef;
+}
+.expert_section + .expert_section {
+  margin-top: 4.0625rem;
+}
+.expert_section > span {
+  position: absolute;
+  top: -2.1875rem;
+  left: 0;
+  padding: 0.3125rem 1.25rem;
+  background: #efefef;
+  font-size: 0.875rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #000;
+  line-height: 1.5625rem;
+}
+
+.items {
+  float: left;
+  list-style: none;
+  padding: 0;
+  margin: 1px 0 0 0;
+  border-left: 1px solid #d0d0d0;
+}
+.items li {
+  float: left;
+  margin-top: -1px;
+  border-top: 1px solid #d0d0d0;
+  border-right: 1px solid #d0d0d0;
+  border-bottom: 1px solid #d0d0d0;
+  color: #777;
+}
+.items li span, .items li a {
+  display: block;
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  padding: 0.625rem 0.9375rem;
+}
+.items li .fa {
+  font-size: 1.25rem;
+  vertical-align: middle;
+}
+.items li a {
+  color: #777;
+}
+.items li a:hover {
+  background: #00478c;
+  color: #fff;
+}
+
+.accordion.projects .accordion-item .accordion-title {
+  padding: 1.25rem 3.75rem 1.25rem 1.25rem;
+}
+.accordion.projects .accordion-item .accordion-title span {
+  color: #777;
+}
+.accordion.projects .accordion-item .accordion-content {
+  background: none;
+  padding: 1.25rem;
+}
+.accordion.projects .accordion-item .accordion-content p {
+  margin: 0.3125rem 0 0 0;
+}
+.accordion.projects .accordion-item .accordion-content img {
+  max-width: 50%;
+}
+
+.certifications li {
+  float: right;
+  margin: 0;
+}
+.certifications li + li {
+  margin: 0 0.3125rem 0 0;
+}
+.certifications li img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  margin: 0;
+}
+
 /* Associates */
 .associates {
   display: table;
