@@ -28,6 +28,7 @@ class User extends ActiveRecord
 
     public $certificate;
     public $certificate_date;
+    public $order_param;
 
     /**
      * Returns the static model of the specified AR class.
@@ -92,7 +93,7 @@ class User extends ActiveRecord
             array('email, username', 'unique', 'except' => 'changepassword'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
-            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id, rating, userAssociation', 'safe'),
+            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id, rating, userAssociation, order_param', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -213,6 +214,7 @@ class User extends ActiveRecord
             'city_id' => Yii::t("base","City"),
             'companyname' => Yii::t("base","Company name"),
             'description' => Yii::t("base","Company description"),
+            'order_param' => Yii::t("base","Order parameter"),
         );
     }
 
@@ -252,8 +254,11 @@ class User extends ActiveRecord
         $criteria->compare('date_joined', $this->date_joined, true);
 
         $criteria->scopes = 'search_active';
-        $criteria->order = 'rating DESC, level DESC';
-        //$criteria->addCondition('is_active = 1 && is_staff = 0 && expert_confirm = 1');
+
+        if ($this->order_param && $this->order_param == 'date')
+            $criteria->order = 'date_joined DESC';
+        else
+            $criteria->order = 'rating DESC, level DESC';
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

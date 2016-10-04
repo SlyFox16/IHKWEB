@@ -7,6 +7,26 @@
     <!--== Filters ==-->
         <div class="filters">
             <label>
+                <span><?php echo $model->getAttributeLabel('order_param'); ?></span>
+                <?php $this->widget(
+                    'booster.widgets.TbSelect2',
+                    [
+                        'model'=>$model,
+                        'attribute'=>'order_param',
+                        'data' => array('rating' => Yii::t("base", 'Rating'), 'date' => Yii::t("base", 'Date')),
+                        'asDropDownList' => true,
+                        'options' => [
+                            'width' => '100%',
+                            'allowClear' => true,
+                            'minimumResultsForSearch' => -1
+                        ],
+                        'htmlOptions' => [
+                            'class' => 'form-control'
+                        ],
+                    ]
+                );?>
+            </label>
+            <label>
                 <span><?php echo $model->getAttributeLabel('name'); ?></span>
                  <?php echo $form->textField($model,'name',array('placeholder' => Yii::t("base", 'First Name'))); ?>
             </label>

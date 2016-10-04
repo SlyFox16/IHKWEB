@@ -403,6 +403,9 @@ class SiteController extends Frontend
         if(isset($_GET['User']))
             $model->attributes=$_GET['User'];
 
+        if(isset($_GET['User']['order_param']))
+            $model->order_param=$_GET['User']['order_param'];
+
         $this->render('findexperts', array('model' => $model));
     }
 
