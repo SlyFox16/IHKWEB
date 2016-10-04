@@ -67,7 +67,7 @@
                     <li>
                         <a href="<?php echo $user->web_url; ?>">
                             <span><i class="fa fa-globe"></i>
-                            <?php echo $user->clearUrl; ?>
+                            <?php echo $user->clearUrl; ?></span>
                         </a>
                     </li>
                 <?php } ?>
