@@ -34,8 +34,8 @@
                     <div class="medium-4 columns">
                         <h3>Vorstände Deutscher Crowdsourcing Verband e.V.</h3>
                         <p>
-                            Vorstandsvorsitzender: Dr. Michael Gebert
-                            Stellv. Vorstandsvorsitzender: Dennis Schenkel
+                            Vorstandsvorsitzender: Dr. Michael Gebert <br>
+                            Stellv. Vorstandsvorsitzender: Dennis Schenkel <br>
                             Vorstände: Ines Zimzinski,<br> Thomas Andersen,<br> Christoph Sieciechowicz
                         </p>
                     </div>
