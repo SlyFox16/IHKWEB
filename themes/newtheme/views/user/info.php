@@ -73,7 +73,7 @@
                 <?php } ?>
                 <?php if(!empty($user->xing_url)) { ?>
                     <li>
-                        <a class="fa fa-xing" href="<?php echo $user->xing_url; ?>"> <?php echo $user->fullname;?></a>
+                        <a class="fa fa-xing" href="<?php echo $user->xing_url; ?>"></a>
                     </li>
                 <?php } ?>
                 <?php if(!empty($user->linkedin_url)) { ?>
