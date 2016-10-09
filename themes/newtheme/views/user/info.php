@@ -179,3 +179,9 @@
         </div>
     </div>
 </section>
+
+<?php $this->widget('RatingDescription', array('user' => $user)); ?>
+<?php $this->widget('Reportpop', array('receiver' => $user->id)); ?>
+<?php Yii::app()->clientScript->registerScript('username',"
+        username = '$user->username'
+"); ?>
