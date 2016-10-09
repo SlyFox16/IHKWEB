@@ -54,6 +54,7 @@
         </li>
         <li>
             <a href="<?php echo Yii::app()->createUrl('site/findexperts'); ?>"><?php echo Yii::t("base", "Experts"); ?></a>
+            <a href="<?php echo Yii::app()->createUrl('event/eventList'); ?>"><?php echo Yii::t("base", "Events"); ?></a>
         </li>
         <?php $this->endWidget(); ?>
     </ul>

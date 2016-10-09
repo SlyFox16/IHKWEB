@@ -14,6 +14,18 @@ class YHelper
         return $default;
     }
 
+    public static function generateStr($length = 16)
+    {
+        $chars = str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789");
+        $code = "";
+        $clen = strlen($chars) - 1;
+
+        while (strlen($code) < $length)
+            $code .= $chars[mt_rand(0, $clen)];
+
+        return $code;
+    }
+
     public static function yiisettingSenderEmail($name, $default = null)
     {
         if ($setting = Settings::model()->findByAttributes(array("name"=>$name))) {

@@ -39,7 +39,7 @@ class UserController extends Frontend
             ),
             array('allow',
                 'actions'=>array('info'),
-                'expression'=>'CAuthHelper::isIssetExpert(@$_GET["id"])',
+                'expression'=>'CAuthHelper::isExpert(@$_GET["id"])',
             ),
             array('allow',
                 'actions'=>array('index', 'updatePassword', 'report', 'ratingDescr'),

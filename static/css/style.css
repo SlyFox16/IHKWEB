@@ -11784,4 +11784,81 @@ body .rating-gly-star {
   color: #777;
 }
 
+/*------------------------------------*\
+    Events
+\*------------------------------------*/
+.event {
+  position: relative;
+  display: block;
+  margin-bottom: 1.875rem;
+  padding: 1.25rem;
+  height: 21.875rem;
+  border: 1px solid #d0d0d0;
+}
+.event time {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  background: #d0d0d0;
+  padding: 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #777;
+}
+.event .event_bottom {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  color: #000;
+  font-size: 1.5625rem;
+}
+.event .event_bottom > * {
+  display: block;
+}
+.event .event_bottom span {
+  font-size: 1rem;
+  color: #777;
+}
+.event:hover {
+  border-color: #00478c;
+}
+.event:hover time {
+  background: #00478c;
+  color: #fff;
+}
+
+.event_experts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.event_experts li {
+  float: left;
+}
+.event_experts li + li {
+  margin-left: 0.625rem;
+}
+.event_experts li img {
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+}
+
+.event_meta {
+  list-style: none;
+  margin: 0 1.875rem 0 0;
+}
+.event_meta li {
+  color: #777;
+  font-size: 1.5625rem;
+  font-weight: 300;
+}
+.event_meta li + li {
+  padding-top: 0.9375rem;
+  margin-top: 0.9375rem;
+  border-top: 1px solid #d0d0d0;
+}
+
 /*# sourceMappingURL=style.css.map */
