@@ -5,8 +5,8 @@
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
             'links' => array(
-                Yii::t("base", 'Mail') => array('/message/inbox'),
-                Yii::t("base", "Compose"),
+                Yii::t("base", 'Events') => array('/event/eventList'),
+                Yii::t("base", "Create"),
             ),
         )); ?>
     </div>
@@ -137,7 +137,11 @@
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
                         <div class="button-group">
-                            <?php echo CHtml::linkButton(Yii::t("base", 'Create event'), array('class' => 'button large')); ?>
+                            <?php echo
+                                CHtml::linkButton(
+                                $model->isNewRecord ? Yii::t("base", 'Create event') : Yii::t("base", 'Update event'),
+                                array('class' => 'button large'));
+                            ?>
                         </div>
                     </div>
                 </div>
