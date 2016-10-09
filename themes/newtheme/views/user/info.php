@@ -150,7 +150,7 @@
                             <li class="accordion-item <?php echo $key == 0 ? 'is-active' : ''; ?>" data-accordion-item>
                                 <a href="#" class="accordion-title"><?php echo $cert->name; ?> <span><?php echo YHelper::formatDate('dd MMMM yyyy', $cert->date, 'dd/MM/yyyy'); ?></span></a>
                                 <div class="accordion-content" data-tab-content>
-                                    <img src="<?php echo YHelper::getImagePath($cert->image, 200, 100); ?>">
+                                    <img src="<?php echo YHelper::getImagePath($cert->image); ?>">
                                     <p><?php echo $cert->description; ?></p>
                                     <a href="<?php echo $cert->link; ?>" class="more"><?php echo Yii::t("base", "Check out project"); ?> <i class="fa fa-angle-right"></i></a>
                                 </div>
