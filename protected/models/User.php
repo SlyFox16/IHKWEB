@@ -153,6 +153,7 @@ class User extends ActiveRecord
             'speciality' => array(self::MANY_MANY, 'Speciality', 'user_speciality(user_id, speciality_id)'),
             'userspeciality' => array(self::HAS_MANY, 'UserSpeciality', 'user_id'),
             'connectedUsers' => array(self::MANY_MANY, 'User', 'user_reference(user_initiator, user_receiver)'),
+            'events' => array(self::MANY_MANY, 'Event', 'event_members(user_id, event_id)'),
             'connectedAssoc' => array(self::MANY_MANY, 'AssociationMembership', 'user_association(user_id, association_id)'),
         );
     }

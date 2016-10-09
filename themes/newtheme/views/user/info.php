@@ -141,7 +141,22 @@
                     </ul>
                 </div>
             <?php } ?>
-
+            <?php if($events = $user->events) { ?>
+                <div class="expert_section">
+                    <span><?php echo Yii::t("base", "Events Submitted"); ?></span>
+                    <ul class="associates">
+                        <?php foreach($events as $event) { ?>
+                            <li data-tooltip aria-haspopup="true" title="<?php echo $event->title; ?>">
+                                <a href="<?php echo $this->createUrl('/event/view', array('id' => $event->id)); ?>" target="_blank">
+                                    <?php echo $event->title; ?>
+                                    <?php echo YHelper::formatDate('dd MMMM yyyy', $event->date); ?>
+                                    <?php echo User::getCityCountry($event->country_id, 'country').', '.User::getCityCountry($event->city_id, 'city'); ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            <?php } ?>
             <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Projects"); ?></span>

@@ -64,13 +64,15 @@ class Event extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'description' => 'Description',
-			'facebook_url' => 'Facebook Url',
-			'twitter_url' => 'Twitter Url',
-			'xing_url' => 'Xing Url',
-			'image' => 'Image',
-			'location' => 'Location',
+			'title' => Yii::t("base", 'Title'),
+			'description' => Yii::t("base", 'Description'),
+			'facebook_url' => Yii::t("base", 'Facebook Url'),
+			'twitter_url' => Yii::t("base", 'Twitter Url'),
+			'xing_url' => Yii::t("base", 'Xing Url'),
+			'image' => Yii::t("base", 'Image'),
+			'location' => Yii::t("base", 'Location'),
+            'country_id' => Yii::t("base","Country"),
+            'city_id' => Yii::t("base","City"),
 		);
 	}
 
