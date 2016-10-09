@@ -29,6 +29,8 @@
                     </a>
                 </div>
             <?php } ?>
+        <?php } else { ?>
+            No events found
         <?php } ?>
     </div>
 </section>
