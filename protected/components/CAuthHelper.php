@@ -44,6 +44,7 @@ class CAuthHelper {
 
     static function eventExists($id)
     {
+        if (empty($id)) return false;
         $event = Event::model()->findByPk($id);
         if (!$event) return false;
         return true;
