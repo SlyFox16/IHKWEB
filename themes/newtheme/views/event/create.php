@@ -82,7 +82,7 @@
                                             'options' => array(
                                                 'format' => 'dd/mm/yyyy',
                                                 'todayHighlight' => true,
-                                                'endDate' => '+0d',
+                                                'startDate' => '+0d',
                                             ),
                                             'htmlOptions' => array(
                                                 'placeholder' => false
