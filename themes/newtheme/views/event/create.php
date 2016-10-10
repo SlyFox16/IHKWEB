@@ -150,6 +150,11 @@
                                     <?php echo $form->error($model, 'city_id'); ?>
                                 </label>
                                 <label>
+                                    <span><?php echo $model->getAttributeLabel('address'); ?></span>
+                                    <?php echo $form->textField($model,'address'); ?>
+                                    <?php echo $form->error($model,'address'); ?>
+                                </label>
+                                <label>
                                     <span><?php echo $model->getAttributeLabel('image'); ?></span>
                                     <?php echo $form->fileField($model, 'image', array('extensions' => '"gif", "png", "jpg", "jpeg"')); ?>
                                     <?php echo $form->error($model,'image'); ?>

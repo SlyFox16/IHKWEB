@@ -71,7 +71,7 @@
             <div class="expert_section">
                 <span>Location</span>
                 <div id="location">
-                    <iframe src="https://www.google.com/maps/embed/v1/place?q=<?php echo urlencode(User::getCityCountry($model->city_id, 'city'). " " . User::getCityCountry($model->country_id, 'country')); ?>&key=<?php echo Yii::app()->params['googleMapKey']; ?>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed/v1/place?q=<?php echo urlencode($model->address." ".User::getCityCountry($model->city_id, 'city'). " " .User::getCityCountry($model->country_id, 'country')); ?>&key=<?php echo Yii::app()->params['googleMapKey']; ?>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>

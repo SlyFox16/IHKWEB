@@ -33,7 +33,7 @@ class Event extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description, country_id, date, city_id', 'required'),
+			array('title, description, country_id, date, city_id, address', 'required'),
 			array('title, facebook_url, twitter_url, xing_url, image, location', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
