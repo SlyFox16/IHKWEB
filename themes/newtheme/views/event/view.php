@@ -42,7 +42,7 @@
                     <li><a href="<?php echo $model->xing_url; ?>" class="fa fa-xing"></a></li>
                 <?php } ?>
                 <?php if (!empty($model->site_url)) { ?>
-                    <li><a href="<?php echo $model->site_url; ?>"><i class="fa fa-map-marker"></i> <?php echo $model->site_url; ?></a></li>
+                    <li><a href="<?php echo $model->site_url; ?>"><i class="fa fa-globe"></i> <?php echo $model->site_url; ?></a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
