@@ -65,7 +65,7 @@ return array (
   'Error' => 'Es ist ein Fehler aufgetreten. Bitte wiederholen Sie Ihre Eingabe.',
   'Event List' => '',
   'Events' => '',
-  'Events Submitted' => '',
+  'Events participated' => '',
   'Expert' => 'Experte(in)',
   'Expert photo' => 'Photo des Experten(in)',
   'Expert register' => 'Registrierung Experten',

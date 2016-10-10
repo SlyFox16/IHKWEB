@@ -143,7 +143,7 @@
             <?php } ?>
             <?php if($events = $user->events) { ?>
                 <div class="expert_section">
-                    <span><?php echo Yii::t("base", "Events Submitted"); ?></span>
+                    <span><?php echo Yii::t("base", "Events participated"); ?></span>
                     <ul class="event_participation">
                         <?php foreach($events as $event) { ?>
                             <li>
