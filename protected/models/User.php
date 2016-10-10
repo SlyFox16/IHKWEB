@@ -705,7 +705,7 @@ class User extends ActiveRecord
     }
 
     public function getStatusActive() {
-        $stat = array(0 => 'Inactve', 1 => 'Active');
+        $stat = array(0 => 'Inactive', 1 => 'Active');
         return $stat[$this->is_active];
     }
 

@@ -11,7 +11,7 @@
  * @property string $twitter_url
  * @property string $xing_url
  * @property string $image
- * @property string $location
+ * @property string $address
  */
 class Event extends ActiveRecord
 {
@@ -34,13 +34,13 @@ class Event extends ActiveRecord
 		// will receive user inputs.
 		return array(
 			array('title, description, country_id, date, city_id, address', 'required'),
-			array('title, facebook_url, twitter_url, xing_url, image, location', 'length', 'max'=>255),
+			array('title, facebook_url, twitter_url, xing_url, image, address', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
             array('facebook_url, twitter_url, xing_url, site_url', 'url'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, description, facebook_url, twitter_url, xing_url, image, location', 'safe', 'on'=>'search'),
+			array('id, title, description, facebook_url, twitter_url, xing_url, image, address', 'safe', 'on'=>'search'),
             array('user_id', 'default', 'value' => Yii::app()->user->id,'setOnEmpty' => false, 'on' => 'insert'),
 		);
 	}
@@ -78,6 +78,7 @@ class Event extends ActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+            'user_id' => Yii::t("base", 'User'),
 			'title' => Yii::t("base", 'Title'),
 			'description' => Yii::t("base", 'Description'),
 			'facebook_url' => Yii::t("base", 'Facebook Url'),
@@ -85,7 +86,7 @@ class Event extends ActiveRecord
 			'xing_url' => Yii::t("base", 'Xing Url'),
             'site_url' => Yii::t("base", 'Site Url'),
 			'image' => Yii::t("base", 'Image'),
-			'location' => Yii::t("base", 'Location'),
+			'address' => Yii::t("base", 'Address'),
             'country_id' => Yii::t("base","Country"),
             'city_id' => Yii::t("base","City"),
 		);
@@ -116,7 +117,6 @@ class Event extends ActiveRecord
 		$criteria->compare('twitter_url',$this->twitter_url,true);
 		$criteria->compare('xing_url',$this->xing_url,true);
 		$criteria->compare('image',$this->image,true);
-		$criteria->compare('location',$this->location,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -155,5 +155,10 @@ class Event extends ActiveRecord
         if ($this->id) return $this->id;
         elseif ($this->temp_id) return $this->temp_id;
         elseif (empty($this->id) && empty($this->temp_id)) return YHelper::generateStr(32);
+    }
+
+    public function getStatusActive() {
+        $stat = array(0 => 'Inactive', 1 => 'Active');
+        return $stat[$this->active];
     }
 }

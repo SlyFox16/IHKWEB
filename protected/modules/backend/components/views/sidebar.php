@@ -33,6 +33,21 @@
 
                         <div class="accordion-group">
                             <div class="accordion-heading">
+                                <a href="#collapseEvent" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                    <i class="icon-barcode"></i> Events
+                                </a>
+                            </div>
+                            <div class="accordion-body collapse<?php if($c=="events") echo " in"; ?>" id="collapseEvent">
+                                <div class="accordion-inner">
+                                    <ul class="nav nav-list">
+                                        <li><a href="<?php echo Yii::app()->createUrl("backend/event/admin");?>">Manage Events</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
                                 <a href="#collapseCert" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
                                     <i class="icon-barcode"></i> Certificates
                                 </a>
