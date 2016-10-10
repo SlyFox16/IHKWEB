@@ -49,7 +49,7 @@
             <?php } ?>
         </div>
         <div class="medium-3 columns">
-            <img src="<?php echo YHelper::getImagePath($model->image, 263, 263); ?>" alt="">
+            <img src="<?php echo YHelper::getImagePath($model->image); ?>" alt="">
         </div>
     </div>
 </section>
