@@ -1,4 +1,4 @@
-<?php $this->title=Yii::app()->name . ' - '. Yii::t("base", "Compose Message"); ?>
+<?php $this->title=Yii::app()->name . ' - '. Yii::t("base", "Create Event"); ?>
 <?php $temp_id = $model->getTempId(); ?>
 <!-- Breadcrumbs -->
 <div class="row">
