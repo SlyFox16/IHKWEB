@@ -17,21 +17,25 @@
 
 <section class="separated">
     <div class="row">
-        <?php if ($events) { ?>
-            <?php foreach ($events as $event) { ?>
-                <div class="medium-4 large-3 columns end">
-                    <a href="<?php echo $this->createUrl('/event/view', array('id' => $event->id)); ?>" class="event">
-                        <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date, 'dd/MM/yyyy'); ?></time>
-                        <span class="event_bottom">
-                            <h2><?php echo $event->title; ?></h2>
-                            <span><?php echo User::getCityCountry($event->country_id, 'country').', '.User::getCityCountry($event->city_id, 'city'); ?></span>
-                        </span>
-                    </a>
-                </div>
-            <?php } ?>
-        <?php } else { ?>
-            No events found
-        <?php } ?>
+        <?php $this->widget('ListView', array(
+            'id'=>'event-grid',
+            'dataProvider' => $event->searchApproved(),
+            'itemView' => '_event', // refers to the partial view named '_post'
+            'summaryText' => false,
+            'itemsTagName' => 'div',
+            'itemsCssClass' => 'experts experts--ranking',
+            'loadingCssClass' => false,
+            'pager'=> "LinkPager",
+            'template'=>'{items} {pager}',
+            'cssFile' => false,
+            'emptyText' => '<div class="col-sm-12 text-center no-results">
+                <h1>'.Yii::t("base", "Sorry").'</h1>
+                <p>'. Yii::t("base", "Nothing found").'<a class="angle" href="/"> '. Yii::t("base", "Go back").'</a></p>
+            </div>',
+            'htmlOptions' => array(
+                'class' => false
+            )
+        )); ?>
     </div>
 </section>
 

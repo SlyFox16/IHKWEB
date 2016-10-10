@@ -136,6 +136,18 @@ class Event extends ActiveRecord
 		));
 	}
 
+    public function searchApproved()
+    {
+        // @todo Please modify the following code to remove attributes that should not be searched.
+
+        $criteria=new CDbCriteria;
+        $criteria->condition = 'active = 1';
+        return new CActiveDataProvider($this, array(
+            'criteria'=>$criteria,
+            'sort' => ['defaultOrder' => $this->getTableAlias() . '.date DESC'],
+        ));
+    }
+
     public function getSelectedCity() {
         $model = Cities::model()->find(array('condition' => 'geonameid = :id', 'params' => array(':id' => $this->city_id)));
         if($model) {

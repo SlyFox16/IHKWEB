@@ -89,8 +89,7 @@ class EventController extends Frontend
 
     public function actionEventList()
     {
-        $events = Event::model()->findAll('active = 1');
-        $this->render('list', array('events' => $events));
+        $this->render('list', array('event' => new Event()));
     }
 
     public function actionDeleteRelation() {

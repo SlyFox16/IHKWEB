@@ -38,9 +38,9 @@
                 'template'=>'{items} {pager}',
                 'cssFile' => false,
                 'emptyText' => '<div class="col-sm-12 text-center no-results">
-                <h1>Sorry</h1>
-                <p>Nothing found. <a class="angle" href="/">Go back</a></p>
-            </div>',
+                    <h1>'.Yii::t("base", "Sorry").'</h1>
+                    <p>'. Yii::t("base", "Nothing found").'<a class="angle" href="/"> '. Yii::t("base", "Go back").'</a></p>
+                </div>',
                 'htmlOptions' => array(
                     'class' => false
                 )
