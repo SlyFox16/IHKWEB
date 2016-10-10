@@ -11861,4 +11861,38 @@ body .rating-gly-star {
   border-top: 1px solid #d0d0d0;
 }
 
+.event_participation {
+  list-style: none;
+  margin: 0;
+}
+.event_participation li + li {
+  margin-top: 1.25rem;
+}
+.event_participation li a {
+  display: block;
+  border: 1px solid #d0d0d0;
+}
+.event_participation li a > * {
+  padding: 1.25rem;
+}
+.event_participation li a time {
+  display: inline-block;
+  background: #d0d0d0;
+  color: #777;
+}
+.event_participation li a h2 {
+  font-size: 1.5rem;
+  color: #000;
+}
+.event_participation li a span {
+  color: #777;
+}
+.event_participation li a:hover {
+  border-color: #00478c;
+}
+.event_participation li a:hover time {
+  background: #00478c;
+  color: #fff;
+}
+
 /*# sourceMappingURL=style.css.map */

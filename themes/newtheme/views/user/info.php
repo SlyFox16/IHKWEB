@@ -144,13 +144,15 @@
             <?php if($events = $user->events) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Events Submitted"); ?></span>
-                    <ul class="associates">
+                    <ul class="event_participation">
                         <?php foreach($events as $event) { ?>
-                            <li data-tooltip aria-haspopup="true" title="<?php echo $event->title; ?>">
+                            <li>
                                 <a href="<?php echo $this->createUrl('/event/view', array('id' => $event->id)); ?>" target="_blank">
-                                    <?php echo $event->title; ?>
-                                    <?php echo YHelper::formatDate('dd MMMM yyyy', $event->date); ?>
-                                    <?php echo User::getCityCountry($event->country_id, 'country').', '.User::getCityCountry($event->city_id, 'city'); ?>
+                                    <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date); ?></time>
+                                    <div>
+                                        <h2><?php echo $event->title; ?></h2>
+                                        <span><?php echo User::getCityCountry($event->country_id, 'country').', '.User::getCityCountry($event->city_id, 'city'); ?></span>
+                                    </div>
                                 </a>
                             </li>
                         <?php } ?>
