@@ -58,6 +58,7 @@ return array (
   'Create event' => '',
   'Crowd' => '',
   'Date' => 'Datum',
+  'Delete Event' => '',
   'Delete selected' => 'Auswahl löschen',
   'Description' => 'Beschreibung',
   'E-mail is not valid!' => 'Ungültige E-Mail Adresse',

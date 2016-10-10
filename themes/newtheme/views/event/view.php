@@ -13,6 +13,11 @@
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Update Event"); ?>"><a href="<?php echo $this->createUrl('/event/update', array('id' => $model->id)); ?>" class="fa fa-pencil"></a></li>
             </ul>
         </div>
+        <div class="small-12 medium-6 columns">
+            <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
+                <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Delete Event"); ?>"><a id="delete" data-id="<?php $model->id; ?>" href="#" class="fa fa-pencil"></a></li>
+            </ul>
+        </div>
     <?php } ?>
 </div>
 
@@ -55,19 +60,19 @@
 <section class="bottom-separator">
     <div class="row">
         <div class="medium-6 medium-offset-3 columns">
-            <div class="expert_section">
-                <span><?php echo Yii::t("base", "Participating experts"); ?></span>
-                <?php if($conUsers = $model->connectedUsers) { ?>
-                    <ul class="event_experts">
-                        <?php foreach ($conUsers as $user) { ?>
-                            <li>
-                                <a href="<?php echo $this->createUrl('user/info', array('id' => $user->id)); ?>" data-tooltip aria-haspopup="true" class="top" title="<?php echo $user->fullName; ?>" ><img src="<?php echo YHelper::getImagePath($user->avatar, 60, 60); ?>" alt="">
-                                </a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                <?php } ?>
-            </div>
+            <?php if($conUsers = $model->connectedUsers) { ?>
+                <div class="expert_section">
+                    <span><?php echo Yii::t("base", "Participating experts"); ?></span>
+                        <ul class="event_experts">
+                            <?php foreach ($conUsers as $user) { ?>
+                                <li>
+                                    <a href="<?php echo $this->createUrl('user/info', array('id' => $user->id)); ?>" data-tooltip aria-haspopup="true" class="top" title="<?php echo $user->fullName; ?>" ><img src="<?php echo YHelper::getImagePath($user->avatar, 60, 60); ?>" alt="">
+                                    </a>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                </div>
+            <?php } ?>
             <div class="expert_section">
                 <span>Location</span>
                 <div id="location">
@@ -94,3 +99,16 @@
         </div>
     </div>
 </section>
+
+<?php Yii::app()->clientScript->registerScript('delete-event', "
+    $('.columns').on('click', '#delete', function () {
+        var self = $(this);
+        $.ajax({
+            type:'POST',
+            url: '".Yii::app()->controller->createUrl('/event/delete', array('id' => $model->id))."',
+            success:function (msg) {
+                window.location = '".Yii::app()->controller->createUrl('/event/eventList')."';
+            }
+        });
+    });
+", CClientScript::POS_END); ?>

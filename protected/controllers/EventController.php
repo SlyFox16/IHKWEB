@@ -10,7 +10,7 @@ class EventController extends Frontend
                 'expression'=>'CAuthHelper::hasExpertRights()',
             ),
             array('allow',
-                'actions'=>array('update', 'addMember', 'deleteRelation'),
+                'actions'=>array('update', 'addMember', 'deleteRelation', 'delete'),
                 'expression'=>'CAuthHelper::isUsersEvent(@$_GET["id"])',
             ),
             array('allow',
@@ -69,6 +69,18 @@ class EventController extends Frontend
         $this->render('create', array('model' => $model));
     }
 
+    public function actionDelete($id)
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            // we only allow deletion via POST request
+            $this->loadModel($id)->delete();
+            return true;
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
     public function actionView($id)
     {
         $model = Event::model()->findByPk($id);
@@ -115,5 +127,13 @@ class EventController extends Frontend
             }
         } else
             throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
+    }
+
+    public function loadModel($id)
+    {
+        $model=Event::model()->findByPk($id);
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
     }
 }
