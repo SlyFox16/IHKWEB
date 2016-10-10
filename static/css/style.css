@@ -11873,14 +11873,16 @@ body .rating-gly-star {
   border: 1px solid #d0d0d0;
 }
 .event_participation li a > * {
-  padding: 1.25rem;
+  padding: 0.625rem;
 }
 .event_participation li a time {
+  padding: 0.3125rem 0.625rem;
   display: inline-block;
   background: #d0d0d0;
   color: #777;
 }
 .event_participation li a h2 {
+  margin: 0;
   font-size: 1.5rem;
   color: #000;
 }
