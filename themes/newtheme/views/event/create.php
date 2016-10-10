@@ -67,6 +67,11 @@
                                     <?php echo $form->textField($model,'xing_url'); ?>
                                     <?php echo $form->error($model,'xing_url'); ?>
                                 </label>
+                                <label>
+                                    <span><?php echo $model->getAttributeLabel('site_url'); ?></span>
+                                    <?php echo $form->textField($model,'site_url'); ?>
+                                    <?php echo $form->error($model,'site_url'); ?>
+                                </label>
                                 <?php $this->renderPartial('application.widgets.views.event_relation', array('model' => $model, 'temp_id' => $temp_id)); ?>
                                 <?php echo $form->hiddenField($model, 'temp_id', array('value' => $temp_id)); ?>
                                 <label>

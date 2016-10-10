@@ -36,7 +36,7 @@ class Event extends ActiveRecord
 			array('title, description, country_id, city_id', 'required'),
 			array('title, facebook_url, twitter_url, xing_url, image, location', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
-            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id', 'safe'),
+            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, description, facebook_url, twitter_url, xing_url, image, location', 'safe', 'on'=>'search'),
@@ -69,6 +69,7 @@ class Event extends ActiveRecord
 			'facebook_url' => Yii::t("base", 'Facebook Url'),
 			'twitter_url' => Yii::t("base", 'Twitter Url'),
 			'xing_url' => Yii::t("base", 'Xing Url'),
+            'site_url' => Yii::t("base", 'Site Url'),
 			'image' => Yii::t("base", 'Image'),
 			'location' => Yii::t("base", 'Location'),
             'country_id' => Yii::t("base","Country"),

@@ -30,7 +30,7 @@
             </div>
             <p><?php echo $model->description; ?></p>
 
-            <?php if(!empty($model->facebook_url) || !empty($model->twitter_url) || !empty($model->xing_url)) { ?>
+            <?php if(!empty($model->facebook_url) || !empty($model->twitter_url) || !empty($model->xing_url) || !empty($model->site_url)) { ?>
             <ul class="items">
                 <?php if (!empty($model->facebook_url)) { ?>
                     <li><a href="<?php echo $model->facebook_url; ?>" class="fa fa-facebook"></a></li>
@@ -41,7 +41,9 @@
                 <?php if (!empty($model->xing_url)) { ?>
                     <li><a href="<?php echo $model->xing_url; ?>" class="fa fa-xing"></a></li>
                 <?php } ?>
-                <li><a href=""><i class="fa fa-map-marker"></i> www.google.com</a></li>
+                <?php if (!empty($model->site_url)) { ?>
+                    <li><a href="<?php echo $model->site_url; ?>"><i class="fa fa-map-marker"></i> <?php echo $model->site_url; ?></a></li>
+                <?php } ?>
             </ul>
             <?php } ?>
         </div>
@@ -68,8 +70,8 @@
             </div>
             <div class="expert_section">
                 <span>Location</span>
-                <div class="location">
-                    google map here
+                <div id="location">
+                    <iframe src="https://www.google.com/maps/embed/v1/place?q=<?php echo urlencode(User::getCityCountry($model->city_id, 'city'). " " . User::getCityCountry($model->country_id, 'country')); ?>&key=<?php echo Yii::app()->params['googleMapKey']; ?>" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
