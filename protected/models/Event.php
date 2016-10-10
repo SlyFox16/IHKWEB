@@ -153,7 +153,7 @@ class Event extends ActiveRecord
 
     public function getTempId() {
         if ($this->id) return $this->id;
-        elseif ($this->tempID) return $this->tempID;
-        elseif (empty($this->id) && empty($this->tempID)) return YHelper::generateStr(32);
+        elseif ($this->temp_id) return $this->temp_id;
+        elseif (empty($this->id) && empty($this->temp_id)) return YHelper::generateStr(32);
     }
 }
