@@ -33,7 +33,7 @@ class Event extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description, country_id, city_id', 'required'),
+			array('title, description, country_id, date, city_id', 'required'),
 			array('title, facebook_url, twitter_url, xing_url, image, location', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
@@ -42,7 +42,6 @@ class Event extends ActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, description, facebook_url, twitter_url, xing_url, image, location', 'safe', 'on'=>'search'),
             array('user_id', 'default', 'value' => Yii::app()->user->id,'setOnEmpty' => false, 'on' => 'insert'),
-            array('date', 'default', 'value' => date('Y-m-d'), 'setOnEmpty' => false, 'on' => 'insert'),
 		);
 	}
 
@@ -57,6 +56,20 @@ class Event extends ActiveRecord
             'connectedUsers' => array(self::MANY_MANY, 'User', 'event_members(event_id, user_id)'),
 		);
 	}
+
+    public function beforeSave()
+    {
+        if (!empty($this->date))
+            $this->date = YHelper::formatDate('yyyy-MM-dd', $this->date, 'dd/MM/yyyy');
+
+        return parent::beforeSave();
+    }
+
+    protected function afterFind()
+    {
+        parent::afterFind();
+        $this->date = YHelper::formatDate('dd/MM/yyyy', $this->date, 'yyyy-MM-dd');
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)

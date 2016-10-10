@@ -71,7 +71,7 @@
         $.ajax({
             type:'POST',
             data:{
-                'event_id':'".$id."',
+                'event_id':'".$temp_id."',
                 user_id:self.data('id')
             },
             url: '".Yii::app()->controller->createUrl('/event/deleteRelation')."',

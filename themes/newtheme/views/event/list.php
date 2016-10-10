@@ -21,7 +21,7 @@
             <?php foreach ($events as $event) { ?>
                 <div class="medium-4 large-3 columns">
                     <a href="<?php echo $this->createUrl('/event/view', array('id' => $event->id)); ?>" class="event">
-                        <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date); ?></time>
+                        <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date, 'dd/MM/yyyy'); ?></time>
                         <span class="event_bottom">
                             <h2><?php echo $event->title; ?></h2>
                             <span><?php echo User::getCityCountry($event->country_id, 'country').', '.User::getCityCountry($event->city_id, 'city'); ?></span>
