@@ -148,7 +148,7 @@
                         <?php foreach($events as $event) { ?>
                             <li>
                                 <a href="<?php echo $this->createUrl('/event/view', array('id' => $event->id)); ?>" target="_blank">
-                                    <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date); ?></time>
+                                    <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date, 'dd/MM/yyyy'); ?></time>
                                     <div>
                                         <h2><?php echo $event->title; ?></h2>
                                         <span><?php echo User::getCityCountry($event->country_id, 'country').', '.User::getCityCountry($event->city_id, 'city'); ?></span>
