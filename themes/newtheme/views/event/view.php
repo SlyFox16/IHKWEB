@@ -11,7 +11,7 @@
         <div class="small-12 medium-6 columns">
             <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Update Event"); ?>"><a href="<?php echo $this->createUrl('/event/update', array('id' => $model->id)); ?>" class="fa fa-pencil"></a></li>
-                <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Delete Event"); ?>"><a id="delete" data-id="<?php $model->id; ?>" href="#" class="fa fa-pencil"></a></li>
+                <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Delete Event"); ?>"><a id="delete" data-id="<?php $model->id; ?>" href="#" class="fa fa-times"></a></li>
             </ul>
         </div>
     <?php } ?>
