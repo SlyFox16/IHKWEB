@@ -37,6 +37,7 @@ class Event extends ActiveRecord
 			array('title, facebook_url, twitter_url, xing_url, image, location', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
             array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
+            array('facebook_url, twitter_url, xing_url, site_url', 'url'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, description, facebook_url, twitter_url, xing_url, image, location', 'safe', 'on'=>'search'),
