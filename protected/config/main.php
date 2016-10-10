@@ -223,7 +223,7 @@ return CMap::mergeArray(
             'adminEmail' => 'jenya@idol-it.com',
             'defaultPageSize' => 10,
             'albumPageSize' => 18,
-            'googleMapKey' => 'AIzaSyCPZRRkx75yqAkYQW8y0SwWeHhVURgcuYs',
+            'googleMapKey' => 'AIzaSyDJVbJ6Hx1ujltysxHUZw0PXUakYihUcKA',
         ),
     ),
     CMap::mergeArray($mainEnvConfiguration, $mainLocalConfiguration)

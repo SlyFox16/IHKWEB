@@ -72,6 +72,25 @@
                                     <?php echo $form->textField($model,'site_url'); ?>
                                     <?php echo $form->error($model,'site_url'); ?>
                                 </label>
+                                <label>
+                                    <span><?php echo $certificate->getAttributeLabel('date'); ?></span>
+                                    <?php $this->widget(
+                                        'booster.widgets.TbDatePicker',
+                                        array(
+                                            'model'=>$certificate,
+                                            'attribute'=>"[$count]uDate",
+                                            'options' => array(
+                                                'format' => 'dd/mm/yyyy',
+                                                'todayHighlight' => true,
+                                                'endDate' => '+0d',
+                                            ),
+                                            'htmlOptions' => array(
+                                                'placeholder' => false
+                                            ),
+                                        )
+                                    ); ?>
+                                    <?php echo $form->error($certificate, "[$count]date"); ?>
+                                </label>
                                 <?php $this->renderPartial('application.widgets.views.event_relation', array('model' => $model, 'temp_id' => $temp_id)); ?>
                                 <?php echo $form->hiddenField($model, 'temp_id', array('value' => $temp_id)); ?>
                                 <label>
