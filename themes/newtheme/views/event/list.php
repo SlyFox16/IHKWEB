@@ -19,7 +19,7 @@
     <div class="row">
         <?php if ($events) { ?>
             <?php foreach ($events as $event) { ?>
-                <div class="medium-4 large-3 columns">
+                <div class="medium-4 large-3 columns end">
                     <a href="<?php echo $this->createUrl('/event/view', array('id' => $event->id)); ?>" class="event">
                         <time><?php echo YHelper::formatDate('dd MMMM yyyy', $event->date, 'dd/MM/yyyy'); ?></time>
                         <span class="event_bottom">
