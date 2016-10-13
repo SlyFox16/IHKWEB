@@ -144,7 +144,7 @@ class Event extends ActiveRecord
         $criteria->condition = 'active = 1';
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
-            'sort' => ['defaultOrder' => $this->getTableAlias() . '.date DESC'],
+            'sort' => ['defaultOrder' => $this->getTableAlias() . '.date ASC'],
         ));
     }
 
@@ -160,7 +160,6 @@ class Event extends ActiveRecord
 
     protected function afterSave()
     {
-        Yii::log($this->temp_id."qwerty", "error");
         EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
         parent::afterSave();
     }
