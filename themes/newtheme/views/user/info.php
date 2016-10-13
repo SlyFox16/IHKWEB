@@ -1,7 +1,9 @@
 <?php
     $this->title = $user->pageTitle;
-    $this->metaDescription = $user->position;
+    $this->metaDescription = YText::purifier($user->position);
     $this->canonical = $this->createAbsoluteUrl('user/info', array('id' => $user->id));
+    $this->ogImage = YHelper::getImagePath($user->avatar, 200, 200);
+    $this->metaProperties = array('og:image:height' => 200, 'og:image:width' => 200);
 ?>
 
 <!--===============================-->

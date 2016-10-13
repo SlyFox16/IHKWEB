@@ -160,8 +160,15 @@ class Event extends ActiveRecord
 
     protected function afterSave()
     {
-        Yii::log($this->temp_id."qwerty", "error");
-        EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
+        $eventMembers = EventMembers::model()->findAll('event_id = :event_id', array(':event_id' => $this->temp_id));
+        if ($eventMembers) {
+            foreach ($eventMembers as $eventMember) {
+                $eventMember->event_id = $this->id;
+                if ($eventMember->update())
+                    Yii::app()->email->expert_added_to_event_email($eventMember->user, $this);
+            }
+        }
+//        EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
         parent::afterSave();
     }
 
@@ -185,5 +192,10 @@ class Event extends ActiveRecord
     public function getStatusActive() {
         $stat = array(0 => 'Inactive', 1 => 'Active');
         return $stat[$this->active];
+    }
+
+    public function checkEventUser() {
+        $eventMembers = EventMembers::model()->findByAttributes(array('event_id' => $this->id, 'user_id' => Yii::app()->user->id));
+        return $eventMembers ? true : false;
     }
 }

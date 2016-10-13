@@ -6,7 +6,7 @@ class EventController extends Frontend
     {
         return array(
             array('allow',
-                'actions'=>array('create'),
+                'actions'=>array('create', 'addYourself'),
                 'expression'=>'CAuthHelper::hasExpertRights()',
             ),
             array('allow',
@@ -41,9 +41,12 @@ class EventController extends Frontend
             $model->attributes = $_POST["Event"];
 
             if($model->save()) {
+                Yii::app()->user->setFlash(
+                    'project_success',
+                    Yii::t("base", "Your event was added to confirmation")
+                );
                 $this->redirect('/event/eventList');
-            } else
-                echo CHtml::errorSummary($model);
+            }
         }
 
         $this->render('create', array('model' => $model));
@@ -74,7 +77,38 @@ class EventController extends Frontend
         if(Yii::app()->request->isPostRequest)
         {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            if ($this->loadModel($id)->delete())
+                Yii::app()->user->setFlash('project_success', "Event was successfully deleted.");
+            else
+                Yii::app()->user->setFlash('project_error', "Error while deleting.");
+
+            return true;
+        }
+        else
+            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+    }
+
+    public function actionAddYourself($id)
+    {
+        if(Yii::app()->request->isPostRequest)
+        {
+            // we only allow deletion via POST request
+            $event = EventMembers::model()->findByAttributes(array('event_id' => $id, 'user_id' => Yii::app()->user->id));
+            if (!$event) {
+                $event = new EventMembers();
+                $event->event_id = $id;
+                $event->user_id = Yii::app()->user->id;
+                if ($event->save())
+                    Yii::app()->user->setFlash('project_success', "You was successfully added to this event.");
+                else
+                    Yii::app()->user->setFlash('project_error', "Error while adding.");
+            } else {
+                if ($event->delete())
+                    Yii::app()->user->setFlash('project_success', "You was successfully deleted from this event.");
+                else
+                    Yii::app()->user->setFlash('project_error', "Error while deleting.");
+            }
+
             return true;
         }
         else

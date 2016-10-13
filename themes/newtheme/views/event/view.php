@@ -1,3 +1,10 @@
+<?php
+    $this->title = $model->title;
+    $this->metaDescription = YText::purifier($model->description);
+    $this->canonical = $this->createAbsoluteUrl('/event/view', array('id' => $model->id));
+    $this->ogImage = YHelper::getImagePath($model->image);
+?>
+
 <div class="row">
     <div class="small-12 medium-6 columns">
         <?php $this->widget('Breadcrumbs', array(
@@ -12,6 +19,7 @@
             <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Update Event"); ?>"><a href="<?php echo $this->createUrl('/event/update', array('id' => $model->id)); ?>" class="fa fa-pencil"></a></li>
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Delete Event"); ?>"><a id="delete" data-id="<?php $model->id; ?>" href="#" class="fa fa-times"></a></li>
+                <li data-tooltip aria-haspopup="true" class="top" title="<?php echo $model->checkEventUser() ? Yii::t("base", "Delete yourself") : Yii::t("base", "Add yourself"); ?>"><a id="add-yourself" data-id="<?php $model->id; ?>" href="#" class="fa fa-times"></a></li>
             </ul>
         </div>
     <?php } ?>
@@ -104,6 +112,16 @@
             url: '".Yii::app()->controller->createUrl('/event/delete', array('id' => $model->id))."',
             success:function (msg) {
                 window.location = '".Yii::app()->controller->createUrl('/event/eventList')."';
+            }
+        });
+    });
+    $('.columns').on('click', '#add-yourself', function () {
+        var self = $(this);
+        $.ajax({
+            type:'POST',
+            url: '".Yii::app()->controller->createUrl('/event/addYourself', array('id' => $model->id))."',
+            success:function (msg) {
+                window.location.reload(false);
             }
         });
     });

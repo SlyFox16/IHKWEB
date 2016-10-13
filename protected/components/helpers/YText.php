@@ -340,4 +340,11 @@ class YText
 
         return $str;
     }
+
+    public static function purifier($text, $htmlallowed = '')
+    {
+        $p = new CHtmlPurifier();
+        $p->options = array('HTML.Allowed'=>$htmlallowed);
+        return $p->purify($text);
+    }
 }

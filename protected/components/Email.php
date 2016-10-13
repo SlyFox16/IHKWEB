@@ -71,12 +71,38 @@ class Email extends CApplicationComponent
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
+    public function expert_added_to_event_email($user, $event)
+    {
+        $this->subject = YHelper::yiisetting('report_email', Yii::app()->name, true);
+        $this->body = YHelper::yiisetting('report_email');
+        $senderEmail = YHelper::yiisettingSenderEmail('report_email', Yii::app()->name);
+
+        $this->body = $this->changeAttr($user, $this->body);
+        $this->subject = $this->changeAttr($user, $this->subject);
+
+        $this->body = $this->eventParams($event, $this->body);
+        $this->subject = $this->eventParams($event, $this->subject);
+
+        $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
+    }
+
     private function changeAttr($user, $body)
     {
         $body = preg_replace('~\[:first_name\]~', $user->name, $body);
         $body = preg_replace('~\[:last_name\]~', $user->surname, $body);
         $body = preg_replace('~\[:rating\]~', $user->rating, $body);
         $body = preg_replace('~\[:level\]~', $user->level, $body);
+
+        return $body;
+    }
+
+    private function eventParams($event, $body)
+    {
+        $body = preg_replace('~\[:event_title\]~', $event->title, $body);
+        $body = preg_replace('~\[:event_date\]~', $event->date, $body);
+        $body = preg_replace('~\[:vent_country\]~', User::getCityCountry($event->country, 'country'), $body);
+        $body = preg_replace('~\[:event_city\]~', User::getCityCountry($event->city, 'country'), $body);
+        $body = preg_replace('~\[:event_address\]~', $event->address, $body);
 
         return $body;
     }

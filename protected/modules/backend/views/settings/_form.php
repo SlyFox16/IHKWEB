@@ -41,6 +41,21 @@
                 <b>[:message] - New message text<br>
             </p>
         </div>
+    <?php } elseif (in_array($model->id, array(14))) { ?>
+        <div class="control-group ">
+            <h1>Variables you may use</h1>
+            <p>
+                <b>[:first_name]</b> - User's first name,<br>
+                <b>[:last_name]</b> - User's last name,<br>
+                <b>[:rating]</b> - User's rating,<br>
+                <b>[:level]</b> - User's level
+                <b>[:event_title]</b> - Event title
+                <b>[:event_date]</b> - Event date
+                <b>[:event_country]</b> - Event country
+                <b>[:event_city]</b> - Event city
+                <b>[:event_address]</b> - Event address
+            </p>
+        </div>
     <?php } ?>
 
     <?php if(in_array($model->id, array(1,2,3,10,11,12,13,14))) { ?>

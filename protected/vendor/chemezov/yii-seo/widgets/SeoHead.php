@@ -26,10 +26,18 @@ class SeoHead extends CWidget
      */
     public $defaultKeywords;
     /**
+     * @property string the page meta og app_id.
+     */
+    public $app_id;
+    /**
      * @property string the page meta og image.
      */
-    public $ogImage;
-    public $canonical;
+    public $defaultOgImage;
+    /**
+     * @property string the page meta og canonical.
+     */
+    public $defaultCanonical;
+
     /**
      * @property array the page meta properties.
      */
@@ -81,18 +89,18 @@ class SeoHead extends CWidget
             $this->_ogImage = $behavior->ogImage;
         elseif($image = $this->getSeo('image'))
             $this->_ogImage = $image;
-        elseif ($this->ogImage !== null)
-            $this->_ogImage = $this->ogImage;
+        elseif ($this->defaultOgImage !== null)
+            $this->_ogImage = $this->defaultOgImage;
+
+        if ($behavior !== null && $behavior->canonical !== null)
+            $this->_canonical = $behavior->canonical;
+        elseif ($this->defaultCanonical !== null)
+            $this->_canonical = $this->defaultCanonical;
 
         if ($behavior !== null)
             $this->_properties = array_merge($behavior->metaProperties, $this->defaultProperties);
         else
             $this->_properties = $this->defaultProperties;
-
-        if ($behavior !== null && $behavior->canonical !== null)
-            $this->_canonical = $behavior->canonical;
-        elseif ($this->canonical !== null)
-            $this->_canonical = $this->canonical;
     }
 
     private function getSeo($param)
@@ -159,28 +167,33 @@ class SeoHead extends CWidget
         foreach ($this->httpEquivs as $name => $content)
             echo CHtml::metaTag($content, null, $name);
 
-        if ($this->_title !== null) {
-            echo CHtml::tag('title', array(), is_array($this->_title) ? implode($this->titleSeparator, $this->_title) : $this->_title);
-            Yii::app()->clientScript->registerMetaTag($this->_title, '', '', array('property' =>  "og:title"));
+        if (!empty($this->_title)) {
+            $this->_title = is_array($this->_title) ? implode($this->titleSeparator, $this->_title) : $this->_title;
+            echo CHtml::tag('title', array(), $this->_title);
+            Yii::app()->clientScript->registerMetaTag($this->_title, null, null, array('property' =>  "og:title"));
         }
 
-        if ($this->_description !== null) {
-            echo CHtml::metaTag($this->_description, 'description');
-            Yii::app()->clientScript->registerMetaTag($this->_description, '', '', array('property' =>  "og:description"));
+        if (!empty($this->_description)) {
+            Yii::app()->clientScript->registerMetaTag($this->_description, null, null, array('property' =>  "description"));
+            Yii::app()->clientScript->registerMetaTag($this->_description, null, null, array('property' =>  "og:description"));
         }
 
-        if ($this->_keywords !== null)
-            echo CHtml::metaTag($this->_keywords, 'keywords');
+        if (!empty($this->_keywords))
+            Yii::app()->clientScript->registerMetaTag($this->_keywords, null, null, array('property' =>  "keywords"));
 
         foreach ($this->_properties as $name => $content)
-            echo CHtml::tag('meta', array('property' => $name, 'content' => $content));
+            Yii::app()->clientScript->registerMetaTag($content, null, null, array('property' =>  $name));
 
-        if ($this->_canonical !== null) {
+        if (!empty($this->_canonical)) {
             echo CHtml::linkTag('canonical', null, $this->_canonical);
-            Yii::app()->clientScript->registerMetaTag($this->_canonical, '', '', array('property' =>  "og:url"));
+            Yii::app()->clientScript->registerMetaTag($this->_canonical, null, null, array('property' =>  "og:url"));
         }
 
-        if ($this->_ogImage !== null)
-            Yii::app()->clientScript->registerMetaTag(Yii::app()->createAbsoluteUrl($this->_ogImage), '', '', array('property' =>  "og:image"));
+        if (!empty($this->app_id)) {
+            Yii::app()->clientScript->registerMetaTag($this->app_id, null, null, array('property' =>  "fb:app_id"));
+        }
+
+        if (!empty($this->_ogImage))
+            Yii::app()->clientScript->registerMetaTag(Yii::app()->createAbsoluteUrl($this->_ogImage), null, null, array('property' =>  "og:image"));
     }
 }
