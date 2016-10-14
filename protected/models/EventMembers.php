@@ -43,6 +43,7 @@ class EventMembers extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+            'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 		);
 	}
 
