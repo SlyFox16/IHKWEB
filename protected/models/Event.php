@@ -164,7 +164,7 @@ class Event extends ActiveRecord
         EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
 
         $eventMembers = EventMembers::model()->findAll('event_id = :event_id', array(':event_id' => $this->id));
-        if ($eventMembers && $this->active) {
+        if ($eventMembers && $this->active == 1) {
             foreach ($eventMembers as $eventMember) {
                 if (!$this->mail_sent) {
                     Yii::app()->email->expert_added_to_event_email($eventMember->user, $eventMember->event);
