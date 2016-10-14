@@ -146,7 +146,7 @@ class EventController extends BackendController
                     $model->mail_sent = 1;
                     $model->save();
                 }
-                if ($this->active)
+                if ($model->active)
                     Yii::app()->email->event_was_confirmed_email($this->user, $this);
                 Yii::app()->email->event_was_confirmed_email($model->user, $model);
             } else {
