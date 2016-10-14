@@ -126,7 +126,7 @@ class EventController extends BackendController
 
     public function actionUCUpdate()
     {
-        if(Yii::app()->request->isPostRequest)
+        if (Yii::app()->request->isPostRequest)
         {
             $pk = Yii::app()->request->getPost('pk');
             $name = Yii::app()->request->getPost('name');
@@ -136,11 +136,7 @@ class EventController extends BackendController
             $model->$name = $value;
 
             if($model->save(true, array($name))) {
-                $level = 0;
-                if($name == 'confirm')
-                    $level = User::newLevel($model->user_id);
-
-                echo CJSON::encode(array('id' => $model->primaryKey, 'level' => $level));
+                Yii::app()->email->event_was_confirmed_email($model->user, $model);
             } else {
                 $errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
                 echo CJSON::encode(array('errors' => $errors));

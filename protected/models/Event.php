@@ -54,6 +54,7 @@ class Event extends ActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'connectedUsers' => array(self::MANY_MANY, 'User', 'event_members(event_id, user_id)'),
+            'user' => array(self::BELONGS_TO, 'User', 'user_id'),
 		);
 	}
 
@@ -167,7 +168,9 @@ class Event extends ActiveRecord
                 if ($eventMember->update())
                     Yii::app()->email->expert_added_to_event_email($eventMember->user, $this);
             }
-        }
+        } elseif ($this->active)
+            Yii::app()->email->event_was_confirmed_email($this->user, $this);
+
 //        EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
         parent::afterSave();
     }
