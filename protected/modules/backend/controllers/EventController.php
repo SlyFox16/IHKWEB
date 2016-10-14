@@ -144,7 +144,7 @@ class EventController extends BackendController
                         }
                     }
                     $eventMember->event->mail_sent = 1;
-                    $eventMember->event->seve();
+                    $eventMember->event->save();
                 } elseif ($this->active)
                     Yii::app()->email->event_was_confirmed_email($this->user, $this);
                 Yii::app()->email->event_was_confirmed_email($model->user, $model);
