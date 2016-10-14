@@ -162,6 +162,20 @@ class Event extends ActiveRecord
     protected function afterSave()
     {
         EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
+
+        $eventMembers = EventMembers::model()->findAll('event_id = :event_id', array(':event_id' => $this->id));
+        if ($eventMembers && $this->active) {
+            foreach ($eventMembers as $eventMember) {
+                if (!$this->mail_sent) {
+                    Yii::app()->email->expert_added_to_event_email($eventMember->user, $eventMember->event);
+                }
+            }
+            $this->mail_sent = 1;
+            $this->save();
+
+            Yii::app()->email->event_was_confirmed_email($this->user, $this);
+        }
+
         parent::afterSave();
     }
 
