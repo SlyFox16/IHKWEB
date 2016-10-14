@@ -11831,14 +11831,12 @@ body .rating-gly-star {
 
 .event_experts {
   list-style: none;
-  margin: 0;
+  margin: -0.625rem 0 0 0;
   padding: 0;
 }
 .event_experts li {
   float: left;
-}
-.event_experts li + li {
-  margin-left: 0.625rem;
+  margin: 0.625rem 0.625rem 0 0;
 }
 .event_experts li img {
   width: 3.75rem;
