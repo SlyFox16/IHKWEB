@@ -28,6 +28,7 @@ class EventMembers extends CActiveRecord
 		return array(
 			array('event_id, user_id', 'required'),
 			array('user_id', 'numerical', 'integerOnly'=>true),
+            array('mail_sent', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, event_id, user_id', 'safe', 'on'=>'search'),
