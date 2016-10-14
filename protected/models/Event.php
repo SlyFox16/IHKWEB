@@ -173,6 +173,7 @@ class Event extends ActiveRecord
             $this->mail_sent = 1;
             $this->save();
 
+            print_r($this); die();
             Yii::app()->email->event_was_confirmed_email($this->user, $this);
         }
 
