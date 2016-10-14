@@ -165,13 +165,13 @@ class Event extends ActiveRecord
 
         $eventMembers = EventMembers::model()->findAll('event_id = :event_id', array(':event_id' => $this->id));
         if ($eventMembers && $this->active) {
-            foreach ($eventMembers as $eventMember) {
+            /*foreach ($eventMembers as $eventMember) {
                 if (!$this->mail_sent) {
                     Yii::app()->email->expert_added_to_event_email($eventMember->user, $eventMember->event);
                 }
             }
             $this->mail_sent = 1;
-            $this->save();
+            $this->save();*/
 
             print_r($this); die();
             Yii::app()->email->event_was_confirmed_email($this->user, $this);
