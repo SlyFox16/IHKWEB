@@ -139,12 +139,12 @@ class EventController extends BackendController
                 $eventMembers = EventMembers::model()->findAll('event_id = :event_id', array(':event_id' => $model->id));
                 if ($eventMembers && $model->active) {
                     foreach ($eventMembers as $eventMember) {
-                        if (!$model->mail_sent) {
+                        if (!$eventMember->mail_sent) {
                             Yii::app()->email->expert_added_to_event_email($eventMember->user, $model);
+                            $eventMember->mail_sent = 1;
+                            $eventMember->save();
                         }
                     }
-                    $model->mail_sent = 1;
-                    $model->save();
 
                     Yii::app()->email->event_was_confirmed_email($model->user, $model);
                 }

@@ -36,7 +36,7 @@ class Event extends ActiveRecord
 			array('title, description, country_id, date, city_id, address', 'required'),
 			array('title, facebook_url, twitter_url, xing_url, image, address', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
-            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url, mail_sent', 'safe'),
+            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
             array('facebook_url, twitter_url, xing_url, site_url', 'url'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -162,6 +162,19 @@ class Event extends ActiveRecord
     protected function afterSave()
     {
         EventMembers::model()->updateAll(array('event_id' => $this->id),'event_id = :event_id', array(':event_id' => $this->temp_id));
+
+        $eventMembers = EventMembers::model()->findAll('event_id = :event_id', array(':event_id' => $this->id));
+        if ($eventMembers && $this->active) {
+            foreach ($eventMembers as $eventMember) {
+                if (!$eventMember->mail_sent) {
+                    Yii::app()->email->expert_added_to_event_email($eventMember->user, $eventMember->event);
+                    $eventMember->mail_sent = 1;
+                    $eventMember->save();
+                }
+            }
+
+            Yii::app()->email->event_was_confirmed_email($this->user, $this);
+        }
 
         parent::afterSave();
     }
