@@ -116,7 +116,7 @@ class Email extends CApplicationComponent
         $body = preg_replace('~\[:event_title\]~', $event->title, $body);
         $body = preg_replace('~\[:event_date\]~', $event->date, $body);
         $body = preg_replace('~\[:vent_country\]~', User::getCityCountry($event->country_id, 'country'), $body);
-        $body = preg_replace('~\[:event_city\]~', User::getCityCountry($event->city_id, 'country'), $body);
+        $body = preg_replace('~\[:event_city\]~', User::getCityCountry($event->city_id, 'city'), $body);
         $body = preg_replace('~\[:event_address\]~', $event->address, $body);
 
         return $body;
