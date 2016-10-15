@@ -73,23 +73,27 @@
                                     <?php echo $form->error($model,'site_url'); ?>
                                 </label>
                                 <label>
-                                    <span><?php echo $model->getAttributeLabel('date'); ?></span>
+                                    <span><?php echo $model->getAttributeLabel('date_range'); ?></span>
                                     <?php $this->widget(
-                                        'booster.widgets.TbDatePicker',
+                                        'booster.widgets.TbDateRangePicker',
                                         array(
                                             'model'=>$model,
-                                            'attribute'=>"date",
+                                            'attribute'=>"date_range",
                                             'options' => array(
-                                                'format' => 'dd/mm/yyyy',
+                                                'format' => 'DD/MM/YYYY',
                                                 'todayHighlight' => true,
-                                                'startDate' => '+0d',
+                                                'width' => '100%',
+                                                'drops' => 'up',
+                                                'minDate' => '0',
                                             ),
                                             'htmlOptions' => array(
-                                                'placeholder' => false
-                                            ),
+                                                'class' => 'form-control',
+                                                'value' => $model->dateRange,
+                                                'placeholder' => 'Date range'
+                                            )
                                         )
                                     ); ?>
-                                    <?php echo $form->error($model, "date"); ?>
+                                    <?php echo $form->error($model, "date_range"); ?>
                                 </label>
                                 <?php $this->renderPartial('application.widgets.views.event_relation', array('model' => $model, 'temp_id' => $temp_id)); ?>
                                 <?php echo $form->hiddenField($model, 'temp_id', array('value' => $temp_id)); ?>

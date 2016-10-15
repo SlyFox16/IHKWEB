@@ -1122,6 +1122,7 @@ class TbActiveForm extends CActiveForm {
 		$widgetOptions['attribute'] = $attribute;
 		
 		$this->addCssClass($widgetOptions['htmlOptions'], 'form-control');
+		
 		$fieldData = array(array($this->owner, 'widget'), array($className, $widgetOptions, true));
 
 		return $this->customFieldGroupInternal($fieldData, $model, $attribute, $options);

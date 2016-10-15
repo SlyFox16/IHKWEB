@@ -30,6 +30,7 @@
         <div class="medium-3 columns">
             <ul class="event_meta">
                 <li><?php echo YHelper::formatDate('dd MMMM yyyy', $model->date, 'dd/MM/yyyy'); ?></li>
+                <li><?php echo YHelper::formatDate('dd MMMM yyyy', $data->date_end, 'dd/MM/yyyy'); ?></li>
                 <li><?php echo User::getCityCountry($model->country_id, 'country').', '.User::getCityCountry($model->city_id, 'city'); ?></li>
             </ul>
         </div>

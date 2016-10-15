@@ -16,6 +16,7 @@
 class Event extends ActiveRecord
 {
     public $temp_id;
+    public $date_range;
 
 	/**
 	 * @return string the associated database table name
@@ -33,10 +34,10 @@ class Event extends ActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, description, country_id, date, city_id, address', 'required'),
+			array('title, description, country_id, date_range, city_id, address', 'required'),
 			array('title, facebook_url, twitter_url, xing_url, image, address', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
-            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url', 'safe'),
+            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url, date, date_end', 'safe'),
             array('facebook_url, twitter_url, xing_url, site_url', 'url'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -44,6 +45,16 @@ class Event extends ActiveRecord
             array('user_id', 'default', 'value' => Yii::app()->user->id,'setOnEmpty' => false, 'on' => 'insert'),
 		);
 	}
+
+    /**
+     * @return mixed
+     */
+    public function getDateRange() {
+        if(!empty($this->date) && !empty($this->date_end))
+            return $this->date.' - '.$this->date_end;
+
+        return '';
+    }
 
 	/**
 	 * @return array relational rules.
@@ -60,8 +71,11 @@ class Event extends ActiveRecord
 
     public function beforeSave()
     {
-        if (!empty($this->date))
-            $this->date = YHelper::formatDate('yyyy-MM-dd', $this->date, 'dd/MM/yyyy');
+        if (!empty($this->date_range)) {
+            $date = explode(' - ', $this->date_range);
+            $this->date = YHelper::formatDate('yyyy-MM-dd', $date[0], 'dd/MM/yyyy');
+            $this->date_end = YHelper::formatDate('yyyy-MM-dd', $date[1], 'dd/MM/yyyy');
+        }
 
         return parent::beforeSave();
     }
@@ -70,6 +84,7 @@ class Event extends ActiveRecord
     {
         parent::afterFind();
         $this->date = YHelper::formatDate('dd/MM/yyyy', $this->date, 'yyyy-MM-dd');
+        $this->date_end = YHelper::formatDate('dd/MM/yyyy', $this->date_end, 'yyyy-MM-dd');
     }
 
 	/**
@@ -90,6 +105,7 @@ class Event extends ActiveRecord
 			'address' => Yii::t("base", 'Address'),
             'country_id' => Yii::t("base","Country"),
             'city_id' => Yii::t("base","City"),
+            'date_range' => Yii::t("base", 'Event duration')
 		);
 	}
 

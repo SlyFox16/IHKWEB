@@ -39,3 +39,42 @@ $this->menu=array(
 		'active:boolean',
 	),
 )); ?>
+
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
+    'id' => 'user-grid',
+    'dataProvider' => User::model()->searchMember(null),
+    'type' => 'striped bordered condensed',
+    'columns' => array(
+        array('name'=>'id','headerHtmlOptions'=>array('width'=>'40px')),
+        'username',
+        'name',
+        'surname',
+        'email',
+        array(
+            'name'=>'avatar',
+            'value'=>'$data->avatar',
+            'type'=>'image',
+            'filter'=>false,
+        ),
+        array(
+            'name'=>'last_login',
+            'value'=>'$data->last_login',
+            'filter'=>false,
+        ),
+        array(
+            'name'=>'date_joined',
+            'value'=>'$data->date_joined',
+            'filter'=>false,
+        ),
+        array(
+            'class' => 'backend.components.ButtonColumn',
+            'htmlOptions' => array('width' => '60px'),
+            'template' => '{view} {update} {delete}',
+            'buttons' => array(
+                'delete' => array(
+                    'visible'=>'$data->is_staff != 1',
+                ),
+            )
+        ),
+    ),
+)); ?>
