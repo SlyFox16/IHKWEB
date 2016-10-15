@@ -98,6 +98,7 @@ class EventController extends Frontend
                 $event = new EventMembers();
                 $event->event_id = $id;
                 $event->user_id = Yii::app()->user->id;
+                $event->mail_sent = 1;
                 if ($event->save())
                     Yii::app()->user->setFlash('project_success', "You was successfully added to this event.");
                 else
