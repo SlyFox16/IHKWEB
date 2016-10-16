@@ -14,15 +14,16 @@
             ),
         )); ?>
     </div>
-    <?php if ($model->user_id == Yii::app()->user->id) { ?>
-        <div class="small-12 medium-6 columns">
-            <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
+    <div class="small-12 medium-6 columns">
+        <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
+            <?php if ($model->user_id == Yii::app()->user->id) { ?>
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Update Event"); ?>"><a href="<?php echo $this->createUrl('/event/update', array('id' => $model->id)); ?>" class="fa fa-pencil"></a></li>
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Delete Event"); ?>"><a id="delete" data-id="<?php $model->id; ?>" href="#" class="fa fa-times"></a></li>
+            <?php } else { ?>
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo $model->checkEventUser() ? Yii::t("base", "Delete yourself") : Yii::t("base", "Add yourself"); ?>"><a id="add-yourself" data-id="<?php $model->id; ?>" href="#" class="fa <?php echo $model->checkEventUser() ? 'fa-user-times' : 'fa-user-plus'; ?>"></a></li>
-            </ul>
-        </div>
-    <?php } ?>
+            <?php } ?>
+        </ul>
+    </div>
 </div>
 
 <section class="separated">
