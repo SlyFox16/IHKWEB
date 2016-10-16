@@ -26,7 +26,7 @@ class ExtendedFormatter extends CFormatter
 
     public function formatImage($value)
     {
-        return CHtml::image(YHelper::getImagePath($value, 100), 'user', array('width' => '150px'));
+        return CHtml::image(YHelper::getImagePath($value, 150), 'user', array('width' => '150px'));
     }
 
     public function formatLogo($value)
