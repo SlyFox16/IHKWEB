@@ -19,7 +19,7 @@
             <ul class="control wow bounceInRight animated" data-wow-duration="0.5s" data-wow-delay="0.5s">
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Update Event"); ?>"><a href="<?php echo $this->createUrl('/event/update', array('id' => $model->id)); ?>" class="fa fa-pencil"></a></li>
                 <li data-tooltip aria-haspopup="true" class="top" title="<?php echo Yii::t("base", "Delete Event"); ?>"><a id="delete" data-id="<?php $model->id; ?>" href="#" class="fa fa-times"></a></li>
-                <li data-tooltip aria-haspopup="true" class="top" title="<?php echo $model->checkEventUser() ? Yii::t("base", "Delete yourself") : Yii::t("base", "Add yourself"); ?>"><a id="add-yourself" data-id="<?php $model->id; ?>" href="#" class="fa fa-times"></a></li>
+                <li data-tooltip aria-haspopup="true" class="top" title="<?php echo $model->checkEventUser() ? Yii::t("base", "Delete yourself") : Yii::t("base", "Add yourself"); ?>"><a id="add-yourself" data-id="<?php $model->id; ?>" href="#" class="fa <?php echo $model->checkEventUser() ? 'fa-user-times' : 'fa-user-plus'; ?>"></a></li>
             </ul>
         </div>
     <?php } ?>
@@ -29,8 +29,8 @@
     <div class="row">
         <div class="medium-3 columns">
             <ul class="event_meta">
-                <li><?php echo YHelper::formatDate('dd MMMM yyyy', $model->date, 'dd/MM/yyyy'); ?></li>
-                <li><?php echo YHelper::formatDate('dd MMMM yyyy', $data->date_end, 'dd/MM/yyyy'); ?></li>
+                <li><?php echo YHelper::formatDate('dd MMM', $model->date, 'dd/MM/yyyy'); ?> -
+                <?php echo YHelper::formatDate('dd MMM yyyy', $model->date_end, 'dd/MM/yyyy'); ?></li>
                 <li><?php echo User::getCityCountry($model->country_id, 'country').', '.User::getCityCountry($model->city_id, 'city'); ?></li>
             </ul>
         </div>

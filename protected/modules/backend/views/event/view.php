@@ -88,9 +88,3 @@ $this->menu=array(
         ),
     ),
 )); ?>
-
-<style>
-    .icon-on, .icon-off {
-        padding: 4px 14px;
-    }
-</style>
