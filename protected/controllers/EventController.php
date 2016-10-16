@@ -100,20 +100,20 @@ class EventController extends Frontend
                 $event->user_id = Yii::app()->user->id;
                 $event->mail_sent = 1;
                 if ($event->save())
-                    Yii::app()->user->setFlash('project_success', "You was successfully added to this event.");
+                    Yii::app()->user->setFlash('project_success', Yii::t("base", "You was successfully added to this event."));
                 else
-                    Yii::app()->user->setFlash('project_error', "Error while adding.");
+                    Yii::app()->user->setFlash('project_error', Yii::t("base", "Error while adding."));
             } else {
                 if ($event->delete())
-                    Yii::app()->user->setFlash('project_success', "You was successfully deleted from this event.");
+                    Yii::app()->user->setFlash('project_success', Yii::t("base", "You was successfully deleted from this event."));
                 else
-                    Yii::app()->user->setFlash('project_error', "Error while deleting.");
+                    Yii::app()->user->setFlash('project_error', Yii::t("base", "Error while deleting."));
             }
 
             return true;
         }
         else
-            throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+            throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
     }
 
     public function actionView($id)
