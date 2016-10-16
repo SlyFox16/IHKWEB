@@ -14,12 +14,14 @@ $this->menu=array(
 
 <legend>Update Event <?php echo $model->id; ?></legend>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+<?php echo $this->renderPartial('/event/_form',array('model'=>$model)); ?>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'user-grid',
-    'dataProvider' => User::model()->searchAllActive(),
+    'dataProvider' => $searchModel->searchAllActive(),
+    'ajaxUrl' => array('/backend/user/localeSearch/'.$model->id),
     'type' => 'striped bordered condensed',
+    'filter'=>$searchModel,
     'columns' => array(
         array('name'=>'id','headerHtmlOptions'=>array('width'=>'40px')),
         'username',

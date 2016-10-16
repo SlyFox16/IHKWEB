@@ -38,6 +38,16 @@ class UserController extends BackendController
         ));
     }
 
+    public function actionLocaleSearch($id)
+    {
+        $event = Event::model()->findByPk($id);
+
+        $model = new User('search');
+        $model->unsetAttributes();
+        $model->attributes = Yii::app()->getRequest()->getParam('User');
+        $this->render('/event/update', array('model' => $event, 'searchModel' => $model));
+    }
+
     public function actionCreateUser()
     {
         $model=new User('backendcreate');

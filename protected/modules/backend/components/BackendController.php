@@ -83,6 +83,7 @@ class BackendController extends Controller
                     'DeleteRelation',
                     'mailAll',
                     'addMember',
+                    'localeSearch',
                 ),
                 'expression'=>'isset(Yii::app()->user->id) && User::model()->findByPk(Yii::app()->user->id)->is_staff',
             ),

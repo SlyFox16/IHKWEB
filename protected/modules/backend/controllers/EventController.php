@@ -57,8 +57,12 @@ class EventController extends BackendController
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
+        $searchModel = new User('search');
+        $searchModel->unsetAttributes();
+
 		$this->render('update',array(
 			'model'=>$model,
+            'searchModel' => $searchModel
 		));
 	}
 
