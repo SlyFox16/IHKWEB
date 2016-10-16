@@ -57,9 +57,11 @@
             </ul>
             <?php } ?>
         </div>
-        <div class="medium-3 columns">
-            <img src="<?php echo YHelper::getImagePath($model->image); ?>" alt="">
-        </div>
+        <?php if (!empty($model->image)) { ?>
+            <div class="medium-3 columns">
+                <img src="<?php echo YHelper::getImagePath($model->image); ?>" alt="">
+            </div>
+        <?php } ?>
     </div>
 </section>
 <section class="bottom-separator">
