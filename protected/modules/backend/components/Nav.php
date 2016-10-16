@@ -13,6 +13,7 @@ class Nav extends CWidget
         $newCertificate = UserCertificate::model()->with('user')->count('user.is_staff = 0 AND confirm = 0');
         $newProjects = CompletedProjects::model()->with('user')->count('user.is_staff = 0 AND confirm = 0');
         $unconfirmedRating = RatingLog::model()->count('confirmed = 0');
-        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel, 'newCertificate' => $newCertificate, 'newProjects' => $newProjects, 'unconfirmedRating' => $unconfirmedRating));
+        $unconfirmedEvent = Event::model()->count('active = 0');
+        $this->render('nav', array('isSeen' => $isSeen, 'newLevel' => $newLevel, 'newCertificate' => $newCertificate, 'newProjects' => $newProjects, 'unconfirmedRating' => $unconfirmedRating, 'unconfirmedEvent' => $unconfirmedEvent));
     }
 }

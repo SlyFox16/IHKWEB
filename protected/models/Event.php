@@ -121,7 +121,7 @@ class Event extends ActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($param = null)
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
@@ -145,6 +145,10 @@ class Event extends ActiveRecord
             Yii::app()->session[get_class($this) . '_page'] = $_GET[$key]; // update current active page
         } elseif (isset(Yii::app()->session[get_class($this) . '_page'])) {
             $_GET[$key] = Yii::app()->session[get_class($this) . '_page']; // set latest active page
+        }
+
+        if($param == 'unconfirmed') {
+            $criteria->addCondition('active = 0');
         }
 
 		return new CActiveDataProvider($this, array(
