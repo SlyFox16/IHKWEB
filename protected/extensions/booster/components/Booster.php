@@ -437,7 +437,7 @@ class Booster extends CApplicationComponent {
 		
 		return array('bootstrap.css' => array(
 			'baseUrl' => $this->enableCdn ? '//netdna.bootstrapcdn.com/bootstrap/3.1.1/' : $this->getAssetsUrl() . '/bootstrap/',
-			'css' => array( ($this->minify || $this->enableCdn) ? 'css/bootstrap.min.css' : 'css/bootstrap.css' ),
+			//'css' => array( ($this->minify || $this->enableCdn) ? 'css/bootstrap.min.css' : 'css/bootstrap.css' ),
 		));
 	}
 

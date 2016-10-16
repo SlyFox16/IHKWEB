@@ -156,4 +156,27 @@ class EventController extends BackendController
         else
             throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
     }
+
+    public function actionAddMember()
+    {
+        $event_id = Yii::app()->request->getParam('event_id');
+        $user_id = Yii::app()->request->getParam('user_id');
+
+        $memberUser = User::model()->findByPk($user_id);
+
+        if ($memberUser) {
+            $check = EventMembers::model()->find(array('condition' => 'event_id = :event_id && user_id = :user_id', 'params' => array(':event_id' => $event_id, ':user_id' => $user_id)));
+
+            if ($check) {
+                if ($check->delete()) echo true;
+            } else {
+                $reference = new EventMembers();
+                $reference->event_id = $event_id;
+                $reference->user_id = $user_id;
+                if($reference->save()) echo true;
+            }
+            echo false;
+        } else
+            throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
+    }
 }

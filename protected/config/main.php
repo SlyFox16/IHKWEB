@@ -73,7 +73,8 @@ return CMap::mergeArray(
             ),
 
             'booster' => array(
-                'class' => 'ext.booster.components.Booster', // assuming you extracted bootstrap under extensions
+                'forceCopyAssets' => true,
+                'class' => 'ext.booster.components.Booster',
                 'responsiveCss' => true,
             ),
 

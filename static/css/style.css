@@ -11894,5 +11894,7 @@ body .rating-gly-star {
   background: #00478c;
   color: #fff;
 }
-
+.dropdown-menu {
+    display: none;
+}
 /*# sourceMappingURL=style.css.map */

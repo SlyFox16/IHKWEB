@@ -422,6 +422,33 @@ class User extends ActiveRecord
         ));
     }
 
+    public function searchAllActive()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
+        $criteria->compare('email', $this->email, true);
+        $criteria->compare('expert_confirm', $this->expert_confirm);
+        $criteria->compare('password', $this->password, true);
+        $criteria->compare('salt', $this->salt, true);
+        $criteria->compare('is_active', $this->is_active);
+        $criteria->compare('is_staff', $this->is_staff);
+        $criteria->compare('last_login', $this->last_login, true);
+        $criteria->compare('date_joined', $this->date_joined, true);
+
+        $criteria->addCondition('is_active = 1');
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
     protected function beforeValidate()
     {
         if($this->isNewRecord)
@@ -716,5 +743,15 @@ class User extends ActiveRecord
 
     public function getClearUrl() {
         return preg_replace("(^https?://)", "", $this->web_url);
+    }
+
+    public function related_button($event_id)
+    {
+        $eventRelated = EventMembers::model()->findByAttributes(array('event_id' => $event_id, 'user_id' => $this->id));
+
+        if($eventRelated)
+            return true;
+        else
+            return false;
     }
 }
