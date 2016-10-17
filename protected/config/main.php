@@ -20,7 +20,7 @@ return CMap::mergeArray(
     array(
         'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
         'name' => 'IHK',
-        'language' => 'en',
+        'language' => 'de',
         'theme' => 'newtheme',
 
         // preloading 'log' component

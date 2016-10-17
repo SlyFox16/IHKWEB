@@ -1,5 +1,5 @@
 <label>
-    <span><?php echo Yii::t("base", "Related User"); ?></span>
+    <span><?php echo Yii::t("base", "Members"); ?></span>
     <ul class="input-add">
         <li>
             <?php $this->widget(
@@ -9,7 +9,7 @@
                     'asDropDownList' => false,
                     'options' => [
                         'minimumInputLength' => 2,
-                        'placeholder' => Yii::t("base", 'Select user'),
+                        'placeholder' => Yii::t("base", 'Add a member to the event'),
                         'width' => '100%',
                         'allowClear' => true,
                         'ajax' => [

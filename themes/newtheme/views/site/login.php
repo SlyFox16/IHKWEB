@@ -43,6 +43,7 @@
                 </div>
                 <div class="row bottom-edge">
                     <div class="small-12 columns">
+                        <?php echo CHtml::submitButton('Submit', array('style' => 'visibility:hidden')); ?>
                         <?php echo CHtml::linkButton(Yii::t("base", 'Login'), array('class' => 'button large')); ?>
                         <a class="button large transparent" data-toggle="passrecover"><?php echo Yii::t("base", "Forgot password?");?></a>
                     </div>

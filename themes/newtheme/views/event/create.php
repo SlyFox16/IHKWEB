@@ -85,6 +85,12 @@
                                                 'width' => '100%',
                                                 'drops' => 'up',
                                                 'minDate' => '0',
+                                                'locale' => array(
+                                                    'applyLabel' => Yii::t("base", 'Apply'),
+                                                    'cancelLabel' => Yii::t("base", "Cancel"),
+                                                    'fromLabel' => Yii::t("base", "From"),
+                                                    'toLabel' => Yii::t("base", "To"),
+                                                )
                                             ),
                                             'htmlOptions' => array(
                                                 'class' => 'form-control',
