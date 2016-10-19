@@ -35,7 +35,7 @@ $this->menu=array(
             'value' => User::getCityCountry($model->city_id, 'city'),
         ),
 		'address',
-		'date:date',
+		'DateRange',
 		'active:boolean',
 	),
 )); ?>

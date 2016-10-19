@@ -88,7 +88,7 @@
 
 	<?php echo $form->textFieldRow($model,'address',array('class'=>'span5','maxlength'=>255)); ?>
 
-    <?php echo $form->dateFieldRow($model, 'date', 'dd/mm/yyyy', array('class'=>'span5','maxlength'=>255)); ?>
+    <?php echo $form->dateRangeFieldRow($model, 'date_range', 'DD/MM/YYYY', array('class'=>'span5','maxlength'=>255, 'value' => $model->dateRange)); ?>
 
     <?php echo $form->checkBoxRow($model, 'active'); ?>
 

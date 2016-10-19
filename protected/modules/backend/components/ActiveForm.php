@@ -357,6 +357,25 @@ class ActiveForm extends TbActiveForm
         return $this->render('date_time_field',array('model'=>$model,'attribute'=>$attribute, 'dateFormat' => $dateFormat, 'timeFormat'=>$timeFormat));
     }
 
+    public function dateRangeFieldRow($model, $attribute, $dateFormat, $htmlOptions = array())
+    {
+        Yii::app()->clientScript->registerScriptFile(
+            $this->controller->module->assetsUrl . "/lib/daterange/moment.min.js",
+            CClientScript::POS_END
+        );
+        Yii::app()->clientScript->registerCssFile(
+            $this->controller->module->assetsUrl . '/lib/daterange/daterangepicker.css'
+        );
+        Yii::app()->clientScript->registerCssFile(
+            $this->controller->module->assetsUrl . '/lib/daterange/correct.css'
+        );
+        Yii::app()->clientScript->registerScriptFile(
+            $this->controller->module->assetsUrl . "/lib/daterange/daterangepicker.js",
+            CClientScript::POS_END
+        );
+        return $this->render('date_range_field',array('model'=>$model,'attribute'=>$attribute, 'dateFormat' => $dateFormat, 'htmlOptions' => $htmlOptions));
+    }
+
     /**
      * Overriding method textFieldRow for label attributes
      * @param CModel $model
