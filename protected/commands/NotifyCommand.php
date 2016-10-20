@@ -12,7 +12,10 @@ class NotifyCommand extends CConsoleCommand
                 $datetime2 = new DateTime('now');
                 $interval = $datetime1->diff($datetime2);
                 if ($interval->format('%a') == 4) {
-                    Yii::app()->email->four_days_event_email($event->user, $event);
+                    if ($eventMembers = $event->event_members) {
+                        foreach ($eventMembers as $member)
+                            Yii::app()->email->four_days_event_email($member, $event);
+                    }
                 }
             }
         }

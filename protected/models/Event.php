@@ -66,6 +66,7 @@ class Event extends ActiveRecord
 		return array(
             'connectedUsers' => array(self::MANY_MANY, 'User', 'event_members(event_id, user_id)'),
             'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+            'event_members' => array(self::MANY_MANY, 'User', 'event_members(event_id, user_id)'),
 		);
 	}
 
