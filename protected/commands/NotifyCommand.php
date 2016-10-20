@@ -16,7 +16,6 @@ class NotifyCommand extends CConsoleCommand
                     echo $event->id;
                     if ($eventMembers = $event->event_members) {
                         foreach ($eventMembers as $member) {
-                            echo $member->id;
                             Yii::app()->email->four_days_event_email($member, $event);
                             Yii::log("Emails was sent. Event - ".$event->id.", date - ".date('Y-m-d'), CLogger::LEVEL_TRACE);
                         }
