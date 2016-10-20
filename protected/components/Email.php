@@ -101,6 +101,21 @@ class Email extends CApplicationComponent
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
+    public function four_days_event_email($user, $event)
+    {
+        $this->subject = YHelper::yiisetting('4_days_event_email', Yii::app()->name, true);
+        $this->body = YHelper::yiisetting('4_days_event_email');
+        $senderEmail = YHelper::yiisettingSenderEmail('4_days_event_email');
+
+        $this->body = $this->changeAttr($user, $this->body);
+        $this->subject = $this->changeAttr($user, $this->subject);
+
+        $this->body = $this->eventParams($event, $this->body);
+        $this->subject = $this->eventParams($event, $this->subject);
+
+        $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
+    }
+
     private function changeAttr($user, $body)
     {
         $body = preg_replace('~\[:first_name\]~', $user->name, $body);
