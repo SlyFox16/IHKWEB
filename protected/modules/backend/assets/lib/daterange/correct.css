@@ -1,3 +1,7 @@
 .daterangepicker .input-mini {
     width: 80%;
 }
+
+.daterangepicker .calendar {
+    max-width: 360px;
+}
