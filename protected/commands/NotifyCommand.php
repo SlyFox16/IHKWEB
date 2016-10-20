@@ -11,6 +11,7 @@ class NotifyCommand extends CConsoleCommand
                 $datetime1 = DateTime::createFromFormat('d/m/Y', $event->date);
                 $datetime2 = new DateTime('now');
                 $interval = $datetime1->diff($datetime2);
+                echo $interval->format('%a').'\r\n';
                 if ($interval->format('%a') == 4) {
                     echo $event->id;
                     if ($eventMembers = $event->event_members) {
