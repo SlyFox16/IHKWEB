@@ -7,11 +7,12 @@ class NotifyCommand extends CConsoleCommand
         $events = Event::model()->findAll('active = 1');
 
         if($events) {
+            echo date('Y-m-d');
             foreach ($events as $event) {
                 $datetime1 = DateTime::createFromFormat('d/m/Y', $event->date);
                 $datetime2 = new DateTime('now');
                 $interval = $datetime1->diff($datetime2);
-                echo $event->id.'->'.$interval->format('%a').'\n';
+
                 if ($interval->format('%a') == 4) {
                     echo $event->id;
                     if ($eventMembers = $event->event_members) {
