@@ -1,8 +1,9 @@
 <?php
     $this->title = $model->title;
-    $this->metaDescription = YText::wordLimiter(YText::purifier($model->description), 255);
+    $this->metaDescription = YText::wordLimiter(YText::purifier($model->description), 100);
     $this->canonical = $this->createAbsoluteUrl('/event/view', array('id' => $model->id));
-    $this->ogImage = YHelper::getImagePath($model->image);
+    $this->ogImage = YHelper::getImagePath($model->image, 200, 200);
+    $this->metaProperties = array('og:image:height' => 200, 'og:image:width' => 200);
 ?>
 
 <div class="row">
