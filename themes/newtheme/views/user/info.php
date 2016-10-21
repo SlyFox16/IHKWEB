@@ -143,7 +143,7 @@
                     </ul>
                 </div>
             <?php } ?>
-            <?php if($events = $user->events) { ?>
+            <?php if($events = $user->events(array('order' => 'date ASC'))) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Events participated"); ?></span>
                     <ul class="event_participation">

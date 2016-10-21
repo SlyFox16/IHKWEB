@@ -93,7 +93,7 @@ class User extends ActiveRecord
             array('email, username', 'unique', 'except' => 'changepassword'),
             array('email', 'email', 'message' => 'Email is not valid.'),
             array('password', 'compare', 'on' => 'insert, updatepassword, register, seeker'),
-            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id, rating, userAssociation, order_param', 'safe'),
+            array('password_repeat, certificates, last_login, date_joined, is_staff, identity, network, comment, expert_confirm, level, new_level, seeker_pass, country_id, city_id, rating, userAssociation, order_param, email_sent', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, name, surname, email, password, salt, is_active, is_staff, last_login, date_joined', 'safe', 'on' => 'search'),
@@ -422,6 +422,41 @@ class User extends ActiveRecord
         ));
     }
 
+    public function searchSeekers()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('id', $this->id);
+        $criteria->compare('username', $this->username, true);
+        $criteria->compare('name', $this->name, true);
+        $criteria->compare('surname', $this->surname, true);
+        $criteria->compare('email', $this->email, true);
+        $criteria->compare('is_active', $this->is_active);
+        $criteria->compare('last_login', $this->last_login, true);
+        $criteria->compare('date_joined', $this->date_joined, true);
+
+        $key = get_class($this) . '_page'; // e.g. Model_page
+
+        if (isset($_GET['ajax']) && !isset($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = 1;
+        }
+
+        if (!empty($_GET[$key])) {
+            Yii::app()->session[get_class($this) . '_page'] = $_GET[$key]; // update current active page
+        } elseif (isset(Yii::app()->session[get_class($this) . '_page'])) {
+            $_GET[$key] = Yii::app()->session[get_class($this) . '_page']; // set latest active page
+        }
+
+        $criteria->addCondition('is_seeker = 1');
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
+    }
+
     public function searchAllActive()
     {
         // Warning: Please modify the following code to remove attributes that
@@ -529,6 +564,12 @@ class User extends ActiveRecord
 
     public function afterSave()
     {
+        if (!$this->email_sent && $this->expert_confirm) {
+            $this->email_sent = 1;
+            if ($this->saveAttributes(array('email_sent')))
+                Yii::app()->email->four_days_event_email($this);
+        }
+
         if ($this->scenario == 'userupdate') {
             $certs = UserCertificate::model()->findAllByAttributes(array('user_id' => Yii::app()->user->id));
 

@@ -84,6 +84,7 @@ class BackendController extends Controller
                     'mailAll',
                     'addMember',
                     'localeSearch',
+                    'seekerMembers',
                 ),
                 'expression'=>'isset(Yii::app()->user->id) && User::model()->findByPk(Yii::app()->user->id)->is_staff',
             ),

@@ -37,7 +37,7 @@ class Event extends ActiveRecord
 			array('title, description, country_id, date_range, city_id, address', 'required'),
 			array('title, facebook_url, twitter_url, xing_url, image, address', 'length', 'max'=>255),
             array('image', 'file', 'types'=>'png, jpg, gif, jpeg', 'safe' => false,'allowEmpty'=>true),
-            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url, date, date_end', 'safe'),
+            array('facebook_url, twitter_url, xing_url, active, user_id, temp_id, site_url, date, date_end, email_sent', 'safe'),
             array('facebook_url, twitter_url, xing_url, site_url', 'url'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -193,8 +193,12 @@ class Event extends ActiveRecord
                     $eventMember->save();
                 }
             }
+        }
 
-            Yii::app()->email->event_was_confirmed_email($this->user, $this);
+        if (!$this->email_sent && $this->active) {
+            $this->email_sent = 1;
+            if ($this->saveAttributes(array('email_sent')))
+                Yii::app()->email->event_was_confirmed_email($this->user, $this);
         }
 
         parent::afterSave();

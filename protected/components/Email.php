@@ -116,6 +116,18 @@ class Email extends CApplicationComponent
         $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
     }
 
+    public function profile_approved_email($user)
+    {
+        $this->subject = YHelper::yiisetting('profile_approved_email', Yii::app()->name, true);
+        $this->body = YHelper::yiisetting('profile_approved_email');
+        $senderEmail = YHelper::yiisettingSenderEmail('profile_approved_email');
+
+        $this->body = $this->changeAttr($user, $this->body);
+        $this->subject = $this->changeAttr($user, $this->subject);
+
+        $this->sendEmail($this->subject, $this->body, $user->email, $senderEmail);
+    }
+
     private function changeAttr($user, $body)
     {
         $body = preg_replace('~\[:first_name\]~', $user->name, $body);

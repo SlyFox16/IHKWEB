@@ -103,6 +103,7 @@ class UserController extends BackendController
             $model->$name = $value;
 
             if($model->save(true, array($name))) {
+                $model->seenCheck();
                 $level = 0;
                 if($name == 'confirm')
                     $level = User::newLevel($model->user_id);
@@ -129,6 +130,7 @@ class UserController extends BackendController
             $model->$name = $value;
 
             if($model->save(true, array($name))) {
+                $model->seenCheck();
                 echo CJSON::encode(array('id' => $model->primaryKey));
             } else {
                 $errors = array_map(function($v){ return join(', ', $v); }, $model->getErrors());
@@ -194,6 +196,18 @@ class UserController extends BackendController
             $model->attributes=$_GET['User'];
 
         $this->render('adminStaff',array(
+            'model'=>$model,
+        ));
+    }
+
+    public function actionSeekerMembers()
+    {
+        $model=new User('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['User']))
+            $model->attributes=$_GET['User'];
+
+        $this->render('seekerMembers',array(
             'model'=>$model,
         ));
     }
