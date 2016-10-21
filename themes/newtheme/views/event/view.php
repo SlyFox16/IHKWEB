@@ -1,6 +1,6 @@
 <?php
     $this->title = $model->title;
-    $this->metaDescription = YText::purifier($model->description);
+    $this->metaDescription = YText::wordLimiter(YText::purifier($model->description), 255);
     $this->canonical = $this->createAbsoluteUrl('/event/view', array('id' => $model->id));
     $this->ogImage = YHelper::getImagePath($model->image);
 ?>
