@@ -71,6 +71,7 @@
                     <?php } ?>
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } elseif(Yii::app()->user->is_seeker) { ?>
+                    <a data-tooltip href="<?php echo $this->createUrl('/message'); ?>" class="fa fa-envelope" title="<?php echo Yii::t("base", "Messages"); ?>">
                     <a data-tooltip href="<?php echo $this->createUrl('/site/logout'); ?>" class="fa fa-sign-out" title="<?php echo Yii::t("base", "Logout"); ?>"></a>
                 <?php } else {
                     echo CHtml::link(Yii::t("base", 'Login'), array('/site/login'), array('title' => Yii::t("base", 'Login')));
