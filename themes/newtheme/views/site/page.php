@@ -18,9 +18,9 @@
         <div class="small-12 columns">
             <h1><?php echo $model->title; ?></h1>
             <?php if ($model->id == 1) {
-                $this->renderPartial('custumPage/impressum');
+                $this->renderPartial('customPage/impressum');
             } elseif($model->id == 2) {
-                $this->renderPartial('custumPage/agb');
+                $this->renderPartial('customPage/agb');
             } else {
                 echo $model->content;
             } ?>
