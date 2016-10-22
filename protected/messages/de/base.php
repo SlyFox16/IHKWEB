@@ -210,6 +210,7 @@ return array (
   'You are already confirmed!' => 'Sie sind bereits angemeldet und haben Ihr Konto bestätigt',
   'You can not view this chat' => 'Sie können diese Diskussion nicht einsehen',
   'You have successfully changed your password!' => 'Sie haben erfolgreich Ihr Passwort geändert',
+  'You must agree' => '',
   'You was successfully added to this event.' => 'Ihr Profil wurde erfolgreich hinzugefügt',
   'You was successfully deleted from this event.' => 'Ihr Profil wurde erfolgreich entfernt',
   'Your event was added to confirmation' => 'Ihr Event wurde angelegt und wartet auf Freigabe',
