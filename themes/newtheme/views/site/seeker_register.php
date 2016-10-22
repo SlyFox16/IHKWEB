@@ -64,6 +64,15 @@
                     </fieldset>
                 </div>
             </div>
+            <div class="small-12 columns">
+                <div class="col-xs-12">
+                    <?php echo $form->checkBox($register_form, 'confirmCheck'); ?>
+                    <label for="checkbox-signup">
+                        Ich stimme den <?php echo CHtml::link('AGB\'s', array('site/pages', 'id' => 3)); ?> zu
+                    </label>
+                    <?php echo $form->error($register_form, 'confirmCheck'); ?>
+                </div>
+            </div>
             <div class="row bottom-edge">
                 <div class="small-12 columns">
                     <?php echo CHtml::linkButton(Yii::t("base", 'Register'), array('class' => 'button large')); ?>

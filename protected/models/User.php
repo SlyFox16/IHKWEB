@@ -29,6 +29,7 @@ class User extends ActiveRecord
     public $certificate;
     public $certificate_date;
     public $order_param;
+    public $confirmCheck;
 
     /**
      * Returns the static model of the specified AR class.
@@ -72,6 +73,7 @@ class User extends ActiveRecord
         return array(
             array('username, name, surname, email, password, password_repeat, address, country_id, city_id', 'required', 'on' => 'insert'),
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'seeker'),
+            array('confirmCheck', 'required', 'requiredValue' => true, 'on' => 'seeker', 'message' => Yii::t("base",'You must agree')),
             array('username, name, surname, email, password, password_repeat', 'required', 'on' => 'backendcreate'),
             array('username, name, surname, email', 'required', 'on' => 'update, socials'),
             array('username, address, country_id, city_id', 'required', 'on' => 'userupdate'),
