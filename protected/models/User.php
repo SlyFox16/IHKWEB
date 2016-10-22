@@ -569,7 +569,7 @@ class User extends ActiveRecord
         if (!$this->email_sent && $this->expert_confirm) {
             $this->email_sent = 1;
             if ($this->saveAttributes(array('email_sent')))
-                Yii::app()->email->four_days_event_email($this);
+                Yii::app()->email->profile_approved_email($this);
         }
 
         if ($this->scenario == 'userupdate') {
