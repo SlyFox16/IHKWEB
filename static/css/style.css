@@ -7873,7 +7873,7 @@ ul, ol {
 [type='url'], [type='color'],
 textarea {
   background: #fff;
-  padding: 0.9375rem 0.3125rem;
+  padding: 0.3125rem 0.9375rem;
   margin: 0 0 0.9375rem;
   line-height: 1.25rem;
   height: 3.125rem;
