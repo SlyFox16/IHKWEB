@@ -1,10 +1,5 @@
 <div class="row bottom-50">
 	<div class="small-12 columns">
-		<h1>Allgemeine Geschäftsbedingungen und Kundeninformationen</h1>
-	</div>
-</div>
-<div class="row bottom-50">
-	<div class="small-12 columns">
 		<ul class="accordion" data-accordion data-allow-all-closed="true">
 		    <li class="accordion-item" data-accordion-item>
 		        <a href="#" class="accordion-title">I Einleitende Bestimmungen</a>
