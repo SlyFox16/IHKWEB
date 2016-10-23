@@ -64,13 +64,15 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="small-12 columns">
-                <div class="col-xs-12">
-                    <?php echo $form->checkBox($register_form, 'confirmCheck'); ?>
-                    <label for="checkbox-signup">
-                        Ich stimme den <?php echo CHtml::link('AGB\'s', array('site/pages', 'id' => 2)); ?> zu
-                    </label>
-                    <?php echo $form->error($register_form, 'confirmCheck'); ?>
+            <div class="row">
+                <div class="small-12 columns">
+                    <fieldset class="fieldset">
+                        <?php echo $form->checkBox($register_form, 'confirmCheck'); ?>
+                        <label for="checkbox-signup">
+                            Ich stimme den <?php echo CHtml::link('AGB\'s', array('site/pages', 'id' => 2)); ?> zu
+                        </label>
+                        <?php echo $form->error($register_form, 'confirmCheck'); ?>
+                    </fieldset>
                 </div>
             </div>
             <div class="row bottom-edge">
