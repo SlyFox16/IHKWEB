@@ -23,13 +23,7 @@ $('.search-form form').submit(function(){
 ?>
 
 <legend>
-    <?php if($param == 'new') { ?>
-        New Users
-    <?php } elseif($param == 'newlevel') { ?>
-        Users new level
-    <?php } else { ?>
-        Manage Users
-    <?php } ?>
+        Manage Seekers
 </legend>
 
 <?php $this->widget('bootstrap.widgets.TbGridView', array(
