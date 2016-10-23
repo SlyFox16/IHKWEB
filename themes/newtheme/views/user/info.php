@@ -161,7 +161,7 @@
                     </ul>
                 </div>
             <?php } ?>
-            <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
+            <?php if($completed = $user->completed(array('order' => 'date ASC', 'scopes' => array('confirmed')))) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Projects"); ?></span>
                         <ul class="accordion projects" data-accordion>
