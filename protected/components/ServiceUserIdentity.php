@@ -11,6 +11,9 @@ class ServiceUserIdentity implements IUserIdentity
 
     public function authenticate($uloginModel = null)
     {
+        if (!isset($uloginModel->email))
+            throw new CHttpException(400,Yii::t("base","No email was transfered from social network!"));
+
         $criteria = new CDbCriteria;
         $criteria->condition = 'email=:email';
         $criteria->params = array(

@@ -8,7 +8,7 @@ defined('LOCALHOST') or define('LOCALHOST', $_SERVER['SERVER_ADDR'] == '127.0.0.
 if (LOCALHOST) {
     defined('YII_DEBUG') or define('YII_DEBUG', true);
 } else {
-    defined('YII_DEBUG') or define('YII_DEBUG', true); //false
+    defined('YII_DEBUG') or define('YII_DEBUG', false); //false
 }
 
 // specify how many levels of call stack should be shown in each log message
