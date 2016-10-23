@@ -76,6 +76,9 @@ return CMap::mergeArray(
                 'forceCopyAssets' => true,
                 'class' => 'ext.booster.components.Booster',
                 'responsiveCss' => true,
+                'coreCss' => false,
+                'bootstrapCss' => false,
+                'responsiveCss' => false,
             ),
 
             'format' => array(
