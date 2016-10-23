@@ -7860,9 +7860,6 @@ body .rating-container.rating-gly-star {
 ul, ol {
   color: #777;
 }
-ul li + li, ol li + li {
-  margin-top: 5px;
-}
 
 /*------------------------------------*\
     Forms
