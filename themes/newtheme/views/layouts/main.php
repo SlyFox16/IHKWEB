@@ -38,13 +38,13 @@
                     <ul class="partners">
                         <li>
                             <span>präsentiert von</span>
-                            <a href="http://www.crowdsourcingverband.de/">
+                            <a href="http://www.crowdsourcingverband.de/" target="_blank">
                                 <img src="<?php echo $this->assetsUrl?>/images/DCV-logo.png">
                             </a>
                         </li>
                         <li>
                             <span>gefördert durch</span>
-                            <a href="https://akademie.muenchen.ihk.de/bildung/details.jsp?pid=5076">
+                            <a href="https://akademie.muenchen.ihk.de/bildung/details.jsp?pid=5076" target="_blank">
                                 <img src="<?php echo $this->assetsUrl?>/images/ihk-logo.png">
                             </a>
                         </li>

@@ -7857,6 +7857,13 @@ body .rating-container.rating-gly-star {
   font-size: 0.9375rem;
 }
 
+ul, ol {
+  color: #777;
+}
+ul li + li, ol li + li {
+  margin-top: 5px;
+}
+
 /*------------------------------------*\
     Forms
 \*------------------------------------*/
@@ -11894,7 +11901,5 @@ body .rating-gly-star {
   background: #00478c;
   color: #fff;
 }
-.dropdown-menu {
-    display: none;
-}
+
 /*# sourceMappingURL=style.css.map */
