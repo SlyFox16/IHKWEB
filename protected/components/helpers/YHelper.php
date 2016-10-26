@@ -60,7 +60,7 @@ class YHelper
 
         if (!empty($source_image) && file_exists($source_image)) {
             $image_info = getimagesize($source_image);
-            if (!is_array($image_info) OR count($image_info) < 3)
+            if (!is_array($image_info) || count($image_info) < 3)
                 $source_image = $default ? : Yii::app()->params['noImage'];
         } else
             $source_image = $default ? : Yii::app()->params['noImage'];
