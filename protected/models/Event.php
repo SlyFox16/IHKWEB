@@ -197,6 +197,7 @@ class Event extends ActiveRecord
 
         if (!$this->email_sent && $this->active) {
             $this->email_sent = 1;
+            $this->isNewRecord = false;
             if ($this->saveAttributes(array('email_sent')))
                 Yii::app()->email->event_was_confirmed_email($this->user, $this);
         }

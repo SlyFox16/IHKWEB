@@ -139,9 +139,8 @@ class UserController extends Frontend
             if (isset($_POST["CompletedProjects"])) {
                 $model->attributes = $_POST["CompletedProjects"];
 
-                if ($model->save()) {
+                if ($model->save())
                     $this->redirect(Yii::app()->request->urlReferrer);
-                }
             }
         }
         throw new CHttpException(400, Yii::t("base", 'Invalid request. Please do not repeat this request again.'));
