@@ -103,7 +103,6 @@ class UserController extends BackendController
             $model->$name = $value;
 
             if($model->save(true, array($name))) {
-                $model->seenCheck();
                 $level = 0;
                 if($name == 'confirm')
                     $level = User::newLevel($model->user_id);
