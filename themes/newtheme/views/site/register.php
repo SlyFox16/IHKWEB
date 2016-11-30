@@ -96,7 +96,7 @@
                                         'class' => 'form-control'
                                     ],
                                 ]
-                            );?>
+                            ); ?>
                         </label>
 
                         <label>

@@ -44,10 +44,10 @@ class YHelper
 
     public static function formatDate($formatGet, $date = null, $formatSet = 'yyyy-MM-dd')
     {
-        if($date && $formatSet)
-            $newDate =  Yii::app()->dateFormatter->format($formatGet, CDateTimeParser::parse($date, $formatSet));
+        if ($date && $formatSet)
+            $newDate = Yii::app()->dateFormatter->format($formatGet, CDateTimeParser::parse($date, $formatSet));
         elseif ($date)
-            $newDate =  Yii::app()->dateFormatter->format($formatGet, $date);
+            $newDate = Yii::app()->dateFormatter->format($formatGet, $date);
         else
             $newDate = Yii::app()->format->date($formatGet);
 
