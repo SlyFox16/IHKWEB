@@ -25,7 +25,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'user_id:user',
 		'title',
-		'description',
+		/*'description',*/
         'date',
         array(
             'class' => 'ext.editable.EditableColumn',
