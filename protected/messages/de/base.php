@@ -187,6 +187,7 @@ return array (
   'The account is not active' => 'Dieser Nutzer/Account ist nicht aktiv',
   'The requested page does not exist!' => 'Die von Ihnen angeforderte Sete existiert nicht',
   'This email-a is not in the database.' => 'Diese E-Mail Adresse ist nicht in unserer Datenbank',
+  'This chat was deleted by your opponent' => '',
   'This link has been expired or incorrect.' => 'Der Link ist entweder falsch oder abgelaufen',
   'This website uses cookies to help us give you the best experience when you visit.' => 'Diese Webseite verwendet Cookies, um Ihnen ein angenehmeres Surfen zu ermöglichen.',
   'Title' => 'Beschreibung / Titel',

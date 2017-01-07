@@ -245,18 +245,37 @@ class Message extends CActiveRecord
 
 	public function getCountUnreaded($userId) {
 		if (!$this->unreadMessagesCount) {
+            $c = new CDbCriteria();
+            $c->condition = 't.subject <> ""';
+            $c->addCondition('((t.deleted_by = :deleted_by_receiver AND receiver_id <> :user) OR (t.deleted_by = :deleted_by_sender AND sender_id <> :user) OR t.deleted_by IS NULL)');
+            $c->params = array(
+                ':user' => $userId,
+                ':deleted_by_receiver' => Message::DELETED_BY_RECEIVER,
+                ':deleted_by_sender' => Message::DELETED_BY_SENDER
+            );
+            $activeChats = self::model()->findAll($c);
+
+            $activeChatsIDs = array();
+            if ($activeChats)
+                $activeChatsIDs = CHtml::listData($activeChats, 'id', 'chat_id');
+
 			$c = new CDbCriteria();
+            $c->addInCondition('chat_id', $activeChatsIDs);
 			$c->addCondition('t.receiver_id = :receiverId');
-			$c->addCondition('t.deleted_by <> :deleted_by_receiver OR t.deleted_by IS NULL');
 			$c->addCondition('t.is_read = "0"');
-			$c->params = array(
-				'receiverId' => $userId,
-				'deleted_by_receiver' => Message::DELETED_BY_RECEIVER,
-			);
+            $c->order = 'id ASC';
+			$c->params[':receiverId'] = $userId;
 			$count = self::model()->count($c);
 			$this->unreadMessagesCount = $count;
 		}
 
 		return $this->unreadMessagesCount;
 	}
+
+    public function opponentDelete() {
+        if ($this->deleted_by == self::DELETED_BY_SENDER || $this->deleted_by == self::DELETED_BY_RECEIVER)
+            return true;
+
+        return false;
+    }
 }
