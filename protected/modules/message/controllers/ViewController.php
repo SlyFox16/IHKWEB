@@ -41,6 +41,9 @@ class ViewController extends Frontend {
 			$message->sender_id = $userId;
             $message->chat_id = $viewedMessage[0]->chat_id;
 			if ($message->save()) {
+                $viewedMessage[0]->deleted_by = NULL;
+                $viewedMessage[0]->saveAttributes(array('deleted_by'));
+
                 Yii::app()->email->gotMessage($message);
 
 				Yii::app()->user->setFlash('project_success', Yii::t("base", 'Message has been sent'));

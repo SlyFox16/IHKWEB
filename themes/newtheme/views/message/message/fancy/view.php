@@ -22,11 +22,6 @@
             )); ?>
                 <div class="row">
                     <div class="small-12 columns">
-
-                        <?php if ($viewedMessage[0]->opponentDelete()) { ?>
-                            <?php echo Yii::t("base", "This chat was deleted by your opponent"); ?>
-                        <?php } ?>
-
                         <h3><?php echo $viewedMessage[0]->subject; ?></h3>
                         <ul id="chatArea" class="messages_flow">
                             <?php foreach ($viewedMessage as $messageList) { ?>
@@ -40,15 +35,13 @@
                             <?php } ?>
                         </ul>
 
-                        <?php if (!$viewedMessage[0]->opponentDelete()) { ?>
-                            <div class="reply">
-                                <label>
-                                    <span><?php echo $message->getAttributeLabel('Message'); ?></span>
-                                    <?php echo $form->textArea($message,'body', array('cols' => '30', 'rows' => 10)); ?>
-                                    <?php echo $form->error($message,'body'); ?>
-                                </label>
-                            </div>
-                        <?php } ?>
+                        <div class="reply">
+                            <label>
+                                <span><?php echo $message->getAttributeLabel('Message'); ?></span>
+                                <?php echo $form->textArea($message,'body', array('cols' => '30', 'rows' => 10)); ?>
+                                <?php echo $form->error($message,'body'); ?>
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="row bottom-edge">
