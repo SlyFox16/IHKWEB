@@ -16,6 +16,7 @@
 class RatingLog extends ActiveRecord
 {
     public $htmlpurifier;
+    public $count;
     public $id;
 
 	/**

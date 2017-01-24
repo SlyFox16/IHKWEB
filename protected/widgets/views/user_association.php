@@ -60,8 +60,8 @@
                 'user_assoc': userId
                 },
                 success: function (data) {
-                $('.attachedassoc').append(data);
-            }
+                    $('.attachedassoc').append(data);
+                }
             });
         }
     });

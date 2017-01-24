@@ -38,6 +38,7 @@ return array(
         'basePath' => 'webroot.static',
         'css' => array(
             'css/style.css',
+            'css/poll.css',
         ),
         'js' => array(
             'javascripts/vendor.js',
