@@ -3,8 +3,8 @@
         <?php foreach ($ratings as $num => $count) { ?>
         <li>
             <div class="summary-stars">
-                <?php echo CHtml::tag('div', array('id' => 'stars_' . $num, 'class' => 'rating'));
-                Yii::app()->clientScript->registerScript("stars_$num", "
+                <div id="stars_<?php echo $num; ?>" class="rating"></div>
+                <?php Yii::app()->clientScript->registerScript("stars_$num", "
                 $('#stars_" . $num . "').raty({readOnly: true, score: " . $num . "});
                 ", CClientScript::POS_READY); ?>
             </div>
