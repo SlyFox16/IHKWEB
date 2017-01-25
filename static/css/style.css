@@ -11521,8 +11521,13 @@ body .rating-gly-star {
   letter-spacing: 1px;
 }
 
+.summary {
+  overflow: hidden;
+}
 .summary > ul {
+  float: right;
   display: table;
+  border: 1px solid #d0d0d0;
 }
 .summary > ul > li {
   display: table-row;
@@ -11530,6 +11535,10 @@ body .rating-gly-star {
 .summary > ul > li > div {
   display: table-cell;
   vertical-align: middle;
+  padding: 0.625rem;
+}
+.summary > ul > li + li > div {
+  border-top: 1px solid #d0d0d0;
 }
 
 /*------------------------------------*\
