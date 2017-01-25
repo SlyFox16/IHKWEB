@@ -10,7 +10,7 @@ class AmazonRating extends CWidget
 
         $criteria=new CDbCriteria;
         $criteria->select = 'num, COUNT(*) as count';
-        $criteria->condition = 'who_received = :user && confirmed = 1';
+        $criteria->condition = 'who_received = :user AND confirmed = 1';
         $criteria->group = 'num';
         $criteria->params[':user'] = $this->user->id;
         $ratings = RatingLog::model()->findAll($criteria);
