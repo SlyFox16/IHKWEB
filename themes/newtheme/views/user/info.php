@@ -97,8 +97,10 @@
         </div>
         <div class="small-9 small-offset-3 medium-3 medium-offset-0 columns">
             <ul class="stats">
-                <li><div class="summary"><?php echo Yii::t("base", "Rating");?></div></li>
-                <?php $this->widget('AmazonRating', array('user' => $user)); ?>
+                <li>
+                    <?php echo Yii::t("base", "Rating");?>
+                    <?php $this->widget('AmazonRating', array('user' => $user)); ?>
+                </li>
                 <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>
                 <?php if($certisicates = $user->certificates(array('scopes' => array('confirmed')))) { ?>
                     <li><?php echo Yii::t("base", "Certification"); ?>
