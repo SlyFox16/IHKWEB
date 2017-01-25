@@ -6,6 +6,8 @@ class AmazonRating extends CWidget
 
     public function run()
     {
+        Yii::app()->clientScript->registerScriptFile($this->controller->assetsUrl.'/javascripts/jquery.raty-fa.js', CClientScript::POS_END);
+
         $criteria=new CDbCriteria;
         $criteria->select = 'num, COUNT(*) as count';
         $criteria->condition = 'who_received = :user && confirmed = 1';

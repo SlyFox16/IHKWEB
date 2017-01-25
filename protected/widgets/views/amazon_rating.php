@@ -5,9 +5,10 @@
                 <tr>
                     <td colspan="2" class="page_poll_text"><?php echo Yii::t('base', '{n} star|{n} stars', $num); ?></td>
                     <td>
-                        <div class="progress-div">
-                            <div class="progress-bar" style="width: <?php echo round($count*100/$all, 2); ?>%" role="progressbar" aria-valuenow="<?php echo $count; ?>" aria-valuemin="0" aria-valuemax="<?php echo $all; ?>"></div>
-                        </div>
+                        <?php echo CHtml::tag('div', array('id' => 'stars_' . $num, 'class' => 'rating'));
+                        Yii::app()->clientScript->registerScript("stars_$num", "
+                        $('#stars_" . $num . "').raty({readOnly: true, score: " . $num . "});
+                        ", CClientScript::POS_READY); ?>
                     </td>
                     <td class="page_poll_row_percent ta_r"><nobr><b><?php echo $count; ?></b></nobr></td>
                 </tr>
