@@ -16,9 +16,9 @@ class AmazonRating extends CWidget
         $ratings = RatingLog::model()->findAll($criteria);
         $ratings = CHtml::listData($ratings, 'num', 'count');
 
-        for ($i = 1; $i <= 5; $i++) {
+        /*for ($i = 1; $i <= 5; $i++) {
             if (!isset($ratings[$i])) $ratings[$i] = 0;
-        }
+        }*/
         ksort($ratings);
         $all = RatingLog::model()->count('who_received = :user && confirmed = 1', array(':user' => $this->user->id));
 
