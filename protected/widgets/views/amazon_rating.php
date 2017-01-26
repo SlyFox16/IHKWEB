@@ -1,3 +1,4 @@
+<li><?php echo Yii::t("base", "Rating");?></li>
 <div class="summary">
     <ul>
         <?php foreach ($ratings as $num => $count) { ?>
