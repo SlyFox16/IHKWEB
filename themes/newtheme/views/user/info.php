@@ -143,7 +143,7 @@
                     </ul>
                 </div>
             <?php } ?>
-            <?php if($events = $user->events(array('order' => 'date ASC'))) { ?>
+            <?php if($events = $user->events) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Events participated"); ?></span>
                     <ul class="event_participation">
@@ -161,7 +161,7 @@
                     </ul>
                 </div>
             <?php } ?>
-            <?php if($completed = $user->completed(array('order' => 'date DESC', 'scopes' => array('confirmed')))) { ?>
+            <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Projects"); ?></span>
                         <ul class="accordion projects" data-accordion>
