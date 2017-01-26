@@ -11522,6 +11522,7 @@ body .rating-gly-star {
 }
 
 .summary {
+  margin: 5px 0 10px 0;
   overflow: hidden;
 }
 .summary > ul {
