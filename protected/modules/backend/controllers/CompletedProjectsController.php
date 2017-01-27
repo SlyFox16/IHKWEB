@@ -113,7 +113,7 @@ class CompletedProjectsController extends BackendController
                 $model->attributes = $_POST["CompletedProjects"];
 
                 if ($model->save()) {
-                    $this->redirect(Yii::app()->request->urlReferrer);
+                    $this->redirect(array('/backend/user/update', 'id' => $model->user->id));
                 }
             }
         }
