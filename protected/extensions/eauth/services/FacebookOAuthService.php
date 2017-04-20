@@ -69,9 +69,9 @@ class FacebookOAuthService extends EOAuth2Service {
 	}
 
 	protected function getAccessToken($code) {
-		$response = $this->makeRequest($this->getTokenUrl($code), array(), false);
-		parse_str($response, $result);
-		return $result;
+		$response = $this->makeRequest($this->getTokenUrl($code), array(), true);
+//		parse_str($response, $result);
+		return $response;
 	}
 
 	/**
@@ -80,9 +80,9 @@ class FacebookOAuthService extends EOAuth2Service {
 	 * @param array $token access token array.
 	 */
 	protected function saveAccessToken($token) {
-		$this->setState('auth_token', $token['access_token']);
-		$this->setState('expires', isset($token['expires']) ? time() + (int)$token['expires'] - 60 : 0);
-		$this->access_token = $token['access_token'];
+		$this->setState('auth_token', $token->access_token);
+		$this->setState('expires', isset($token->expires_in) ? time() + (int)$token->expires_in - 60 : 0);
+		$this->access_token = $token->access_token;
 	}
 
 	/**
