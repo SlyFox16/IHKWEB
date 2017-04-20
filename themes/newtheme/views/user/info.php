@@ -97,7 +97,6 @@
         </div>
         <div class="small-9 small-offset-3 medium-3 medium-offset-0 columns">
             <ul class="stats">
-                <li><?php echo Yii::t("base", "Rating");?></li>
                 <?php $this->widget('AmazonRating', array('user' => $user)); ?>
                 <li><?php echo Yii::t("base", "Level");?> <b><?php echo $user->level; ?></b></li>
                 <?php if($certisicates = $user->certificates(array('scopes' => array('confirmed')))) { ?>
@@ -144,7 +143,7 @@
                     </ul>
                 </div>
             <?php } ?>
-            <?php if($events = $user->events(array('order' => 'date ASC'))) { ?>
+            <?php if($events = $user->events) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Events participated"); ?></span>
                     <ul class="event_participation">
@@ -162,7 +161,7 @@
                     </ul>
                 </div>
             <?php } ?>
-            <?php if($completed = $user->completed(array('order' => 'date DESC', 'scopes' => array('confirmed')))) { ?>
+            <?php if($completed = $user->completed(array('scopes' => array('confirmed')))) { ?>
                 <div class="expert_section">
                     <span><?php echo Yii::t("base", "Projects"); ?></span>
                         <ul class="accordion projects" data-accordion>
