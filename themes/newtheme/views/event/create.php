@@ -205,3 +205,7 @@
         callback(data);
     }
 </script>
+
+<?php Yii::app()->clientScript->registerScript("show-calendar-hide", "
+    $('.show-calendar').hide();
+", CClientScript::POS_READY); ?>
